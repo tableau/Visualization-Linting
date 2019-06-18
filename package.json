@@ -1,0 +1,38 @@
+{
+  "name": "vislint",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "babel-node test/test-index.js",
+    "start": "(cd showcase && yarn && yarn start)",
+    "lint": "eslint ./"
+  },
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^7.1.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2017": "^6.22.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-2": "^6.22.0",
+    "eslint": "^3.13.1",
+    "eslint-config-uber-es2015": "^3.0.1",
+    "eslint-plugin-babel": "^4.0.0",
+    "eslint-plugin-react": "^6.10.0",
+    "webpack": "4",
+    "webpack-cli": "^3.0.8",
+    "webpack-command": "^0.2.1",
+    "webpack-dev-server": "^3.2.1"
+  },
+  "dependencies": {
+
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-2",
+      "react"
+    ]
+  }
+}
