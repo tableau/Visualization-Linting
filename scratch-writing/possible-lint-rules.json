@@ -1,0 +1,456 @@
+[{
+  "Category":"General",
+  "Rule":"require-titles",
+  "Author":"meeks",
+  "Lint Explanation":"A title is required",
+  "Implementation Notes":"inspect rendered object for title",
+  "Annotation":""
+},{
+  "Category":"General",
+  "Rule":"no-short-titles",
+  "Author":"meeks",
+  "Lint Explanation":"Titles must have at least (3) words",
+  "Implementation Notes":"inspect title, count words",
+  "Annotation":""
+},{
+  "Category":"General",
+  "Rule":"max-fonts",
+  "Author":"mcnutt",
+  "Lint Explanation":"chart exceeds maximum number of fonts (2)",
+  "Implementation Notes":"inspect rendered object, count fonts",
+  "Annotation":"Should stick to just two fonts at max in order to reduce visual noise"
+},{
+  "Category":"General",
+  "Rule":"sentencify",
+  "Author":"meeks",
+  "Lint Explanation":"chart titles must be complete sentences",
+  "Implementation Notes":"Use NLP to identify complete sentences",
+  "Annotation":"Chart titles should be written in full sentences."
+},{
+  "Category":"General",
+  "Rule":"maximum-encoding",
+  "Author":"meeks",
+  "Lint Explanation":"Too many data dependent variables are encoded in this chart",
+  "Implementation Notes":"If chart is nonaggregate (eg a scatterplot) find a single point and it's input data, alter the input data for each of it's properties. If altering more than the input threshold number alters the mark, then fail.",
+  "Annotation":"Don’t encode every single aspect of the graphical representation (like a scatterplot encoding color/size/position/border-width/border-stroke-style)"
+},{
+  "Category":"General",
+  "Rule":"require-axes",
+  "Author":"meeks",
+  "Lint Explanation":"missing axes",
+  "Implementation Notes":"inspect rendered object for axes",
+  "Annotation":""
+},{
+  "Category":"General",
+  "Rule":"require-legend",
+  "Author":"meeks",
+  "Lint Explanation":"missing a legend",
+  "Implementation Notes":"inspect rendered object for legend",
+  "Annotation":""
+},{
+  "Category":"General",
+  "Rule":"maximum-histogram-bins",
+  "Author":"meeks",
+  "Lint Explanation":"exceeds maximum number of histogram bins (50)",
+  "Implementation Notes":"In charts identifiable as histograms, count number of rectange patches",
+  "Annotation":""
+},{
+  "Category":"General",
+  "Rule":"no-explosion-effect",
+  "Author":"vis-guides",
+  "Lint Explanation":"explosion effects are not allowed",
+  "Implementation Notes":"add spy on the radial generation function, watch for the use of the explosion option",
+  "Annotation":""
+},{
+  "Category":"General",
+  "Rule":"no-3d-histogram",
+  "Author":"vis-guides",
+  "Lint Explanation":"3D histograms are not allowed",
+  "Implementation Notes":"check projection, if 3d look for bars",
+  "Annotation":""
+},{
+  "Category":"General",
+  "Rule":"no-shadow",
+  "Author":"mcnutt",
+  "Lint Explanation":"shadow effects are not allowed",
+  "Implementation Notes":"inspect rendered object for shadow patches",
+  "Annotation":"This rule is closely aligned with the no 3d rule, basically no visual distortion, also DGeAvoidVisualEffect"
+},{
+  "Category":"General",
+  "Rule":"minimum-data-ink-ratio",
+  "Author":"vis-guides",
+  "Lint Explanation":"remove extraneous non data driven chart content",
+  "Implementation Notes":"It could be computed here by measuring the response to removing all of the data from the chart and comparing the resulting images.",
+  "Annotation":"Possibly phrasable as Nick’s PPP responsive-vis thing"
+},{
+  "Category":"General",
+  "Rule":"deterministic-render",
+  "Author":"mcnutt",
+  "Lint Explanation":"multiple renders of the chart should produce the same image",
+  "Implementation Notes":"grab a copy of the function being run and run it again, compare output images",
+  "Annotation":"Multiple renders of the chart should yield the same or roughly the same image. (maybe not implementable in the context of matplotlib)"
+},{
+  "Category":"General",
+  "Rule":"no-dual-y-axes",
+  "Author":"mcnutt",
+  "Lint Explanation":"multiple y axes are not allowed",
+  "Implementation Notes":"inspect rendered object for multiple axes in the same direction",
+  "Annotation":""
+},{
+  "Category":"General",
+  "Rule":"start-from-zero",
+  "Author":"vis-guides",
+  "Lint Explanation":"axes must start from zero",
+  "Implementation Notes":"Inspect scale being used on vertical/horizontal axis",
+  "Annotation":""
+},{
+  "Category":"General",
+  "Rule":"use-horizontal-labels",
+  "Author":"vis-guides",
+  "Lint Explanation":"labels must be aligned horizontally",
+  "Implementation Notes":"Inspect oritentation of text markings",
+  "Annotation":"Use horizontal labels. Avoid steep diagonal or vertical type, as it can be difficult to read."
+},{
+  "Category":"General",
+  "Rule":"appropriate-bar-spacing",
+  "Author":"vis-guides",
+  "Lint Explanation":"bars should be ½ bar width apart",
+  "Implementation Notes":"inspect rendered object, measure distance between bars",
+  "Annotation":""
+},{
+  "Category":"General",
+  "Rule":"consistent-colors",
+  "Author":"vis-guides",
+  "Lint Explanation":"",
+  "Implementation Notes":"",
+  "Annotation":"Use consistent colors. Use one color for bar charts. You may use an accent color to highlight a significant data point."
+},{
+  "Category":"Line Chart",
+  "Rule":"use-solid-lines",
+  "Author":"vis-guides",
+  "Lint Explanation":"use solid lines for line charts",
+  "Implementation Notes":"inspect rendered object, check rendering technique being used for all series",
+  "Annotation":""
+},{
+  "Category":"Line Chart",
+  "Rule":"use-lines",
+  "Author":"vis-guides",
+  "Lint Explanation":" Use lines when connecting sequential data in time-series plots",
+  "Implementation Notes":"if it can be inferred that an axis is using time, then ensure than there are line series",
+  "Annotation":""
+},{
+  "Category":"Line chart",
+  "Rule":"two-thirds-height",
+  "Author":"vis-guides",
+  "Lint Explanation":"Leave 1/3 of chart height empty",
+  "Implementation Notes":"Compare y domain of line series with domain of y axis",
+  "Annotation":"“Set the height of a line chart such that the data in the line chart takes up approximately two-thirds of the y-axis’ maximum scale.”"
+},{
+  "Category":"Line chart",
+  "Rule":"max-series",
+  "Author":"vis-guides",
+  "Lint Explanation":"chart has exceeded maximum number of allowed series (4)",
+  "Implementation Notes":"Count number of lines",
+  "Annotation":"“Don't plot more than 4 lines in one chart. If you need to display more, break them out into separate charts for better comparis”"
+},{
+  "Category":"Line chart",
+  "Rule":"lines-must-have-labels",
+  "Author":"vis-guides",
+  "Lint Explanation":"each line series must have a label",
+  "Implementation Notes":"Compare number of data labels with number of lines",
+  "Annotation":"Label the lines directly to enable readers identifying lines quickly using corresponding labels instead of referencing a legend."
+},{
+  "Category":"Pie",
+  "Rule":"no-radial",
+  "Author":"meeks",
+  "Lint Explanation":"radial charts are not allowed",
+  "Implementation Notes":"inspect rendered object for radial patches",
+  "Annotation":""
+},{
+  "Category":"Pie",
+  "Rule":"ensure-100-percent",
+  "Author":"vis-guides",
+  "Lint Explanation":"there should be no gaps in the pie chart",
+  "Implementation Notes":"inspect radial patches, compute implied area of circle, measure real area of circle",
+  "Annotation":""
+},{
+  "Category":"Pie",
+  "Rule":"maximum-pie-pieces",
+  "Author":"meeks",
+  "Lint Explanation":"chart exceeds maximum number of allowed pie pieces (5)",
+  "Implementation Notes":"inspect rendered object for radial patches, count patches",
+  "Annotation":""
+},{
+  "Category":"Pie",
+  "Rule":"only-ordered-pie",
+  "Author":"vis-guides",
+  "Lint Explanation":"wedges must be ordered from biggest to smallest",
+  "Implementation Notes":"inspect radial patches, compute area and centroids and verify their size and order are correct",
+  "Annotation":""
+},{
+  "Category":"Pie",
+  "Rule":"no-multiple-pies",
+  "Author":"vis-guides",
+  "Lint Explanation":"do not use multiple pie charts",
+  "Implementation Notes":"inspect axes object for radial patches with multiple centers",
+  "Annotation":""
+},{
+  "Category":"Pie",
+  "Rule":"require-radial-labels",
+  "Author":"mcnutt",
+  "Lint Explanation":"pie chart wedges must be labeled",
+  "Implementation Notes":"compare number of text labels with number of wedges ",
+  "Annotation":"Can verify that between the legend and labels presented in the graphic that there are a sufficient number of labels for pies"
+},{
+  "Category":"Pie",
+  "Rule":"no-duplicate-radial-labels",
+  "Author":"mcnutt",
+  "Lint Explanation":"pie chart labels must not be duplicates",
+  "Implementation Notes":"for all wedges identified as radial labels, ensure labels are unique",
+  "Annotation":"Dont have multiple categories that are apparently about the same thing, also could apply to bar charts"
+},{
+  "Category":"Algebraic",
+  "Rule":"no-connected-categories",
+  "Author":"mcnutt",
+  "Lint Explanation":"dont connect categorical values with line charts",
+  "Implementation Notes":"if a user is using bar charts on a categorical axis, ensure they are not using line charts.",
+  "Annotation":""
+},{
+  "Category":"Algebraic",
+  "Rule":"data-dependent-chart",
+  "Author":"mcnutt",
+  "Lint Explanation":"Changes to data must be reflect in chart",
+  "Implementation Notes":"Significantly alter the input data to a chart and do a pixel difference between the resulting images",
+  "Annotation":"Charts appearance should change with different, implemented rule should fail on parallel coordinates"
+},{
+  "Category":"Algebraic",
+  "Rule":"color-parallel-coordinates",
+  "Author":"mcnutt",
+  "Lint Explanation":"Must color line in parallel-coordinate charts",
+  "Implementation Notes":"Detect categorical axis, inspect color of each line present, fail if colors are indistinct",
+  "Annotation":"See algebraic visualization design paper for more details"
+},{
+  "Category":"Algebraic",
+  "Rule":"representation-invariance",
+  "Author":"mcnutt",
+  "Lint Explanation":"The order the of the points is not significant",
+  "Implementation Notes":"Non significantly alter the input data to a chart (such as re-ordering it) and do a pixel difference between the resultin images",
+  "Annotation":"Meeks presents this as value-ordering"
+},{
+  "Category":"Computational",
+  "Rule":"no-complex-titles",
+  "Author":"mcnutt",
+  "Lint Explanation":"Title should be easy to read",
+  "Implementation Notes":"Grab titles from axis object and feed it into a Felsch-Kinkaid score implementation, such as python's textstat",
+  "Annotation":""
+},{
+  "Category":"Computational",
+  "Rule":"minimum-saliency",
+  "Author":"mcnutt",
+  "Lint Explanation":"Charts should be psychologically impactful",
+  "Implementation Notes":"Generate the final image for a chart and run it trough a saliency analyzer, such as presented in Data Visualization Saliency Model: A Tool for Evaluating Abstract Data Visualizations",
+  "Annotation":"Link computer vision based measurement of the psychological impact of a visualization"
+},{
+  "Category":"Computational",
+  "Rule":"legible-text",
+  "Author":"mcnutt",
+  "Lint Explanation":"text must be ledgible",
+  "Implementation Notes":"Using ocr all text should legible match all text that has been put into the graph",
+  "Annotation":""
+},{
+  "Category":"ML",
+  "Rule":"squint-test",
+  "Author":"vis-guides",
+  "Lint Explanation":"chart should have a meaningful overall shape",
+  "Implementation Notes":"Take a picture and dramatically lower the resolution of the output image, do a best fit (as appropriate to the chart type) and compare with a parallel best fit from the original image",
+  "Annotation":""
+},{
+  "Category":"XY",
+  "Rule":"collision-handling",
+  "Author":"meeks",
+  "Lint Explanation":"Chart doesn't handle collisions properly use <OPTION>",
+  "Implementation Notes":"Introduce a duplicate data point, or a slightly perturbed data point, if it doesn't trigger a singificant pixel different image throw",
+  "Annotation":"Configurations can be prefer-hexbin/minimum-spacing/no-data-overlap "
+},{
+  "Category":"XY",
+  "Rule":"fitts-law-handling",
+  "Author":"meeks",
+  "Lint Explanation":"Elements that a user can interact with must be of a certain size",
+  "Implementation Notes":"Measure size of all usable elements and compare with threshold",
+  "Annotation":""
+},{
+  "Category":"XY",
+  "Rule":"uncertainty-encoding",
+  "Author":"meeks",
+  "Lint Explanation":"Uncertainty in data must be encoded",
+  "Implementation Notes":"inspect data for uncertainty annotations, if found demand they be implemented.",
+  "Annotation":"be aware that uncertainty exists, unsure how this could be phrased as lint-rule/how this could be verified."
+},{
+  "Category":"XY",
+  "Rule":"error-encoding",
+  "Author":"meeks",
+  "Lint Explanation":"Error must be encoded",
+  "Implementation Notes":"inspect data for error annotations, if found demand they be implemented.",
+  "Annotation":"Error is encoded in some fashion, unclear if this can actually be encoded generally"
+},{
+  "Category":"XY",
+  "Rule":"no-error-encoding",
+  "Author":"vis-guides",
+  "Lint Explanation":"Error bars considered harmful.",
+  "Implementation Notes":"Inspect for error bar like objects in axes.",
+  "Annotation":""
+},{
+  "Category":"XY",
+  "Rule":"mind-the-gap",
+  "Author":"meeks",
+  "Lint Explanation":"Gaps in data must be represented graphically",
+  "Implementation Notes":"Inject gaps into the visualization's data, and do a pixel difference to see if it is handled.",
+  "Annotation":""
+},{
+  "Category":"Hierarchical",
+  "Rule":"no-hierarchical-small-multiples",
+  "Author":"meeks",
+  "Lint Explanation":"Dont embed present multiple hierarchical views",
+  "Implementation Notes":"If a treemap or other hierarchical graph can be inferred, then look for discrete components within the axes object",
+  "Annotation":""
+},{
+  "Category":"Hierarchical",
+  "Rule":"strict-small-multiples",
+  "Author":"meeks",
+  "Lint Explanation":"",
+  "Implementation Notes":"",
+  "Annotation":""
+},{
+  "Category":"Hierarchical",
+  "Rule":"atomic-circle-pack",
+  "Author":"meeks",
+  "Lint Explanation":"",
+  "Implementation Notes":"",
+  "Annotation":""
+},{
+  "Category":"Hierarchical",
+  "Rule":"minimum-treemap-leaf-edge",
+  "Author":"meeks",
+  "Lint Explanation":"",
+  "Implementation Notes":"",
+  "Annotation":""
+},{
+  "Category":"Hierarchical",
+  "Rule":"unique-leaves",
+  "Author":"meeks",
+  "Lint Explanation":"",
+  "Implementation Notes":"",
+  "Annotation":""
+},{
+  "Category":"Network",
+  "Rule":"orphanage-n",
+  "Author":"meeks",
+  "Lint Explanation":"singletons should be clustered",
+  "Implementation Notes":"Detect singltons from data, identify where singlton is in resulting image, measure distance from one another",
+  "Annotation":"have a way to address singletons or disconnected components"
+},{
+  "Category":"Network",
+  "Rule":"network-diagram-density",
+  "Author":"meeks",
+  "Lint Explanation":"Reduce density of diagram",
+  "Implementation Notes":"See ledgible graph",
+  "Annotation":""
+},{
+  "Category":"Network",
+  "Rule":"maximum-edge-conflict",
+  "Author":"meeks",
+  "Lint Explanation":"Reduce number of edge conflicts",
+  "Implementation Notes":"See ledgible graph",
+  "Annotation":""
+},{
+  "Category":"Network",
+  "Rule":"legible-graph",
+  "Author":"mcnutt",
+  "Lint Explanation":"Graph is not ledgible follow <METRIC>",
+  "Implementation Notes":"Excute checks on the graph such as those found at https://github.com/rpgove/greadability",
+  "Annotation":""
+},{
+  "Category":"Color",
+  "Rule":"no-color-ramps",
+  "Author":"meeks",
+  "Lint Explanation":"do not use continuous color ramps",
+  "Implementation Notes":"Inspect color map",
+  "Annotation":""
+},{
+  "Category":"Color",
+  "Rule":"max-colors",
+  "Author":"meeks/vis-guides",
+  "Lint Explanation":"chart has exceeded maximum number of colors (10)",
+  "Implementation Notes":"generate list of data related colors, count",
+  "Annotation":"Also DCoMax6Colors (vis-guides)"
+},{
+  "Category":"Color",
+  "Rule":"noticeably-different-colors",
+  "Author":"meeks",
+  "Lint Explanation":"color pallete must use noticeably different colors",
+  "Implementation Notes":"generate list of data related colors, evaluate if colors are sufficently different using something akin to https://gramaz.io/d3-jnd/",
+  "Annotation":""
+},{
+  "Category":"Color",
+  "Rule":"no-red-green",
+  "Author":"vis-guides",
+  "Lint Explanation":"Don't use red-green color palletes",
+  "Implementation Notes":"Inspect color map",
+  "Annotation":""
+},{
+  "Category":"Color",
+  "Rule":"no-orange-blue",
+  "Author":"vis-guides",
+  "Lint Explanation":"Don't use orange-blue color palletes",
+  "Implementation Notes":"Inspect color map",
+  "Annotation":""
+},{
+  "Category":"Color",
+  "Rule":"no-rainbow-color-map",
+  "Author":"vis-guides",
+  "Lint Explanation":"no rainbow color maps",
+  "Implementation Notes":"inspect color map object, ensure it is not a form of rainbow",
+  "Annotation":""
+},{
+  "Category":"Color",
+  "Rule":"colorblind-friend-colors",
+  "Author":"meeks",
+  "Lint Explanation":"use colorblind friendly colors",
+  "Implementation Notes":"generate list of data colors, convert in colorblind color space, measure noticeable distance",
+  "Annotation":""
+},{
+  "Category":"Color",
+  "Rule":"minimum-color-size",
+  "Author":"meeks",
+  "Lint Explanation":"",
+  "Implementation Notes":"",
+  "Annotation":"might be this paper ?? not sure though"
+},{
+  "Category":"Color",
+  "Rule":"no-color-logging",
+  "Author":"meeks",
+  "Lint Explanation":"",
+  "Implementation Notes":"",
+  "Annotation":""
+},{
+  "Category":"Color",
+  "Rule":"printable-colors",
+  "Author":"mcnutt",
+  "Lint Explanation":"colors should be noticeably different in black and white",
+  "Implementation Notes":"generate list of data related colors, flip colors into gray scle, evaluate if colors are noticeably different",
+  "Annotation":"Colors should be differentiable when printed"
+},{
+  "Category":"Annotation",
+  "Rule":"require-annotation",
+  "Author":"meeks",
+  "Lint Explanation":"chart must have sufficent annotations (3)",
+  "Implementation Notes":"Inspect axis object for annotations",
+  "Annotation":""
+},{
+  "Category":"Annotation",
+  "Rule":"no-label-overlap",
+  "Author":"meeks",
+  "Lint Explanation":"chart annotations must not overlap",
+  "Implementation Notes":"Compute overlaps form known shape of annotations",
+  "Annotation":""
+  }]

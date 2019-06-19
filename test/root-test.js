@@ -27,7 +27,7 @@ tape('initial test', t => {
   lint(BAR_CHART_SPEC)
     .then(result => {
 
-      t.deepEqual(result, [], 'should find basic results');
+      t.deepEqual(result, [{name: 'shuffleInputData', passed: true}], 'should find basic results');
       t.end();
     });
 });
