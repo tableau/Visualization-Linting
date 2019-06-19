@@ -17,6 +17,7 @@
     "babel-preset-es2017": "^6.22.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-2": "^6.22.0",
+    "csvtojson": "^2.0.8",
     "eslint": "^3.13.1",
     "eslint-config-uber-es2015": "^3.0.1",
     "eslint-plugin-babel": "^4.0.0",
@@ -30,6 +31,7 @@
   "dependencies": {
     "canvas": "^2.5.0",
     "vega": "^5.4.0",
+    "vega-datasets": "^1.25.0",
     "vega-embed": "^4.2.0",
     "vega-lite": "^3.3.0"
   },
