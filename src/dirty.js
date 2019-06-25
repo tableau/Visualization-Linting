@@ -45,13 +45,13 @@ export function drop(datum, field, MODE) {
 export function dropRow(data, x) {
     // Drops the xth row from the data.
     // Without an x, drops a random row.
-  const index = x || x === 0 ? x : ~~(Math.random() * data.length);
+  const index = x || x === 0 ? Math.min(x, data.length - 1) : ~~(Math.random() * data.length);
   data.splice(index, 1);
   return data;
 }
 
   // Drop some columns
-export function dropColumm(data, x, p, mode = 'n') {
+export function dropColumm(data, x, mode = 'n') {
   // Removes field "x" from all entries.
   // Without an x, removes a random key.
   const k = Object.keys(data[0]);
@@ -67,7 +67,7 @@ export function dropPartialRow(data, x, y, mode = 'n') {
   // Remove the last y fields from row x.
   // Without an x, remove the y fields from a random row.
   // Without a y, remove a random number of fields.
-  const index = x || x === 0 ? x : ~~(Math.random() * data.length);
+  const index = x || x === 0 ? Math.min(x, data.length - 1) : ~~(Math.random() * data.length);
   const k = Object.keys(data[index]);
   const toRemove = y ? Math.min(y, k.length) : ~~(Math.random() * k.length);
 
@@ -83,7 +83,7 @@ export function dropPartialColumn(data, x, y, mode = 'n') {
   // Remove the field "y" from the last x rows.
   // If there's no y, choose a random field.
   // If there's no x, choose a random number of rows.
-  const numRows = x ? x : ~~(Math.random() * data.length);
+  const numRows = x || x === 0 ? Math.min(x, data.length - 1) : ~~(Math.random() * data.length);
   const k = Object.keys(data[data.length - 1 - numRows]);
   const toRemove = y ? y : k[~~(Math.random() * k.length)];
 
@@ -99,12 +99,22 @@ export function dropPartialColumn(data, x, y, mode = 'n') {
   // Cast to wrong data type
 
   // Cast every value in property y as a particular type
-export function recast(data, y, type = 'n') {
+export function recast(data, y, TYPE = 'n') {
   let castFunc;
-  switch (type) {
+  switch (TYPE) {
   case 'b':
   case 'boolean':
     castFunc = dl.boolean;
+    break;
+
+  case 'd':
+  case 'date':
+    castFunc = dl.date;
+    break;
+
+  case 's':
+  case 'str':
+    castFunc = dl.str;
     break;
 
   case 'n':
@@ -122,18 +132,61 @@ export function recast(data, y, type = 'n') {
 
 // Repeat a row n times
 // Note: shallow copies of the rows.
-export function duplicate(data, n, index) {
+export function duplicate(data, n = 1, index) {
   // If there's no n, then n = 1;
   // If there's no index, then randomly chose an index;
-  n = n || n === 0 ? 0 : 1;
   index = (index || index === 0) ? index : ~~(Math.random() * data.length);
-  const val = data[index];
+  const val = dl.duplicate(data[index]);
   for (let i = 0; i < n; i++) {
     data.splice(index, 0, val);
   }
 }
 
-  // Corrupt data
+// Corrupt data
+export function corrupt(datum, field) {
+  // Alter a datum in a non-deterministic way.
+  // For strings: replace a random character with a new random ASCII character
+  // For numbers: if it's an int: add a random integer. if it's a float: multiply by a random factor
+  // TODO: handle other cases
+  const type = dl.type.infer(datum[field]);
+  const val = datum[field];
+  switch (type) {
+  case 'string':
+    const newChar = String.fromCharCode(~~(Math.random() * 128));
+    datum[field] = replaceAt(datum[field], ~~(Math.random() * val.length), newChar);
+    break;
+
+  case 'number':
+    if (Number.isInteger(val)) {
+      datum[field] += ~~dl.random.uniform([-10, 10]);
+    } else {
+      datum[field] *= Math.random();
+    }
+    break;
+
+  default:
+    break;
+  }
+}
+
+function replaceAt(string, index, newChar = ' ') {
+  // Return a copy of a string that replaces the character at the given index with a new character
+  return string.substring(0, index) + newChar + string.substring(index + 1);
+}
+
+// Corrupt some values in a column
+export function corruptPartialColumn(data, x, y, mode = 'n') {
+  // Corrupt the field "y" from the last x rows.
+  // If there's no y, choose a random field.
+  // If there's no x, choose a random number of rows.
+  const numRows = x || x === 0 ? Math.min(x, data.length - 1) : ~~(Math.random() * data.length);
+  const k = Object.keys(data[data.length - 1 - numRows]);
+  const toCorrupt = y ? y : k[~~(Math.random() * k.length)];
+
+  for (let i = data.length - 1 - numRows; i < data.length; i++) {
+    data[i] = drop(data[i], toCorrupt, mode);
+  }
+}
 
 // II.2 Integrity Failures pt 2 - Ones you might be able to catch
 
