@@ -47,7 +47,6 @@ export function dropRow(data, x) {
     // Without an x, drops a random row.
   const index = x || x === 0 ? Math.min(x, data.length - 1) : ~~(Math.random() * data.length);
   data.splice(index, 1);
-  return data;
 }
 
   // Drop some columns
@@ -59,7 +58,6 @@ export function dropColumm(data, x, mode = 'n') {
   data.forEach(function dropC(d) {
     d = drop(d, remove, mode);
   });
-  return data;
 }
 
 // Drop some values in a row
@@ -74,8 +72,6 @@ export function dropPartialRow(data, x, y, mode = 'n') {
   for (let i = 1; i <= toRemove; i++) {
     data[index] = drop(data[index], k[k.length - i], mode);
   }
-
-  return data;
 }
 
 // Drop some values within a column
@@ -174,6 +170,17 @@ function replaceAt(string, index, newChar = ' ') {
   return string.substring(0, index) + newChar + string.substring(index + 1);
 }
 
+// Corrupt all values in a column
+export function corruptColumm(data, x) {
+// Removes field "x" from all entries.
+// Without an x, removes a random key.
+  const k = Object.keys(data[0]);
+  const remove = x ? x : k[~~(Math.random() * k.length)];
+  data.forEach(function dropC(d) {
+    d = corrupt(d, remove);
+  });
+}
+
 // Corrupt some values in a column
 export function corruptPartialColumn(data, x, y, mode = 'n') {
   // Corrupt the field "y" from the last x rows.
@@ -184,7 +191,7 @@ export function corruptPartialColumn(data, x, y, mode = 'n') {
   const toCorrupt = y ? y : k[~~(Math.random() * k.length)];
 
   for (let i = data.length - 1 - numRows; i < data.length; i++) {
-    data[i] = drop(data[i], toCorrupt, mode);
+    data[i] = corrupt(data[i], toCorrupt);
   }
 }
 
