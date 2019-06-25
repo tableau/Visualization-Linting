@@ -1,3 +1,4 @@
+import * as dl from 'datalib';
 // Ways of making the data dirty, mostly taken from Kim et al.'s "A Taxonomy of Dirty Data"'
 
 export function drop(datum, field, MODE) {
@@ -96,6 +97,26 @@ export function dropPartialColumn(data, x, y, mode = 'n') {
 // II.1. Integrity Failures - Ones that you can catch
 
   // Cast to wrong data type
+
+  // Cast every value in property y as a particular type
+export function recast(data, y, type = 'n') {
+  let castFunc;
+  switch (type) {
+  case 'b':
+  case 'boolean':
+    castFunc = dl.boolean;
+    break;
+
+  case 'n':
+  case 'number':
+  default:
+    castFunc = dl.number;
+    break;
+  }
+  data.forEach(function coerce(d) {
+    d[y] = castFunc(d[y]);
+  });
+}
 
   // Duplicate data
 
