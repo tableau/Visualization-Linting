@@ -142,7 +142,8 @@ export function duplicate(data, n = 1, index) {
 export function corrupt(datum, field) {
   // Alter a datum in a non-deterministic way.
   // For strings: replace a random character with a new random ASCII character
-  // For numbers: if it's an int: add a random integer. if it's a float: multiply by a random factor
+  // For numbers: if it's an int: add a random integer.
+  //              if it's a float: multiply by a random factor
   // TODO: handle other cases
   const type = dl.type.infer(datum[field]);
   const val = datum[field];

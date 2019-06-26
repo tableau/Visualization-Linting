@@ -4,9 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test": "babel-node test/root-test.js",
+    "lint-test": "babel-node test/root-test.js",
     "start": "(cd showcase && yarn && yarn start)",
-    "lint": "eslint ./"
+    "lint": "eslint ./",
+    "test": "babel-node test/dirty-test.js"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
