@@ -21,6 +21,7 @@ app.use((req, res, next) => {
 // should cache all of the generated renderings, assign em ids
 app.post('/get-rendering', (req, res) => {
   // TODO: type check that body is coming in right
+  // TODO add query param (or something) to control svg/png rendering
   console.log('generate rendering');
   generateVegaRendering(req.body, 'svg')
     .then(result => {
