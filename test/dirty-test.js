@@ -6,6 +6,11 @@ import {
   duplicate,
   recast
 } from '../src/dirty';
+import {
+  hasKey,
+  clone,
+  shallowDeepEqual
+} from '../src/utils';
 
 const IRIS = [
   {sepalLength: 5.1, sepalWidth: 3.5, petalLength: 1.4, petalWidth: 0.2, species: 'setosa'},
@@ -160,10 +165,7 @@ const IRIS = [
   {sepalLength: 5.9, sepalWidth: 3.0, petalLength: 5.1, petalWidth: 1.8, species: 'virginica'}
 ];
 
-const hasKey = (data, key) => (new Set(Object.keys(data))).has(key);
-const clone = (data) => data.map(d => ({...d}));
-// check if two objects are equal to a first approx
-const shallowDeepEqual = (a, b) => Object.entries(a).every(([k, v]) => b[k] === v);
+
 
 const modesAndComparators = [
   {mode: 'n', comparator: key => row => row[key] === null},

@@ -1,8 +1,13 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
-import {COLORED_SCATTERPLOT} from '../test/vega-examples';
+import {
+  COLORED_SCATTERPLOT,
+  MISSING_RECORDS_BAR_CHART,
+  OUTLIER_SCATTERPLOT,
+  OVERPLOT_SCATTERPLOT
+} from '../test/vega-examples';
 
-const TARGET = COLORED_SCATTERPLOT;
+const TARGET = OVERPLOT_SCATTERPLOT;
 const commonPostConfig = {
   method: 'POST',
   mode: 'cors',

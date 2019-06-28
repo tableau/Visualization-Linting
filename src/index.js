@@ -1,4 +1,5 @@
-import {shuffle, getDataset, generateVegaRendering} from './utils';
+import {shuffle, getDataset, generateVegaRendering, clone} from './utils';
+import {dropRow} from './dirty';
 
 const lintRules = [
   // {
@@ -18,6 +19,20 @@ const lintRules = [
     },
     evaluator: (oldRendering, newRendering) => {
       return oldRendering === newRendering;
+    }
+  },
+  {
+    name: 'randomlyDeletedRows',
+    type: 'algebraic-container',
+    operation: (container) => {
+      const clonedData = clone(container);
+      for (let i = 0; i < container.length * 0.3; i++) {
+        dropRow(clonedData);
+      }
+      return clonedData;
+    },
+    evaluator: (oldRendering, newRendering) => {
+      return oldRendering !== newRendering;
     }
   }
 ];
