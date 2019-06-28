@@ -36,27 +36,6 @@ export const HISTOGRAM = {
   }
 };
 
-export const LINE_SERIES = {
-  data: {url: './data/missingrecords.csv'},
-  height: 200,
-  width: 200,
-  mark: 'line',
-  transform: [
-    {timeUnit: 'yearquarter', field: 'Time', as: 'quarter'}
-  ],
-  encoding: {
-    x: {
-      aggregate: 'average',
-      field: 'quarter',
-      type: 'temporal'
-    },
-    y: {
-      field: 'Sales',
-      type: 'quantitative'
-    }
-  }
-};
-
 export const INSANITY = {
   $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
   description: 'A simple bar chart with embedded data.',
@@ -126,4 +105,31 @@ export const OVERPLOT_SCATTERPLOT = {
     x: {field: '﻿x', type: 'quantitative'},
     y: {field: 'y', type: 'quantitative'}
   }
+};
+
+export const MISSING_QUARTER_LINESERIES = {
+  data: {url: '../data/bad/missingquarter.csv'},
+  height: 200,
+  width: 200,
+  mark: 'line',
+  encoding: {
+    x: {
+      timeUnit: 'yearquarter',
+      // agh the white space thing here too, what
+      field: '﻿Time',
+      type: 'temporal'
+    },
+    y: {
+      aggregate: 'mean',
+      field: 'Sales',
+      type: 'quantitative'
+    }
+  }
+};
+
+export const BAD_CHARTS = {
+  MISSING_QUARTER_LINESERIES,
+  OUTLIER_SCATTERPLOT,
+  OVERPLOT_SCATTERPLOT,
+  MISSING_RECORDS_BAR_CHART
 };

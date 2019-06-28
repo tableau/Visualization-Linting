@@ -65,7 +65,6 @@ export function getDataset(spec) {
   return loader()
     .load(spec.data.url)
     .then(d => read(d, {type, parse: 'auto'}));
-    // .then(identityWithPrint);
 }
 
 export const identityWithPrint = x => {
