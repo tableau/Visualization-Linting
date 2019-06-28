@@ -73,3 +73,14 @@ export const INSANITY = {
     y: {field: 'b', type: 'quantitative'}
   }
 };
+
+export const COLORED_SCATTERPLOT = {
+  $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
+  data: {url: '../node_modules/vega-datasets/data/cars.json'},
+  mark: 'point',
+  encoding: {
+    x: {field: 'Horsepower', type: 'quantitative'},
+    y: {field: 'Miles_per_Gallon', type: 'quantitative'},
+    color: {field: 'Origin', type: 'nominal'}
+  }
+};

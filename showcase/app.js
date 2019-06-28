@@ -1,8 +1,8 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
-import {BAR_CHART_SPEC} from '../test/vega-examples';
+import {COLORED_SCATTERPLOT} from '../test/vega-examples';
 
-const TARGET = BAR_CHART_SPEC;
+const TARGET = COLORED_SCATTERPLOT;
 const commonPostConfig = {
   method: 'POST',
   mode: 'cors',

@@ -29,7 +29,7 @@ app.post('/get-rendering', (req, res) => {
 });
 
 app.post('/lint', (req, res) => {
-  console.log('linting', req.body);
+  console.log('linting');
   lint(req.body)
     .then(result => {
       console.log('did done a lint', result);

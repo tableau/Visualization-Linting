@@ -75,6 +75,7 @@ Input size mismatches (eg pre-aggregation one group has way more records than an
 Invisible wedges
 
 BAR CHARTS
+Simpsons paradox
 Wrong aggregation
 Input size mismatches (eg pre-aggregation one group has way more records than another)
 
@@ -87,6 +88,12 @@ Simpsons paradox
 Over plotting
 Clipped outliers
 Over dominating outlier wrecks scale
+
+OTHER
+Psuedo-replication https://en.wikipedia.org/wiki/Pseudoreplication
+Base rate fallacy https://en.wikipedia.org/wiki/Base_rate_fallacy
+Imbalance of labels
+
 
 LINE CHARTS
 Confusing/inappropriate imputation
