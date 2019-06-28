@@ -7,7 +7,8 @@
     "lint-test": "babel-node test/root-test.js",
     "start": "(cd showcase && yarn && yarn start)",
     "lint": "eslint ./",
-    "test": "babel-node test/dirty-test.js"
+    "test": "babel-node test/dirty-test.js",
+    "serve": "(cd server && yarn && yarn start)"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

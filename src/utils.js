@@ -1,3 +1,6 @@
+import {parse, View, loader, read} from 'vega';
+import {compile} from 'vega-lite';
+
 // sourced from
 // http://indiegamr.com/generate-repeatable-random-numbers-in-js/
 export function generateSeededRandom(baseSeed = 2) {
@@ -25,4 +28,41 @@ export function shuffle(a, random = generateSeededRandom()) {
     a[j] = x;
   }
   return a;
+}
+
+/**
+ * generateVegaRendering, takes in a vega lint spec and returns an svg rendering of it
+ */
+export function generateVegaRendering(spec, mode = 'canvas') {
+  const isSVG = mode === 'svg';
+  const config = {
+    renderer: isSVG ? 'svg' : 'none'
+  };
+  return new Promise((resolve, reject) => {
+    const runtime = parse(compile(spec).spec, {renderer: 'none'});
+    const view = new View(runtime, config).initialize();
+    view
+      .runAsync()
+      .then(() => isSVG ? view.toSVG(2) : view.toCanvas(2))
+      .then(x => resolve(isSVG ? x : x.toDataURL()))
+      .catch(e => {
+        /* eslint-disable no-console */
+        console.error(e);
+      /* eslint-disable no-console */
+      });
+  });
+}
+
+/**
+ * Get a json representation of the data specified in the spec
+ */
+export function getDataset(spec) {
+  if (spec.data.values) {
+    return Promise.resolve().then(() => spec.data.values);
+  }
+  const brokenUri = spec.data.url.split('.');
+  const type = brokenUri[brokenUri.length - 1];
+  return loader()
+    .load(spec.data.url)
+    .then(d => read(d, {type, parse: 'auto'}));
 }

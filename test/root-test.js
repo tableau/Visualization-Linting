@@ -1,6 +1,6 @@
 import tape from 'tape';
 // import SeattleWeather from '../seattle-weather.json';
-import {lint} from '../';
+import {lint} from '../src';
 import {BAR_CHART_SPEC, HISTOGRAM} from './vega-examples';
 
 tape('initial test', t => {
