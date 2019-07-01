@@ -4,7 +4,8 @@ import {
   dropColumm,
   dropRow,
   duplicate,
-  recast
+  recast,
+  randomizeColumns
 } from '../src/dirty';
 import {
   hasKey,
@@ -165,8 +166,6 @@ const IRIS = [
   {sepalLength: 5.9, sepalWidth: 3.0, petalLength: 5.1, petalWidth: 1.8, species: 'virginica'}
 ];
 
-
-
 const modesAndComparators = [
   {mode: 'n', comparator: key => row => row[key] === null},
   {mode: 'z', comparator: key => row => row[key] === 0},
@@ -250,6 +249,18 @@ tape('dirty#duplicate', t => {
   }, {});
   t.ok(Object.values(counts).find(d => d === 18),
     'should find that one row has been repeated a bunch of times');
+
+  t.end();
+});
+
+tape('dirty#randomizeColumns', t => {
+
+  const data = clone(IRIS);
+  randomizeColumns(data, 'sepalWidth', 'species');
+  const xesSame = IRIS.every(({sepalWidth}, idx) => sepalWidth === data[idx].sepalWidth);
+  const yesDiff = IRIS.some(({species}, idx) => species !== data[idx].species);
+  t.ok(xesSame, 'should find the x column unchanged in the dataset');
+  t.ok(yesDiff, 'should find the y column some what change');
 
   t.end();
 });

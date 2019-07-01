@@ -1,3 +1,4 @@
+import {shuffle} from './utils';
 import * as dl from 'datalib';
 // Ways of making the data dirty, mostly taken from Kim et al.'s "A Taxonomy of Dirty Data"'
 
@@ -193,6 +194,15 @@ export function corruptPartialColumn(data, x, y, mode = 'n') {
 
   for (let i = data.length - 1 - numRows; i < data.length; i++) {
     data[i] = corrupt(data[i], toCorrupt);
+  }
+}
+
+// randomize relationship between two columns
+// keeps x fixed
+export function randomizeColumns(data, x, y) {
+  const shuffledYs = shuffle(data.map(d => d[y]));
+  for (let i = 0; i < data.length; i++) {
+    data[i][y] = shuffledYs[i];
   }
 }
 

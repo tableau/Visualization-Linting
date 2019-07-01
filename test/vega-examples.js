@@ -70,7 +70,8 @@ export const MISSING_RECORDS_BAR_CHART = {
   transform: [
     // there is some white space weirdness going on in x1, can't tell what
     {fold: ['﻿x1', 'x2']},
-    {filter: {field: 'value', valid: true}}
+    // this is a dumb hacky filter, but whatever
+    {filter: {field: 'value', gt: 0}}
   ],
   mark: 'bar',
   encoding: {
@@ -79,7 +80,8 @@ export const MISSING_RECORDS_BAR_CHART = {
     },
     y: {
       field: 'value',
-      type: 'quantitative'
+      type: 'quantitative',
+      aggregate: 'average'
     }
   }
 };
@@ -128,8 +130,8 @@ export const MISSING_QUARTER_LINESERIES = {
 };
 
 export const BAD_CHARTS = {
+  MISSING_RECORDS_BAR_CHART,
   MISSING_QUARTER_LINESERIES,
   OUTLIER_SCATTERPLOT,
-  OVERPLOT_SCATTERPLOT,
-  MISSING_RECORDS_BAR_CHART
+  OVERPLOT_SCATTERPLOT
 };
