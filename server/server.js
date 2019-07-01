@@ -33,7 +33,7 @@ app.post('/lint', (req, res) => {
   console.log('linting');
   lint(req.body)
     .then(result => {
-      console.log('did done a lint', result);
+      console.log('did done a lint', result.map(d => ({...d, failedRender: !d.passed})));
       res.send(JSON.stringify(result));
     });
 

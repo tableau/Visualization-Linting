@@ -61,7 +61,25 @@ export default class LintContainer extends React.Component {
     Promise.all([
       getRendering(spec).then(lintingTarget => this.setState({lintingTarget})),
       lintSpec(spec).then(lintResults => this.setState({lintResults}))
-    ]).then(() => this.setState({loading: false}));
+    ]).then(() => this.setState({loading: false}))
+    // i think i need a sleep but uh
+    // .then(() => new Promise((resolve, reject) => sleep(() => resolve(), 500)))
+    .then(() => {
+      // paint the failed pngs to canvases
+      this.state.lintResults.forEach(({name, failedRender}, idx) => {
+        if (!failedRender) {
+          return;
+        }
+        const {render, type} = failedRender;
+        if (type === 'raster') {
+          const domElement = this.refs[`${idx}-${name}`];
+          const ctx = domElement.getContext('2d');
+          const image = new Image();
+          image.src = render;
+          image.onload = () => ctx.drawImage(image, 0, 0);
+        }
+      });
+    });
     // todo add error states
   }
   render() {
@@ -70,6 +88,7 @@ export default class LintContainer extends React.Component {
       lintResults,
       loading
     } = this.state;
+    // console.log(lintResults)
     if (loading) {
       return <div><h1>LOADING</h1></div>;
     }
@@ -81,13 +100,14 @@ export default class LintContainer extends React.Component {
         </div>
         <div>
           <h3> LINT RESULTS </h3>
-          {lintResults.map(({passed, name, failingSpec}, idx) => {
+          {lintResults.map(({passed, name, failedRender}, idx) => {
             // TODO - madlibs - ify
+
             return (
               <div key={idx}>
                 <div>{`${name}- ${passed ? 'passed' : 'failed'}`}</div>
-                {!passed && failingSpec &&
-                  <div dangerouslySetInnerHTML={{__html: failingSpec}} />}
+                {failedRender && failedRender.type === 'raster' &&
+                    <canvas width={700} height={700} ref={`${idx}-${name}`}/>}
               </div>
             );
           })}

@@ -3,6 +3,7 @@ import {dropRow, randomizeColumns} from './dirty';
 
 const expectSame = (oldRendering, newRendering) => oldRendering === newRendering;
 const expectDifferent = (oldRendering, newRendering) => oldRendering !== newRendering;
+// todo should make the lint rules generate their own specs
 const lintRules = [
   // {
   //   name: 'rescaleData',
@@ -21,12 +22,12 @@ const lintRules = [
       // what if we encounter univariate specs?
       const {transform, encoding: {x, y}} = spec;
       // later this can be abstracted probably into a getRelevantColumns op i guess
-      const foldTransform = transform.find(d => d.fold);
+      const foldTransform = transform && transform.find(d => d.fold);
       const columns = foldTransform ? foldTransform.fold : [x.field, y.field];
-
+      // console.log(columns)
       const data = clone(container);
-      randomizeColumns(data, columns);
-      console.log(data, columns)
+      randomizeColumns(data, ...columns);
+      // console.log(data.map(d => columns.map(key => d[key])), container.map(d => columns.map(key => d[key])))
       return data;
     },
     evaluator: expectDifferent
@@ -84,6 +85,8 @@ function evaluateAlgebraicContainerRule(rule, spec, dataset) {
     //   writeFile(`${rule.name}-old.png`, oldRendering);
     //   writeFile(`${rule.name}-new.png`, newRendering);
     // }
-    return {name, passed};
+    // type is there to allow for svg renders
+    const failedRender = {type: 'raster', render: newRendering};
+    return {name, passed, failedRender: !passed ? failedRender : null};
   });
 }
