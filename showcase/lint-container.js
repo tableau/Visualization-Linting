@@ -71,12 +71,20 @@ export default class LintContainer extends React.Component {
           return;
         }
         const {render, type} = failedRender;
+        const domElement = this.refs[`${idx}-${name}`];
         if (type === 'raster') {
-          const domElement = this.refs[`${idx}-${name}`];
           const ctx = domElement.getContext('2d');
           const image = new Image();
           image.src = render;
           image.onload = () => ctx.drawImage(image, 0, 0);
+        }
+        if (type === 'svg') {
+          const svg = domElement.querySelector('svg');
+          if (svg) {
+            svg.setAttribute('width', 200);
+            svg.setAttribute('height', 200);
+          }
+          // console.log(domElement)
         }
       });
     });
@@ -96,7 +104,7 @@ export default class LintContainer extends React.Component {
       <div>
         <div>
           <h3> LINT TARGET </h3>
-          {lintingTarget && <div dangerouslySetInnerHTML={{__html: lintingTarget}} />}
+          {lintingTarget && <div ref="main-lint" dangerouslySetInnerHTML={{__html: lintingTarget}} />}
         </div>
         <div>
           <h3> LINT RESULTS </h3>
@@ -107,7 +115,9 @@ export default class LintContainer extends React.Component {
               <div key={idx}>
                 <div>{`${name}- ${passed ? 'passed' : 'failed'}`}</div>
                 {failedRender && failedRender.type === 'raster' &&
-                    <canvas width={700} height={700} ref={`${idx}-${name}`}/>}
+                    <canvas width={200} height={500} ref={`${idx}-${name}`}/>}
+                {failedRender && failedRender.type === 'svg' &&
+                     <div ref={`${idx}-${name}`} dangerouslySetInnerHTML={{__html: lintingTarget}} />}
               </div>
             );
           })}

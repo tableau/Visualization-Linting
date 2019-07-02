@@ -24,19 +24,23 @@ const lintRules = [
       // later this can be abstracted probably into a getRelevantColumns op i guess
       const foldTransform = transform && transform.find(d => d.fold);
       const columns = foldTransform ? foldTransform.fold : [x.field, y.field];
-      // console.log(columns)
       const data = clone(container);
       randomizeColumns(data, ...columns);
-      // console.log(data.map(d => columns.map(key => d[key])), container.map(d => columns.map(key => d[key])))
+      // console.log(...[data, container].map(xx => xx.map(d => columns.map(key => d[key]))))
       return data;
     },
-    evaluator: expectDifferent
+    evaluator: expectDifferent,
+    filter: (spec, data) => {
+      const {transform} = spec;
+      return !transform || transform && !transform.find(d => d.fold);
+    }
   },
   {
     name: 'shuffleInputData',
     type: 'algebraic-container',
     operation: (container) => shuffle(clone(container)),
-    evaluator: expectSame
+    evaluator: expectSame,
+    filter: () => true
   },
   {
     name: 'randomlyDeletedRows',
@@ -48,7 +52,8 @@ const lintRules = [
       }
       return clonedData;
     },
-    evaluator: expectDifferent
+    evaluator: expectDifferent,
+    filter: () => true
   }
 ];
 
@@ -57,20 +62,13 @@ const evalMap = {
 };
 
 export function lint(spec) {
-  // const report = getTypeAndImportantColumns(spec);
-  // // unclear if its right to fail silently
-  // if (!report) {
-  //   return [];
-  // }
   return getDataset(spec)
     .then(dataset => {
       return Promise.all(
-        // TODO: synth rules appropriate to this spec
-        lintRules.map(rule => evalMap[rule.type](rule, spec, dataset))
-      ).then(results => {
-        // TODO top level report?
-        return results;
-      });
+        lintRules
+          .filter(({filter}) => filter(spec, dataset))
+          .map(rule => evalMap[rule.type](rule, spec, dataset))
+      );
     });
 }
 
@@ -78,15 +76,14 @@ function evaluateAlgebraicContainerRule(rule, spec, dataset) {
   const {operation, evaluator, name} = rule;
   const perturbedSpec = {...spec, data: {values: operation(dataset, spec)}};
 
-  return Promise.all([spec, perturbedSpec].map(generateVegaRendering))
-  .then(([oldRendering, newRendering]) => {
+  return Promise.all(
+    [spec, perturbedSpec].map(generateVegaRendering)
+      .concat(generateVegaRendering(perturbedSpec, 'svg'))
+  )
+  .then(([oldRendering, newRendering, failRender]) => {
     const passed = evaluator(oldRendering, newRendering, spec);
-    // if (!passed) {
-    //   writeFile(`${rule.name}-old.png`, oldRendering);
-    //   writeFile(`${rule.name}-new.png`, newRendering);
-    // }
-    // type is there to allow for svg renders
-    const failedRender = {type: 'raster', render: newRendering};
+    // type is there to allow for svg renders, still to come
+    const failedRender = {type: 'svg', render: failRender};
     return {name, passed, failedRender: !passed ? failedRender : null};
   });
 }
