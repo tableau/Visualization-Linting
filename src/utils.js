@@ -53,6 +53,22 @@ export function generateVegaRendering(spec, mode = 'canvas') {
   });
 }
 
+// kinda similar to function above, maybe can refactor them together
+export function generateVegaView(spec) {
+  return new Promise((resolve, reject) => {
+    const runtime = parse(compile(spec).spec, {renderer: 'none'});
+    const view = new View(runtime, {renderer: 'none'}).initialize();
+    view
+      .runAsync()
+      .then(x => resolve(x))
+      .catch(e => {
+        /* eslint-disable no-console */
+        console.error(e);
+      /* eslint-disable no-console */
+      });
+  });
+}
+
 /**
  * Get a json representation of the data specified in the spec
  */

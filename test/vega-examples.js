@@ -109,6 +109,19 @@ export const OVERPLOT_SCATTERPLOT = {
   }
 };
 
+export const OVERPLOT_SCATTERPLOT_REVERESED = {
+  $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
+  data: {url: '../data/bad/overplot.csv'},
+  mark: {
+    type: 'circle',
+    opacity: 1
+  },
+  encoding: {
+    x: {field: '﻿x', type: 'quantitative', scale: {domain: [14, 0]}},
+    y: {field: 'y', type: 'quantitative'}
+  }
+};
+
 export const MISSING_QUARTER_LINESERIES = {
   data: {url: '../data/bad/missingquarter.csv'},
   height: 200,
@@ -130,6 +143,7 @@ export const MISSING_QUARTER_LINESERIES = {
 };
 
 export const BAD_CHARTS = {
+  OVERPLOT_SCATTERPLOT_REVERESED,
   MISSING_RECORDS_BAR_CHART,
   MISSING_QUARTER_LINESERIES,
   OUTLIER_SCATTERPLOT,

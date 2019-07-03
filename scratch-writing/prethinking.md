@@ -3,6 +3,11 @@
   - data manipulation
   - obfusication
   - nudging
+- Deceptive visualization
+  - Inverted axis
+  - truncated axis
+  - aspect Ratio
+  - area as quantity
 - Compassql
   - https://github.com/vega/compassql/tree/master/src/constraint
 - vislint_mpl (mine + meeks)

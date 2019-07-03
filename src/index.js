@@ -1,8 +1,35 @@
-import {shuffle, getDataset, generateVegaRendering, clone} from './utils';
+import outliers from 'outliers';
+import {
+  clone,
+  getDataset,
+  generateVegaRendering,
+  generateVegaView,
+  shuffle
+} from './utils';
 import {dropRow, randomizeColumns} from './dirty';
 
 const expectSame = (oldRendering, newRendering) => oldRendering === newRendering;
 const expectDifferent = (oldRendering, newRendering) => oldRendering !== newRendering;
+const quantScales = {
+  linear: true,
+  log: true,
+  pow: true,
+  sqrt: true,
+  symlog: true,
+  time: true,
+  utc: true,
+  sequential: true
+};
+
+function getXYFieldNames(spec) {
+  // not a sustainable version of this encoding grab:
+  // what if we encounter univariate specs?
+  const {transform, encoding: {x, y}} = spec;
+  // later this can be abstracted probably into a getRelevantColumns op i guess
+  const foldTransform = transform && transform.find(d => d.fold);
+  return foldTransform ? foldTransform.fold : [x.field, y.field];
+}
+
 // todo should make the lint rules generate their own specs
 const lintRules = [
   // {
@@ -14,19 +41,54 @@ const lintRules = [
   //
   //   }
   // },
+  // NOT WELL TESTED
+  ...[
+    {name: 'x', shouldReverse: false},
+    {name: 'y', shouldReverse: true}
+  ].map(({name, shouldReverse}) => ({
+    name: `deception-vis-no-reversed-axes-${name}`,
+    type: 'stylistic',
+    evaluator: (view, spec, render) => {
+      const scale = view.scale(name);
+      if (!quantScales[scale.type]) {
+        return true;
+      }
+      const [lD, uD] = scale.domain();
+      const domainIncreasing = lD < uD;
+      const [lR, uR] = scale.range();
+      const rangeIncreasing = lR < uR;
+      return shouldReverse ?
+        (domainIncreasing && !rangeIncreasing) :
+        (domainIncreasing && rangeIncreasing);
+    }
+  })),
+  // NOT TESTED
+  ...['x', 'y'].map(key => ({
+    name: `deception-vis-no-zero-scales-${key}`,
+    type: 'stylistic',
+    evaluator: (view, spec, render) => {
+      const scale = view.scale(key);
+      if (!quantScales[scale.type]) {
+        return true;
+      }
+      const [lb, ub] = scale.domain();
+      return lb !== ub;
+    }
+  })),
+  // NOT TESTED
   {
-    name: 'permuteRelevantColumns',
+    name: 'algebraic-permute-outliers-should-matter',
+    type: 'algebraic-container',
+    operation: (container, spec) => getXYFieldNames(spec)
+      .reduce((acc, column) => acc.filter(outliers(column)), clone(container)),
+    evaluator: expectDifferent
+  },
+  {
+    name: 'algebraic-permute-relevant-columns',
     type: 'algebraic-container',
     operation: (container, spec) => {
-      // not a sustainable version of this encoding grab:
-      // what if we encounter univariate specs?
-      const {transform, encoding: {x, y}} = spec;
-      // later this can be abstracted probably into a getRelevantColumns op i guess
-      const foldTransform = transform && transform.find(d => d.fold);
-      const columns = foldTransform ? foldTransform.fold : [x.field, y.field];
       const data = clone(container);
-      randomizeColumns(data, ...columns);
-      // console.log(...[data, container].map(xx => xx.map(d => columns.map(key => d[key]))))
+      randomizeColumns(data, ...(getXYFieldNames(spec)));
       return data;
     },
     evaluator: expectDifferent,
@@ -36,14 +98,13 @@ const lintRules = [
     }
   },
   {
-    name: 'shuffleInputData',
+    name: 'algebraic-shuffle-input-data',
     type: 'algebraic-container',
     operation: (container) => shuffle(clone(container)),
-    evaluator: expectSame,
-    filter: () => true
+    evaluator: expectSame
   },
   {
-    name: 'randomlyDeletedRows',
+    name: 'algebraic-randomly-delete-rows',
     type: 'algebraic-container',
     operation: (container) => {
       const clonedData = clone(container);
@@ -52,13 +113,14 @@ const lintRules = [
       }
       return clonedData;
     },
-    evaluator: expectDifferent,
-    filter: () => true
+    evaluator: expectDifferent
   }
-];
+  // add automatic inclusion
+].map(d => ({filter: () => true, ...d}));
 
 const evalMap = {
-  'algebraic-container': evaluateAlgebraicContainerRule
+  'algebraic-container': evaluateAlgebraicContainerRule,
+  stylistic: evaluateStylisticRule
 };
 
 export function lint(spec) {
@@ -84,6 +146,17 @@ function evaluateAlgebraicContainerRule(rule, spec, dataset) {
     const passed = evaluator(oldRendering, newRendering, spec);
     // type is there to allow for svg renders, still to come
     const failedRender = {type: 'svg', render: failRender};
+    return {name, passed, failedRender: !passed ? failedRender : null};
+  });
+}
+
+function evaluateStylisticRule(rule, spec, dataset) {
+  const {evaluator, name} = rule;
+
+  return Promise.all([generateVegaView(spec), generateVegaRendering(spec, 'svg')])
+  .then(([view, render]) => {
+    const passed = evaluator(view, spec, render);
+    const failedRender = {type: 'svg', render};
     return {name, passed, failedRender: !passed ? failedRender : null};
   });
 }
