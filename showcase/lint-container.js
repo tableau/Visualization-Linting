@@ -56,7 +56,6 @@ export default class LintContainer extends React.Component {
   }
 
   loadUpdates(spec) {
-    console.log(spec)
     this.setState({loading: true});
     Promise.all([
       getRendering(spec).then(lintingTarget => this.setState({lintingTarget})),

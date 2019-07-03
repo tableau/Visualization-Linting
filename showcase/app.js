@@ -1,6 +1,9 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
+// it appears that no-unused-vars has a bug :( TODO AMC to report
+/* eslint-disable no-unused-vars */
 import LintContainer from './lint-container';
+/* eslint-enable no-unused-vars */
 import {BAD_CHARTS} from '../test/vega-examples';
 
 class App extends React.Component {

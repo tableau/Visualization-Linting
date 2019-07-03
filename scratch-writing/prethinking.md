@@ -3,18 +3,23 @@
   - data manipulation
   - obfusication
   - nudging
-- Deceptive visualization
+- Deceptive visualization (panday etal)
   - Inverted axis
   - truncated axis
   - aspect Ratio
-  - area as quantity
+  - area as quantity (oh this is lintable: don't use linear scale with area on dots)
 - Compassql
   - https://github.com/vega/compassql/tree/master/src/constraint
 - vislint_mpl (mine + meeks)
+  - It's mentioned in the paper, but we could try to sniff data-ink ratio,
+    even though that isn't actually a good measure.
 - draco
 - dinosaurus
 - avd
-  -
+- Data lint
+  - Miscoding lints: basically just type check, seems more like arvind
+  - Lints for Outliers and Scaling: that's our territory
+  - Packaging Error lints: ???
 
 Aggregates
 - combining disparate number of records
