@@ -45,9 +45,9 @@ const rules = [
     evaluator: (view, spec, render) => {
       return view.scale(name).domain()[0] === 0;
     },
-    filter: (view, spec, render) => {
+    filter: (spec, data, view) => {
       const type = view.scale().type;
-      return filterForScale(name) && type !== 'utc' && type !== 'time';
+      return filterForScale(name)(spec, data, view) && type !== 'utc' && type !== 'time';
     }
   }))
 ];
