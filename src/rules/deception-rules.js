@@ -43,10 +43,12 @@ const rules = [
     name: `deception-vis-scale-should-start-at-zero-${name}`,
     type: 'stylistic',
     evaluator: (view, spec, render) => {
-      const type = view.scale(name).type;
-      return type !== 'utc' && type !== 'time' && view.scale(name).domain()[0] === 0;
+      return view.scale(name).domain()[0] === 0;
     },
-    filter: filterForScale(name)
+    filter: (view, spec, render) => {
+      const type = view.scale().type;
+      return filterForScale(name) && type !== 'utc' && type !== 'time';
+    }
   }))
 ];
 export default rules;
