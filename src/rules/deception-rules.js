@@ -38,6 +38,15 @@ const rules = [
     evaluator: (view, spec, render) =>
       (([lb, ub]) => lb !== ub)(view.scale(name).domain()),
     filter: filterForScale(name)
+  })),
+  ...['x', 'y'].map(name => ({
+    name: `deception-vis-scale-should-start-at-zero-${name}`,
+    type: 'stylistic',
+    evaluator: (view, spec, render) => {
+      const type = view.scale(name).type;
+      return type !== 'utc' && type !== 'time' && view.scale(name).domain()[0] === 0;
+    },
+    filter: filterForScale(name)
   }))
 ];
 export default rules;
