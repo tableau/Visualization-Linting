@@ -105,7 +105,7 @@ const TEST_SPECS = [
       {name: 'deception-vis-no-zero-scales-y', passed: true},
       {name: 'deception-vis-scale-should-start-at-zero-y', passed: false}
     ],
-    groupName: 'BAD CHART: MISSING_QUARTER_LINESERIES',
+    groupName: 'BAD CHART: MISSING_QUARTER_LINESERIES'
   },
   {
     spec: OUTLIER_SCATTERPLOT,

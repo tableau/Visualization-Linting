@@ -5,8 +5,13 @@ body {
   padding: 0;
   width: 100%;
 }
-
+h3 {
+  font-weight: normal;
+}
 body {
+  font-family: BentonSans-Book, sans-serif;
+}
+.bold {
   font-family: BentonSans-Medium, sans-serif;
 }
 
