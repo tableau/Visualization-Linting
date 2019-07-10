@@ -1,3 +1,5 @@
+import {uniqueKeysAsBoolMap} from '../utils';
+
 /* eslint-disable max-len */
 const quantScales = {
   linear: true,
@@ -10,6 +12,11 @@ const quantScales = {
   sequential: true
 };
 const filterForScale = scaleName => (_, __, view) => {
+  // not a valid spec to check for this scale name if that scale doesn't exisit
+  if (!uniqueKeysAsBoolMap(view._runtime.scales)[scaleName]) {
+    return false;
+  }
+
   const scale = view.scale(scaleName);
   return scale && quantScales[scale.type];
 };
@@ -52,8 +59,11 @@ const visScaleFromZero = ['x', 'y'].map(name => ({
     return view.scale(name).domain()[0] === 0;
   },
   filter: (spec, data, view) => {
+    if (!filterForScale(name)(spec, data, view)) {
+      return false;
+    }
     const type = view.scale(name).type;
-    return filterForScale(name)(spec, data, view) && type !== 'utc' && type !== 'time';
+    return type !== 'utc' && type !== 'time';
   },
   explain: `It is often the case that spatial scales should start at zero. Your ${name} axis does not! Make sure this is the right choice for your audience.`
 }));

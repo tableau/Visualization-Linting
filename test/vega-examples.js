@@ -143,10 +143,29 @@ export const MISSING_QUARTER_LINESERIES = {
   }
 };
 
+export const STRIP_PLOT = {
+  $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
+  data: {
+    url: '../node_modules/vega-datasets/data/seattle-weather.csv'
+  },
+  mark: 'tick',
+  encoding: {
+    x: {
+      field: 'precipitation',
+      type: 'quantitative'
+    }
+  }
+};
+
 export const BAD_CHARTS = {
   OVERPLOT_SCATTERPLOT_REVERESED,
   MISSING_RECORDS_BAR_CHART,
   MISSING_QUARTER_LINESERIES,
   OUTLIER_SCATTERPLOT,
-  OVERPLOT_SCATTERPLOT
+  OVERPLOT_SCATTERPLOT,
+  BAR_CHART_SPEC,
+  HISTOGRAM,
+  INSANITY,
+  COLORED_SCATTERPLOT,
+  STRIP_PLOT
 };

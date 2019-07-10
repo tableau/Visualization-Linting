@@ -91,3 +91,8 @@ export const hasKey = (data, key) => (new Set(Object.keys(data))).has(key);
 export const clone = (data) => data.map(d => ({...d}));
 // check if two objects are equal to a first approx
 export const shallowDeepEqual = (a, b) => Object.entries(a).every(([k, v]) => b[k] === v);
+
+export const uniqueKeysAsBoolMap = obj => Object.keys(obj).reduce((acc, row) => {
+  acc[row] = true;
+  return acc;
+}, {});

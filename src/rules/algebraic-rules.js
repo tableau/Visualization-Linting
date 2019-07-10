@@ -2,12 +2,19 @@
 import outliers from 'outliers';
 import {
   clone,
-  shuffle
+  shuffle,
+  uniqueKeysAsBoolMap
 } from '../utils';
 import {dropRow, randomizeColumns} from '../dirty';
 
 const expectSame = (oldRendering, newRendering) => oldRendering === newRendering;
 const expectDifferent = (oldRendering, newRendering) => oldRendering !== newRendering;
+const getScaleFileds = (spec, data, view) => Object.keys(uniqueKeysAsBoolMap(view._runtime.scales)).sort();
+// if a spec doesn't have x and y, don't try to use that one
+const filterForXandY = (spec, data, view) => {
+  const [xExpect, yExpect] = getScaleFileds(spec, data, view);
+  return xExpect === 'x' && yExpect === 'y';
+};
 
 function getXYFieldNames(spec) {
   // not a sustainable version of this encoding grab:
@@ -28,14 +35,13 @@ const rules = [
   //
   //   }
   // },
-
-  // NOT TESTED
   {
     name: 'algebraic-outliers-should-matter',
     type: 'algebraic-container',
     operation: (container, spec) => getXYFieldNames(spec)
       .reduce((acc, column) => acc.filter(outliers(column)), clone(container)),
     evaluator: expectDifferent,
+    filter: filterForXandY,
     explain: 'After deleting the outliers the chart remained unchaged, this suggests that your chart is not sensative to a this type of data. Make sure that it is behaving as expected'
   },
   {
@@ -47,7 +53,10 @@ const rules = [
       return data;
     },
     evaluator: expectDifferent,
-    filter: (spec, data) => {
+    filter: (spec, data, view) => {
+      if (!filterForXandY(spec, data, view)) {
+        return false;
+      }
       const {transform} = spec;
       return !transform || transform && !transform.find(d => d.fold);
     },
