@@ -1,0 +1,166 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+body {
+  font-family: BentonSans-Medium, sans-serif;
+}
+
+.react-monaco-editor-container {
+  /* includes extra padding for no reason if not included */
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.black-background {
+  background: black;
+  color: white;
+}
+
+.gray-background {
+  background: #E6E7E8;
+}
+
+.white-background {
+  background: white;
+}
+
+.inline-block {
+  display: block;
+  /* min-width: 50%; */
+  width: fit-content;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-down {
+  display: flex;
+  flex-direction: column;
+}
+
+.overflow-y {
+  overflow-y: auto;
+}
+
+
+.shadow {
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
+  z-index: 10;
+}
+
+.z-1 {
+  z-index: 1;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+.z-100 {
+  z-index: 100;
+}
+
+.header {
+  align-items: center;
+  height: 64px;
+  justify-content: space-between;
+  padding: 0 30px;
+}
+
+.button {
+  background: #7099A6;
+  border: 3px solid #FFFFFF;
+  border-radius: 9px;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-family: BentonSans-Regular;
+  font-size: 16px;
+  padding: 3px 10px;
+}
+
+.select-container {
+  width: 400px;
+}
+
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+.padding-20 {
+  padding: 20px;
+}
+
+.logo {
+  height: 40px;
+}
+
+.lint-card {
+  cursor: pointer;
+  position: relative;
+}
+
+.lint-button {
+  color: #504D4C;
+  font-family: BentonSans-Medium;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.lint-pass .card-head {
+  background: #7099A6;
+}
+
+.lint-fail .card-head {
+  background: #C62035;
+}
+
+.lint-explain {
+  font-family: BentonSans-Book;
+  font-size: 13px;
+  /* line-height: 20px; */
+}
+
+.card-body::after {
+  content: "";
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.lint-pass .card-body::after {
+  background: #7099A6;
+}
+
+.lint-fail .card-body::after {
+  background: #C62035;
+}
+
+
+
+.card-head {
+  color: #FFFFFF;
+  font-family: BentonSans-Book;
+  font-size: 16px;
+  padding: 5px;
+  margin: 1px 0;
+  text-align: right;
+}

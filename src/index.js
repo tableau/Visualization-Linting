@@ -29,7 +29,7 @@ export function lint(spec) {
 }
 
 function evaluateAlgebraicContainerRule(rule, spec, dataset) {
-  const {operation, evaluator, name} = rule;
+  const {operation, evaluator, name, explain} = rule;
   const perturbedSpec = {...spec, data: {values: operation(dataset, spec)}};
 
   return Promise.all(
@@ -40,17 +40,16 @@ function evaluateAlgebraicContainerRule(rule, spec, dataset) {
     const passed = evaluator(oldRendering, newRendering, spec);
     // type is there to allow for svg renders, still to come
     const failedRender = {type: 'svg', render: failRender};
-    return {name, passed, failedRender: !passed ? failedRender : null};
+    return {name, explain, passed, failedRender: !passed ? failedRender : null};
   });
 }
 
 function evaluateStylisticRule(rule, spec, dataset) {
-  const {evaluator, name} = rule;
+  const {evaluator, name, explain = 'todo'} = rule;
 
   return Promise.all([generateVegaView(spec), generateVegaRendering(spec, 'svg')])
   .then(([view, render]) => {
     const passed = evaluator(view, spec, render);
-    const failedRender = {type: 'svg', render};
-    return {name, passed, failedRender: !passed ? failedRender : null};
+    return {name, explain, passed, failedRender: null};
   });
 }
