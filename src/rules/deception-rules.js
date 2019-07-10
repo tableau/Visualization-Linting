@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const quantScales = {
   linear: true,
   log: true,
@@ -32,6 +33,7 @@ const rules = [
     filter: filterForScale(name),
     explain: `Axes should generally point in a direction which is familiar to most readers. The direction of your ${name} axis is out of line with the common usage. This can be an alright design, just make sure that it is intentional.`
   })),
+
   // NOT TESTED
   ...['x', 'y'].map(name => ({
     name: `deception-vis-no-zero-scales-${name}`,
@@ -41,6 +43,7 @@ const rules = [
     filter: filterForScale(name),
     explain: `Scales with zero extent (as your ${name} axis has) mask all information contained within them. Give your axis a non-zero domain.`
   })),
+
   ...['x', 'y'].map(name => ({
     name: `deception-vis-scale-should-start-at-zero-${name}`,
     type: 'stylistic',
@@ -48,9 +51,11 @@ const rules = [
       return view.scale(name).domain()[0] === 0;
     },
     filter: (spec, data, view) => {
-      const type = view.scale().type;
+      const type = view.scale(name).type;
       return filterForScale(name)(spec, data, view) && type !== 'utc' && type !== 'time';
-    }
+    },
+    explain: `It is often the case that spatial scales should start at zero. Your ${name} axis does not! Make sure this is the right choice for your audience.`
   }))
 ];
 export default rules;
+/* eslint-enable max-len */
