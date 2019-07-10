@@ -29,7 +29,8 @@ const rules = [
         (domainIncreasing && !rangeIncreasing) :
         (domainIncreasing && rangeIncreasing);
     },
-    filter: filterForScale(name)
+    filter: filterForScale(name),
+    explain: `Axes should generally point in a direction which is familiar to most readers. The direction of your ${name} axis is out of line with the common usage. This can be an alright design, just make sure that it is intentional.`
   })),
   // NOT TESTED
   ...['x', 'y'].map(name => ({
@@ -37,7 +38,8 @@ const rules = [
     type: 'stylistic',
     evaluator: (view, spec, render) =>
       (([lb, ub]) => lb !== ub)(view.scale(name).domain()),
-    filter: filterForScale(name)
+    filter: filterForScale(name),
+    explain: `Scales with zero extent (as your ${name} axis has) mask all information contained within them. Give your axis a non-zero domain.`
   })),
   ...['x', 'y'].map(name => ({
     name: `deception-vis-scale-should-start-at-zero-${name}`,

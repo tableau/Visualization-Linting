@@ -14,11 +14,15 @@
     "babel-preset-es2017": "^6.22.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-2": "^6.22.0",
+    "css-loader": "^2.1.1",
     "eslint": "^3.13.1",
     "eslint-config-uber-es2015": "^3.0.1",
     "eslint-config-uber-jsx": "^3.0.1",
     "eslint-plugin-babel": "^4.0.0",
     "eslint-plugin-react": "^6.10.0",
+    "lodash.debounce": "^4.0.8",
+    "monaco-editor-webpack-plugin": "^1.7.0",
+    "style-loader": "0.13.1",
     "webpack": "4",
     "webpack-cli": "^3.0.8",
     "webpack-command": "^0.2.1",
@@ -27,6 +31,8 @@
   "private": true,
   "dependencies": {
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-monaco-editor": "^0.26.2",
+    "react-select": "^3.0.4"
   }
 }
