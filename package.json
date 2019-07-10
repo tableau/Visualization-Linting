@@ -4,10 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "lint-test": "babel-node test/root-test.js",
     "start": "(cd showcase && yarn && yarn start)",
     "lint": "eslint ./",
-    "test": "babel-node test/dirty-test.js",
+    "test": "babel-node test/root-test.js",
+    "pretty-test": "npm run test | node_modules/faucet/bin/cmd.js",
     "serve": "(cd server && yarn && yarn start)"
   },
   "devDependencies": {
@@ -23,6 +23,7 @@
     "eslint-config-uber-es2015": "^3.0.1",
     "eslint-plugin-babel": "^4.0.0",
     "eslint-plugin-react": "^6.10.0",
+    "faucet": "^0.0.1",
     "tape": "^4.10.2",
     "webpack": "4",
     "webpack-cli": "^3.0.8",

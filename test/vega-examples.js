@@ -137,7 +137,8 @@ export const MISSING_QUARTER_LINESERIES = {
     y: {
       aggregate: 'mean',
       field: 'Sales',
-      type: 'quantitative'
+      type: 'quantitative',
+      scale: {domain: [85, 5]}
     }
   }
 };

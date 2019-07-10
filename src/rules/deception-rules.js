@@ -14,48 +14,62 @@ const filterForScale = scaleName => (_, __, view) => {
   return scale && quantScales[scale.type];
 };
 
+const noReversedAxes = [
+  {name: 'x', shouldReverse: false},
+  {name: 'y', shouldReverse: true}
+].map(({name, shouldReverse}) => ({
+  name: `deception-vis-no-reversed-axes-${name}`,
+  type: 'stylistic',
+  evaluator: (view, spec, render) => {
+    const scale = view.scale(name);
+    const domainIncreasing = (([lD, uD]) => lD < uD)(scale.domain());
+    const rangeIncreasing = (([lR, uR]) => lR < uR)(scale.range());
+    return shouldReverse ?
+      (domainIncreasing && !rangeIncreasing) :
+      (domainIncreasing && rangeIncreasing);
+  },
+  filter: filterForScale(name),
+  explain: `Axes should generally point in a direction which is familiar to most readers. The direction of your ${name} axis is out of line with the common usage. This can be an alright design, just make sure that it is intentional.`
+}));
+export const noReversedAxesX = noReversedAxes[0];
+export const noReversedAxesY = noReversedAxes[1];
+
+const noZeroScale = ['x', 'y'].map(name => ({
+  name: `deception-vis-no-zero-scales-${name}`,
+  type: 'stylistic',
+  evaluator: (view, spec, render) =>
+    (([lb, ub]) => lb !== ub)(view.scale(name).domain()),
+  filter: filterForScale(name),
+  explain: `Scales with zero extent (as your ${name} axis has) mask all information contained within them. Give your axis a non-zero domain.`
+}));
+export const noZeroScaleX = noZeroScale[0];
+export const noZeroScaleY = noZeroScale[1];
+
+const visScaleFromZero = ['x', 'y'].map(name => ({
+  name: `deception-vis-scale-should-start-at-zero-${name}`,
+  type: 'stylistic',
+  evaluator: (view, spec, render) => {
+    return view.scale(name).domain()[0] === 0;
+  },
+  filter: (spec, data, view) => {
+    const type = view.scale(name).type;
+    return filterForScale(name)(spec, data, view) && type !== 'utc' && type !== 'time';
+  },
+  explain: `It is often the case that spatial scales should start at zero. Your ${name} axis does not! Make sure this is the right choice for your audience.`
+}));
+export const visScaleFromZeroX = visScaleFromZero[0];
+export const visScaleFromZeroY = visScaleFromZero[1];
+
 const rules = [
   // NOT WELL TESTED
-  ...[
-    {name: 'x', shouldReverse: false},
-    {name: 'y', shouldReverse: true}
-  ].map(({name, shouldReverse}) => ({
-    name: `deception-vis-no-reversed-axes-${name}`,
-    type: 'stylistic',
-    evaluator: (view, spec, render) => {
-      const scale = view.scale(name);
-      const domainIncreasing = (([lD, uD]) => lD < uD)(scale.domain());
-      const rangeIncreasing = (([lR, uR]) => lR < uR)(scale.range());
-      return shouldReverse ?
-        (domainIncreasing && !rangeIncreasing) :
-        (domainIncreasing && rangeIncreasing);
-    },
-    filter: filterForScale(name),
-    explain: `Axes should generally point in a direction which is familiar to most readers. The direction of your ${name} axis is out of line with the common usage. This can be an alright design, just make sure that it is intentional.`
-  })),
+  noReversedAxesX,
+  noReversedAxesY,
 
   // NOT TESTED
-  ...['x', 'y'].map(name => ({
-    name: `deception-vis-no-zero-scales-${name}`,
-    type: 'stylistic',
-    evaluator: (view, spec, render) =>
-      (([lb, ub]) => lb !== ub)(view.scale(name).domain()),
-    filter: filterForScale(name),
-    explain: `Scales with zero extent (as your ${name} axis has) mask all information contained within them. Give your axis a non-zero domain.`
-  })),
-
-  ...['x', 'y'].map(name => ({
-    name: `deception-vis-scale-should-start-at-zero-${name}`,
-    type: 'stylistic',
-    evaluator: (view, spec, render) => {
-      return view.scale(name).domain()[0] === 0;
-    },
-    filter: (spec, data, view) => {
-      const type = view.scale(name).type;
-      return filterForScale(name)(spec, data, view) && type !== 'utc' && type !== 'time';
-    },
-    explain: `It is often the case that spatial scales should start at zero. Your ${name} axis does not! Make sure this is the right choice for your audience.`
-  }))
+  noZeroScaleX,
+  noZeroScaleY,
+  visScaleFromZeroX,
+  visScaleFromZeroY
 ];
 export default rules;
 /* eslint-enable max-len */
