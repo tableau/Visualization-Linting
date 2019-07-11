@@ -1,14 +1,28 @@
 /* eslint-disable max-len */
 import outliers from 'outliers';
 import {
+  buildPixelDiff,
   clone,
   shuffle,
   uniqueKeysAsBoolMap
 } from '../utils';
 import {dropRow, randomizeColumns} from '../dirty';
 
-const expectSame = (oldRendering, newRendering) => oldRendering === newRendering;
-const expectDifferent = (oldRendering, newRendering) => oldRendering !== newRendering;
+// pure string based
+// const expectSame = (oldRendering, newRendering) => oldRendering === newRendering;
+// const expectDifferent = (oldRendering, newRendering) => oldRendering !== newRendering;
+// sanity checkers
+// const expectSame = () => false;
+// const expectDifferent = () => false;
+const expectSame = (oldRend, newRend) => {
+  const {delta} = buildPixelDiff(oldRend, newRend);
+  return delta < 10;
+};
+const expectDifferent = (oldRend, newRend) => {
+  const {delta} = buildPixelDiff(oldRend, newRend);
+  return delta > 10;
+};
+
 const getScaleFileds = (spec, data, view) => Object.keys(uniqueKeysAsBoolMap(view._runtime.scales)).sort();
 // if a spec doesn't have x and y, don't try to use that one
 const filterForXandY = (spec, data, view) => {

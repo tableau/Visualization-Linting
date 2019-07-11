@@ -1,5 +1,7 @@
 import {parse, View, loader, read} from 'vega';
 import {compile} from 'vega-lite';
+import pixelmatch from 'pixelmatch';
+import {PNG} from 'pngjs';
 
 // sourced from
 // http://indiegamr.com/generate-repeatable-random-numbers-in-js/
@@ -83,10 +85,6 @@ export function getDataset(spec) {
     .then(d => read(d, {type, parse: 'auto'}));
 }
 
-export const identityWithPrint = x => {
-  console.log(x);
-  return x;
-};
 export const hasKey = (data, key) => (new Set(Object.keys(data))).has(key);
 export const clone = (data) => data.map(d => ({...d}));
 // check if two objects are equal to a first approx
@@ -96,3 +94,24 @@ export const uniqueKeysAsBoolMap = obj => Object.keys(obj).reduce((acc, row) => 
   acc[row] = true;
   return acc;
 }, {});
+
+/* eslint-disable */
+const toBuffer = img =>
+  new Buffer.from(img.replace(/^data:image\/\w+;base64,/, ''), 'base64');
+/* eslint-enable */
+
+export function buildPixelDiff(oldRendering, newRendering) {
+  const img2 = PNG.sync.read(toBuffer(oldRendering));
+  const img1 = PNG.sync.read(toBuffer(newRendering));
+  const {width, height} = img1;
+  const diff = new PNG({width, height});
+  const delta = pixelmatch(
+    img1.data,
+    img2.data,
+    diff.data,
+    width,
+    height,
+    {threshold: 0.01});
+  const diffStr = `data:image/png;base64,${PNG.sync.write(diff).toString('base64')}`;
+  return {delta, diffStr};
+}

@@ -14,7 +14,13 @@ body {
 .bold {
   font-family: BentonSans-Medium, sans-serif;
 }
+.align-center {
+  align-items: center;
+}
 
+.text-align-center {
+  text-align: center;
+}
 .react-monaco-editor-container {
   /* includes extra padding for no reason if not included */
   display: inline-block;

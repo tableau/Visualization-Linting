@@ -1,10 +1,12 @@
 import {
+  buildPixelDiff,
   getDataset,
   generateVegaRendering,
   generateVegaView
 } from './utils';
 import algebraicRules from './rules/algebraic-rules';
 import deceptionRules from './rules/deception-rules';
+
 // todo should make the lint rules generate their own specs
 const lintRules = [
   ...algebraicRules,
@@ -15,15 +17,26 @@ const lintRules = [
 const evalMap = {
   'algebraic-container': evaluateAlgebraicContainerRule,
   stylistic: evaluateStylisticRule
+  // TODO: data
 };
 
 export function lint(spec) {
-  return Promise.all([getDataset(spec), generateVegaView(spec)])
+  // TODO should link the size of these to the sizes in the other render path
+  const specWithDefaults = {
+    width: 200,
+    height: 200,
+    autosize: {
+      type: 'fit',
+      contains: 'padding'
+    },
+    ...spec
+  };
+  return Promise.all([getDataset(specWithDefaults), generateVegaView(specWithDefaults)])
     .then(([dataset, view]) => {
       return Promise.all(
         lintRules
-          .filter(({filter}) => filter(spec, dataset, view))
-          .map(rule => evalMap[rule.type](rule, spec, dataset))
+          .filter(({filter}) => filter(specWithDefaults, dataset, view))
+          .map(rule => evalMap[rule.type](rule, specWithDefaults, dataset))
       );
     });
 }
@@ -31,15 +44,19 @@ export function lint(spec) {
 function evaluateAlgebraicContainerRule(rule, spec, dataset) {
   const {operation, evaluator, name, explain} = rule;
   const perturbedSpec = {...spec, data: {values: operation(dataset, spec)}};
-
   return Promise.all(
     [spec, perturbedSpec].map(generateVegaRendering)
-      .concat(generateVegaRendering(perturbedSpec, 'svg'))
+      // .concat(generateVegaRendering(perturbedSpec, 'png'))
   )
+  .then(([oldRend, newRend]) => {
+    return new Promise((resolve, reject) => {
+      resolve([oldRend, newRend, buildPixelDiff(oldRend, newRend).diffStr]);
+    });
+  })
   .then(([oldRendering, newRendering, failRender]) => {
     const passed = evaluator(oldRendering, newRendering, spec);
     // type is there to allow for svg renders, still to come
-    const failedRender = {type: 'svg', render: failRender};
+    const failedRender = {type: 'raster', render: failRender};
     return {name, explain, passed, failedRender: !passed ? failedRender : null};
   });
 }

@@ -31,13 +31,13 @@ export default class LintCard extends React.Component {
       const ctx = domElement.getContext('2d');
       const image = new Image();
       image.src = render;
-      image.onload = () => ctx.drawImage(image, 0, 0);
+      image.onload = () => ctx.drawImage(image, 0, 0, 200, 200);
     }
     if (type === 'svg') {
       const svg = domElement.querySelector('svg');
       if (svg) {
-        svg.setAttribute('width', 250);
-        svg.setAttribute('height', 250);
+        svg.setAttribute('width', 200);
+        svg.setAttribute('height', 200);
       }
     }
     // todo add error states
@@ -68,15 +68,15 @@ export default class LintCard extends React.Component {
         </div>
         {open && <div className="card-body">
           <div className="z-1 flex padding-20">
-            {failedRender && <div className=" flex-down">
+            {failedRender && <div className="align-center text-align-center flex-down">
               <div className="white-background">
                 {failedRender.type === 'raster' &&
-                  <canvas width={200} height={500} ref="canvasTarget"/>}
+                  <canvas width={200} height={200} ref="canvasTarget"/>}
                 {failedRender.type === 'svg' &&
                   (<div ref="svgTarget"
                   dangerouslySetInnerHTML={{__html: failedRender.render}} />)}
               </div>
-              <div>Chart after alteration</div>
+              <div>Difference between original and altered version</div>
             </div>}
             <div className="flex-down">
               <div className="lint-explain">{explain}</div>
