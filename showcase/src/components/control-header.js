@@ -13,9 +13,7 @@ export default class ControlHeader extends React.PureComponent {
           options={
             Object.entries(BAD_CHARTS).map(([label, value]) => ({value, label}))
           }
-          onChange={({label, value}) => {
-            changeSpec(JSON.stringify(value, null, 2));
-          }}
+          onChange={({label, value}) => changeSpec(JSON.stringify(value, null, 2))}
           placeholder="TEMPLATES"
           isSearchable={false}
           value="TEMPLATES"/>

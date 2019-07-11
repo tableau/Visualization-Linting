@@ -35,7 +35,7 @@ export function shuffle(a, random = generateSeededRandom()) {
 /**
  * generateVegaRendering, takes in a vega lint spec and returns an svg rendering of it
  */
-export function generateVegaRendering(spec, mode = 'canvas') {
+export function generateVegaRendering(spec, mode = 'raster') {
   const isSVG = mode === 'svg';
   const config = {
     renderer: isSVG ? 'svg' : 'none'

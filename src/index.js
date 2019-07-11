@@ -45,15 +45,10 @@ function evaluateAlgebraicContainerRule(rule, spec, dataset) {
   const {operation, evaluator, name, explain} = rule;
   const perturbedSpec = {...spec, data: {values: operation(dataset, spec)}};
   return Promise.all(
-    [spec, perturbedSpec].map(generateVegaRendering)
-      // .concat(generateVegaRendering(perturbedSpec, 'png'))
+    [spec, perturbedSpec].map(d => generateVegaRendering(d, 'raster'))
   )
-  .then(([oldRend, newRend]) => {
-    return new Promise((resolve, reject) => {
-      resolve([oldRend, newRend, buildPixelDiff(oldRend, newRend).diffStr]);
-    });
-  })
-  .then(([oldRendering, newRendering, failRender]) => {
+  .then(([oldRendering, newRendering]) => {
+    const failRender = buildPixelDiff(oldRendering, newRendering).diffStr;
     const passed = evaluator(oldRendering, newRendering, spec);
     // type is there to allow for svg renders, still to come
     const failedRender = {type: 'raster', render: failRender};

@@ -34,6 +34,7 @@ class App extends React.Component {
     window.addEventListener('resize', debounce(this.resize.bind(this), 50));
     this.resize();
     this.renderSpec(this.state.currentSpec);
+    this.lintSpec(this.state.currentSpec);
   }
 
   setAsyncState(newState) {
@@ -79,17 +80,19 @@ class App extends React.Component {
             this.renderSpec(currentSpec);
             this.lintSpec(currentSpec);
           }}
-          changeSpec={(newValue, e) => {
-            this.setState({currentSpec: JSON.parse(newValue)});
+          changeSpec={(newValue, triggerRelint) => {
+            this.setAsyncState({currentSpec: JSON.parse(newValue)})
+                .then(() => {
+                  this.renderSpec(this.state.currentSpec);
+                  this.lintSpec(this.state.currentSpec);
+                });
           }}
           currentSpec={currentSpec}/>
         <div className="flex margin-top-20 full-width">
           <CodeEditor
             height={height - 128 - 20}
             width={width / 2}
-            changeSpec={(newValue, e) => {
-              this.setState({currentSpec: JSON.parse(newValue)});
-            }}
+            changeSpec={newValue => this.setState({currentSpec: JSON.parse(newValue)})}
             currentSpec={currentSpec}/>
           <div className="flex-down full-width">
             <ChartPreview
