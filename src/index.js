@@ -15,7 +15,8 @@ const lintRules = [
 ].map(d => ({filter: () => true, ...d}));
 
 const evalMap = {
-  'algebraic-container': evaluateAlgebraicContainerRule,
+  'algebraic-spec': evaluateAlgebraicSpecRule,
+  'algebraic-data': evaluateAlgebraicDataRule,
   stylistic: evaluateStylisticRule
   // TODO: data
 };
@@ -31,7 +32,10 @@ export function lint(spec) {
     },
     ...spec
   };
-  return Promise.all([getDataset(specWithDefaults), generateVegaView(specWithDefaults)])
+  return Promise.all([
+    getDataset(specWithDefaults),
+    generateVegaView(specWithDefaults)
+  ])
     .then(([dataset, view]) => {
       return Promise.all(
         lintRules
@@ -41,7 +45,29 @@ export function lint(spec) {
     });
 }
 
-function evaluateAlgebraicContainerRule(rule, spec, dataset) {
+function evaluateAlgebraicSpecRule(rule, spec, dataset) {
+  const {operation, evaluator, name, explain} = rule;
+  const perturbedSpec = operation(spec);
+  return Promise.all([
+    generateVegaRendering(spec, 'raster'),
+    generateVegaRendering(perturbedSpec, 'raster'),
+    generateVegaView(spec),
+    generateVegaView(perturbedSpec)
+  ])
+  .then(([oldRendering, newRendering, oldView, newView]) => {
+    const passed = evaluator(
+      oldRendering,
+      newRendering,
+      spec,
+      perturbedSpec,
+      oldView,
+      newView
+    );
+    return {name, explain, passed};
+  });
+}
+
+function evaluateAlgebraicDataRule(rule, spec, dataset) {
   const {operation, evaluator, name, explain} = rule;
   const perturbedSpec = {...spec, data: {values: operation(dataset, spec)}};
   return Promise.all(

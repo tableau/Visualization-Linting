@@ -1,3 +1,15 @@
+export const CARS_CARS_BAR_CHART = {
+  $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
+  width: 120,
+  height: 120,
+  data: {url: '../node_modules/vega-datasets/data/cars.json'},
+  mark: 'bar',
+  encoding: {
+    x: {field: 'Origin', type: 'nominal'},
+    y: {aggregate: 'count', type: 'quantitative'}
+  }
+};
+
 export const BAR_CHART_SPEC = {
   data: {
     url: '../node_modules/vega-datasets/data/seattle-weather.csv'
@@ -12,7 +24,7 @@ export const BAR_CHART_SPEC = {
       type: 'ordinal'
     },
     y: {
-      aggregate: 'mean',
+      aggregate: 'count',
       field: 'precipitation',
       type: 'quantitative'
     }
@@ -158,14 +170,15 @@ export const STRIP_PLOT = {
 };
 
 export const BAD_CHARTS = {
+  MISSING_QUARTER_LINESERIES,
+  MISSING_RECORDS_BAR_CHART,
   OUTLIER_SCATTERPLOT,
   OVERPLOT_SCATTERPLOT_REVERESED,
-  MISSING_RECORDS_BAR_CHART,
-  MISSING_QUARTER_LINESERIES,
   OVERPLOT_SCATTERPLOT,
   BAR_CHART_SPEC,
   HISTOGRAM,
   INSANITY,
   COLORED_SCATTERPLOT,
-  STRIP_PLOT
+  STRIP_PLOT,
+  CARS_CARS_BAR_CHART
 };

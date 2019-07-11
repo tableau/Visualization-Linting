@@ -88,7 +88,8 @@ const TEST_SPECS = [
       {name: 'algebraic-randomly-delete-rows', passed: true},
       {name: 'deception-vis-no-reversed-axes-y', passed: true},
       {name: 'deception-vis-no-zero-scales-y', passed: true},
-      {name: 'deception-vis-scale-should-start-at-zero-y', passed: true}
+      {name: 'deception-vis-scale-should-start-at-zero-y', passed: true},
+      {name: 'algebraic-aggregates-should-have-a-similar-number-of-input-records--y-axis', passed: false}
     ],
     groupName: 'BAD CHART: MISSING_RECORDS_BAR_CHART'
   },
@@ -103,7 +104,8 @@ const TEST_SPECS = [
       {name: 'deception-vis-no-reversed-axes-y', passed: false},
       {name: 'deception-vis-no-zero-scales-x', passed: true},
       {name: 'deception-vis-no-zero-scales-y', passed: true},
-      {name: 'deception-vis-scale-should-start-at-zero-y', passed: false}
+      {name: 'deception-vis-scale-should-start-at-zero-y', passed: false},
+      {name: 'algebraic-aggregates-should-have-a-similar-number-of-input-records--y-axis', passed: false}
     ],
     groupName: 'BAD CHART: MISSING_QUARTER_LINESERIES'
   },
@@ -145,18 +147,24 @@ function buildTest({spec, expected, groupName, only}) {
   const test = t => {
     lint(adjustFileRoot(spec))
     .then(result => {
+      // flip to map, order of lints doesn't matter and shouldn't be tested
+      const expectedMap = expected.reduce((acc, row) => {
+        acc[row.name] = row;
+        return acc;
+      }, {});
       const results = cleanResultsToPassFail(result);
-      // full comparison of the test set with result set
-      t.deepEqual(cleanResultsToPassFail(result), expected, 'INTEGRATION');
+      // full comparison of the test set with result set (for copyablility), disabled
+      // t.deepEqual(cleanResultsToPassFail(result), expected, 'INTEGRATION');
       // individual comparisons (for ledigibility)
       results.forEach((row, idx) => {
         const testName = `${row.name} should evaluate correctly`;
-        t.deepEqual(row, expected[idx], testName);
+        t.deepEqual(row, expectedMap[row.name], testName);
       });
     })
     .then(() => t.end());
   };
   const msg = `${groupName} Linting Tests`;
+  // allow testing to be zeroed in on a single test
   if (only) {
     tape.only(msg, test);
   } else {

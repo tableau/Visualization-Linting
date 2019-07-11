@@ -3,6 +3,27 @@ import {compile} from 'vega-lite';
 import pixelmatch from 'pixelmatch';
 import {PNG} from 'pngjs';
 
+export function getXYFieldNames(spec) {
+  // not a sustainable version of this encoding grab:
+  // what if we encounter univariate specs?
+  const {transform, encoding: {x, y}} = spec;
+  // later this can be abstracted probably into a getRelevantColumns op i guess
+  const foldTransform = transform && transform.find(d => d.fold);
+  return foldTransform ? foldTransform.fold : [x.field, y.field];
+}
+
+export const uniqueKeysAsBoolMap = obj => Object.keys(obj).reduce((acc, row) => {
+  acc[row] = true;
+  return acc;
+}, {});
+
+const getScaleFileds = (spec, data, view) => Object.keys(uniqueKeysAsBoolMap(view._runtime.scales)).sort();
+// if a spec doesn't have x and y, don't try to use that one
+export const filterForXandY = (spec, data, view) => {
+  const [xExpect, yExpect] = getScaleFileds(spec, data, view);
+  return xExpect === 'x' && yExpect === 'y';
+};
+
 // sourced from
 // http://indiegamr.com/generate-repeatable-random-numbers-in-js/
 export function generateSeededRandom(baseSeed = 2) {
@@ -89,11 +110,6 @@ export const hasKey = (data, key) => (new Set(Object.keys(data))).has(key);
 export const clone = (data) => data.map(d => ({...d}));
 // check if two objects are equal to a first approx
 export const shallowDeepEqual = (a, b) => Object.entries(a).every(([k, v]) => b[k] === v);
-
-export const uniqueKeysAsBoolMap = obj => Object.keys(obj).reduce((acc, row) => {
-  acc[row] = true;
-  return acc;
-}, {});
 
 /* eslint-disable */
 const toBuffer = img =>

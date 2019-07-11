@@ -1,4 +1,6 @@
-import {uniqueKeysAsBoolMap} from '../utils';
+import {
+  uniqueKeysAsBoolMap
+} from '../utils';
 
 /* eslint-disable max-len */
 const quantScales = {
@@ -71,11 +73,8 @@ export const visScaleFromZeroX = visScaleFromZero[0];
 export const visScaleFromZeroY = visScaleFromZero[1];
 
 const rules = [
-  // NOT WELL TESTED
   noReversedAxesX,
   noReversedAxesY,
-
-  // NOT TESTED
   noZeroScaleX,
   noZeroScaleY,
   visScaleFromZeroX,
