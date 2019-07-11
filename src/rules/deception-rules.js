@@ -36,7 +36,7 @@ const noReversedAxes = [
       (domainIncreasing && rangeIncreasing);
   },
   filter: filterForScale(name),
-  explain: `Axes should generally point in a direction which is familiar to most readers. The direction of your ${name} axis is out of line with the common usage. This can be an alright design, just make sure that it is intentional.`
+  explain: `Axes should generally point in a direction which is familiar to most readers. The direction of your ${name} axis is out of line with the common usage. Make sure that it is intentional.`
 }));
 export const noReversedAxesX = noReversedAxes[0];
 export const noReversedAxesY = noReversedAxes[1];
@@ -65,7 +65,7 @@ const visScaleFromZero = ['x', 'y'].map(name => ({
     const type = view.scale(name).type;
     return type !== 'utc' && type !== 'time';
   },
-  explain: `It is often the case that spatial scales should start at zero. Your ${name} axis does not! Make sure this is the right choice for your audience.`
+  explain: `It is often the case that quantitative scales should start at zero. Your ${name} axis does not! Make sure this is the right choice for your audience.`
 }));
 export const visScaleFromZeroX = visScaleFromZero[0];
 export const visScaleFromZeroY = visScaleFromZero[1];

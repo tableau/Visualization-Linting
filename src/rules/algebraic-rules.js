@@ -56,7 +56,7 @@ const rules = [
       .reduce((acc, column) => acc.filter(outliers(column)), clone(container)),
     evaluator: expectDifferent,
     filter: filterForXandY,
-    explain: 'After deleting the outliers the chart remained unchaged, this suggests that your chart is not sensative to a this type of data. Make sure that it is behaving as expected'
+    explain: 'After deleting the outliers the chart remained unchanged, this suggests that extreme values may not be detected. Make sure that it is behaving as expected'
   },
   {
     name: 'algebraic-permute-relevant-columns',
@@ -81,7 +81,7 @@ const rules = [
     type: 'algebraic-container',
     operation: (container) => shuffle(clone(container)),
     evaluator: expectSame,
-    explain: ' After shuffling the input data randomly, the resulting image was detected as being different original order.  This may suggest that there is overplotting in your data or that there a visual aggregation removing some information from the rendering.'
+    explain: ' After shuffling the input data randomly, the resulting image was detected as being different than when it was in the original order.  This may suggest that there is overplotting in your data or that visual aggregation is removing some information from the rendering.'
   },
   {
     name: 'algebraic-randomly-delete-rows',
