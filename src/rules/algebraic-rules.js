@@ -45,8 +45,16 @@ const shouldHaveCommonNumberOfRecords = ['x', 'y'].map(name => ({
     return duppedSpec;
   },
   filter: (spec, data, view) => {
-    // i think im going to need to write a special version of this for the column wise bar
-
+    console.log(view._runtime.data.source_0.output.source)
+    // argval appears to contain the groupbys that are desired!!
+    //    _argval: Parameters {
+    //   groupby: [ [Function] ],
+    //   ops: [ 'mean' ],
+    //   fields: [ [Function] ],
+    //   as: [ 'mean_Sales' ]
+    // },
+    // console.log(Object.entries(view._runtime.data.source_0.output.source.value).map(([key, v]) => ([key, v.agg[0]])))
+    // source_0 > output > source
     // 1. identify relevant axes
     // 2. check those axes for aggregates
     const encodingField = spec.encoding[name];
@@ -55,15 +63,7 @@ const shouldHaveCommonNumberOfRecords = ['x', 'y'].map(name => ({
   },
   explain: 'Encodings using aggregates to group records should probably have a common number of records in each of the bins.'
 }));
-// {
-//   name: 'rescaleData',
-//   type: 'algebraic-ground',
-//   operation: d => d * 1000,
-//   // todo need to only operate on the right columns
-//   evaluator: (oldRendering, newRendering) => {
-//
-//   }
-// },
+
 const outliersShouldMatter = {
   name: 'algebraic-outliers-should-matter',
   type: 'algebraic-data',
