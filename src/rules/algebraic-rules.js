@@ -45,7 +45,8 @@ const shouldHaveCommonNumberOfRecords = ['x', 'y'].map(name => ({
     return duppedSpec;
   },
   filter: (spec, data, view) => {
-    console.log(view._runtime.data.source_0.output.source)
+    // ignore the following commented garbage
+    // console.log(view._runtime.data.source_0.output.source)
     // argval appears to contain the groupbys that are desired!!
     //    _argval: Parameters {
     //   groupby: [ [Function] ],
@@ -71,29 +72,9 @@ const outliersShouldMatter = {
     .reduce((acc, column) => acc.filter(outliers(column)), clone(container)),
   evaluator: expectDifferent,
   filter: filterForXandY,
-  explain: 'After deleting the outliers the chart remained unchaged, this suggests that your chart is not sensative to a this type of data. Make sure that it is behaving as expected'
+  explain: 'After deleting the outliers the chart remained unchanged, this suggests that extreme values may not be detected. Make sure that it is behaving as expected'
 };
 
-<<<<<<< HEAD
-const rules = [
-  // {
-  //   name: 'rescaleData',
-  //   type: 'algebraic-ground',
-  //   operation: d => d * 1000,
-  //   // todo need to only operate on the right columns
-  //   evaluator: (oldRendering, newRendering) => {
-  //
-  //   }
-  // },
-  {
-    name: 'algebraic-outliers-should-matter',
-    type: 'algebraic-container',
-    operation: (container, spec) => getXYFieldNames(spec)
-      .reduce((acc, column) => acc.filter(outliers(column)), clone(container)),
-    evaluator: expectDifferent,
-    filter: filterForXandY,
-    explain: 'After deleting the outliers the chart remained unchanged, this suggests that extreme values may not be detected. Make sure that it is behaving as expected'
-=======
 const randomizingColumnsShouldMatter = {
   name: 'algebraic-permute-relevant-columns',
   type: 'algebraic-data',
@@ -101,7 +82,6 @@ const randomizingColumnsShouldMatter = {
     const data = clone(container);
     randomizeColumns(data, ...(getXYFieldNames(spec)));
     return data;
->>>>>>> add agg -> count checking
   },
   evaluator: expectDifferent,
   filter: (spec, data, view) => {
@@ -111,14 +91,6 @@ const randomizingColumnsShouldMatter = {
     const {transform} = spec;
     return !transform || transform && !transform.find(d => d.fold);
   },
-<<<<<<< HEAD
-  {
-    name: 'algebraic-shuffle-input-data',
-    type: 'algebraic-container',
-    operation: (container) => shuffle(clone(container)),
-    evaluator: expectSame,
-    explain: ' After shuffling the input data randomly, the resulting image was detected as being different than when it was in the original order.  This may suggest that there is overplotting in your data or that visual aggregation is removing some information from the rendering.'
-=======
   explain: 'After randomizing the relationship between the two data variables the chart remained the same. This suggests that your visualization is not showing their relationship in a discrenable manner.'
 };
 
@@ -127,7 +99,7 @@ const shufflingDataShouldMatter = {
   type: 'algebraic-data',
   operation: (container) => shuffle(clone(container)),
   evaluator: expectSame,
-  explain: ' After shuffling the input data randomly, the resulting image was detected as being different original order.  This may suggest that there is overplotting in your data or that there a visual aggregation removing some information from the rendering.'
+  explain: ' After shuffling the input data randomly, the resulting image was detected as being different original order. This may suggest that there is overplotting in your data or that there a visual aggregation removing some information from the rendering.'
 };
 
 const deletingRowsShouldMatter = {
@@ -139,7 +111,6 @@ const deletingRowsShouldMatter = {
       dropRow(clonedData);
     }
     return clonedData;
->>>>>>> add agg -> count checking
   },
   evaluator: expectDifferent,
 
