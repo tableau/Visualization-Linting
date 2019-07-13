@@ -8,7 +8,8 @@
     "lint": "eslint ./",
     "test": "babel-node test/root-test.js",
     "pretty-test": "npm run test | node_modules/faucet/bin/cmd.js",
-    "serve": "(cd server && yarn && yarn start)"
+    "serve": "(cd server && yarn && yarn start)",
+    "integration": "babel-node test/real-world-integration-test.js"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -33,6 +34,7 @@
   "dependencies": {
     "canvas": "^2.5.0",
     "datalib": "^1.9.2",
+    "hoopoe": "^1.0.0",
     "outliers": "^0.0.3",
     "pixelmatch": "^5.0.2",
     "vega": "^5.4.0",

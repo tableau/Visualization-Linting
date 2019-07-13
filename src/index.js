@@ -2,7 +2,8 @@ import {
   buildPixelDiff,
   getDataset,
   generateVegaRendering,
-  generateVegaView
+  generateVegaView,
+  sanitizeDatasetReference
 } from './utils';
 import algebraicRules from './rules/algebraic-rules';
 import deceptionRules from './rules/deception-rules';
@@ -11,19 +12,35 @@ import deceptionRules from './rules/deception-rules';
 const lintRules = [
   ...algebraicRules,
   ...deceptionRules
-  // add default inclusion
+  // the map adds default inclusion
 ].map(d => ({filter: () => true, ...d}));
 
 const evalMap = {
   'algebraic-spec': evaluateAlgebraicSpecRule,
   'algebraic-data': evaluateAlgebraicDataRule,
   stylistic: evaluateStylisticRule
-  // TODO: data
 };
 
 export function lint(spec) {
+  // this function wraps the single lint function, so that each individual layer
+  // in the vega-lite spec is linted by itself. It is unclear if this stratagey is a good one.
+  const denormalizedLayers = !spec.layer ? [spec] : spec.layer.map(innerSpec => {
+    const result = {
+      ...spec,
+      layer: [],
+      ...innerSpec
+    };
+    delete result.layer;
+    return result;
+  });
+  return Promise
+    .all(denormalizedLayers.map(singleSpec => lintSingleSpec(singleSpec)))
+    .then(results => results.reduce((acc, row) => acc.concat(row), []));
+}
+
+export function lintSingleSpec(spec) {
   // TODO should link the size of these to the sizes in the other render path
-  const specWithDefaults = {
+  const specWithDefaults = sanitizeDatasetReference({
     width: 200,
     height: 200,
     autosize: {
@@ -31,7 +48,7 @@ export function lint(spec) {
       contains: 'padding'
     },
     ...spec
-  };
+  });
   return Promise.all([
     getDataset(specWithDefaults),
     generateVegaView(specWithDefaults)

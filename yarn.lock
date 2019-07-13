@@ -3539,6 +3539,11 @@ homedir-polyfill@^1.0.1:
   dependencies:
     parse-passwd "^1.0.0"
 
+hoopoe@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/hoopoe/-/hoopoe-1.0.0.tgz#e3c5792d0574909a648e87d6a203f7958208f9ce"
+  integrity sha512-fw6SW81KBA2Xukh25QLGC7LMVGm5WoKMSB8smSPcCjHlEWW0ttEFGHoMK1xZYgpQ2wZV39H78LBh+5T50wICzA==
+
 hosted-git-info@^2.1.4:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.7.1.tgz#97f236977bd6e125408930ff6de3eec6281ec047"

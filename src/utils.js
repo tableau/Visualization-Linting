@@ -131,3 +131,24 @@ export function buildPixelDiff(oldRendering, newRendering) {
   const diffStr = `data:image/png;base64,${PNG.sync.write(diff).toString('base64')}`;
   return {delta, diffStr};
 }
+
+/**
+ * Create a deep copy of an object. This use the hacky and slow json serialization for copy.
+ */
+const shamefulDeepCopy = obj => JSON.parse(JSON.stringify(obj));
+
+/**
+ * A lot of the example from gh-pages make use of the data/DATASET shorthand
+ * from the vega-editor, this santization step adds that functionality
+ */
+export function sanitizeDatasetReference(spec) {
+  if (!spec.data || !spec.data.url) {
+    return spec;
+  }
+  if (spec.data.url.startsWith('data/')) {
+    const copy = shamefulDeepCopy(spec);
+    copy.data.url = `./node_modules/vega-datasets/${copy.data.url}`;
+    return copy;
+  }
+  return spec;
+}

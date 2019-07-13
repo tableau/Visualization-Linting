@@ -78,7 +78,7 @@ export const COLORED_SCATTERPLOT = {
 
 export const MISSING_RECORDS_BAR_CHART = {
   $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
-  data: {url: '../data/bad/missingrecords.csv'},
+  data: {url: '../example-data/bad/missingrecords.csv'},
   transform: [
     // there is some white space weirdness going on in x1, can't tell what
     {fold: ['﻿x1', 'x2']},
@@ -100,7 +100,7 @@ export const MISSING_RECORDS_BAR_CHART = {
 
 export const OUTLIER_SCATTERPLOT = {
   $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
-  data: {url: '../data/bad/outlier.csv'},
+  data: {url: '../example-data/bad/outlier.csv'},
   mark: 'circle',
   encoding: {
     x: {field: '﻿x1', type: 'quantitative'},
@@ -110,7 +110,7 @@ export const OUTLIER_SCATTERPLOT = {
 
 export const OVERPLOT_SCATTERPLOT = {
   $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
-  data: {url: '../data/bad/overplot.csv'},
+  data: {url: '../example-data/bad/overplot.csv'},
   mark: {
     type: 'circle',
     opacity: 1
@@ -123,7 +123,7 @@ export const OVERPLOT_SCATTERPLOT = {
 
 export const OVERPLOT_SCATTERPLOT_REVERESED = {
   $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
-  data: {url: '../data/bad/overplot.csv'},
+  data: {url: '../example-data/bad/overplot.csv'},
   mark: {
     type: 'circle',
     opacity: 1
@@ -135,7 +135,7 @@ export const OVERPLOT_SCATTERPLOT_REVERESED = {
 };
 
 export const MISSING_QUARTER_LINESERIES = {
-  data: {url: '../data/bad/missingquarter.csv'},
+  data: {url: '../example-data/bad/missingquarter.csv'},
   height: 200,
   width: 200,
   mark: 'line',

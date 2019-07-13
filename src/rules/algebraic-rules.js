@@ -10,19 +10,19 @@ import {
 import {dropRow, randomizeColumns} from '../dirty';
 
 // pure string based
-// const expectSame = (oldRendering, newRendering) => oldRendering === newRendering;
-// const expectDifferent = (oldRendering, newRendering) => oldRendering !== newRendering;
+const expectSame = (oldRendering, newRendering) => oldRendering === newRendering;
+const expectDifferent = (oldRendering, newRendering) => oldRendering !== newRendering;
 // sanity checkers
 // const expectSame = () => false;
 // const expectDifferent = () => false;
-const expectSame = (oldRend, newRend) => {
-  const {delta} = buildPixelDiff(oldRend, newRend);
-  return delta < 10;
-};
-const expectDifferent = (oldRend, newRend) => {
-  const {delta} = buildPixelDiff(oldRend, newRend);
-  return delta > 10;
-};
+// const expectSame = (oldRend, newRend) => {
+//   const {delta} = buildPixelDiff(oldRend, newRend);
+//   return delta < 10;
+// };
+// const expectDifferent = (oldRend, newRend) => {
+//   const {delta} = buildPixelDiff(oldRend, newRend);
+//   return delta > 10;
+// };
 
 const shouldHaveCommonNumberOfRecords = ['x', 'y'].map(name => ({
   name: `algebraic-aggregates-should-have-a-similar-number-of-input-records--${name}-axis`,
@@ -58,7 +58,7 @@ const shouldHaveCommonNumberOfRecords = ['x', 'y'].map(name => ({
     // source_0 > output > source
     // 1. identify relevant axes
     // 2. check those axes for aggregates
-    const encodingField = spec.encoding[name];
+    const encodingField = spec.encoding && spec.encoding[name];
     const agg = encodingField && encodingField.aggregate;
     return !(!encodingField || !agg || agg === 'count');
   },
