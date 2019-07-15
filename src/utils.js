@@ -92,18 +92,28 @@ export function generateVegaView(spec) {
   });
 }
 
+const runTimeCache = {};
 /**
  * Get a json representation of the data specified in the spec
  */
 export function getDataset(spec) {
-  if (spec.data.values) {
-    return Promise.resolve().then(() => spec.data.values);
+  const {data} = spec;
+  if (data.values) {
+    return Promise.resolve().then(() => data.values);
   }
-  const brokenUri = spec.data.url.split('.');
+  const brokenUri = data.url.split('.');
   const type = brokenUri[brokenUri.length - 1];
+  const cacheAccessKey = JSON.stringify(data);
+  if (runTimeCache[cacheAccessKey]) {
+    return runTimeCache[cacheAccessKey];
+  }
   return loader()
-    .load(spec.data.url)
-    .then(d => read(d, {type, parse: 'auto'}));
+    .load(data.url)
+    .then(d => read(d, data.format || {type, parse: 'auto'}))
+    .then(d => {
+      runTimeCache[cacheAccessKey] = d;
+      return d;
+    });
 }
 
 export const hasKey = (data, key) => (new Set(Object.keys(data))).has(key);

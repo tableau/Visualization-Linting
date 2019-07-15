@@ -91,7 +91,7 @@ class App extends React.Component {
         <div className="flex margin-top-20 full-width">
           <CodeEditor
             height={height - 128 - 20}
-            width={width / 2}
+            width={width / 3}
             changeSpec={newValue => this.setState({currentSpec: JSON.parse(newValue)})}
             currentSpec={currentSpec}/>
           <div className="flex-down full-width">
