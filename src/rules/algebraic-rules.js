@@ -5,24 +5,162 @@ import {
   clone,
   getXYFieldNames,
   shuffle,
-  filterForXandY
+  filterForXandY,
+  filterForAggregates,
+  extractTransforms
 } from '../utils';
 import {dropRow, randomizeColumns} from '../dirty';
 
-// pure string based
-const expectSame = (oldRendering, newRendering) => oldRendering === newRendering;
-const expectDifferent = (oldRendering, newRendering) => oldRendering !== newRendering;
-// sanity checkers
-// const expectSame = () => false;
-// const expectDifferent = () => false;
-// const expectSame = (oldRend, newRend) => {
-//   const {delta} = buildPixelDiff(oldRend, newRend);
-//   return delta < 10;
-// };
-// const expectDifferent = (oldRend, newRend) => {
-//   const {delta} = buildPixelDiff(oldRend, newRend);
-//   return delta > 10;
-// };
+// i can't really decide between these various modes, TODO follow up more deeply later
+const evaluationModes = {
+  // pure string based
+  STRING_BASED: {
+    expectSame: (oldRendering, newRendering) => oldRendering === newRendering,
+    expectDifferent: (oldRendering, newRendering) => oldRendering !== newRendering
+  },
+  // sanity checkers
+  SANITY_CHECKS: {
+    expectSame: () => false,
+    expectDifferent: () => false
+  },
+  // pixel diff based
+  PIXEL_DIFF: {
+    // this seems like it should be the best, but is not necessarilly
+    expectSame: (oldRend, newRend) => {
+      const {delta} = buildPixelDiff(oldRend, newRend);
+      return delta < 10;
+    },
+    expectDifferent: (oldRend, newRend) => {
+      const {delta} = buildPixelDiff(oldRend, newRend);
+      return delta > 10;
+    }
+  }
+};
+const {expectSame, expectDifferent} = evaluationModes.SANITY_CHECKS;
+
+function groupByPointerCreation(data, groupbyKey) {
+  const backwardGroupBy = data.reduce((acc, row, idx) => {
+    const key = row[groupbyKey];
+    if (!acc[key]) {
+      acc[key] = [];
+    }
+    acc[key].push({row, idx});
+    return acc;
+  }, {});
+
+  return Object.entries(backwardGroupBy).reduce((acc, [outputKey, groupedRows]) => {
+    groupedRows.forEach(({idx}) => {
+      acc[idx] = outputKey;
+    });
+    return acc;
+  }, {});
+}
+
+function identityProvMap(data) {
+  return data.reduce((acc, row, idx) => {
+    acc[idx] = idx;
+    return acc;
+  }, {});
+}
+
+/**
+ * Recursively forward pass across tree
+ * goal of this pass is to link data at each stage in the transform
+ * such that each layer has a pointers either to where each row ended up in the next transform,
+ * or is null, in order to execute this, it will likely be necessary to lightly reimplement all of the operators,
+ * or at least, construct functions for building these lineage graphs
+ */
+function provenencePass(tree, transform) {
+  if (!transform.length) {
+    return [];
+  }
+  const relevantTarget = tree._targets[0];
+  const thisTransform = transform[0];
+  const data = Array.isArray(tree.value) ? tree.value : null;
+  return [{transform: thisTransform, data, transformFunction: tree._argval}]
+    .concat(provenencePass(relevantTarget, transform.slice(1)));
+}
+
+// almost certainly misseplling prov
+function constructTransformProvenecePath(dataset, spec, view) {
+  const specDecoratedWithTransforms = extractTransforms(spec);
+  const transforms = [{type: 'identity'}].concat(specDecoratedWithTransforms.transform);
+  const linearizedProvPath = provenencePass(view._runtime.data.source_0.input, transforms);
+  // forward pass, ensure each transform step has data
+  for (let i = 0; i < linearizedProvPath.length; i++) {
+    if (!linearizedProvPath[i].data && i > 0) {
+      linearizedProvPath[i].data = linearizedProvPath[i - 1].data;
+    }
+  }
+  // backward pass, infer prov maps
+  for (let i = (linearizedProvPath.length - 1); i > 0; i--) {
+    const transform = linearizedProvPath[i];
+    const upstreamTransform = linearizedProvPath[i - 1];
+    // aggregate operator
+    if (transform.transform.groupby) {
+      // now find each of the values in the current transform value
+      // use groupByRelations to create the relavant prov map.
+      transform.provMap = groupByPointerCreation(upstreamTransform.data, transform.transform.groupby[0]);
+    } else {
+      // if not groupby then use identity map
+      // TODO: filter will probably have something to say here, also probably fold ugh
+      transform.provMap = identityProvMap(transform.data);
+    }
+  }
+  const startToTailMap = linearizedProvPath.reduce((acc, stage) => {
+    if (!stage.provMap) {
+      return acc;
+    }
+    Object.entries(acc).forEach(([source, target]) => {
+      acc[source] = stage.provMap[target];
+    });
+    return acc;
+  }, identityProvMap(dataset));
+  const tailToStartMap = Object.entries(startToTailMap)
+    .reduce((acc, [start, tail]) => {
+      if (!acc[tail]) {
+        acc[tail] = [];
+      }
+      // setting number here maybe be wrong
+      acc[tail].push(Number(start));
+      return acc;
+    }, {});
+  return {startToTailMap, tailToStartMap};
+}
+
+const oppositeFiled = {x: 'y', y: 'x'};
+const destroyVariance = ['x', 'y'].map(name => ({
+  name: `algebraic-destroy-variance--${name}-axis`,
+  type: 'algebraic-data',
+  operation: (dataset, spec, view) => {
+    const {tailToStartMap} = constructTransformProvenecePath(dataset, spec, view);
+    const extractedSpec = extractTransforms(spec);
+    const inputFieldName = spec.encoding[name].field;
+    // const inputFieldName = getXYFieldNames(spec)[name];
+    const outputFieldName = extractedSpec.encoding[name].field;
+    const aggregateFieldName = extractedSpec.encoding[oppositeFiled[name]].field;
+    // 1. for each record at tail of path, get aggregate value
+    // 2. find each stop stream record id
+    // 3. set aggregate value (field y some of the time) to be the downstream value
+    const aggregateOutputPairs = view._runtime.data.source_0.output.value.reduce((acc, row) => {
+      // acc[row[outputFieldName]] = row[aggregateFieldName];
+      acc[row[aggregateFieldName]] = row[outputFieldName];
+      return acc;
+    }, {});
+    // set each corresponding value in the original collection to aggregate value
+    const data = clone(dataset);
+    Object.entries(aggregateOutputPairs).forEach(([terminalKey, aggValue]) => {
+      tailToStartMap[terminalKey].forEach(startKey => {
+        data[startKey][inputFieldName] = aggValue;
+      });
+    });
+
+    return data;
+  },
+  evaluator: expectSame,
+  filter: filterForAggregates(name),
+  explain: 'destroying the variance should affect the chart'
+}));
 
 const shouldHaveCommonNumberOfRecords = ['x', 'y'].map(name => ({
   name: `algebraic-aggregates-should-have-a-similar-number-of-input-records--${name}-axis`,
@@ -44,24 +182,7 @@ const shouldHaveCommonNumberOfRecords = ['x', 'y'].map(name => ({
     duppedSpec.encoding[name].aggregate = 'count';
     return duppedSpec;
   },
-  filter: (spec, data, view) => {
-    // ignore the following commented garbage
-    // console.log(view._runtime.data.source_0.output.source)
-    // argval appears to contain the groupbys that are desired!!
-    //    _argval: Parameters {
-    //   groupby: [ [Function] ],
-    //   ops: [ 'mean' ],
-    //   fields: [ [Function] ],
-    //   as: [ 'mean_Sales' ]
-    // },
-    // console.log(Object.entries(view._runtime.data.source_0.output.source.value).map(([key, v]) => ([key, v.agg[0]])))
-    // source_0 > output > source
-    // 1. identify relevant axes
-    // 2. check those axes for aggregates
-    const encodingField = spec.encoding && spec.encoding[name];
-    const agg = encodingField && encodingField.aggregate;
-    return !(!encodingField || !agg || agg === 'count');
-  },
+  filter: filterForAggregates(name),
   explain: 'Encodings using aggregates to group records should probably have a common number of records in each of the bins.'
 }));
 
@@ -99,7 +220,7 @@ const shufflingDataShouldMatter = {
   type: 'algebraic-data',
   operation: (container) => shuffle(clone(container)),
   evaluator: expectSame,
-  explain: ' After shuffling the input data randomly, the resulting image was detected as being different original order. This may suggest that there is overplotting in your data or that there a visual aggregation removing some information from the rendering.'
+  explain: 'After shuffling the input data randomly, the resulting image was detected as being different original order. This may suggest that there is overplotting in your data or that there a visual aggregation removing some information from the rendering.'
 };
 
 const deletingRowsShouldMatter = {
@@ -118,6 +239,7 @@ const deletingRowsShouldMatter = {
 };
 
 const rules = [
+  ...destroyVariance,
   ...shouldHaveCommonNumberOfRecords,
   outliersShouldMatter,
   randomizingColumnsShouldMatter,

@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "babel-node server.js"
+    "start": "babel-node --inspect server.js",
+    "start-hold": "babel-node server.js"
   },
   "author": "",
   "license": "ISC",

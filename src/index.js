@@ -57,21 +57,20 @@ export function lintSingleSpec(spec) {
       return Promise.all(
         lintRules
           .filter(({filter}) => filter(specWithDefaults, dataset, view))
-          .map(rule => evalMap[rule.type](rule, specWithDefaults, dataset))
+          .map(rule => evalMap[rule.type](rule, specWithDefaults, dataset, view))
       );
     });
 }
 
-function evaluateAlgebraicSpecRule(rule, spec, dataset) {
+function evaluateAlgebraicSpecRule(rule, spec, dataset, oldView) {
   const {operation, evaluator, name, explain} = rule;
   const perturbedSpec = operation(spec);
   return Promise.all([
     generateVegaRendering(spec, 'raster'),
     generateVegaRendering(perturbedSpec, 'raster'),
-    generateVegaView(spec),
     generateVegaView(perturbedSpec)
   ])
-  .then(([oldRendering, newRendering, oldView, newView]) => {
+  .then(([oldRendering, newRendering, newView]) => {
     const passed = evaluator(
       oldRendering,
       newRendering,
@@ -84,9 +83,9 @@ function evaluateAlgebraicSpecRule(rule, spec, dataset) {
   });
 }
 
-function evaluateAlgebraicDataRule(rule, spec, dataset) {
+function evaluateAlgebraicDataRule(rule, spec, dataset, oldView) {
   const {operation, evaluator, name, explain} = rule;
-  const perturbedSpec = {...spec, data: {values: operation(dataset, spec)}};
+  const perturbedSpec = {...spec, data: {values: operation(dataset, spec, oldView)}};
   return Promise.all(
     [spec, perturbedSpec].map(d => generateVegaRendering(d, 'raster'))
   )
@@ -99,12 +98,12 @@ function evaluateAlgebraicDataRule(rule, spec, dataset) {
   });
 }
 
-function evaluateStylisticRule(rule, spec, dataset) {
+function evaluateStylisticRule(rule, spec, dataset, oldView) {
   const {evaluator, name, explain = 'todo'} = rule;
 
-  return Promise.all([generateVegaView(spec), generateVegaRendering(spec, 'svg')])
+  return generateVegaRendering(spec, 'svg')
   .then(([view, render]) => {
-    const passed = evaluator(view, spec, render);
+    const passed = evaluator(oldView, spec, render);
     return {name, explain, passed, failedRender: null};
   });
 }

@@ -1,5 +1,5 @@
 import {parse, View, loader, read} from 'vega';
-import {compile} from 'vega-lite';
+import {compile, extractTransforms as vegaLiteExtractTransforms} from 'vega-lite';
 import pixelmatch from 'pixelmatch';
 import {PNG} from 'pngjs';
 
@@ -162,3 +162,166 @@ export function sanitizeDatasetReference(spec) {
   }
   return spec;
 }
+
+
+export function filterForAggregates(name) {
+  // 1. identify relevant axes
+  // 2. check those axes for aggregates
+  return (spec, data, view) => {
+    const encodingField = spec.encoding && spec.encoding[name];
+    const agg = encodingField && encodingField.aggregate;
+    return !(!encodingField || !agg || agg === 'count');
+  };
+}
+
+
+// this configuration blob was extracted from vega-lite
+// it doesn't really do anything for us, other than enable us to use the extract transform
+const DEFAULT_SPACING = 20;
+const SELECTION_ID = '_vgsid_';
+const vegaLiteDefaultConfig = {
+  padding: 5,
+  timeFormat: '%b %d, %Y',
+  countTitle: 'Count of Records',
+
+  invalidValues: 'filter',
+
+  view: {
+    width: 200,
+    height: 200
+  },
+
+  mark: {
+    color: '#4c78a8',
+    tooltip: {content: 'encoding'}
+  },
+  area: {},
+  bar: {
+    binSpacing: 1,
+    continuousBandSize: 5
+  },
+  circle: {},
+  geoshape: {},
+  line: {},
+  point: {},
+  rect: {
+    binSpacing: 0,
+    continuousBandSize: 5
+  },
+  // Need this to override default color in mark config
+  rule: {color: 'black'},
+  square: {},
+  // Need this to override default color in mark config
+  text: {color: 'black'},
+  tick: {
+    thickness: 1
+  },
+  trail: {},
+
+  boxplot: {
+    size: 14,
+    extent: 1.5,
+    box: {},
+    median: {color: 'white'},
+    outliers: {},
+    rule: {},
+    ticks: null
+  },
+
+  errorbar: {
+    center: 'mean',
+    rule: true,
+    ticks: false
+  },
+
+  errorband: {
+    band: {
+      opacity: 0.3
+    },
+    borders: false
+  },
+
+  scale: {
+    textXRangeStep: 90,
+    rangeStep: 20,
+    pointPadding: 0.5,
+
+    barBandPaddingInner: 0.1,
+    rectBandPaddingInner: 0,
+
+    minBandSize: 2,
+
+    minFontSize: 8,
+    maxFontSize: 40,
+
+    minOpacity: 0.3,
+    maxOpacity: 0.8,
+
+    // FIXME: revise if these *can* become ratios of rangeStep
+    // Point size is area. For square point, 9 = 3 pixel ^ 2, not too small!
+    minSize: 9,
+
+    minStrokeWidth: 1,
+    maxStrokeWidth: 4,
+    quantileCount: 4,
+    quantizeCount: 4
+  },
+
+  projection: {},
+
+  axis: {},
+  axisX: {},
+  axisY: {},
+  axisLeft: {},
+  axisRight: {},
+  axisTop: {},
+  axisBottom: {},
+  axisBand: {},
+  legend: {
+    gradientHorizontalMaxLength: 200,
+    gradientHorizontalMinLength: 100,
+    gradientVerticalMaxLength: 200,
+    // This is the Vega's minimum.
+    gradientVerticalMinLength: 64
+  },
+  header: {titlePadding: 10, labelPadding: 10},
+  headerColumn: {},
+  headerRow: {},
+  headerFacet: {},
+
+  selection: {
+    single: {
+      on: 'click',
+      fields: [SELECTION_ID],
+      resolve: 'global',
+      empty: 'all',
+      clear: 'dblclick'
+    },
+    multi: {
+      on: 'click',
+      fields: [SELECTION_ID],
+      toggle: 'event.shiftKey',
+      resolve: 'global',
+      empty: 'all',
+      clear: 'dblclick'
+    },
+    interval: {
+      on: '[mousedown, window:mouseup] > window:mousemove!',
+      encodings: ['x', 'y'],
+      translate: '[mousedown, window:mouseup] > window:mousemove!',
+      zoom: 'wheel!',
+      mark: {fill: '#333', fillOpacity: 0.125, stroke: 'white'},
+      resolve: 'global',
+      clear: 'dblclick'
+    }
+  },
+  style: {},
+
+  title: {},
+
+  facet: {spacing: DEFAULT_SPACING},
+  repeat: {spacing: DEFAULT_SPACING},
+  concat: {spacing: DEFAULT_SPACING}
+};
+
+export const extractTransforms = spec => vegaLiteExtractTransforms(spec, vegaLiteDefaultConfig);

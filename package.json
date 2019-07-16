@@ -6,8 +6,8 @@
   "scripts": {
     "start": "(cd showcase && yarn && yarn start)",
     "lint": "eslint ./",
-    "test": "babel-node test/root-test.js",
-    "pretty-test": "npm run test | node_modules/faucet/bin/cmd.js",
+    "plain-test": "babel-node test/root-test.js",
+    "test": "npm run plain-test | node_modules/faucet/bin/cmd.js",
     "serve": "(cd server && yarn && yarn start)",
     "integration": "babel-node test/real-world-integration-test.js"
   },
