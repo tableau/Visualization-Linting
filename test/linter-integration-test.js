@@ -44,7 +44,8 @@ const TEST_SPECS = [
       {name: 'deception-vis-no-zero-scales-x', passed: true},
       {name: 'deception-vis-no-zero-scales-y', passed: true},
       {name: 'deception-vis-scale-should-start-at-zero-x', passed: false},
-      {name: 'deception-vis-scale-should-start-at-zero-y', passed: true}
+      {name: 'deception-vis-scale-should-start-at-zero-y', passed: true},
+      {name: 'deception-vis-bar-chart-are-usually-aggregates--y-axis', passed: true}
     ],
     groupName: 'HISTOGRAM'
   },
@@ -83,19 +84,22 @@ const TEST_SPECS = [
   {
     spec: MISSING_RECORDS_BAR_CHART,
     expected: [
+      {name: 'algebraic-destroy-variance--y-axis', passed: true},
       {name: 'algebraic-outliers-should-matter', passed: true},
       {name: 'algebraic-shuffle-input-data', passed: true},
       {name: 'algebraic-randomly-delete-rows', passed: true},
       {name: 'deception-vis-no-reversed-axes-y', passed: true},
       {name: 'deception-vis-no-zero-scales-y', passed: true},
       {name: 'deception-vis-scale-should-start-at-zero-y', passed: true},
-      {name: 'algebraic-aggregates-should-have-a-similar-number-of-input-records--y-axis', passed: false}
+      {name: 'algebraic-aggregates-should-have-a-similar-number-of-input-records--y-axis', passed: false},
+      {name: 'deception-vis-bar-chart-are-usually-aggregates--y-axis', passed: true}
     ],
     groupName: 'BAD CHART: MISSING_RECORDS_BAR_CHART'
   },
   {
     spec: MISSING_QUARTER_LINESERIES,
     expected: [
+      {name: 'algebraic-destroy-variance--y-axis', passed: true},
       {name: 'algebraic-outliers-should-matter', passed: false},
       {name: 'algebraic-permute-relevant-columns', passed: true},
       {name: 'algebraic-shuffle-input-data', passed: true},

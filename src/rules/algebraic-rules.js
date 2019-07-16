@@ -191,7 +191,16 @@ const outliersShouldMatter = {
   operation: (container, spec) => getXYFieldNames(spec)
     .reduce((acc, column) => acc.filter(outliers(column)), clone(container)),
   evaluator: expectDifferent,
-  filter: filterForXandY,
+  filter: (spec, data, view) => {
+    if (!filterForXandY(spec, data, view)) {
+      return false;
+    }
+    // dont apply rule if there aren't outliers,
+    // ie disinclude this rule if filtering does nothing to the data
+    const result = getXYFieldNames(spec)
+      .reduce((acc, column) => acc.filter(outliers(column)), clone(data));
+    return result.length !== data.length;
+  },
   explain: 'After deleting the outliers the chart remained unchanged, this suggests that extreme values may not be detected. Make sure that it is behaving as expected'
 };
 
@@ -200,12 +209,17 @@ const randomizingColumnsShouldMatter = {
   type: 'algebraic-data',
   operation: (container, spec) => {
     const data = clone(container);
+    console.log(getXYFieldNames(spec))
     randomizeColumns(data, ...(getXYFieldNames(spec)));
     return data;
   },
   evaluator: expectDifferent,
   filter: (spec, data, view) => {
     if (!filterForXandY(spec, data, view)) {
+      return false;
+    }
+    const fields = getXYFieldNames(spec);
+    if (fields.length !== fields.filter(d => d).length) {
       return false;
     }
     const {transform} = spec;
@@ -219,7 +233,7 @@ const shufflingDataShouldMatter = {
   type: 'algebraic-data',
   operation: (container) => shuffle(clone(container)),
   evaluator: expectSame,
-  explain: 'After shuffling the input data randomly, the resulting image was detected as being different original order. This may suggest that there is overplotting in your data or that there a visual aggregation removing some information from the rendering.'
+  explain: 'After shuffling the input data randomly, the resulting image was detected as being different from the original. This may suggest that there is overplotting in your data or that there a visual aggregation removing some information from the rendering.'
 };
 
 const deletingRowsShouldMatter = {
