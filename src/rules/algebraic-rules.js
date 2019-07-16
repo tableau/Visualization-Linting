@@ -143,6 +143,7 @@ const destroyVariance = ['x', 'y'].map(name => ({
     // 2. find each stop stream record id
     // 3. set aggregate value (field y some of the time) to be the downstream value
     const aggregateOutputPairs = view._runtime.data.source_0.output.value.reduce((acc, row) => {
+      // i think it should be this top one and not the bottom one? cant tell why this acutally works
       // acc[row[outputFieldName]] = row[aggregateFieldName];
       acc[row[aggregateFieldName]] = row[outputFieldName];
       return acc;
