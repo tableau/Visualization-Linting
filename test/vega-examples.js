@@ -31,6 +31,26 @@ export const BAR_CHART_SPEC = {
   }
 };
 
+export const BAR_CHART_BUT_FORGOT_TO_ADD = {
+  data: {
+    url: '../node_modules/vega-datasets/data/seattle-weather.csv'
+  },
+  height: 200,
+  width: 200,
+  mark: 'bar',
+  encoding: {
+    x: {
+      timeUnit: 'month',
+      field: 'date',
+      type: 'ordinal'
+    },
+    y: {
+      field: 'precipitation',
+      type: 'quantitative'
+    }
+  }
+};
+
 export const HISTOGRAM = {
   $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
   data: {url: '../node_modules/vega-datasets/data/movies.json'},
@@ -170,6 +190,7 @@ export const STRIP_PLOT = {
 };
 
 export const BAD_CHARTS = {
+  BAR_CHART_BUT_FORGOT_TO_ADD,
   MISSING_QUARTER_LINESERIES,
   MISSING_RECORDS_BAR_CHART,
   OUTLIER_SCATTERPLOT,

@@ -40,8 +40,8 @@ const noReversedAxes = [
   filter: filterForScale(name),
   explain: `Axes should generally point in a direction which is familiar to most readers. The direction of your ${name} axis is out of line with the common usage. Make sure that it is intentional.`
 }));
-export const noReversedAxesX = noReversedAxes[0];
-export const noReversedAxesY = noReversedAxes[1];
+const noReversedAxesX = noReversedAxes[0];
+const noReversedAxesY = noReversedAxes[1];
 
 const noZeroScale = ['x', 'y'].map(name => ({
   name: `deception-vis-no-zero-scales-${name}`,
@@ -51,8 +51,8 @@ const noZeroScale = ['x', 'y'].map(name => ({
   filter: filterForScale(name),
   explain: `Scales with zero extent (as your ${name} axis has) mask all information contained within them. Give your axis a non-zero domain.`
 }));
-export const noZeroScaleX = noZeroScale[0];
-export const noZeroScaleY = noZeroScale[1];
+const noZeroScaleX = noZeroScale[0];
+const noZeroScaleY = noZeroScale[1];
 
 const visScaleFromZero = ['x', 'y'].map(name => ({
   name: `deception-vis-scale-should-start-at-zero-${name}`,
@@ -69,10 +69,26 @@ const visScaleFromZero = ['x', 'y'].map(name => ({
   },
   explain: `It is often the case that quantitative scales should start at zero. Your ${name} axis does not! Make sure this is the right choice for your audience.`
 }));
-export const visScaleFromZeroX = visScaleFromZero[0];
-export const visScaleFromZeroY = visScaleFromZero[1];
+const visScaleFromZeroX = visScaleFromZero[0];
+const visScaleFromZeroY = visScaleFromZero[1];
+
+const barChartsAreUsuallyAggregates = ['x', 'y'].map(name => ({
+  name: `deception-vis-bar-chart-are-usually-aggregates--${name}-axis`,
+  type: 'stylistic',
+  evaluator: (view, spec, render) => {
+    return Boolean(spec.encoding[name].aggregate);
+  },
+  filter: (spec, data, view) => {
+    return filterForScale(name)(spec, data, view) && spec.mark === 'bar';
+  },
+  explain: `Bar charts usually contain aggregates, make sure that you intended to not have an aggregate for this ${name} axis.`
+}));
+const barChartsAreUsuallyAggregatesX = barChartsAreUsuallyAggregates[0];
+const barChartsAreUsuallyAggregatesY = barChartsAreUsuallyAggregates[1];
 
 const rules = [
+  barChartsAreUsuallyAggregatesX,
+  barChartsAreUsuallyAggregatesY,
   noReversedAxesX,
   noReversedAxesY,
   noZeroScaleX,
