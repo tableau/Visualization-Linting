@@ -10,7 +10,7 @@ export default class CodeEditor extends React.Component {
 
   render() {
     const {
-      currentSpec,
+      currentCode,
       changeSpec,
       height,
       width
@@ -28,7 +28,7 @@ export default class CodeEditor extends React.Component {
           height={height}
           language="json"
           theme="vs-light"
-          value={JSON.stringify(currentSpec, null, 2)}
+          value={currentCode}
           options={options}
           onChange={changeSpec}
           editorDidMount={this.editorDidMount}

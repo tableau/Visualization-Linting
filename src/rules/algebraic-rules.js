@@ -36,7 +36,7 @@ const evaluationModes = {
     }
   }
 };
-const {expectSame, expectDifferent} = evaluationModes.STRING_BASED;
+const {expectSame, expectDifferent} = evaluationModes.PIXEL_DIFF;
 
 function groupByPointerCreation(data, groupbyKey) {
   const backwardGroupBy = data.reduce((acc, row, idx) => {

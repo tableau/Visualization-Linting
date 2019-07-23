@@ -189,7 +189,67 @@ export const STRIP_PLOT = {
   }
 };
 
+const QUARTET_1 = {
+  $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
+  data: {
+    url: '../example-data/bad/quartet1.csv'
+  },
+  mark: 'bar',
+  encoding: {
+    x: {
+      field: 'location',
+      type: 'nominal'
+    },
+    y: {
+      field: 'sales',
+      type: 'quantitative',
+      aggregate: 'average'
+    }
+  }
+};
+
+const OTHER_QUARTETS = [...new Array(3)]
+  .map((_, idx) => idx + 2)
+  .reduce((acc, idx) => {
+    acc[`QUARTET_${idx}`] = {
+      $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
+      data: {
+        url: `../example-data/bad/quartet${idx}.csv`
+      },
+      encoding: {
+        x: {
+          field: 'location',
+          type: 'nominal'
+        }
+      },
+      layer: [{
+        mark: 'bar',
+        encoding: {
+          y: {
+            field: 'sales',
+            type: 'quantitative',
+            aggregate: 'average'
+          }
+        }
+      }, {
+        mark: 'circle',
+        encoding: {
+          y: {
+            field: 'sales',
+            type: 'quantitative'
+          },
+          color: {
+            value: 'red'
+          }
+        }
+      }]
+    };
+    return acc;
+  }, {});
+
 export const BAD_CHARTS = {
+  QUARTET_1,
+  ...OTHER_QUARTETS,
   BAR_CHART_BUT_FORGOT_TO_ADD,
   MISSING_QUARTER_LINESERIES,
   MISSING_RECORDS_BAR_CHART,

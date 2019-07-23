@@ -36,6 +36,10 @@ body {
   width: 100%;
 }
 
+.max-full-width {
+  max-width: 100%;
+}
+
 .black-background {
   background: black;
   color: white;
@@ -66,6 +70,14 @@ body {
 
 .overflow-y {
   overflow-y: auto;
+}
+
+.overflow-x {
+  overflow-x: auto;
+}
+
+.relative {
+  position: relative;
 }
 
 
@@ -174,4 +186,23 @@ body {
   padding: 5px;
   margin: 1px 0;
   text-align: right;
+}
+
+.error-message {
+  align-items: center;
+  background: #C62035;
+  color: white;
+  display: flex;
+  height: 30px;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: -100px;
+  transition: top 1s;
+  width: 100%;
+  z-index: 1;
+}
+
+.show-error-message {
+  top: -20px;
 }

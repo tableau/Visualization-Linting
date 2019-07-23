@@ -401,8 +401,7 @@
     "window_percent_of_total.vl.json",
     "window_rank.vl.json",
     "window_top_k.vl.json",
-    "window_top_k_others.vl.json",
-    ""
+    "window_top_k_others.vl.json"
   ],
   "vega": [
     "airport-connections.vg.json",
@@ -473,7 +472,6 @@
     "word-cloud.vg.json",
     "world-map.vg.json",
     "zoomable-scatter-plot.vg.json",
-    "zoomable-world-map.vg.json",
-    ""
+    "zoomable-world-map.vg.json"
   ]
 }

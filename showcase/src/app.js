@@ -13,18 +13,21 @@ import LintReport from './components/lint-report';
 /* eslint-enable no-unused-vars */
 import {BAD_CHARTS} from '../../test/vega-examples';
 
-import {getRendering, lintSpec} from './utils';
+import {getRendering, lintSpec, classnames} from './utils';
 
 class App extends React.Component {
   constructor() {
     super();
+    const currentSpec = BAD_CHARTS[Object.keys(BAD_CHARTS)[0]];
     this.state = {
-      currentSpec: BAD_CHARTS[Object.keys(BAD_CHARTS)[0]],
+      currentSpec,
+      currentCode: JSON.stringify(currentSpec, null, 2),
       height: 0,
       width: 0,
       lintingTarget: null,
       lintLoading: false,
-      renderLoading: false
+      renderLoading: false,
+      JSONerror: false
     };
     this.setAsyncState = this.setAsyncState.bind(this);
     this.lintSpec = this.lintSpec.bind(this);
@@ -64,6 +67,7 @@ class App extends React.Component {
   render() {
     const {
       currentSpec,
+      currentCode,
       height,
       lintingTarget,
       lintLoading,
@@ -71,6 +75,30 @@ class App extends React.Component {
       renderLoading,
       width
     } = this.state;
+
+    // this function encapsulates the logic for error handling the set state
+    // for the code editor, TODO maybe reconfigure to be a hook
+    const changeSpec = triggerRelint => newValue => {
+      const newCode = newValue;
+      this.setAsyncState({currentCode: newCode})
+      .then(() => {
+        return new Promise((resolve, reject) => resolve(JSON.parse(newCode)))
+        .then(code => this.setAsyncState({
+          currentSpec: code,
+          JSONerror: null
+        }))
+        .catch(e => this.setAsyncState({
+          JSONerror: e
+        }));
+      })
+      .then(() => {
+        if (!this.state.JSONerror && triggerRelint) {
+          this.renderSpec(this.state.currentSpec);
+          this.lintSpec(this.state.currentSpec);
+        }
+      });
+    };
+
     return (
       <div className="flex-down full-height full-width" ref="mainContainer">
         <LogoHeader />
@@ -80,20 +108,22 @@ class App extends React.Component {
             this.renderSpec(currentSpec);
             this.lintSpec(currentSpec);
           }}
-          changeSpec={(newValue, triggerRelint) => {
-            this.setAsyncState({currentSpec: JSON.parse(newValue)})
-                .then(() => {
-                  this.renderSpec(this.state.currentSpec);
-                  this.lintSpec(this.state.currentSpec);
-                });
-          }}
+          changeSpec={changeSpec(true)}
           currentSpec={currentSpec}/>
         <div className="flex margin-top-20 full-width">
-          <CodeEditor
-            height={height - 128 - 20}
-            width={width / 3}
-            changeSpec={newValue => this.setState({currentSpec: JSON.parse(newValue)})}
-            currentSpec={currentSpec}/>
+          <div className="flex-down relative">
+            <div
+              className={classnames({
+                'flex-down': true,
+                'error-message': true,
+                'show-error-message': this.state.JSONerror
+              })}>JSON ERROR</div>
+            <CodeEditor
+              height={height - 128 - 20}
+              width={width / 3}
+              changeSpec={changeSpec(false)}
+              currentCode={currentCode}/>
+        </div>
           <div className="flex-down full-width">
             <ChartPreview
               loading={renderLoading}
