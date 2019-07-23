@@ -136,7 +136,6 @@ const destroyVariance = ['x', 'y'].map(name => ({
     const {tailToStartMap} = constructTransformProvenecePath(dataset, spec, view);
     const extractedSpec = extractTransforms(spec);
     const inputFieldName = spec.encoding[name].field;
-    // const inputFieldName = getXYFieldNames(spec)[name];
     const outputFieldName = extractedSpec.encoding[name].field;
     const aggregateFieldName = extractedSpec.encoding[oppositeFiled[name]].field;
     // 1. for each record at tail of path, get aggregate value
@@ -158,7 +157,46 @@ const destroyVariance = ['x', 'y'].map(name => ({
   },
   evaluator: expectSame,
   filter: filterForAggregates(name),
-  explain: 'destroying the variance should affect the chart'
+  explain: 'destroying the variance should not affect the chart under aggregates'
+}));
+
+const contractToSingleRecords = ['x', 'y'].map(name => ({
+  name: `algebraic-contract-to-single-record--${name}-axis`,
+  type: 'algebraic-data',
+  operation: (dataset, spec, view) => {
+    const {tailToStartMap} = constructTransformProvenecePath(dataset, spec, view);
+    const extractedSpec = extractTransforms(spec);
+    const outputFieldName = extractedSpec.encoding[name].field;
+    const aggregateFieldName = extractedSpec.encoding[oppositeFiled[name]].field;
+    // 1. for each record at tail of path, get aggregate value
+    // 2. find each stop stream record id
+    // 3. for each mark set all but one mark in the input to nulls
+    // 4. filter out nulls from input
+    const aggregateOutputPairs = view._runtime.data.source_0.output.value.reduce((acc, row) => {
+      acc[row[aggregateFieldName]] = row[outputFieldName];
+      return acc;
+    }, {});
+    const data = clone(dataset);
+    Object.entries(aggregateOutputPairs).forEach(([terminalKey, aggValue]) => {
+      const targetArray = tailToStartMap[terminalKey];
+      // don't try to drop any records for single length data
+      if (targetArray.length <= 1) {
+        return;
+      }
+      const safeIndex = Math.floor(Math.random() * targetArray.length);
+      targetArray.forEach((startKey, idx) => {
+        if (idx === safeIndex) {
+          return;
+        }
+        data[startKey] = null;
+      });
+    });
+
+    return data.filter(d => d);
+  },
+  evaluator: expectDifferent,
+  filter: filterForAggregates(name),
+  explain: 'reducing the aggregate values to a single record should affect the chart'
 }));
 
 const shouldHaveCommonNumberOfRecords = ['x', 'y'].map(name => ({
@@ -209,7 +247,6 @@ const randomizingColumnsShouldMatter = {
   type: 'algebraic-data',
   operation: (container, spec) => {
     const data = clone(container);
-    console.log(getXYFieldNames(spec))
     randomizeColumns(data, ...(getXYFieldNames(spec)));
     return data;
   },
@@ -252,6 +289,7 @@ const deletingRowsShouldMatter = {
 };
 
 const rules = [
+  ...contractToSingleRecords,
   ...destroyVariance,
   ...shouldHaveCommonNumberOfRecords,
   outliersShouldMatter,

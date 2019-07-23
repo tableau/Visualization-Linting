@@ -18,7 +18,7 @@ export const uniqueKeysAsBoolMap = obj => Object.keys(obj).reduce((acc, row) => 
 }, {});
 
 const getScaleFileds = (spec, data, view) => Object.keys(uniqueKeysAsBoolMap(view._runtime.scales)).sort();
-// if a spec doesn't have x and y, don't try to use that one
+// if a spec doesn't have x and y, reject that spec
 export const filterForXandY = (spec, data, view) => {
   const [xExpect, yExpect] = getScaleFileds(spec, data, view);
   return xExpect === 'x' && yExpect === 'y';
@@ -163,7 +163,6 @@ export function sanitizeDatasetReference(spec) {
   return spec;
 }
 
-
 export function filterForAggregates(name) {
   // 1. identify relevant axes
   // 2. check those axes for aggregates
@@ -173,7 +172,6 @@ export function filterForAggregates(name) {
     return !(!encodingField || !agg || agg === 'count');
   };
 }
-
 
 // this configuration blob was extracted from vega-lite
 // it doesn't really do anything for us, other than enable us to use the extract transform
