@@ -1,0 +1,140 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "title": "Seattle Weather, 2012-2015",
+  "data": {
+    "url": "https://vega.github.io/vega-datasets/data/seattle-weather.csv"
+  },
+  "vconcat": [
+    {
+      "encoding": {
+        "color": {
+          "condition": {
+            "field": "weather",
+            "scale": {
+              "domain": [
+                "sun",
+                "fog",
+                "drizzle",
+                "rain",
+                "snow"
+              ],
+              "range": [
+                "#e7ba52",
+                "#a7a7a7",
+                "#aec7e8",
+                "#1f77b4",
+                "#9467bd"
+              ]
+            },
+            "selection": "brush",
+            "type": "nominal"
+          },
+          "value": "lightgray"
+        },
+        "size": {
+          "field": "precipitation",
+          "scale": {
+            "domain": [
+              -1,
+              50
+            ]
+          },
+          "type": "quantitative"
+        },
+        "x": {
+          "axis": {
+            "title": "Date"
+          },
+          "field": "date",
+          "timeUnit": "monthdate",
+          "type": "temporal"
+        },
+        "y": {
+          "axis": {
+            "title": "Maximum Daily Temperature (C)"
+          },
+          "field": "temp_max",
+          "scale": {
+            "domain": [
+              -5,
+              40
+            ]
+          },
+          "type": "quantitative"
+        }
+      },
+      "height": 300,
+      "mark": "point",
+      "selection": {
+        "brush": {
+          "encodings": [
+            "x"
+          ],
+          "type": "interval"
+        }
+      },
+      "transform": [
+        {
+          "filter": {
+            "selection": "click"
+          }
+        }
+      ],
+      "width": 600
+    },
+    {
+      "encoding": {
+        "color": {
+          "condition": {
+            "field": "weather",
+            "scale": {
+              "domain": [
+                "sun",
+                "fog",
+                "drizzle",
+                "rain",
+                "snow"
+              ],
+              "range": [
+                "#e7ba52",
+                "#a7a7a7",
+                "#aec7e8",
+                "#1f77b4",
+                "#9467bd"
+              ]
+            },
+            "selection": "click",
+            "type": "nominal"
+          },
+          "value": "lightgray"
+        },
+        "x": {
+          "aggregate": "count",
+          "field": "*",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "weather",
+          "type": "nominal"
+        }
+      },
+      "mark": "bar",
+      "selection": {
+        "click": {
+          "encodings": [
+            "color"
+          ],
+          "type": "multi"
+        }
+      },
+      "transform": [
+        {
+          "filter": {
+            "selection": "brush"
+          }
+        }
+      ],
+      "width": 600
+    }
+  ]
+}

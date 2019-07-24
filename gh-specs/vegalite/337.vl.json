@@ -1,0 +1,188 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "data": {
+    "values": [
+      {
+        "OrderByVar": "2018-04-01T04:00:00.000Z",
+        "Month/Year": "Apr, 2018",
+        "Demand Held Orders": 101,
+        "Demand Saved": 22,
+        "Strategic Held Orders": 41,
+        "Strategic Saved": 14
+      },
+      {
+        "OrderByVar": "2018-05-01T04:00:00.000Z",
+        "Month/Year": "May, 2018",
+        "Demand Held Orders": 112,
+        "Demand Saved": 19,
+        "Strategic Held Orders": 38,
+        "Strategic Saved": 11
+      },
+      {
+        "OrderByVar": "2018-06-01T04:00:00.000Z",
+        "Month/Year": "Jun, 2018",
+        "Demand Held Orders": 142,
+        "Demand Saved": 29,
+        "Strategic Held Orders": 30,
+        "Strategic Saved": 10
+      },
+      {
+        "OrderByVar": "2018-07-01T04:00:00.000Z",
+        "Month/Year": "Jul, 2018",
+        "Demand Held Orders": 90,
+        "Demand Saved": 27,
+        "Strategic Held Orders": 41,
+        "Strategic Saved": 9
+      },
+      {
+        "OrderByVar": "2018-08-01T04:00:00.000Z",
+        "Month/Year": "Aug, 2018",
+        "Demand Held Orders": 84,
+        "Demand Saved": 41,
+        "Strategic Held Orders": 36,
+        "Strategic Saved": 33
+      },
+      {
+        "OrderByVar": "2018-09-01T04:00:00.000Z",
+        "Month/Year": "Sep, 2018",
+        "Demand Held Orders": 83,
+        "Demand Saved": 38,
+        "Strategic Held Orders": 37,
+        "Strategic Saved": 41
+      },
+      {
+        "OrderByVar": "2018-10-01T04:00:00.000Z",
+        "Month/Year": "Oct, 2018",
+        "Demand Held Orders": 69,
+        "Demand Saved": 47,
+        "Strategic Held Orders": 31,
+        "Strategic Saved": 39
+      },
+      {
+        "OrderByVar": "2018-11-01T04:00:00.000Z",
+        "Month/Year": "Nov, 2018",
+        "Demand Held Orders": 76,
+        "Demand Saved": 67,
+        "Strategic Held Orders": 27,
+        "Strategic Saved": 18
+      },
+      {
+        "OrderByVar": "2018-12-01T05:00:00.000Z",
+        "Month/Year": "Dec, 2018",
+        "Demand Held Orders": 35,
+        "Demand Saved": 19,
+        "Strategic Held Orders": 11,
+        "Strategic Saved": 15
+      },
+      {
+        "OrderByVar": "2019-01-01T05:00:00.000Z",
+        "Month/Year": "Jan, 2019",
+        "Demand Held Orders": 27,
+        "Demand Saved": 29,
+        "Strategic Held Orders": 6,
+        "Strategic Saved": 8
+      },
+      {
+        "OrderByVar": "2019-02-01T05:00:00.000Z",
+        "Month/Year": "Feb, 2019",
+        "Demand Held Orders": 28,
+        "Demand Saved": 31,
+        "Strategic Held Orders": 10,
+        "Strategic Saved": 10
+      },
+      {
+        "OrderByVar": "2019-03-01T05:00:00.000Z",
+        "Month/Year": "Mar, 2019",
+        "Demand Held Orders": 39,
+        "Demand Saved": 37,
+        "Strategic Held Orders": 12,
+        "Strategic Saved": 3
+      },
+      {
+        "OrderByVar": "2019-04-01T04:00:00.000Z",
+        "Month/Year": "Apr, 2019",
+        "Demand Held Orders": 8,
+        "Demand Saved": 14,
+        "Strategic Held Orders": 3,
+        "Strategic Saved": 7
+      }
+    ]
+  },
+  "transform": [
+    {
+      "fold": [
+        "Demand Held Orders",
+        "Strategic Held Orders",
+        "Demand Saved",
+        "Strategic Saved"
+      ],
+      "as": [
+        "Tkey",
+        "Tvalue"
+      ]
+    },
+    {
+      "fold": [
+        "Demand Held Orders",
+        "Strategic Held Orders"
+      ],
+      "as": [
+        "Hkey",
+        "Hvalue"
+      ]
+    },
+    {
+      "fold": [
+        "Demand Saved",
+        "Strategic Saved"
+      ],
+      "as": [
+        "Skey",
+        "Svalue"
+      ]
+    },
+    {
+      "fold": [
+        "Hkey",
+        "Skey"
+      ],
+      "as": [
+        "Mkey",
+        "Mvalue"
+      ]
+    },
+    {
+      "calculate": "if(indexof('datum.Tkey','Demand')>0,'D','S')",
+      "as": "D_S"
+    },
+    {
+      "calculate": "if(indexof('datum.Tkey','Held')>0,'H','S')",
+      "as": "H_S"
+    }
+  ],
+  "mark": {
+    "type": "bar",
+    "color": "#85A9C5"
+  },
+  "encoding": {
+    "column": {
+      "field": "Month/Year",
+      "type": "ordinal",
+      "sort": {
+        "field": "OrderByVar"
+      }
+    },
+    "x": {
+      "field": "Tkey",
+      "type": "ordinal"
+    },
+    "y": {
+      "field": "Tvalue",
+      "type": "quantitative"
+    },
+    "color": {
+      "field": "Tkey",
+      "type": "nominal"
+    }
+  }
+}

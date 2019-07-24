@@ -1,0 +1,64 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "data": {
+    "url": "https://gist.githubusercontent.com/ksan1510/3847b2120b0877aa6f1de78552c96931/raw/cf5b9656f38c2072f148aefb6e38f5ee1851b842/happyrange.json"
+  },
+  "width": 450,
+  "height": 440,
+  "padding": 15,
+  "layer": [
+    {
+      "selection": {
+        "brush": {
+          "type": "interval",
+          "encodings": [
+            "x"
+          ]
+        }
+      },
+      "title": "Happiness Score Average",
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "field": "Region",
+          "type": "ordinal"
+        },
+        "y": {
+          "aggregate": "mean",
+          "field": "HappinessScore",
+          "type": "quantitative"
+        },
+        "opacity": {
+          "condition": {
+            "selection": "brush",
+            "value": 1
+          },
+          "value": 0.7
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "selection": "brush"
+          }
+        }
+      ],
+      "mark": "rule",
+      "encoding": {
+        "y": {
+          "aggregate": "mean",
+          "field": "HappinessScore",
+          "type": "quantitative"
+        },
+        "color": {
+          "value": "firebrick"
+        },
+        "size": {
+          "value": 3
+        }
+      }
+    }
+  ]
+}

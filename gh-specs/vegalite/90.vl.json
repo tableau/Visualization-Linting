@@ -1,0 +1,159 @@
+{
+  "data": {
+    "values": [
+      {
+        "cuisine": "American",
+        "total": 84995,
+        "perZip": 94,
+        "zipCode": 10308
+      },
+      {
+        "cuisine": "Chinese",
+        "total": 39515,
+        "perZip": 69,
+        "zipCode": 10308
+      },
+      {
+        "cuisine": "Pizza",
+        "total": 17640,
+        "perZip": 53,
+        "zipCode": 10308
+      },
+      {
+        "cuisine": "Italian",
+        "total": 16699,
+        "perZip": 182,
+        "zipCode": 10308
+      },
+      {
+        "cuisine": "Mexican",
+        "total": 14653,
+        "perZip": 8,
+        "zipCode": 10308
+      },
+      {
+        "cuisine": "Japanese",
+        "total": 13852,
+        "perZip": 61,
+        "zipCode": 10308
+      },
+      {
+        "cuisine": "Bakery",
+        "total": 11542,
+        "perZip": 6,
+        "zipCode": 10308
+      },
+      {
+        "cuisine": "Spanish",
+        "total": 11283,
+        "perZip": 46,
+        "zipCode": 10308
+      },
+      {
+        "cuisine": "Pizza/Italian",
+        "total": 8131,
+        "perZip": 43,
+        "zipCode": 10308
+      },
+      {
+        "cuisine": "Chicken",
+        "total": 6251,
+        "perZip": 13,
+        "zipCode": 10308
+      },
+      {
+        "cuisine": "Delicatessen",
+        "total": 5911,
+        "perZip": 20,
+        "zipCode": 10308
+      },
+      {
+        "cuisine": "Asian",
+        "total": 5869,
+        "perZip": 5,
+        "zipCode": 10308
+      },
+      {
+        "cuisine": "Donuts",
+        "total": 5670,
+        "perZip": 47,
+        "zipCode": 10308
+      },
+      {
+        "cuisine": "Sandwiches",
+        "total": 4483,
+        "perZip": 6,
+        "zipCode": 10308
+      },
+      {
+        "cuisine": "Ice Cream, Gelato, Yogurt, Ices",
+        "total": 2909,
+        "perZip": 35,
+        "zipCode": 10308
+      },
+      {
+        "cuisine": "Seafood",
+        "total": 2612,
+        "perZip": 6,
+        "zipCode": 10308
+      },
+      {
+        "cuisine": "Other",
+        "total": 2376,
+        "perZip": 1,
+        "zipCode": 10308
+      },
+      {
+        "cuisine": "Russian",
+        "total": 1347,
+        "perZip": 9,
+        "zipCode": 10308
+      },
+      {
+        "cuisine": "Bottled beverages, including water, sodas, juices, etc.",
+        "total": 1111,
+        "perZip": 5,
+        "zipCode": 10308
+      }
+    ]
+  },
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.3.0.json",
+  "config": {
+    "view": {
+      "width": 400,
+      "height": 300
+    }
+  },
+  "hconcat": [
+    {
+      "mark": {
+        "stroke": "Black",
+        "type": "bar"
+      },
+      "encoding": {
+        "color": {
+          "value": "LightGrey"
+        },
+        "y": {
+          "sort": {
+            "field": "perZip",
+            "order": "descending",
+            "op": "sum"
+          },
+          "field": "cuisine",
+          "type": "ordinal",
+          "axis": {
+            "title": "Cuisine"
+          }
+        },
+        "x": {
+          "field": "perZip",
+          "type": "quantitative",
+          "axis": {
+            "title": "Restaurant Count"
+          }
+        }
+      }
+    }
+  ]
+}

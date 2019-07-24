@@ -1,0 +1,82 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "title": "Weekly Income (selectable)",
+  "width": 300,
+  "data": {
+    "values": [
+      {
+        "day": "1-Monday",
+        "amount": 10000
+      },
+      {
+        "day": "2-Tuesday",
+        "amount": 40000
+      },
+      {
+        "day": "3-Wednesday",
+        "amount": 15000
+      },
+      {
+        "day": "4-Thursday",
+        "amount": 10000
+      },
+      {
+        "day": "5-Friday",
+        "amount": 30000
+      },
+      {
+        "day": "6-Saturday",
+        "amount": 50000
+      },
+      {
+        "day": "7-Sunday",
+        "amount": 35000
+      }
+    ]
+  },
+  "mark": "bar",
+  "selection": {
+    "pts": {
+      "type": "single",
+      "encodings": [
+        "x"
+      ]
+    }
+  },
+  "encoding": {
+    "x": {
+      "field": "day",
+      "type": "nominal",
+      "axis": {
+        "labelAngle": -40,
+        "title": "",
+        "ticks": false
+      },
+      "scale": {
+        "paddingInner": 0.4
+      }
+    },
+    "y": {
+      "field": "amount",
+      "type": "quantitative",
+      "axis": {
+        "title": "",
+        "ticks": false,
+        "domain": false,
+        "format": ".0s"
+      }
+    },
+    "color": {
+      "condition": {
+        "selection": "pts",
+        "value": "#74c476"
+      },
+      "value": "#d9d9d9"
+    }
+  },
+  "config": {
+    "view": {
+      "strokeWidth": 0
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "width": 800,
+  "height": 500,
+  "padding": 5,
+  "title": "Relação entre ano e volume de agua + porcentagem de volume",
+  "data": {
+    "url": "https://api.insa.gov.br/reservatorios/12172/monitoramento",
+    "format": {
+      "type": "json",
+      "property": "volumes",
+      "parse": {
+        "DataInformacao": "utc:'%d/%m/%Y'"
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "filled": true
+      },
+      "encoding": {
+        "x": {
+          "timeUnit": "year",
+          "field": "DataInformacao",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "Volume",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "VolumePercentual",
+          "type": "quantitative",
+          "aggregate": "mean"
+        }
+      }
+    },
+    {
+      "mark": "rule",
+      "encoding": {
+        "y": {
+          "field": "Volume",
+          "type": "quantitative",
+          "aggregate": "mean"
+        }
+      }
+    }
+  ]
+}

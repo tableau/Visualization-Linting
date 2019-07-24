@@ -1,0 +1,223 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "data": {
+    "values": [
+      {
+        "OrderByVar": "2018-04-01",
+        "Month/Year": "Apr, 2018",
+        "D_S": "Strategic",
+        "Held Orders": 41,
+        "Saved": 14
+      },
+      {
+        "OrderByVar": "2018-04-02",
+        "Month/Year": "Apr, 2018",
+        "D_S": "Demand",
+        "Held Orders": 101,
+        "Saved": 22
+      },
+      {
+        "OrderByVar": "2018-05-01",
+        "Month/Year": "May, 2018",
+        "D_S": "Demand",
+        "Held Orders": 112,
+        "Saved": 19
+      },
+      {
+        "OrderByVar": "2018-05-01",
+        "Month/Year": "May, 2018",
+        "D_S": "Strategic",
+        "Held Orders": 38,
+        "Saved": 11
+      },
+      {
+        "OrderByVar": "2018-06-01",
+        "Month/Year": "Jun, 2018",
+        "D_S": "Demand",
+        "Held Orders": 142,
+        "Saved": 29
+      },
+      {
+        "OrderByVar": "2018-06-01",
+        "Month/Year": "Jun, 2018",
+        "D_S": "Strategic",
+        "Held Orders": 30,
+        "Saved": 10
+      },
+      {
+        "OrderByVar": "2018-07-01",
+        "Month/Year": "Jul, 2018",
+        "D_S": "Demand",
+        "Held Orders": 90,
+        "Saved": 27
+      },
+      {
+        "OrderByVar": "2018-07-01",
+        "Month/Year": "Jul, 2018",
+        "D_S": "Strategic",
+        "Held Orders": 41,
+        "Saved": 9
+      },
+      {
+        "OrderByVar": "2018-08-01",
+        "Month/Year": "Aug, 2018",
+        "D_S": "Demand",
+        "Held Orders": 84,
+        "Saved": 41
+      },
+      {
+        "OrderByVar": "2018-08-01",
+        "Month/Year": "Aug, 2018",
+        "D_S": "Strategic",
+        "Held Orders": 36,
+        "Saved": 33
+      },
+      {
+        "OrderByVar": "2018-09-01",
+        "Month/Year": "Sep, 2018",
+        "D_S": "Strategic",
+        "Held Orders": 37,
+        "Saved": 41
+      },
+      {
+        "OrderByVar": "2018-09-01",
+        "Month/Year": "Sep, 2018",
+        "D_S": "Demand",
+        "Held Orders": 83,
+        "Saved": 38
+      },
+      {
+        "OrderByVar": "2018-10-01",
+        "Month/Year": "Oct, 2018",
+        "D_S": "Strategic",
+        "Held Orders": 31,
+        "Saved": 39
+      },
+      {
+        "OrderByVar": "2018-10-01",
+        "Month/Year": "Oct, 2018",
+        "D_S": "Demand",
+        "Held Orders": 69,
+        "Saved": 47
+      },
+      {
+        "OrderByVar": "2018-11-01",
+        "Month/Year": "Nov, 2018",
+        "D_S": "Demand",
+        "Held Orders": 76,
+        "Saved": 67
+      },
+      {
+        "OrderByVar": "2018-11-01",
+        "Month/Year": "Nov, 2018",
+        "D_S": "Strategic",
+        "Held Orders": 27,
+        "Saved": 18
+      },
+      {
+        "OrderByVar": "2018-12-01",
+        "Month/Year": "Dec, 2018",
+        "D_S": "Demand",
+        "Held Orders": 35,
+        "Saved": 19
+      },
+      {
+        "OrderByVar": "2018-12-02",
+        "Month/Year": "Dec, 2018",
+        "D_S": "Strategic",
+        "Held Orders": 11,
+        "Saved": 15
+      },
+      {
+        "OrderByVar": "2019-01-01",
+        "Month/Year": "Jan, 2019",
+        "D_S": "Demand",
+        "Held Orders": 27,
+        "Saved": 29
+      },
+      {
+        "OrderByVar": "2019-01-03",
+        "Month/Year": "Jan, 2019",
+        "D_S": "Strategic",
+        "Held Orders": 6,
+        "Saved": 8
+      },
+      {
+        "OrderByVar": "2019-02-01",
+        "Month/Year": "Feb, 2019",
+        "D_S": "Demand",
+        "Held Orders": 28,
+        "Saved": 31
+      },
+      {
+        "OrderByVar": "2019-02-02",
+        "Month/Year": "Feb, 2019",
+        "D_S": "Strategic",
+        "Held Orders": 10,
+        "Saved": 10
+      },
+      {
+        "OrderByVar": "2019-03-01",
+        "Month/Year": "Mar, 2019",
+        "D_S": "Demand",
+        "Held Orders": 39,
+        "Saved": 37
+      },
+      {
+        "OrderByVar": "2019-03-02",
+        "Month/Year": "Mar, 2019",
+        "D_S": "Strategic",
+        "Held Orders": 12,
+        "Saved": 4
+      },
+      {
+        "OrderByVar": "2019-04-01",
+        "Month/Year": "Apr, 2019",
+        "D_S": "Strategic",
+        "Held Orders": 6,
+        "Saved": 6
+      },
+      {
+        "OrderByVar": "2019-04-02",
+        "Month/Year": "Apr, 2019",
+        "D_S": "Demand",
+        "Held Orders": 15,
+        "Saved": 11
+      }
+    ]
+  },
+  "transform": [
+    {
+      "fold": [
+        "Held Orders",
+        "Saved"
+      ]
+    }
+  ],
+  "mark": {
+    "type": "bar",
+    "color": "#85A9C5"
+  },
+  "encoding": {
+    "column": {
+      "field": "Month/Year",
+      "type": "ordinal",
+      "sort": {
+        "field": "OrderByVar"
+      }
+    },
+    "x": {
+      "field": "D_S",
+      "type": "ordinal"
+    },
+    "y": {
+      "aggregate": "sum",
+      "field": "value",
+      "type": "quantitative"
+    },
+    "color": {
+      "field": "key",
+      "type": "nominal"
+    }
+  }
+}

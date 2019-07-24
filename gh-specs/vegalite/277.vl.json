@@ -1,0 +1,264 @@
+{
+  "config": {
+    "view": {
+      "width": 400,
+      "height": 275,
+      "fill": "lightgray",
+      "fillOpacity": 0.2,
+      "stroke": "transparent"
+    },
+    "axis": {
+      "labelLimit": 380,
+      "titleFont": "Century Gothic",
+      "titleFontSize": 14
+    },
+    "axisBottom": {
+      "labelAngle": 0,
+      "labelFont": "Century Gothic",
+      "labelFontSize": 14,
+      "labelPadding": 8,
+      "ticks": false
+    },
+    "axisLeft": {
+      "labelFont": "Century Gothic",
+      "labelFontSize": 14
+    },
+    "header": {
+      "labelFont": "Century Gothic",
+      "labelFontSize": 11.5,
+      "labelLimit": 150,
+      "titleFont": "Century Gothic",
+      "titleFontSize": 16
+    },
+    "legend": {
+      "labelFont": "Century Gothic",
+      "labelFontSize": 14,
+      "titleFont": "Century Gothic",
+      "titleFontSize": 14
+    },
+    "range": {
+      "category": {
+        "scheme": "set2"
+      }
+    },
+    "text": {
+      "dx": -11,
+      "dy": -8,
+      "font": "Century Gothic"
+    }
+  },
+  "data": {
+    "name": "data-0599ffd23b380fc0d2230110f9d547dc"
+  },
+  "facet": {
+    "column": {
+      "type": "nominal",
+      "field": "Removal reason",
+      "header": {
+        "title": "Why are charities removed from the register, across sector (\"All\") and within arts/culture/heritage/science (\"Arts\")?"
+      },
+      "sort": {
+        "op": "median",
+        "field": "Count"
+      }
+    }
+  },
+  "spec": {
+    "layer": [
+      {
+        "mark": {
+          "type": "bar",
+          "stroke": "transparent"
+        },
+        "encoding": {
+          "color": {
+            "type": "nominal",
+            "field": "Subset",
+            "sort": [
+              "Arts"
+            ]
+          },
+          "tooltip": [
+            {
+              "type": "nominal",
+              "field": "Removal reason"
+            },
+            {
+              "type": "quantitative",
+              "field": "Count"
+            },
+            {
+              "type": "nominal",
+              "field": "Percent of removed charities"
+            },
+            {
+              "type": "nominal",
+              "field": "Subset"
+            }
+          ],
+          "x": {
+            "type": "nominal",
+            "axis": {
+              "title": ""
+            },
+            "field": "Subset",
+            "scale": {
+              "rangeStep": 55
+            }
+          },
+          "y": {
+            "type": "quantitative",
+            "axis": {
+              "grid": false
+            },
+            "field": "Percent of removed charities"
+          }
+        },
+        "selection": {
+          "selector125": {
+            "type": "single",
+            "on": "click",
+            "fields": [
+              "_vgsid_"
+            ],
+            "resolve": "global",
+            "empty": "all"
+          },
+          "selector126": {
+            "type": "interval",
+            "bind": "scales",
+            "on": "[mousedown, window:mouseup] > window:mousemove!",
+            "encodings": [
+              "x",
+              "y"
+            ],
+            "translate": "[mousedown, window:mouseup] > window:mousemove!",
+            "zoom": "wheel!",
+            "mark": {
+              "fill": "#333",
+              "fillOpacity": 0.125,
+              "stroke": "white"
+            },
+            "resolve": "global"
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "middle"
+        },
+        "encoding": {
+          "text": {
+            "type": "quantitative",
+            "field": "Percent of removed charities"
+          },
+          "x": {
+            "type": "nominal",
+            "field": "Subset"
+          },
+          "y": {
+            "type": "quantitative",
+            "field": "Percent of removed charities"
+          }
+        }
+      }
+    ]
+  },
+  "transform": [
+    {
+      "calculate": "if((datum.Subset === 'All charities'),'All','Arts')",
+      "as": "Subset"
+    }
+  ],
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.6.0.json",
+  "datasets": {
+    "data-0599ffd23b380fc0d2230110f9d547dc": [
+      {
+        "Removal reason": "Ceased to exist",
+        "Count": 89087,
+        "Percent of removed charities": "50.8",
+        "Subset": "All charities"
+      },
+      {
+        "Removal reason": "Does not operate",
+        "Count": 27467,
+        "Percent of removed charities": "15.7",
+        "Subset": "All charities"
+      },
+      {
+        "Removal reason": "Amalgamated",
+        "Count": 17674,
+        "Percent of removed charities": "10.1",
+        "Subset": "All charities"
+      },
+      {
+        "Removal reason": "Funds transferred (gi)",
+        "Count": 6623,
+        "Percent of removed charities": "3.78",
+        "Subset": "All charities"
+      },
+      {
+        "Removal reason": "Voluntary removal",
+        "Count": 6113,
+        "Percent of removed charities": "3.49",
+        "Subset": "All charities"
+      },
+      {
+        "Removal reason": "Transfer of funds",
+        "Count": 6008,
+        "Percent of removed charities": "3.43",
+        "Subset": "All charities"
+      },
+      {
+        "Removal reason": "Funds transferred (incor)",
+        "Count": 5741,
+        "Percent of removed charities": "3.27",
+        "Subset": "All charities"
+      },
+      {
+        "Removal reason": "Ceased to exist",
+        "Count": 4543,
+        "Percent of removed charities": "47.6",
+        "Subset": "Arts/ culture/ heritage/ science charities"
+      },
+      {
+        "Removal reason": "Does not operate",
+        "Count": 1574,
+        "Percent of removed charities": "16.5",
+        "Subset": "Arts/ culture/ heritage/ science charities"
+      },
+      {
+        "Removal reason": "Voluntary removal",
+        "Count": 1466,
+        "Percent of removed charities": "15.4",
+        "Subset": "Arts/ culture/ heritage/ science charities"
+      },
+      {
+        "Removal reason": "Funds transferred (incor)",
+        "Count": 655,
+        "Percent of removed charities": "6.86",
+        "Subset": "Arts/ culture/ heritage/ science charities"
+      },
+      {
+        "Removal reason": "Transfer of funds",
+        "Count": 527,
+        "Percent of removed charities": "5.52",
+        "Subset": "Arts/ culture/ heritage/ science charities"
+      },
+      {
+        "Removal reason": "Funds transferred (gi)",
+        "Count": 283,
+        "Percent of removed charities": "2.96",
+        "Subset": "Arts/ culture/ heritage/ science charities"
+      },
+      {
+        "Removal reason": "Amalgamated",
+        "Count": 226,
+        "Percent of removed charities": "2.37",
+        "Subset": "Arts/ culture/ heritage/ science charities"
+      }
+    ]
+  }
+}

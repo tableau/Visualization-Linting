@@ -5,7 +5,10 @@ import LintCard from './lint-card';
 
 export default class LintContainer extends React.Component {
   render() {
-    const {lintResults, loading} = this.props;
+    const {lintResults, loading, lintServiceError} = this.props;
+    if (lintServiceError) {
+      return <div><h1>{JSON.stringify(lintServiceError)}</h1></div>;
+    }
     if (loading) {
       return <div><h1>LOADING</h1></div>;
     }

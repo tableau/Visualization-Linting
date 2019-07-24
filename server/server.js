@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 5000;
 /* eslint-enable */
 import {generateVegaRendering} from '../src/utils';
 import {lint} from '../src';
+import {OK, CRASH} from '../src/codes';
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -34,7 +35,10 @@ app.post('/get-rendering', (req, res) => {
   };
   generateVegaRendering(specWithDefaults, 'svg')
     .then(result => {
-      res.send(JSON.stringify(result));
+      res.send(JSON.stringify({code: OK, result}));
+    })
+    .catch(e => {
+      res.send({code: CRASH, msg: e});
     });
 });
 
@@ -43,7 +47,8 @@ app.post('/lint', (req, res) => {
   lint(req.body)
     .then(result => {
       console.log('did done a lint');
-      console.table(result.map(({name, passed}) => ({name, passed: `${passed}`})));
+      console.log(`STATUS: ${result.code} ${result.msg || ''}`);
+      console.table(result.lints.map(({name, passed}) => ({name, passed: `${passed}`})));
       res.send(JSON.stringify(result));
     });
 

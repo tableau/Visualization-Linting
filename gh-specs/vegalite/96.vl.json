@@ -1,0 +1,93 @@
+{
+  "config": {
+    "view": {
+      "width": 400,
+      "height": 300
+    }
+  },
+  "data": {
+    "name": "data-4c268972bc839eae68b4b0cd98c4bc76"
+  },
+  "mark": {
+    "type": "line",
+    "point": true
+  },
+  "encoding": {
+    "color": {
+      "type": "nominal",
+      "field": "method",
+      "title": "Method"
+    },
+    "x": {
+      "type": "quantitative",
+      "field": "size",
+      "title": "Dataset Size (rows)"
+    },
+    "y": {
+      "type": "quantitative",
+      "field": "memory",
+      "title": "Memory (kb)"
+    }
+  },
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.6.0.json",
+  "datasets": {
+    "data-4c268972bc839eae68b4b0cd98c4bc76": [
+      {
+        "size": 100000,
+        "memory": 1390396,
+        "method": "full"
+      },
+      {
+        "size": 100000,
+        "memory": 494352,
+        "method": "streaming"
+      },
+      {
+        "size": 200000,
+        "memory": 2346504,
+        "method": "full"
+      },
+      {
+        "size": 200000,
+        "memory": 475320,
+        "method": "streaming"
+      },
+      {
+        "size": 300000,
+        "memory": 3286820,
+        "method": "full"
+      },
+      {
+        "size": 300000,
+        "memory": 505360,
+        "method": "streaming"
+      },
+      {
+        "size": 400000,
+        "memory": 3570620,
+        "method": "full"
+      },
+      {
+        "size": 400000,
+        "memory": 484232,
+        "method": "streaming"
+      },
+      {
+        "size": 500000,
+        "memory": 4508716,
+        "method": "full"
+      },
+      {
+        "size": 500000,
+        "memory": 518168,
+        "method": "streaming"
+      }
+    ]
+  },
+  "title": {
+    "text": "Memory footprint for increasing dataset size.",
+    "orient": "bottom",
+    "anchor": "middle",
+    "offset": 20
+  }
+}

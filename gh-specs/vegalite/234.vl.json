@@ -1,0 +1,55 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "description": "the population per state, engineers per state, and hurricanes per state",
+  "repeat": {
+    "row": [
+      "population",
+      "engineers",
+      "hurricanes"
+    ]
+  },
+  "resolve": {
+    "scale": {
+      "color": "independent"
+    }
+  },
+  "spec": {
+    "width": 500,
+    "height": 300,
+    "data": {
+      "url": "https://gist.githubusercontent.com/Ajax12345/2b5a54a573c6ac9d0c8ca2f86554a107/raw/713e7635c31c42a9323f8fd5cb0249725bb0f5ec/population_engineers_hurricanes.csv"
+    },
+    "transform": [
+      {
+        "lookup": "id",
+        "from": {
+          "data": {
+            "url": "https://gist.githubusercontent.com/Ajax12345/ef1b81b426dd11113f90f1baa64b1f77/raw/c5523d81d321e6db4e12e38bef4fd0ea133dd4be/us_map_json.json",
+            "format": {
+              "type": "topojson",
+              "feature": "states"
+            }
+          },
+          "key": "id"
+        },
+        "as": "geo"
+      }
+    ],
+    "projection": {
+      "type": "albersUsa"
+    },
+    "mark": "geoshape",
+    "encoding": {
+      "shape": {
+        "field": "geo",
+        "type": "geojson"
+      },
+      "color": {
+        "field": {
+          "repeat": "row"
+        },
+        "type": "quantitative"
+      }
+    }
+  }
+}

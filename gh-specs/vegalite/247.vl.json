@@ -1,0 +1,307 @@
+{
+  "components": [
+    {
+      "id": "weight-component",
+      "period": {
+        "start_date": "2018-08-04T20:36:00Z",
+        "end_date": "2018-09-02T23:59:59Z"
+      },
+      "links": [
+        {
+          "rel": "report",
+          "href": "/reports/b28f5e30-ea9-4e01-8608-57e2675490",
+          "title": "CBG Report"
+        }
+      ],
+      "metrics": [
+        {
+          "key": "weight_difference",
+          "type": "number",
+          "data": {
+            "value": 41,
+            "label": "lost"
+          }
+        }
+      ],
+      "charts": [
+        {
+          "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+          "data": {
+            "name": "measurements",
+            "format": {
+              "type": "json"
+            },
+            "values": [
+              {
+                "Date": "2018-08-04T20:36:00Z",
+                "Value": 290
+              },
+              {
+                "Date": "2018-08-05T20:36:00Z",
+                "Value": 288
+              },
+              {
+                "Date": "2018-08-06T20:36:00Z",
+                "Value": 287
+              },
+              {
+                "Date": "2018-08-07T20:36:00Z",
+                "Value": 287
+              },
+              {
+                "Date": "2018-08-08T20:36:00Z",
+                "Value": 288
+              },
+              {
+                "Date": "2018-08-09T20:36:00Z",
+                "Value": 286
+              },
+              {
+                "Date": "2018-08-10T23:59:59Z",
+                "Value": 285
+              },
+              {
+                "Date": "2018-08-11T08:59:59Z",
+                "Value": 283
+              },
+              {
+                "Date": "2018-08-11T23:59:59Z",
+                "Value": 282
+              },
+              {
+                "Date": "2018-08-12T23:59:59Z",
+                "Value": 283
+              },
+              {
+                "Date": "2018-08-13T23:59:59Z",
+                "Value": 283
+              },
+              {
+                "Date": "2018-08-14T08:59:59Z",
+                "Value": 284
+              },
+              {
+                "Date": "2018-08-14T23:59:59Z",
+                "Value": 282
+              },
+              {
+                "Date": "2018-08-15T08:59:59Z",
+                "Value": 281
+              },
+              {
+                "Date": "2018-08-15T23:59:59Z",
+                "Value": 279
+              },
+              {
+                "Date": "2018-08-16T23:59:59Z",
+                "Value": 278
+              },
+              {
+                "Date": "2018-08-17T23:59:59Z",
+                "Value": 280
+              },
+              {
+                "Date": "2018-08-18T23:59:59Z",
+                "Value": 281
+              },
+              {
+                "Date": "2018-08-19T23:59:59Z",
+                "Value": 279
+              },
+              {
+                "Date": "2018-08-20T23:59:59Z",
+                "Value": 279
+              },
+              {
+                "Date": "2018-08-21T08:36:00Z",
+                "Value": 277
+              },
+              {
+                "Date": "2018-08-21T20:36:00Z",
+                "Value": 275
+              },
+              {
+                "Date": "2018-08-22T20:36:00Z",
+                "Value": 274
+              },
+              {
+                "Date": "2018-08-23T20:36:00Z",
+                "Value": 271
+              },
+              {
+                "Date": "2018-08-24T08:36:00Z",
+                "Value": 270
+              },
+              {
+                "Date": "2018-08-24T20:36:00Z",
+                "Value": 268
+              },
+              {
+                "Date": "2018-08-25T08:59:59Z",
+                "Value": 266
+              },
+              {
+                "Date": "2018-08-25T23:59:59Z",
+                "Value": 264
+              },
+              {
+                "Date": "2018-08-26T08:59:59Z",
+                "Value": 261
+              },
+              {
+                "Date": "2018-08-26T23:59:59Z",
+                "Value": 260
+              },
+              {
+                "Date": "2018-08-27T08:59:59Z",
+                "Value": 259
+              },
+              {
+                "Date": "2018-08-27T23:59:59Z",
+                "Value": 260
+              },
+              {
+                "Date": "2018-08-28T23:59:59Z",
+                "Value": 258
+              },
+              {
+                "Date": "2018-08-29T23:59:59Z",
+                "Value": 257
+              },
+              {
+                "Date": "2018-08-30T23:59:59Z",
+                "Value": 256
+              },
+              {
+                "Date": "2018-08-31T23:59:59Z",
+                "Value": 253
+              },
+              {
+                "Date": "2018-09-01T08:59:59Z",
+                "Value": 250
+              },
+              {
+                "Date": "2018-09-01T23:59:59Z",
+                "Value": 250
+              },
+              {
+                "Date": "2018-09-02T23:59:59Z",
+                "Value": 249
+              }
+            ]
+          },
+          "layer": [
+            {
+              "mark": {
+                "type": "line",
+                "interpolate": "step-before",
+                "color": "black"
+              },
+              "data": {
+                "name": "normal_range",
+                "format": {
+                  "type": "json"
+                },
+                "values": [
+                  {
+                    "label": "Normal",
+                    "value": "190",
+                    "date": "2018-08-04T20:36:00Z"
+                  },
+                  {
+                    "label": "Normal",
+                    "value": "150",
+                    "date": "2018-08-30T00:00:00Z"
+                  },
+                  {
+                    "label": "Normal",
+                    "value": "150",
+                    "date": "2018-09-02T23:59:59Z"
+                  }
+                ]
+              },
+              "encoding": {
+                "x": {
+                  "type": "temporal",
+                  "field": "date"
+                },
+                "y": {
+                  "type": "quantitative",
+                  "field": "value"
+                }
+              }
+            },
+            {
+              "mark": {
+                "type": "text",
+                "align": "right",
+                "dy": -5
+              },
+              "data": {
+                "values": [
+                  {
+                    "Target": 150,
+                    "Title": "Goal"
+                  }
+                ]
+              },
+              "encoding": {
+                "x": {
+                  "value": "width"
+                },
+                "y": {
+                  "field": "Target",
+                  "type": "quantitative"
+                },
+                "text": {
+                  "field": "Title",
+                  "type": "ordinal"
+                }
+              }
+            },
+            {
+              "mark": {
+                "type": "line",
+                "color": "#24d9b8",
+                "point": {
+                  "color": "#24d9b8",
+                  "size": 60
+                }
+              },
+              "encoding": {
+                "x": {
+                  "title": null,
+                  "field": "Date",
+                  "axis": {
+                    "format": "%m/%d",
+                    "tickCount": 7,
+                    "labels": true
+                  },
+                  "scale": {
+                    "type": "time",
+                    "nice": {
+                      "interval": "day",
+                      "step": 0
+                    }
+                  },
+                  "type": "temporal"
+                },
+                "y": {
+                  "title": null,
+                  "field": "Value",
+                  "type": "quantitative",
+                  "scale": {
+                    "domain": [
+                      0,
+                      300
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

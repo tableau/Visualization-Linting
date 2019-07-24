@@ -1,0 +1,71 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "values": [
+      {
+        "name": "FASTA Sequence Format",
+        "type": "Models/formats",
+        "size": 252,
+        "index": 6,
+        "total": 223,
+        "percentage": 0.03
+      },
+      {
+        "name": "PDB Format",
+        "type": "Models/formats",
+        "size": 58,
+        "index": 7,
+        "total": 223
+      },
+      {
+        "name": "GFF3",
+        "type": "Models/formats",
+        "size": 46,
+        "index": 8,
+        "total": 223
+      }
+    ]
+  },
+  "mark": "bar",
+  "encoding": {
+    "y": {
+      "field": "size",
+      "type": "quantitative",
+      "axis": {
+        "title": "# Times Implemented"
+      }
+    },
+    "x": {
+      "field": "name",
+      "type": "nominal",
+      "axis": {
+        "title": "Models/formats"
+      },
+      "sort": {
+        "field": "type",
+        "order": "ascending"
+      }
+    },
+    "color": {
+      "field": "type",
+      "type": "nominal",
+      "scale": {
+        "range": [
+          "#34495E"
+        ]
+      }
+    }
+  },
+  "config": {
+    "facet": {
+      "cell": {
+        "strokeWidth": 0
+      }
+    },
+    "axis": {
+      "domainWidth": 1
+    }
+  },
+  "width": 200,
+  "height": 150
+}

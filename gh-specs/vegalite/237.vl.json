@@ -1,0 +1,135 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "title": "Current vs Target vs Limit",
+  "width": 500,
+  "height": 300,
+  "data": {
+    "values": [
+      {
+        "current": 1500,
+        "target": 100,
+        "limit": 2000,
+        "date": "1-Jan"
+      },
+      {
+        "current": 1000,
+        "target": 1000,
+        "limit": 2000,
+        "date": "2-Feb"
+      },
+      {
+        "current": 300,
+        "target": 1500,
+        "limit": 2000,
+        "date": "3-Mar"
+      },
+      {
+        "current": 500,
+        "target": 1000,
+        "limit": 2000,
+        "date": "4-Apr"
+      },
+      {
+        "current": 2500,
+        "target": 1000,
+        "limit": 2000,
+        "date": "5-May"
+      },
+      {
+        "current": 1700,
+        "target": 1700,
+        "limit": 2000,
+        "date": "6-Jun"
+      },
+      {
+        "current": 1300,
+        "target": 1500,
+        "limit": 2000,
+        "date": "7-Jul"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "fill": "#4292c6",
+        "fillOpacity": 0.6
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "nominal",
+          "scale": {
+            "paddingInner": 0.4
+          },
+          "axis": {
+            "title": ""
+          }
+        },
+        "y": {
+          "field": "current",
+          "type": "quantitative",
+          "axis": {
+            "title": ""
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "fill": "#de2d26",
+        "stroke": "#de2d26",
+        "shape": "triangle-up"
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "nominal"
+        },
+        "y": {
+          "field": "target",
+          "type": "quantitative"
+        },
+        "size": {
+          "value": 250
+        },
+        "opacity": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "#636363",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "nominal"
+        },
+        "y": {
+          "field": "limit",
+          "type": "quantitative"
+        },
+        "y2": {
+          "field": "limit",
+          "type": "quantitative"
+        }
+      }
+    }
+  ],
+  "config": {
+    "axisY": {
+      "ticks": false,
+      "domain": false
+    },
+    "view": {
+      "strokeWidth": 0
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "description": "A Rectangular Unit-Chart",
+  "data": {
+    "url": "gapminder.csv"
+  },
+  "width": 600,
+  "height": 400,
+  "mark": "rect",
+  "transform": [
+    {
+      "calculate": "ceil(datum.id/ 10)",
+      "as": "X"
+    },
+    {
+      "calculate": "datum.id - (datum.X - 1) *10",
+      "as": "Y"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "X",
+      "type": "ordinal",
+      "axis": null
+    },
+    "y": {
+      "field": "Y",
+      "type": "ordinal",
+      "axis": null
+    },
+    "color": {
+      "field": "continent",
+      "type": "nominal"
+    },
+    "tooltip": {
+      "field": "country",
+      "type": "nominal"
+    }
+  },
+  "config": {
+    "cell": {
+      "strokeOpacity": 0
+    }
+  }
+}

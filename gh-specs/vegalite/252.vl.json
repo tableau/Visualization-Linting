@@ -1,0 +1,18 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "description": "A scatterplot template with URL.",
+  "data": {
+    "url": "https://gist.githubusercontent.com/ties/ddfedd35f9b34c23a8c2ffb9d7a83d4d/raw/7d5de711ff35cb1fdaefeba9055380b1209432c9/life_expectancy_income_population.json"
+  },
+  "mark": "point",
+  "encoding": {
+    "x": {
+      "field": "corrected_income",
+      "type": "quantitative"
+    },
+    "y": {
+      "field": "population",
+      "type": "quantitative"
+    }
+  }
+}

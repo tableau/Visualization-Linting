@@ -1,0 +1,731 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.3.0.json",
+  "config": {
+    "view": {
+      "height": 300,
+      "width": 400
+    }
+  },
+  "data": {
+    "values": [
+      {
+        "Unnamed: 0": 40860,
+        "category": "Heating",
+        "community_board": "01 BRONX",
+        "count": 4,
+        "year": 2017,
+        "year_month": "2017-01"
+      },
+      {
+        "Unnamed: 0": 40861,
+        "category": "Noise",
+        "community_board": "01 BRONX",
+        "count": 426,
+        "year": 2017,
+        "year_month": "2017-01"
+      },
+      {
+        "Unnamed: 0": 40863,
+        "category": "Parking & Vehicles",
+        "community_board": "01 BRONX",
+        "count": 122,
+        "year": 2017,
+        "year_month": "2017-01"
+      },
+      {
+        "Unnamed: 0": 40864,
+        "category": "Plumbing",
+        "community_board": "01 BRONX",
+        "count": 113,
+        "year": 2017,
+        "year_month": "2017-01"
+      },
+      {
+        "Unnamed: 0": 40865,
+        "category": "Public Health & Safety",
+        "community_board": "01 BRONX",
+        "count": 1,
+        "year": 2017,
+        "year_month": "2017-01"
+      },
+      {
+        "Unnamed: 0": 40866,
+        "category": "Streets & Sidewalks",
+        "community_board": "01 BRONX",
+        "count": 123,
+        "year": 2017,
+        "year_month": "2017-01"
+      },
+      {
+        "Unnamed: 0": 40867,
+        "category": "Transportation",
+        "community_board": "01 BRONX",
+        "count": 9,
+        "year": 2017,
+        "year_month": "2017-01"
+      },
+      {
+        "Unnamed: 0": 41368,
+        "category": "Heating",
+        "community_board": "01 BRONX",
+        "count": 2,
+        "year": 2017,
+        "year_month": "2017-02"
+      },
+      {
+        "Unnamed: 0": 41369,
+        "category": "Noise",
+        "community_board": "01 BRONX",
+        "count": 398,
+        "year": 2017,
+        "year_month": "2017-02"
+      },
+      {
+        "Unnamed: 0": 41371,
+        "category": "Parking & Vehicles",
+        "community_board": "01 BRONX",
+        "count": 80,
+        "year": 2017,
+        "year_month": "2017-02"
+      },
+      {
+        "Unnamed: 0": 41372,
+        "category": "Plumbing",
+        "community_board": "01 BRONX",
+        "count": 66,
+        "year": 2017,
+        "year_month": "2017-02"
+      },
+      {
+        "Unnamed: 0": 41373,
+        "category": "Streets & Sidewalks",
+        "community_board": "01 BRONX",
+        "count": 74,
+        "year": 2017,
+        "year_month": "2017-02"
+      },
+      {
+        "Unnamed: 0": 41374,
+        "category": "Transportation",
+        "community_board": "01 BRONX",
+        "count": 9,
+        "year": 2017,
+        "year_month": "2017-02"
+      },
+      {
+        "Unnamed: 0": 41866,
+        "category": "Heating",
+        "community_board": "01 BRONX",
+        "count": 2,
+        "year": 2017,
+        "year_month": "2017-03"
+      },
+      {
+        "Unnamed: 0": 41867,
+        "category": "Noise",
+        "community_board": "01 BRONX",
+        "count": 390,
+        "year": 2017,
+        "year_month": "2017-03"
+      },
+      {
+        "Unnamed: 0": 41869,
+        "category": "Parking & Vehicles",
+        "community_board": "01 BRONX",
+        "count": 140,
+        "year": 2017,
+        "year_month": "2017-03"
+      },
+      {
+        "Unnamed: 0": 41870,
+        "category": "Plumbing",
+        "community_board": "01 BRONX",
+        "count": 74,
+        "year": 2017,
+        "year_month": "2017-03"
+      },
+      {
+        "Unnamed: 0": 41871,
+        "category": "Public Health & Safety",
+        "community_board": "01 BRONX",
+        "count": 1,
+        "year": 2017,
+        "year_month": "2017-03"
+      },
+      {
+        "Unnamed: 0": 41872,
+        "category": "Streets & Sidewalks",
+        "community_board": "01 BRONX",
+        "count": 131,
+        "year": 2017,
+        "year_month": "2017-03"
+      },
+      {
+        "Unnamed: 0": 41873,
+        "category": "Transportation",
+        "community_board": "01 BRONX",
+        "count": 10,
+        "year": 2017,
+        "year_month": "2017-03"
+      },
+      {
+        "Unnamed: 0": 42369,
+        "category": "Noise",
+        "community_board": "01 BRONX",
+        "count": 449,
+        "year": 2017,
+        "year_month": "2017-04"
+      },
+      {
+        "Unnamed: 0": 42371,
+        "category": "Parking & Vehicles",
+        "community_board": "01 BRONX",
+        "count": 155,
+        "year": 2017,
+        "year_month": "2017-04"
+      },
+      {
+        "Unnamed: 0": 42372,
+        "category": "Plumbing",
+        "community_board": "01 BRONX",
+        "count": 69,
+        "year": 2017,
+        "year_month": "2017-04"
+      },
+      {
+        "Unnamed: 0": 42373,
+        "category": "Streets & Sidewalks",
+        "community_board": "01 BRONX",
+        "count": 176,
+        "year": 2017,
+        "year_month": "2017-04"
+      },
+      {
+        "Unnamed: 0": 42374,
+        "category": "Transportation",
+        "community_board": "01 BRONX",
+        "count": 13,
+        "year": 2017,
+        "year_month": "2017-04"
+      },
+      {
+        "Unnamed: 0": 42856,
+        "category": "Noise",
+        "community_board": "01 BRONX",
+        "count": 396,
+        "year": 2017,
+        "year_month": "2017-05"
+      },
+      {
+        "Unnamed: 0": 42858,
+        "category": "Parking & Vehicles",
+        "community_board": "01 BRONX",
+        "count": 185,
+        "year": 2017,
+        "year_month": "2017-05"
+      },
+      {
+        "Unnamed: 0": 42859,
+        "category": "Plumbing",
+        "community_board": "01 BRONX",
+        "count": 78,
+        "year": 2017,
+        "year_month": "2017-05"
+      },
+      {
+        "Unnamed: 0": 42860,
+        "category": "Public Health & Safety",
+        "community_board": "01 BRONX",
+        "count": 4,
+        "year": 2017,
+        "year_month": "2017-05"
+      },
+      {
+        "Unnamed: 0": 42861,
+        "category": "Streets & Sidewalks",
+        "community_board": "01 BRONX",
+        "count": 128,
+        "year": 2017,
+        "year_month": "2017-05"
+      },
+      {
+        "Unnamed: 0": 42862,
+        "category": "Transportation",
+        "community_board": "01 BRONX",
+        "count": 18,
+        "year": 2017,
+        "year_month": "2017-05"
+      },
+      {
+        "Unnamed: 0": 43349,
+        "category": "Noise",
+        "community_board": "01 BRONX",
+        "count": 476,
+        "year": 2017,
+        "year_month": "2017-06"
+      },
+      {
+        "Unnamed: 0": 43351,
+        "category": "Parking & Vehicles",
+        "community_board": "01 BRONX",
+        "count": 150,
+        "year": 2017,
+        "year_month": "2017-06"
+      },
+      {
+        "Unnamed: 0": 43352,
+        "category": "Plumbing",
+        "community_board": "01 BRONX",
+        "count": 104,
+        "year": 2017,
+        "year_month": "2017-06"
+      },
+      {
+        "Unnamed: 0": 43353,
+        "category": "Public Health & Safety",
+        "community_board": "01 BRONX",
+        "count": 3,
+        "year": 2017,
+        "year_month": "2017-06"
+      },
+      {
+        "Unnamed: 0": 43354,
+        "category": "Streets & Sidewalks",
+        "community_board": "01 BRONX",
+        "count": 104,
+        "year": 2017,
+        "year_month": "2017-06"
+      },
+      {
+        "Unnamed: 0": 43355,
+        "category": "Transportation",
+        "community_board": "01 BRONX",
+        "count": 10,
+        "year": 2017,
+        "year_month": "2017-06"
+      },
+      {
+        "Unnamed: 0": 43845,
+        "category": "Noise",
+        "community_board": "01 BRONX",
+        "count": 475,
+        "year": 2017,
+        "year_month": "2017-07"
+      },
+      {
+        "Unnamed: 0": 43847,
+        "category": "Parking & Vehicles",
+        "community_board": "01 BRONX",
+        "count": 126,
+        "year": 2017,
+        "year_month": "2017-07"
+      },
+      {
+        "Unnamed: 0": 43848,
+        "category": "Plumbing",
+        "community_board": "01 BRONX",
+        "count": 69,
+        "year": 2017,
+        "year_month": "2017-07"
+      },
+      {
+        "Unnamed: 0": 43849,
+        "category": "Public Health & Safety",
+        "community_board": "01 BRONX",
+        "count": 7,
+        "year": 2017,
+        "year_month": "2017-07"
+      },
+      {
+        "Unnamed: 0": 43850,
+        "category": "Streets & Sidewalks",
+        "community_board": "01 BRONX",
+        "count": 75,
+        "year": 2017,
+        "year_month": "2017-07"
+      },
+      {
+        "Unnamed: 0": 43851,
+        "category": "Transportation",
+        "community_board": "01 BRONX",
+        "count": 6,
+        "year": 2017,
+        "year_month": "2017-07"
+      },
+      {
+        "Unnamed: 0": 44333,
+        "category": "Noise",
+        "community_board": "01 BRONX",
+        "count": 536,
+        "year": 2017,
+        "year_month": "2017-08"
+      },
+      {
+        "Unnamed: 0": 44335,
+        "category": "Parking & Vehicles",
+        "community_board": "01 BRONX",
+        "count": 115,
+        "year": 2017,
+        "year_month": "2017-08"
+      },
+      {
+        "Unnamed: 0": 44336,
+        "category": "Plumbing",
+        "community_board": "01 BRONX",
+        "count": 100,
+        "year": 2017,
+        "year_month": "2017-08"
+      },
+      {
+        "Unnamed: 0": 44337,
+        "category": "Public Health & Safety",
+        "community_board": "01 BRONX",
+        "count": 6,
+        "year": 2017,
+        "year_month": "2017-08"
+      },
+      {
+        "Unnamed: 0": 44338,
+        "category": "Streets & Sidewalks",
+        "community_board": "01 BRONX",
+        "count": 122,
+        "year": 2017,
+        "year_month": "2017-08"
+      },
+      {
+        "Unnamed: 0": 44339,
+        "category": "Transportation",
+        "community_board": "01 BRONX",
+        "count": 19,
+        "year": 2017,
+        "year_month": "2017-08"
+      },
+      {
+        "Unnamed: 0": 44818,
+        "category": "Noise",
+        "community_board": "01 BRONX",
+        "count": 405,
+        "year": 2017,
+        "year_month": "2017-09"
+      },
+      {
+        "Unnamed: 0": 44820,
+        "category": "Parking & Vehicles",
+        "community_board": "01 BRONX",
+        "count": 165,
+        "year": 2017,
+        "year_month": "2017-09"
+      },
+      {
+        "Unnamed: 0": 44821,
+        "category": "Plumbing",
+        "community_board": "01 BRONX",
+        "count": 80,
+        "year": 2017,
+        "year_month": "2017-09"
+      },
+      {
+        "Unnamed: 0": 44822,
+        "category": "Public Health & Safety",
+        "community_board": "01 BRONX",
+        "count": 5,
+        "year": 2017,
+        "year_month": "2017-09"
+      },
+      {
+        "Unnamed: 0": 44823,
+        "category": "Streets & Sidewalks",
+        "community_board": "01 BRONX",
+        "count": 83,
+        "year": 2017,
+        "year_month": "2017-09"
+      },
+      {
+        "Unnamed: 0": 44824,
+        "category": "Transportation",
+        "community_board": "01 BRONX",
+        "count": 12,
+        "year": 2017,
+        "year_month": "2017-09"
+      },
+      {
+        "Unnamed: 0": 45305,
+        "category": "Heating",
+        "community_board": "01 BRONX",
+        "count": 1,
+        "year": 2017,
+        "year_month": "2017-10"
+      },
+      {
+        "Unnamed: 0": 45306,
+        "category": "Noise",
+        "community_board": "01 BRONX",
+        "count": 343,
+        "year": 2017,
+        "year_month": "2017-10"
+      },
+      {
+        "Unnamed: 0": 45308,
+        "category": "Parking & Vehicles",
+        "community_board": "01 BRONX",
+        "count": 201,
+        "year": 2017,
+        "year_month": "2017-10"
+      },
+      {
+        "Unnamed: 0": 45309,
+        "category": "Plumbing",
+        "community_board": "01 BRONX",
+        "count": 281,
+        "year": 2017,
+        "year_month": "2017-10"
+      },
+      {
+        "Unnamed: 0": 45310,
+        "category": "Public Health & Safety",
+        "community_board": "01 BRONX",
+        "count": 2,
+        "year": 2017,
+        "year_month": "2017-10"
+      },
+      {
+        "Unnamed: 0": 45311,
+        "category": "Streets & Sidewalks",
+        "community_board": "01 BRONX",
+        "count": 177,
+        "year": 2017,
+        "year_month": "2017-10"
+      },
+      {
+        "Unnamed: 0": 45312,
+        "category": "Transportation",
+        "community_board": "01 BRONX",
+        "count": 12,
+        "year": 2017,
+        "year_month": "2017-10"
+      },
+      {
+        "Unnamed: 0": 45810,
+        "category": "Heating",
+        "community_board": "01 BRONX",
+        "count": 3,
+        "year": 2017,
+        "year_month": "2017-11"
+      },
+      {
+        "Unnamed: 0": 45811,
+        "category": "Noise",
+        "community_board": "01 BRONX",
+        "count": 385,
+        "year": 2017,
+        "year_month": "2017-11"
+      },
+      {
+        "Unnamed: 0": 45813,
+        "category": "Parking & Vehicles",
+        "community_board": "01 BRONX",
+        "count": 156,
+        "year": 2017,
+        "year_month": "2017-11"
+      },
+      {
+        "Unnamed: 0": 45814,
+        "category": "Plumbing",
+        "community_board": "01 BRONX",
+        "count": 675,
+        "year": 2017,
+        "year_month": "2017-11"
+      },
+      {
+        "Unnamed: 0": 45815,
+        "category": "Streets & Sidewalks",
+        "community_board": "01 BRONX",
+        "count": 809,
+        "year": 2017,
+        "year_month": "2017-11"
+      },
+      {
+        "Unnamed: 0": 45816,
+        "category": "Transportation",
+        "community_board": "01 BRONX",
+        "count": 11,
+        "year": 2017,
+        "year_month": "2017-11"
+      },
+      {
+        "Unnamed: 0": 46331,
+        "category": "Heating",
+        "community_board": "01 BRONX",
+        "count": 12,
+        "year": 2017,
+        "year_month": "2017-12"
+      },
+      {
+        "Unnamed: 0": 46332,
+        "category": "Noise",
+        "community_board": "01 BRONX",
+        "count": 419,
+        "year": 2017,
+        "year_month": "2017-12"
+      },
+      {
+        "Unnamed: 0": 46334,
+        "category": "Parking & Vehicles",
+        "community_board": "01 BRONX",
+        "count": 154,
+        "year": 2017,
+        "year_month": "2017-12"
+      },
+      {
+        "Unnamed: 0": 46335,
+        "category": "Plumbing",
+        "community_board": "01 BRONX",
+        "count": 183,
+        "year": 2017,
+        "year_month": "2017-12"
+      },
+      {
+        "Unnamed: 0": 46336,
+        "category": "Public Health & Safety",
+        "community_board": "01 BRONX",
+        "count": 3,
+        "year": 2017,
+        "year_month": "2017-12"
+      },
+      {
+        "Unnamed: 0": 46337,
+        "category": "Streets & Sidewalks",
+        "community_board": "01 BRONX",
+        "count": 949,
+        "year": 2017,
+        "year_month": "2017-12"
+      },
+      {
+        "Unnamed: 0": 46338,
+        "category": "Transportation",
+        "community_board": "01 BRONX",
+        "count": 9,
+        "year": 2017,
+        "year_month": "2017-12"
+      }
+    ]
+  },
+  "height": 500,
+  "layer": [
+    {
+      "encoding": {
+        "color": {
+          "field": "category",
+          "type": "nominal"
+        },
+        "x": {
+          "field": "year_month",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "count",
+          "type": "quantitative"
+        }
+      },
+      "mark": "line"
+    },
+    {
+      "encoding": {
+        "opacity": {
+          "value": 0
+        },
+        "x": {
+          "field": "year_month",
+          "type": "temporal"
+        }
+      },
+      "mark": "point",
+      "selection": {
+        "selector008": {
+          "empty": "none",
+          "fields": [
+            "year_month"
+          ],
+          "nearest": true,
+          "on": "mouseover",
+          "type": "single"
+        }
+      }
+    },
+    {
+      "encoding": {
+        "color": {
+          "field": "category",
+          "type": "nominal"
+        },
+        "opacity": {
+          "condition": {
+            "selection": "selector008",
+            "value": 1
+          },
+          "value": 0
+        },
+        "x": {
+          "field": "year_month",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "count",
+          "type": "quantitative"
+        }
+      },
+      "mark": "point"
+    },
+    {
+      "encoding": {
+        "x": {
+          "field": "year_month",
+          "type": "temporal"
+        }
+      },
+      "mark": {
+        "color": "gray",
+        "type": "rule"
+      },
+      "transform": [
+        {
+          "filter": {
+            "selection": "selector008"
+          }
+        }
+      ]
+    },
+    {
+      "encoding": {
+        "color": {
+          "field": "category",
+          "type": "nominal"
+        },
+        "text": {
+          "condition": {
+            "field": "count",
+            "selection": "selector008",
+            "type": "quantitative"
+          },
+          "value": " "
+        },
+        "x": {
+          "field": "year_month",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "count",
+          "type": "quantitative"
+        }
+      },
+      "mark": {
+        "align": "left",
+        "dx": 5,
+        "dy": -5,
+        "type": "text"
+      }
+    }
+  ],
+  "title": "Counts in community district: 01 BRONX in year: 2017",
+  "width": 800
+}

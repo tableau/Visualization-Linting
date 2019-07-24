@@ -9,7 +9,7 @@
     "plain-test": "babel-node test/root-test.js",
     "test": "npm run plain-test | node_modules/faucet/bin/cmd.js",
     "serve": "(cd server && yarn && yarn start)",
-    "integration": "babel-node test/real-world-integration-test.js"
+    "integration": "babel-node test/integration-test.js"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

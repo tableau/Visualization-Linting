@@ -1,0 +1,70 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "https://api.insa.gov.br/reservatorios/12172/monitoramento",
+    "format": {
+      "type": "json",
+      "property": "volumes",
+      "parse": {
+        "DataInformacao": "utc:%d/%m/%Y"
+      }
+    }
+  },
+  "vconcat": [
+    {
+      "width": 800,
+      "height": 400,
+      "mark": "area",
+      "encoding": {
+        "x": {
+          "field": "DataInformacao",
+          "type": "temporal",
+          "scale": {
+            "domain": {
+              "selection": "brush"
+            }
+          },
+          "axis": {
+            "title": ""
+          }
+        },
+        "y": {
+          "field": "Volume",
+          "type": "quantitative"
+        },
+        "color": {
+          "value": "#87d5e5"
+        }
+      }
+    },
+    {
+      "width": 800,
+      "height": 100,
+      "mark": "area",
+      "selection": {
+        "brush": {
+          "type": "interval",
+          "encodings": [
+            "x"
+          ]
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "DataInformacao",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "Volume",
+          "type": "quantitative",
+          "axis": {
+            "title": ""
+          }
+        },
+        "color": {
+          "value": "#87d5e5"
+        }
+      }
+    }
+  ]
+}

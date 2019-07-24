@@ -1,0 +1,17 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "https://vega.github.io/editor/data/movies.json"
+  },
+  "mark": "point",
+  "encoding": {
+    "x": {
+      "field": "Worldwide_Gross",
+      "type": "quantitative"
+    },
+    "y": {
+      "field": "US_DVD_Sales",
+      "type": "quantitative"
+    }
+  }
+}

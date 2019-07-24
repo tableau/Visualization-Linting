@@ -1,0 +1,543 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "description": "Shows the relationship between horsepower and the numbver of cylinders using tick marks.",
+  "data": {
+    "values": [
+      {
+        "seq_id": [
+          "5258-4"
+        ],
+        "position": 7,
+        "mut_from": "T",
+        "mut_to": "I"
+      },
+      {
+        "seq_id": [
+          "5258-4"
+        ],
+        "position": 26,
+        "mut_from": "S",
+        "mut_to": "N"
+      },
+      {
+        "seq_id": [
+          "5258-4"
+        ],
+        "position": 39,
+        "mut_from": "Y",
+        "mut_to": "S"
+      },
+      {
+        "seq_id": [
+          "5258-4"
+        ],
+        "position": 57,
+        "mut_from": "S",
+        "mut_to": "Y"
+      },
+      {
+        "seq_id": [
+          "5258-4"
+        ],
+        "position": 107,
+        "mut_from": "K",
+        "mut_to": "R"
+      },
+      {
+        "seq_id": [
+          "145307-1"
+        ],
+        "position": 7,
+        "mut_from": "T",
+        "mut_to": "I"
+      },
+      {
+        "seq_id": [
+          "145307-1"
+        ],
+        "position": 22,
+        "mut_from": "S",
+        "mut_to": "A"
+      },
+      {
+        "seq_id": [
+          "145307-1"
+        ],
+        "position": 26,
+        "mut_from": "S",
+        "mut_to": "N"
+      },
+      {
+        "seq_id": [
+          "145307-1"
+        ],
+        "position": 39,
+        "mut_from": "Y",
+        "mut_to": "S"
+      },
+      {
+        "seq_id": [
+          "145307-1"
+        ],
+        "position": 45,
+        "mut_from": "P",
+        "mut_to": "Q"
+      },
+      {
+        "seq_id": [
+          "145307-1"
+        ],
+        "position": 57,
+        "mut_from": "S",
+        "mut_to": "Y"
+      },
+      {
+        "seq_id": [
+          "145307-1"
+        ],
+        "position": 60,
+        "mut_from": "F",
+        "mut_to": "C"
+      },
+      {
+        "seq_id": [
+          "145307-1"
+        ],
+        "position": 107,
+        "mut_from": "K",
+        "mut_to": "R"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 7,
+        "mut_from": "T",
+        "mut_to": "I"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 22,
+        "mut_from": "S",
+        "mut_to": "A"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 25,
+        "mut_from": "S",
+        "mut_to": "T"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 26,
+        "mut_from": "S",
+        "mut_to": "T"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 33,
+        "mut_from": "D",
+        "mut_to": "E"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 34,
+        "mut_from": "G",
+        "mut_to": "R"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 35,
+        "mut_from": "K",
+        "mut_to": "N"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 37,
+        "mut_from": "Y",
+        "mut_to": "F"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 38,
+        "mut_from": "L",
+        "mut_to": "F"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 39,
+        "mut_from": "Y",
+        "mut_to": "S"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 43,
+        "mut_from": "Q",
+        "mut_to": "K"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 44,
+        "mut_from": "K",
+        "mut_to": "Q"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 45,
+        "mut_from": "P",
+        "mut_to": "T"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 46,
+        "mut_from": "G",
+        "mut_to": "R"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 53,
+        "mut_from": "I",
+        "mut_to": "T"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 54,
+        "mut_from": "Y",
+        "mut_to": "C"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 57,
+        "mut_from": "S",
+        "mut_to": "T"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 58,
+        "mut_from": "N",
+        "mut_to": "K"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 59,
+        "mut_from": "R",
+        "mut_to": "Q"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 60,
+        "mut_from": "F",
+        "mut_to": "S"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 61,
+        "mut_from": "S",
+        "mut_to": "A"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 62,
+        "mut_from": "G",
+        "mut_to": "V"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 63,
+        "mut_from": "V",
+        "mut_to": "G"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 64,
+        "mut_from": "P",
+        "mut_to": "Q"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 69,
+        "mut_from": "G",
+        "mut_to": "S"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 70,
+        "mut_from": "S",
+        "mut_to": "G"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 71,
+        "mut_from": "G",
+        "mut_to": "V"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 78,
+        "mut_from": "L",
+        "mut_to": "M"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 88,
+        "mut_from": "V",
+        "mut_to": "G"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 94,
+        "mut_from": "M",
+        "mut_to": "K"
+      },
+      {
+        "seq_id": [
+          "151136-1"
+        ],
+        "position": 107,
+        "mut_from": "K",
+        "mut_to": "R"
+      },
+      {
+        "seq_id": [
+          "51"
+        ],
+        "position": 7,
+        "mut_from": "T",
+        "mut_to": "I"
+      },
+      {
+        "seq_id": [
+          "51"
+        ],
+        "position": 22,
+        "mut_from": "S",
+        "mut_to": "A"
+      },
+      {
+        "seq_id": [
+          "51"
+        ],
+        "position": 26,
+        "mut_from": "S",
+        "mut_to": "N"
+      },
+      {
+        "seq_id": [
+          "51"
+        ],
+        "position": 39,
+        "mut_from": "Y",
+        "mut_to": "S"
+      },
+      {
+        "seq_id": [
+          "51"
+        ],
+        "position": 57,
+        "mut_from": "S",
+        "mut_to": "D"
+      },
+      {
+        "seq_id": [
+          "51"
+        ],
+        "position": 107,
+        "mut_from": "K",
+        "mut_to": "R"
+      },
+      {
+        "seq_id": [
+          "1334-10"
+        ],
+        "position": 7,
+        "mut_from": "T",
+        "mut_to": "I"
+      },
+      {
+        "seq_id": [
+          "1334-10"
+        ],
+        "position": 22,
+        "mut_from": "S",
+        "mut_to": "A"
+      },
+      {
+        "seq_id": [
+          "1334-10"
+        ],
+        "position": 26,
+        "mut_from": "S",
+        "mut_to": "N"
+      },
+      {
+        "seq_id": [
+          "1334-10"
+        ],
+        "position": 27,
+        "mut_from": "Q",
+        "mut_to": "P"
+      },
+      {
+        "seq_id": [
+          "1334-10"
+        ],
+        "position": 39,
+        "mut_from": "Y",
+        "mut_to": "S"
+      },
+      {
+        "seq_id": [
+          "1334-10"
+        ],
+        "position": 57,
+        "mut_from": "S",
+        "mut_to": "Y"
+      },
+      {
+        "seq_id": [
+          "1334-10"
+        ],
+        "position": 107,
+        "mut_from": "K",
+        "mut_to": "R"
+      },
+      {
+        "seq_id": [
+          "76"
+        ],
+        "position": 7,
+        "mut_from": "T",
+        "mut_to": "I"
+      },
+      {
+        "seq_id": [
+          "76"
+        ],
+        "position": 22,
+        "mut_from": "S",
+        "mut_to": "A"
+      },
+      {
+        "seq_id": [
+          "76"
+        ],
+        "position": 26,
+        "mut_from": "S",
+        "mut_to": "N"
+      },
+      {
+        "seq_id": [
+          "76"
+        ],
+        "position": 39,
+        "mut_from": "Y",
+        "mut_to": "S"
+      },
+      {
+        "seq_id": [
+          "76"
+        ],
+        "position": 57,
+        "mut_from": "S",
+        "mut_to": "Y"
+      },
+      {
+        "seq_id": [
+          "76"
+        ],
+        "position": 60,
+        "mut_from": "F",
+        "mut_to": "C"
+      },
+      {
+        "seq_id": [
+          "76"
+        ],
+        "position": 107,
+        "mut_from": "K",
+        "mut_to": "R"
+      }
+    ]
+  },
+  "mark": "tick",
+  "width": 1150,
+  "height": 400,
+  "encoding": {
+    "x": {
+      "field": "position",
+      "type": "quantitative"
+    },
+    "y": {
+      "field": "seq_id",
+      "type": "nominal"
+    },
+    "color": {
+      "field": "mut_to",
+      "type": "nominal"
+    }
+  },
+  "config": {
+    "tick": {
+      "thickness": 10,
+      "bandSize": 10
+    }
+  }
+}

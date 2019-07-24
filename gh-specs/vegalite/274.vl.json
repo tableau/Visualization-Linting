@@ -1,0 +1,152 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/3.0.0-rc6.json",
+  "data": {
+    "values": [
+      {
+        "label": "2003",
+        "value": 1585,
+        "key": "pub_year",
+        "text": "2003 (1,585)"
+      },
+      {
+        "label": "2006",
+        "value": 1520,
+        "key": "pub_year",
+        "text": "2006 (1,520)"
+      },
+      {
+        "label": "2005",
+        "value": 1417,
+        "key": "pub_year",
+        "text": "2005 (1,417)"
+      },
+      {
+        "label": "2004",
+        "value": 1388,
+        "key": "pub_year",
+        "text": "2004 (1,388)"
+      },
+      {
+        "label": "2002",
+        "value": 1143,
+        "key": "pub_year",
+        "text": "2002 (1,143)"
+      },
+      {
+        "label": "2001",
+        "value": 870,
+        "key": "pub_year",
+        "text": "2001 (870)"
+      },
+      {
+        "label": "2000",
+        "value": 627,
+        "key": "pub_year",
+        "text": "2000 (627)"
+      },
+      {
+        "label": "1999",
+        "value": 514,
+        "key": "pub_year",
+        "text": "1999 (514)"
+      },
+      {
+        "label": "1998",
+        "value": 450,
+        "key": "pub_year",
+        "text": "1998 (450)"
+      },
+      {
+        "label": "1997",
+        "value": 246,
+        "key": "pub_year",
+        "text": "1997 (246)"
+      },
+      {
+        "label": "1993",
+        "value": 205,
+        "key": "pub_year",
+        "text": "1993 (205)"
+      },
+      {
+        "label": "1996",
+        "value": 200,
+        "key": "pub_year",
+        "text": "1996 (200)"
+      },
+      {
+        "label": "1992",
+        "value": 176,
+        "key": "pub_year",
+        "text": "1992 (176)"
+      },
+      {
+        "label": "1991",
+        "value": 175,
+        "key": "pub_year",
+        "text": "1991 (175)"
+      },
+      {
+        "label": "1995",
+        "value": 172,
+        "key": "pub_year",
+        "text": "1995 (172)"
+      },
+      {
+        "label": "1990",
+        "value": 166,
+        "key": "pub_year",
+        "text": "1990 (166)"
+      },
+      {
+        "label": "1994",
+        "value": 165,
+        "key": "pub_year",
+        "text": "1994 (165)"
+      }
+    ]
+  },
+  "mark": {
+    "type": "line",
+    "color": "#cc3233",
+    "point": {
+      "color": "#cc3233",
+      "radius": 50
+    }
+  },
+  "width": 706.40625,
+  "height": 353.203125,
+  "encoding": {
+    "x": {
+      "field": "label",
+      "type": "temporal",
+      "axis": {
+        "title": "Year"
+      }
+    },
+    "y": {
+      "field": "value",
+      "type": "quantitative",
+      "axis": {
+        "title": null
+      }
+    }
+  },
+  "selection": {
+    "brush": {
+      "encodings": [
+        "x"
+      ],
+      "type": "interval",
+      "on": "[mousedown, window:mouseup] > window:mousemove!",
+      "translate": "[mousedown, window:mouseup] > window:mousemove!",
+      "zoom": "wheel!",
+      "mark": {
+        "fill": "#333",
+        "fillOpacity": 0.125,
+        "stroke": "white"
+      },
+      "resolve": "global"
+    }
+  }
+}

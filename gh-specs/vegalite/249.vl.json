@@ -1,0 +1,52 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "https://gist.githubusercontent.com/john-guerra/6aad3bb76af2c5cad8b683bb18367ae8/raw/1bf08c11786ae15ed9e5fb8760899b761cc25f28/ieeevisTweets.json"
+  },
+  "transform": [
+    {
+      "aggregate": [
+        {
+          "op": "count",
+          "as": "count"
+        }
+      ],
+      "groupby": [
+        "user.screen_name"
+      ]
+    },
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "rank"
+        }
+      ],
+      "sort": [
+        {
+          "field": "count",
+          "order": "descending"
+        }
+      ]
+    },
+    {
+      "filter": "datum.rank <= 10"
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "count",
+      "type": "quantitative"
+    },
+    "y": {
+      "field": "user.screen_name",
+      "type": "nominal",
+      "sort": {
+        "order": "descending",
+        "op": "mean",
+        "field": "count"
+      }
+    }
+  }
+}

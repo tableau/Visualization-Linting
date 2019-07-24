@@ -1,0 +1,949 @@
+{
+  "components": [
+    {
+      "id": "glucose-component",
+      "period": {
+        "start_date": "2018-07-11T00:00:00Z",
+        "end_date": "2018-08-10T23:59:59Z"
+      },
+      "links": [
+        {
+          "rel": "report",
+          "href": "/reports/b28f5e30-ea9-4e01-8608-57e2675490",
+          "title": "CBG Report"
+        }
+      ],
+      "metrics": [
+        {
+          "key": "measurement_counts_by_category",
+          "type": "aggregation",
+          "data": [
+            {
+              "name": "category",
+              "data": [
+                {
+                  "key": "In Range",
+                  "value": 35
+                },
+                {
+                  "key": "Out of Range",
+                  "value": 23
+                },
+                {
+                  "key": "Inconclusive",
+                  "value": 2
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "charts": [
+        {
+          "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+          "width": 350,
+          "data": {
+            "name": "measurements",
+            "format": {
+              "type": "json"
+            },
+            "values": [
+              {
+                "Date": "2018-08-04T09:01:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "Fasting",
+                "Value": 101
+              },
+              {
+                "Date": "2018-08-04T20:36:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "After Meal",
+                "Value": 121
+              },
+              {
+                "Date": "2018-08-05T09:01:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "Fasting",
+                "Value": 90
+              },
+              {
+                "Date": "2018-08-05T20:36:00Z",
+                "Category": "Out of Range",
+                "Range": "High",
+                "Status": "After Meal",
+                "Value": 140
+              },
+              {
+                "Date": "2018-08-06T09:01:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "Fasting",
+                "Value": 104
+              },
+              {
+                "Date": "2018-08-06T20:36:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "After Meal",
+                "Value": 124
+              },
+              {
+                "Date": "2018-07-11T09:01:00Z",
+                "Category": "Inconclusive",
+                "Range": "Inconclusive",
+                "Status": "Unknown",
+                "Value": 104
+              },
+              {
+                "Date": "2018-07-11T20:36:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "After Meal",
+                "Value": 114
+              },
+              {
+                "Date": "2018-07-18T09:01:00Z",
+                "Category": "Out of Range",
+                "Range": "High",
+                "Status": "After Meal",
+                "Value": 150
+              },
+              {
+                "Date": "2018-07-25T09:01:00Z",
+                "Category": "Out of Range",
+                "Range": "High",
+                "Status": "After Meal",
+                "Value": 150
+              },
+              {
+                "Date": "2018-08-01T09:01:00Z",
+                "Category": "Out of Range",
+                "Range": "High",
+                "Status": "After Meal",
+                "Value": 150
+              },
+              {
+                "Date": "2018-07-30T09:01:00Z",
+                "Category": "Out of Range",
+                "Range": "Low",
+                "Status": "Fasting",
+                "Value": 50
+              },
+              {
+                "Date": "2018-08-08T09:01:00Z",
+                "Category": "Out of Range",
+                "Range": "High",
+                "Status": "After Meal",
+                "Value": 150
+              },
+              {
+                "Date": "2018-07-12T20:36:00Z",
+                "Category": "Out of Range",
+                "Range": "Normal",
+                "Status": "After Meal",
+                "Value": 144
+              },
+              {
+                "Date": "2018-07-19T09:01:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "Fasting",
+                "Value": 114
+              },
+              {
+                "Date": "2018-07-26T09:01:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "Fasting",
+                "Value": 114
+              },
+              {
+                "Date": "2018-08-02T09:01:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "Fasting",
+                "Value": 114
+              },
+              {
+                "Date": "2018-08-09T09:01:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "Fasting",
+                "Value": 114
+              },
+              {
+                "Date": "2018-08-09T09:01:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "Fasting",
+                "Value": 114
+              },
+              {
+                "Date": "2018-07-15T20:36:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "After Meal",
+                "Value": 111
+              },
+              {
+                "Date": "2018-07-23T20:36:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "After Meal",
+                "Value": 80
+              },
+              {
+                "Date": "2018-07-16T20:36:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "After Meal",
+                "Value": 121
+              },
+              {
+                "Date": "2018-07-24T20:36:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "After Meal",
+                "Value": 121
+              },
+              {
+                "Date": "2018-08-02T20:36:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "After Meal",
+                "Value": 121
+              },
+              {
+                "Date": "2018-08-09T20:36:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "After Meal",
+                "Value": 121
+              },
+              {
+                "Date": "2018-07-13T09:01:00Z",
+                "Category": "Out of Range",
+                "Range": "Low",
+                "Status": "Fasting",
+                "Value": 70
+              },
+              {
+                "Date": "2018-07-20T20:36:00Z",
+                "Category": "Out of Range",
+                "Range": "Low",
+                "Status": "After Meal",
+                "Value": 60
+              },
+              {
+                "Date": "2018-07-27T20:36:00Z",
+                "Category": "Out of Range",
+                "Range": "Low",
+                "Status": "After Meal",
+                "Value": 60
+              },
+              {
+                "Date": "2018-08-03T20:36:00Z",
+                "Category": "Out of Range",
+                "Range": "Low",
+                "Status": "After Meal",
+                "Value": 60
+              },
+              {
+                "Date": "2018-08-09T20:36:00Z",
+                "Category": "Out of Range",
+                "Range": "Low",
+                "Status": "After Meal",
+                "Value": 60
+              },
+              {
+                "Date": "2018-07-31T08:08:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "Fasting",
+                "Value": 101
+              },
+              {
+                "Date": "2018-07-31T00:36:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "After Meal",
+                "Value": 121
+              },
+              {
+                "Date": "2018-07-30T19:01:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "Fasting",
+                "Value": 90
+              },
+              {
+                "Date": "2018-07-30T02:36:00Z",
+                "Category": "Out of Range",
+                "Range": "High",
+                "Status": "After Meal",
+                "Value": 140
+              },
+              {
+                "Date": "2018-07-29T19:01:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "Fasting",
+                "Value": 104
+              },
+              {
+                "Date": "2018-07-29T08:36:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "After Meal",
+                "Value": 124
+              },
+              {
+                "Date": "2018-07-28T09:01:00Z",
+                "Category": "Inconclusive",
+                "Range": "Inconclusive",
+                "Status": "Unknown",
+                "Value": 104
+              },
+              {
+                "Date": "2018-07-28T20:36:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "After Meal",
+                "Value": 124
+              },
+              {
+                "Date": "2018-07-27T09:01:00Z",
+                "Category": "Out of Range",
+                "Range": "High",
+                "Status": "After Meal",
+                "Value": 150
+              },
+              {
+                "Date": "2018-07-27T09:01:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "After Meal",
+                "Value": 100
+              },
+              {
+                "Date": "2018-07-22T05:01:00Z",
+                "Category": "Out of Range",
+                "Range": "High",
+                "Status": "After Meal",
+                "Value": 150
+              },
+              {
+                "Date": "2018-07-22T23:01:00Z",
+                "Category": "Out of Range",
+                "Range": "Low",
+                "Status": "Fasting",
+                "Value": 50
+              },
+              {
+                "Date": "2018-07-21T09:01:00Z",
+                "Category": "Out of Range",
+                "Range": "High",
+                "Status": "After Meal",
+                "Value": 150
+              },
+              {
+                "Date": "2018-07-19T20:36:00Z",
+                "Category": "Out of Range",
+                "Range": "Normal",
+                "Status": "After Meal",
+                "Value": 144
+              },
+              {
+                "Date": "2018-07-18T09:01:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "Fasting",
+                "Value": 114
+              },
+              {
+                "Date": "2018-07-17T09:01:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "Fasting",
+                "Value": 114
+              },
+              {
+                "Date": "2018-07-16T09:01:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "Fasting",
+                "Value": 114
+              },
+              {
+                "Date": "2018-07-15T09:01:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "Fasting",
+                "Value": 114
+              },
+              {
+                "Date": "2018-07-14T09:01:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "Fasting",
+                "Value": 114
+              },
+              {
+                "Date": "2018-07-13T20:36:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "After Meal",
+                "Value": 111
+              },
+              {
+                "Date": "2018-07-12T20:36:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "After Meal",
+                "Value": 80
+              },
+              {
+                "Date": "2018-07-22T20:36:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "After Meal",
+                "Value": 121
+              },
+              {
+                "Date": "2018-07-21T20:36:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "After Meal",
+                "Value": 105
+              },
+              {
+                "Date": "2018-07-14T20:36:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "After Meal",
+                "Value": 121
+              },
+              {
+                "Date": "2018-07-20T20:36:00Z",
+                "Category": "In Range",
+                "Range": "Normal",
+                "Status": "After Meal",
+                "Value": 121
+              },
+              {
+                "Date": "2018-07-13T09:01:00Z",
+                "Category": "Out of Range",
+                "Range": "Low",
+                "Status": "Fasting",
+                "Value": 70
+              },
+              {
+                "Date": "2018-07-27T20:36:00Z",
+                "Category": "Out of Range",
+                "Range": "Low",
+                "Status": "After Meal",
+                "Value": 60
+              },
+              {
+                "Date": "2018-07-25T20:36:00Z",
+                "Category": "Out of Range",
+                "Range": "Low",
+                "Status": "After Meal",
+                "Value": 60
+              },
+              {
+                "Date": "2018-07-24T20:36:00Z",
+                "Category": "Out of Range",
+                "Range": "Low",
+                "Status": "After Meal",
+                "Value": 60
+              },
+              {
+                "Date": "2018-07-23T20:36:00Z",
+                "Category": "Out of Range",
+                "Range": "Low",
+                "Status": "After Meal",
+                "Value": 60
+              }
+            ]
+          },
+          "layer": [
+            {
+              "mark": {
+                "type": "rect"
+              },
+              "data": {
+                "name": "normal_range",
+                "format": {
+                  "type": "json"
+                },
+                "values": [
+                  {
+                    "label": "Normal",
+                    "start": "70",
+                    "end": "130",
+                    "inception": "2018-07-11T05:00:01Z",
+                    "completion": "2018-08-08T01:50:15Z"
+                  },
+                  {
+                    "label": "Normal",
+                    "start": "80",
+                    "end": "140",
+                    "inception": "2018-08-08T01:50:15Z",
+                    "completion": "2018-08-10T04:59:59Z"
+                  }
+                ]
+              },
+              "encoding": {
+                "x": {
+                  "type": "temporal",
+                  "field": "inception"
+                },
+                "x2": {
+                  "type": "temporal",
+                  "field": "completion"
+                },
+                "y": {
+                  "type": "quantitative",
+                  "field": "start"
+                },
+                "y2": {
+                  "type": "quantitative",
+                  "field": "end"
+                },
+                "color": {
+                  "value": "#bcd0ed"
+                },
+                "opacity": {
+                  "value": 0.5
+                }
+              }
+            },
+            {
+              "mark": {
+                "type": "rect"
+              },
+              "data": {
+                "name": "post_meal_range",
+                "format": {
+                  "type": "json"
+                },
+                "values": [
+                  {
+                    "label": "2 Hours Post Meal Normal",
+                    "start": "130",
+                    "end": "180",
+                    "inception": "2018-07-11T05:00:01Z",
+                    "completion": "2018-08-08T01:50:15Z"
+                  },
+                  {
+                    "label": "2 Hours Post Meal Normal",
+                    "start": "140",
+                    "end": "190 ",
+                    "inception": "2018-08-08T01:50:15Z",
+                    "completion": "2018-08-10T04:59:59Z"
+                  }
+                ]
+              },
+              "encoding": {
+                "x": {
+                  "type": "temporal",
+                  "field": "inception"
+                },
+                "x2": {
+                  "type": "temporal",
+                  "field": "completion"
+                },
+                "y": {
+                  "type": "quantitative",
+                  "field": "start"
+                },
+                "y2": {
+                  "type": "quantitative",
+                  "field": "end"
+                },
+                "color": {
+                  "value": "#e4ecf6"
+                },
+                "opacity": {
+                  "value": 0.6
+                }
+              }
+            },
+            {
+              "mark": {
+                "type": "point",
+                "filled": true
+              },
+              "encoding": {
+                "x": {
+                  "title": null,
+                  "field": "Date",
+                  "axis": {
+                    "format": "%m/%d",
+                    "tickCount": 30,
+                    "labels": true
+                  },
+                  "scale": {
+                    "type": "time",
+                    "nice": {
+                      "interval": "day",
+                      "step": 0
+                    }
+                  },
+                  "type": "temporal"
+                },
+                "y": {
+                  "title": null,
+                  "field": "Value",
+                  "type": "quantitative",
+                  "scale": {
+                    "domain": [
+                      0,
+                      250
+                    ]
+                  }
+                },
+                "color": {
+                  "field": "Category",
+                  "type": "nominal",
+                  "sort": null,
+                  "legend": {
+                    "direction": "horizontal",
+                    "orient": "bottom",
+                    "title": null
+                  },
+                  "scale": {
+                    "type": "ordinal",
+                    "domain": [
+                      "In Range",
+                      "Out of Range",
+                      "Inconclusive"
+                    ],
+                    "range": [
+                      "#99cc5c",
+                      "#ff3b53",
+                      "#9e9e9e"
+                    ]
+                  }
+                },
+                "opacity": {
+                  "value": 1
+                },
+                "size": {
+                  "value": 60
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weight-component",
+      "period": {
+        "start_date": "2018-08-04T20:36:00Z",
+        "end_date": "2018-09-02T23:59:59Z"
+      },
+      "links": [
+        {
+          "rel": "report",
+          "href": "/reports/b28f5e30-ea9-4e01-8608-57e2675490",
+          "title": "CBG Report"
+        }
+      ],
+      "metrics": [
+        {
+          "key": "weight_difference",
+          "type": "number",
+          "data": {
+            "value": 41,
+            "label": "lost"
+          }
+        }
+      ],
+      "charts": [
+        {
+          "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+          "data": {
+            "name": "measurements",
+            "format": {
+              "type": "json"
+            },
+            "values": [
+              {
+                "Date": "2018-08-04T20:36:00Z",
+                "Value": 290
+              },
+              {
+                "Date": "2018-08-05T20:36:00Z",
+                "Value": 288
+              },
+              {
+                "Date": "2018-08-06T20:36:00Z",
+                "Value": 287
+              },
+              {
+                "Date": "2018-08-07T20:36:00Z",
+                "Value": 287
+              },
+              {
+                "Date": "2018-08-08T20:36:00Z",
+                "Value": 288
+              },
+              {
+                "Date": "2018-08-09T20:36:00Z",
+                "Value": 286
+              },
+              {
+                "Date": "2018-08-10T23:59:59Z",
+                "Value": 285
+              },
+              {
+                "Date": "2018-08-11T08:59:59Z",
+                "Value": 283
+              },
+              {
+                "Date": "2018-08-11T23:59:59Z",
+                "Value": 282
+              },
+              {
+                "Date": "2018-08-12T23:59:59Z",
+                "Value": 283
+              },
+              {
+                "Date": "2018-08-13T23:59:59Z",
+                "Value": 283
+              },
+              {
+                "Date": "2018-08-14T08:59:59Z",
+                "Value": 284
+              },
+              {
+                "Date": "2018-08-14T23:59:59Z",
+                "Value": 282
+              },
+              {
+                "Date": "2018-08-15T08:59:59Z",
+                "Value": 281
+              },
+              {
+                "Date": "2018-08-15T23:59:59Z",
+                "Value": 279
+              },
+              {
+                "Date": "2018-08-16T23:59:59Z",
+                "Value": 278
+              },
+              {
+                "Date": "2018-08-17T23:59:59Z",
+                "Value": 280
+              },
+              {
+                "Date": "2018-08-18T23:59:59Z",
+                "Value": 281
+              },
+              {
+                "Date": "2018-08-19T23:59:59Z",
+                "Value": 279
+              },
+              {
+                "Date": "2018-08-20T23:59:59Z",
+                "Value": 279
+              },
+              {
+                "Date": "2018-08-21T08:36:00Z",
+                "Value": 277
+              },
+              {
+                "Date": "2018-08-21T20:36:00Z",
+                "Value": 275
+              },
+              {
+                "Date": "2018-08-22T20:36:00Z",
+                "Value": 274
+              },
+              {
+                "Date": "2018-08-23T20:36:00Z",
+                "Value": 271
+              },
+              {
+                "Date": "2018-08-24T08:36:00Z",
+                "Value": 270
+              },
+              {
+                "Date": "2018-08-24T20:36:00Z",
+                "Value": 268
+              },
+              {
+                "Date": "2018-08-25T08:59:59Z",
+                "Value": 266
+              },
+              {
+                "Date": "2018-08-25T23:59:59Z",
+                "Value": 264
+              },
+              {
+                "Date": "2018-08-26T08:59:59Z",
+                "Value": 261
+              },
+              {
+                "Date": "2018-08-26T23:59:59Z",
+                "Value": 260
+              },
+              {
+                "Date": "2018-08-27T08:59:59Z",
+                "Value": 259
+              },
+              {
+                "Date": "2018-08-27T23:59:59Z",
+                "Value": 260
+              },
+              {
+                "Date": "2018-08-28T23:59:59Z",
+                "Value": 258
+              },
+              {
+                "Date": "2018-08-29T23:59:59Z",
+                "Value": 257
+              },
+              {
+                "Date": "2018-08-30T23:59:59Z",
+                "Value": 256
+              },
+              {
+                "Date": "2018-08-31T23:59:59Z",
+                "Value": 253
+              },
+              {
+                "Date": "2018-09-01T08:59:59Z",
+                "Value": 250
+              },
+              {
+                "Date": "2018-09-01T23:59:59Z",
+                "Value": 250
+              },
+              {
+                "Date": "2018-09-02T23:59:59Z",
+                "Value": 249
+              }
+            ]
+          },
+          "layer": [
+            {
+              "mark": {
+                "type": "line",
+                "interpolate": "step-before",
+                "color": "black"
+              },
+              "data": {
+                "name": "normal_range",
+                "format": {
+                  "type": "json"
+                },
+                "values": [
+                  {
+                    "label": "Normal",
+                    "value": "190",
+                    "date": "2018-08-04T20:36:00Z"
+                  },
+                  {
+                    "label": "Normal",
+                    "value": "150",
+                    "date": "2018-08-30T00:00:00Z"
+                  },
+                  {
+                    "label": "Normal",
+                    "value": "150",
+                    "date": "2018-09-02T23:59:59Z"
+                  }
+                ]
+              },
+              "encoding": {
+                "x": {
+                  "type": "temporal",
+                  "field": "date"
+                },
+                "y": {
+                  "type": "quantitative",
+                  "field": "value"
+                }
+              }
+            },
+            {
+              "mark": {
+                "type": "text",
+                "align": "right",
+                "dy": -5
+              },
+              "data": {
+                "values": [
+                  {
+                    "Target": 150,
+                    "Title": "Goal"
+                  }
+                ]
+              },
+              "encoding": {
+                "x": {
+                  "value": "width"
+                },
+                "y": {
+                  "field": "Target",
+                  "type": "quantitative"
+                },
+                "text": {
+                  "field": "Title",
+                  "type": "ordinal"
+                }
+              }
+            },
+            {
+              "mark": {
+                "type": "line",
+                "color": "#24d9b8",
+                "point": {
+                  "color": "#24d9b8",
+                  "size": 60
+                }
+              },
+              "encoding": {
+                "x": {
+                  "title": null,
+                  "field": "Date",
+                  "axis": {
+                    "format": "%m/%d",
+                    "tickCount": 7,
+                    "labels": true
+                  },
+                  "scale": {
+                    "type": "time",
+                    "nice": {
+                      "interval": "day",
+                      "step": 0
+                    }
+                  },
+                  "type": "temporal"
+                },
+                "y": {
+                  "title": null,
+                  "field": "Value",
+                  "type": "quantitative",
+                  "scale": {
+                    "domain": [
+                      0,
+                      300
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

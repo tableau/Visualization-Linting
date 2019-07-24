@@ -1,0 +1,48 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "layer": [
+    {
+      "data": {
+        "url": "https://vega.github.io/vega-lite/data/seattle-weather.csv"
+      },
+      "mark": "line",
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "temp_min",
+          "type": "quantitative",
+          "axis": {
+            "orient": "left"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/stocks.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.symbol==='GOOG'"
+        }
+      ],
+      "mark": "line",
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "price",
+          "type": "quantitative",
+          "axis": {
+            "orient": "right"
+          }
+        }
+      }
+    }
+  ]
+}

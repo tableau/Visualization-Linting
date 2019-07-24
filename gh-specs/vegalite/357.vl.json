@@ -1,0 +1,48 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "width": 500,
+  "height": 500,
+  "data": {
+    "url": "https://vice-police-shootings.now.sh/vice-bc7c892.jsono?sql=select+ViceNews_FullOISData.rowid%2CDate%2C+NumberOfSubjects%2C%0D%0A++Fatal.value+as+Fatal%2C%0D%0A++SubjectArmed.value+as+SubjectArmed%2C%0D%0A++SubjectRace.value+as+SubjectRace%2C%0D%0A++SubjectGender.value+as+SubjectGender%2C%0D%0A++Department.value+as+Department%2C%0D%0A++city.value+as+city%0D%0Afrom+ViceNews_FullOISData%0D%0A++join+Fatal+on+ViceNews_FullOISData.Fatal+%3D+Fatal.id%0D%0A++join+SubjectArmed+on+ViceNews_FullOISData.SubjectArmed+%3D+SubjectArmed.id%0D%0A++join+SubjectRace+on+ViceNews_FullOISData.SubjectRace+%3D+SubjectRace.id%0D%0A++join+SubjectGender+on+ViceNews_FullOISData.SubjectGender+%3D+SubjectGender.id%0D%0A++join+Department+on+ViceNews_FullOISData.Department+%3D+Department.id%0D%0A++join+city+on+ViceNews_FullOISData.city+%3D+city.id%0D%0Aorder+by+ViceNews_FullOISData.rowid+limit+1000",
+    "format": {
+      "type": "json",
+      "property": "rows"
+    }
+  },
+  "transform": [
+    {
+      "aggregate": [
+        {
+          "op": "count",
+          "field": "rowid",
+          "as": "total"
+        }
+      ],
+      "groupby": [
+        "SubjectRace",
+        "SubjectGender"
+      ]
+    }
+  ],
+  "mark": {
+    "type": "point",
+    "filled": true
+  },
+  "encoding": {
+    "x": {
+      "field": "SubjectRace",
+      "type": "nominal"
+    },
+    "y": {
+      "field": "SubjectGender",
+      "type": "nominal"
+    },
+    "size": {
+      "field": "total",
+      "type": "quantitative",
+      "scale": {
+        "type": "sqrt"
+      }
+    }
+  }
+}

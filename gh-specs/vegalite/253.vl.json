@@ -1,0 +1,97 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.1.json",
+  "vconcat": [
+    {
+      "width": 500,
+      "height": 300,
+      "layer": [
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/ties/cbs_gebiedsindelingen_topojson/master/Buurt_2014_layer_q1e3.json",
+            "format": {
+              "type": "topojson",
+              "feature": "layer"
+            }
+          },
+          "transform": [
+            {
+              "filter": "substring(datum.id, 0, 6) == 'BU0153'"
+            }
+          ],
+          "projection": {
+            "type": "mercator",
+            "center": [
+              52.2215,
+              6.8937
+            ]
+          },
+          "mark": {
+            "type": "geoshape",
+            "fill": "lightgray",
+            "stroke": "white"
+          }
+        },
+        {
+          "data": {
+            "url": "https://gist.githubusercontent.com/ties/d1b86c2a17b7c9f7105212080011d611/raw/f7e3b5255df478f7eb7e53c2c86e253d44a7a64c/openbare_ruimte_enschede.json"
+          },
+          "projection": {
+            "type": "mercator",
+            "center": [
+              52.2215,
+              6.8937
+            ]
+          },
+          "transform": [
+            {
+              "filter": {
+                "selection": "brush"
+              }
+            }
+          ],
+          "mark": "circle",
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "color": {
+              "field": "categorie",
+              "type": "nominal"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "width": 500,
+      "selection": {
+        "brush": {
+          "type": "interval",
+          "encodings": [
+            "x"
+          ]
+        }
+      },
+      "data": {
+        "url": "https://gist.githubusercontent.com/ties/d1b86c2a17b7c9f7105212080011d611/raw/f7e3b5255df478f7eb7e53c2c86e253d44a7a64c/openbare_ruimte_enschede.json"
+      },
+      "mark": "area",
+      "encoding": {
+        "x": {
+          "field": "begindatum",
+          "type": "temporal",
+          "timeUnit": "yearmonthdate"
+        },
+        "y": {
+          "field": "categorie",
+          "aggregate": "count"
+        }
+      }
+    }
+  ]
+}

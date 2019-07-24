@@ -1,0 +1,77 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "burtin-tidy.csv"
+  },
+  "vconcat": [
+    {
+      "mark": "point",
+      "transform": [
+        {
+          "filter": "datum['Gram Staining']=='negative'"
+        }
+      ],
+      "encoding": {
+        "color": {
+          "field": "Antibiotic",
+          "type": "nominal"
+        },
+        "y": {
+          "field": "Bacteria",
+          "type": "nominal"
+        },
+        "x": {
+          "field": "MIC",
+          "type": "quantitative",
+          "aggregate": "sum",
+          "scale": {
+            "type": "log",
+            "domain": [
+              10000,
+              0.0001
+            ]
+          },
+          "axis": {
+            "title": "MIC for gram-negative bacteria",
+            "orient": "top"
+          }
+        }
+      }
+    },
+    {
+      "mark": "point",
+      "transform": [
+        {
+          "filter": "datum['Gram Staining']=='positive'"
+        }
+      ],
+      "encoding": {
+        "color": {
+          "field": "Antibiotic",
+          "type": "nominal"
+        },
+        "y": {
+          "field": "Bacteria",
+          "type": "nominal"
+        },
+        "x": {
+          "field": "MIC",
+          "type": "quantitative",
+          "aggregate": "sum",
+          "scale": {
+            "type": "log",
+            "domain": [
+              10000,
+              0.0001
+            ]
+          },
+          "axis": {
+            "title": "MIC for gram-positive bacteria",
+            "orient": "top"
+          }
+        }
+      }
+    }
+  ],
+  "config": {}
+}

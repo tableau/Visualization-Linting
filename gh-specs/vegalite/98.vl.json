@@ -1,0 +1,59 @@
+{
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "index",
+      "type": "nominal"
+    },
+    "y": {
+      "field": "status",
+      "type": "quantitative"
+    }
+  },
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "width": 450,
+  "height": 300,
+  "selection": {
+    "grid": {
+      "type": "interval",
+      "bind": "scales",
+      "on": "[mousedown, window:mouseup] > window:mousemove!",
+      "encodings": [
+        "x",
+        "y"
+      ],
+      "translate": "[mousedown, window:mouseup] > window:mousemove!",
+      "zoom": "wheel!",
+      "mark": {
+        "fill": "#333",
+        "fillOpacity": 0.125,
+        "stroke": "white"
+      },
+      "resolve": "global"
+    }
+  },
+  "data": {
+    "values": [
+      {
+        "index": "Removed",
+        "status": 151188
+      },
+      {
+        "index": "Up-to-date",
+        "status": 148331
+      },
+      {
+        "index": "Linked",
+        "status": 39864
+      },
+      {
+        "index": "Out-of-date",
+        "status": 10252
+      },
+      {
+        "index": "Recently registered",
+        "status": 9610
+      }
+    ]
+  }
+}

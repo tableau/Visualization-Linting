@@ -1,0 +1,466 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "title": "Leonardo DiCaprio has never dated a woman over 25",
+  "width": 650,
+  "height": 400,
+  "config": {
+    "scale": {
+      "bandPaddingInner": 0.5
+    },
+    "axis": {
+      "gridOpacity": 0.1,
+      "ticks": false,
+      "domain": false,
+      "labelColor": "rgb(143,154,174)",
+      "labelAngle": 0
+    },
+    "view": {
+      "stroke": ""
+    },
+    "padding": 60,
+    "background": "black",
+    "text": {
+      "color": "rgb(143,154,174)"
+    },
+    "title": {
+      "color": "rgb(143,154,174)",
+      "font": "FjallaOne",
+      "fontSize": 22,
+      "anchor": "start"
+    }
+  },
+  "data": {
+    "values": [
+      {
+        "year": 1999,
+        "dcAge": 24,
+        "minAge": 19,
+        "maxAge": 34,
+        "partnerAge": 18
+      },
+      {
+        "year": 2000,
+        "dcAge": 25,
+        "minAge": 19.5,
+        "maxAge": 36,
+        "partnerAge": 19
+      },
+      {
+        "year": 2001,
+        "dcAge": 26,
+        "minAge": 20,
+        "maxAge": 38,
+        "partnerAge": 20
+      },
+      {
+        "year": 2002,
+        "dcAge": 27,
+        "minAge": 20.5,
+        "maxAge": 40,
+        "partnerAge": 21
+      },
+      {
+        "year": 2003,
+        "dcAge": 28,
+        "minAge": 21,
+        "maxAge": 42,
+        "partnerAge": 22
+      },
+      {
+        "year": 2004,
+        "dcAge": 29,
+        "minAge": 21.5,
+        "maxAge": 44,
+        "partnerAge": 23
+      },
+      {
+        "year": 2005,
+        "dcAge": 30,
+        "minAge": 22,
+        "maxAge": 46,
+        "partnerAge": 20
+      },
+      {
+        "year": 2006,
+        "dcAge": 31,
+        "minAge": 22.5,
+        "maxAge": 48,
+        "partnerAge": 21
+      },
+      {
+        "year": 2007,
+        "dcAge": 32,
+        "minAge": 23,
+        "maxAge": 50,
+        "partnerAge": 22
+      },
+      {
+        "year": 2008,
+        "dcAge": 33,
+        "minAge": 23.5,
+        "maxAge": 52,
+        "partnerAge": 23
+      },
+      {
+        "year": 2009,
+        "dcAge": 34,
+        "minAge": 24,
+        "maxAge": 54,
+        "partnerAge": 24
+      },
+      {
+        "year": 2010,
+        "dcAge": 35,
+        "minAge": 24.5,
+        "maxAge": 56,
+        "partnerAge": 25
+      },
+      {
+        "year": 2011,
+        "dcAge": 36,
+        "minAge": 25,
+        "maxAge": 58,
+        "partnerAge": 23
+      },
+      {
+        "year": 2012,
+        "dcAge": 37,
+        "minAge": 25.5,
+        "maxAge": 60,
+        "partnerAge": 22
+      },
+      {
+        "year": 2013,
+        "dcAge": 38,
+        "minAge": 26,
+        "maxAge": 62,
+        "partnerAge": 20
+      },
+      {
+        "year": 2014,
+        "dcAge": 39,
+        "minAge": 26.5,
+        "maxAge": 64,
+        "partnerAge": 21
+      },
+      {
+        "year": 2015,
+        "dcAge": 40,
+        "minAge": 27,
+        "maxAge": 66,
+        "partnerAge": 25
+      },
+      {
+        "year": 2016,
+        "dcAge": 41,
+        "minAge": 27.5,
+        "maxAge": 68,
+        "partnerAge": 24
+      },
+      {
+        "year": 2017,
+        "dcAge": 42,
+        "minAge": 28,
+        "maxAge": 70,
+        "partnerAge": 25
+      },
+      {
+        "year": 2018,
+        "dcAge": 43,
+        "minAge": 28.5,
+        "maxAge": 72,
+        "partnerAge": 20
+      },
+      {
+        "year": 2019,
+        "dcAge": 44,
+        "minAge": 29,
+        "maxAge": 74,
+        "partnerAge": 21
+      }
+    ]
+  },
+  "layer": [
+    {
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "axis": {
+            "title": ""
+          }
+        },
+        "y": {
+          "field": "minAge",
+          "type": "quantitative",
+          "scale": {
+            "zero": false,
+            "domain": [
+              16,
+              50
+            ]
+          },
+          "axis": {
+            "title": ""
+          }
+        },
+        "y2": {
+          "field": "maxAge",
+          "type": "quantitative"
+        }
+      },
+      "mark": {
+        "type": "area",
+        "color": "rgb(223,117,45)",
+        "clip": true,
+        "opacity": 0.2
+      }
+    },
+    {
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "dcAge",
+          "type": "quantitative"
+        }
+      },
+      "mark": {
+        "type": "line",
+        "color": "rgb(223,117,45)",
+        "point": {
+          "stroke": "rgb(223,117,45)"
+        }
+      }
+    },
+    {
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "dcAge",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "dcAge",
+          "type": "quantitative"
+        }
+      },
+      "mark": {
+        "type": "text",
+        "color": "rgb(223,117,45)",
+        "dx": -2,
+        "dy": -7
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "dcX": 2019,
+            "dcY": 44,
+            "dcAnnotation": "Leo's age"
+          },
+          {
+            "dcX": 2013,
+            "dcY": 32,
+            "dcAnnotation": "xkcd non-creepiness range"
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "dcX",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "dcY",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "dcAnnotation",
+          "type": "nominal"
+        }
+      },
+      "mark": {
+        "type": "text",
+        "color": "rgb(223,117,45)",
+        "align": "left",
+        "font": "FjallaOne",
+        "dx": 10,
+        "dy": 5,
+        "size": 14
+      }
+    },
+    {
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "partnerAge",
+          "type": "quantitative"
+        }
+      },
+      "mark": {
+        "type": "bar",
+        "color": "rgb(91,198,214)"
+      }
+    },
+    {
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "partnerAge",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "partnerAge",
+          "type": "quantitative"
+        }
+      },
+      "mark": {
+        "type": "text",
+        "color": "rgb(91,198,214)",
+        "dy": -7
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "name": "Gisele Bundchen",
+            "start": 1999,
+            "end": 2004
+          },
+          {
+            "name": "Bar Refaeli",
+            "start": 2005,
+            "end": 2010
+          },
+          {
+            "name": "Blake Lively",
+            "start": 2011,
+            "end": 2011
+          },
+          {
+            "name": "Erin Heatherton",
+            "start": 2012,
+            "end": 2012
+          },
+          {
+            "name": "Toni Garrn",
+            "start": 2013,
+            "end": 2014
+          },
+          {
+            "name": "Kelly Rohrbach",
+            "start": 2015,
+            "end": 2015
+          },
+          {
+            "name": "Nina Agdal",
+            "start": 2016,
+            "end": 2017
+          },
+          {
+            "name": "Camilla Morrone",
+            "start": 2018,
+            "end": 2019
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "start",
+          "type": "ordinal"
+        },
+        "x2": {
+          "field": "end",
+          "type": "ordinal"
+        },
+        "y": {
+          "value": 420
+        }
+      },
+      "mark": {
+        "type": "rule",
+        "color": "rgb(91,198,214)"
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "name": "Gisele Bundchen",
+            "start": 1999,
+            "end": 2004
+          },
+          {
+            "name": "Bar Refaeli",
+            "start": 2005,
+            "end": 2010
+          },
+          {
+            "name": "Blake Lively",
+            "start": 2011,
+            "end": 2011
+          },
+          {
+            "name": "Erin Heatherton",
+            "start": 2012,
+            "end": 2012
+          },
+          {
+            "name": "Toni Garrn",
+            "start": 2013,
+            "end": 2014
+          },
+          {
+            "name": "Kelly Rohrbach",
+            "start": 2015,
+            "end": 2015
+          },
+          {
+            "name": "Nina Agdal",
+            "start": 2016,
+            "end": 2017
+          },
+          {
+            "name": "Camilla Morrone",
+            "start": 2018,
+            "end": 2019
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "start",
+          "type": "ordinal"
+        },
+        "y": {
+          "value": 435
+        },
+        "text": {
+          "field": "name",
+          "type": "nominal"
+        }
+      },
+      "mark": {
+        "type": "text",
+        "color": "rgb(91,198,214)",
+        "align": "left",
+        "angle": 30,
+        "font": "FjallaOne"
+      }
+    }
+  ]
+}

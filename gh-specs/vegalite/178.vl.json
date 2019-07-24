@@ -1,0 +1,56 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.0.json",
+  "description": "Faceted visualization with brushing and linking ",
+  "data": {
+    "url": "https://raw.githubusercontent.com/F1Mider/flights/master/Amtrak.csv"
+  },
+  "vconcat": [
+    {
+      "selection": {
+        "brush": {
+          "type": "interval"
+        }
+      },
+      "mark": "point",
+      "encoding": {
+        "x": {
+          "field": "Mileage",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "ArrDelay",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "selection": "brush"
+          }
+        }
+      ],
+      "mark": "point",
+      "encoding": {
+        "facet": {
+          "field": "Class",
+          "type": "ordinal"
+        },
+        "x": {
+          "aggregate": "mean",
+          "field": "ArrDelay",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "Name",
+          "type": "ordinal",
+          "sort": {
+            "encoding": "x",
+            "order": "descending"
+          }
+        }
+      }
+    }
+  ]
+}

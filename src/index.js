@@ -3,10 +3,12 @@ import {
   getDataset,
   generateVegaRendering,
   generateVegaView,
-  sanitizeDatasetReference
+  sanitizeDatasetReference,
+  checkIfSpecIsSupported
 } from './utils';
 import algebraicRules from './rules/algebraic-rules';
 import deceptionRules from './rules/deception-rules';
+import {SPEC_NOT_SUPPORTED, CRASH, OK} from './codes';
 
 // todo should make the lint rules generate their own specs
 const lintRules = [
@@ -22,6 +24,9 @@ const evalMap = {
 };
 
 export function lint(spec) {
+  if (!checkIfSpecIsSupported(spec)) {
+    return Promise.resolve({code: SPEC_NOT_SUPPORTED, lints: []});
+  }
   // this function wraps the single lint function, so that each individual layer
   // in the vega-lite spec is linted by itself. It is unclear if this stratagey is a good one.
   const denormalizedLayers = !spec.layer ? [spec] : spec.layer.map(innerSpec => {
@@ -35,7 +40,15 @@ export function lint(spec) {
   });
   return Promise
     .all(denormalizedLayers.map(singleSpec => lintSingleSpec(singleSpec)))
-    .then(results => results.reduce((acc, row) => acc.concat(row), []));
+    .then(results => results.reduce((acc, row) => acc.concat(row), []))
+    .then(lints => ({code: OK, lints}))
+    .catch(e => {
+      return {
+        code: CRASH,
+        lints: [],
+        msg: e
+      };
+    });
 }
 
 export function lintSingleSpec(spec) {

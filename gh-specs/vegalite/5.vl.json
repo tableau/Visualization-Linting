@@ -1,0 +1,200 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "title": "SK🇸🇰 Parliament 2016 Elections vs March 2018 Poll",
+  "data": {
+    "values": [
+      {
+        "party": "SMER-SD",
+        "date": "03-2016",
+        "votes": 737481,
+        "percentage": 28.28,
+        "seats": 49
+      },
+      {
+        "party": "SMER-SD",
+        "date": "03-2018",
+        "percentage": 20.2
+      },
+      {
+        "party": "SaS",
+        "date": "03-2016",
+        "votes": 315558,
+        "percentage": 12.1,
+        "seats": 21
+      },
+      {
+        "party": "SaS",
+        "date": "03-2018",
+        "percentage": 14
+      },
+      {
+        "party": "OĽaNO-Nova",
+        "date": "03-2016",
+        "votes": 287611,
+        "percentage": 11.03,
+        "seats": 19
+      },
+      {
+        "party": "OĽaNO-Nova",
+        "date": "03-2018",
+        "percentage": 10.4
+      },
+      {
+        "party": "Sme rodina",
+        "date": "03-2016",
+        "votes": 172860,
+        "percentage": 6.63,
+        "seats": 11
+      },
+      {
+        "party": "Sme rodina",
+        "date": "03-2018",
+        "percentage": 10.4
+      },
+      {
+        "party": "Kotleba - ĽSNS",
+        "date": "03-2016",
+        "votes": 209779,
+        "percentage": 8.04,
+        "seats": 14
+      },
+      {
+        "party": "Kotleba - ĽSNS",
+        "date": "03-2018",
+        "percentage": 10.1
+      },
+      {
+        "party": "SNS",
+        "date": "03-2016",
+        "votes": 225386,
+        "percentage": 8.64,
+        "seats": 15
+      },
+      {
+        "party": "SNS",
+        "date": "03-2018",
+        "percentage": 10
+      },
+      {
+        "party": "KDH",
+        "date": "03-2016",
+        "votes": 128908,
+        "percentage": 4.94,
+        "seats": 0
+      },
+      {
+        "party": "KDH",
+        "date": "03-2018",
+        "percentage": 7
+      },
+      {
+        "party": "Most-Híd",
+        "date": "03-2016",
+        "votes": 169593,
+        "percentage": 6.5,
+        "seats": 11
+      },
+      {
+        "party": "Most-Híd",
+        "date": "03-2018",
+        "percentage": 5.6
+      },
+      {
+        "party": "SMK-MKP",
+        "date": "03-2016",
+        "votes": 105495,
+        "percentage": 4.05,
+        "seats": 0
+      },
+      {
+        "party": "SMK-MKP",
+        "date": "03-2018",
+        "percentage": 4.1
+      },
+      {
+        "party": "KSS",
+        "date": "03-2016",
+        "votes": 16278,
+        "percentage": 0.62,
+        "seats": 0
+      },
+      {
+        "party": "KSS",
+        "date": "03-2018",
+        "percentage": 1.5
+      },
+      {
+        "party": "Progresívne Slovensko",
+        "date": "03-2018",
+        "percentage": 1.4
+      },
+      {
+        "party": "Spolu-občianska demokracia",
+        "date": "03-2018",
+        "percentage": 1.1
+      }
+    ]
+  },
+  "transform": [
+    {
+      "calculate": "datum.date == '03-2016' ? '2016' : '2018' ",
+      "as": "year"
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "column": {
+      "field": "party",
+      "type": "nominal",
+      "sort": "ascending"
+    },
+    "y": {
+      "field": "percentage",
+      "type": "quantitative",
+      "axis": {
+        "title": "% of (estimated) votes"
+      }
+    },
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "axis": {
+        "title": ""
+      }
+    },
+    "color": {
+      "field": "party",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "SMER-SD",
+          "SaS",
+          "OĽaNO-Nova",
+          "Sme rodina",
+          "Kotleba - ĽSNS",
+          "SNS",
+          "KDH",
+          "Most-Híd",
+          "SMK-MKP",
+          "KSS",
+          "Progresívne Slovensko",
+          "Spolu-občianska demokracia"
+        ],
+        "range": [
+          "#BA1514",
+          "#A8E734",
+          "#489648",
+          "#6559C9",
+          "#404040",
+          "#3F128B",
+          "#F2F19F",
+          "#DE7F27",
+          "#828282",
+          "#F43530",
+          "#00C1E2",
+          "#0070C5"
+        ]
+      }
+    }
+  }
+}

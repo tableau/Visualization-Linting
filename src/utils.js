@@ -101,6 +101,9 @@ export function getDataset(spec) {
   if (data.values) {
     return Promise.resolve().then(() => data.values);
   }
+  if (!data.url) {
+    console.log(data);
+  }
   const brokenUri = data.url.split('.');
   const type = brokenUri[brokenUri.length - 1];
   const cacheAccessKey = JSON.stringify(data);
@@ -323,3 +326,15 @@ const vegaLiteDefaultConfig = {
 };
 
 export const extractTransforms = spec => vegaLiteExtractTransforms(spec, vegaLiteDefaultConfig);
+
+export function checkIfSpecIsSupported(spec) {
+  if (spec.layer) {
+    return false;
+  }
+
+  if (!spec.data || !(spec.data.url || spec.data.values)) {
+    return false;
+  }
+
+  return true;
+}

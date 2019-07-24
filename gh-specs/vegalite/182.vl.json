@@ -1,0 +1,40 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "description": "A simple bar chart with embedded data.",
+  "width": 200,
+  "data": {
+    "values": [
+      {
+        "CallNatureTypeDescription": "Domestic Violence",
+        "Incident Count": 1137
+      },
+      {
+        "CallNatureTypeDescription": "Medical",
+        "Incident Count": 561
+      },
+      {
+        "CallNatureTypeDescription": "Threats",
+        "Incident Count": 702
+      },
+      {
+        "CallNatureTypeDescription": "Unknown",
+        "Incident Count": 174
+      },
+      {
+        "CallNatureTypeDescription": "Wellness Check",
+        "Incident Count": 775
+      }
+    ]
+  },
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "CallNatureTypeDescription",
+      "type": "ordinal"
+    },
+    "y": {
+      "field": "Incident Count",
+      "type": "quantitative"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/hvo/datasets/master/nyc_restaurants_by_cuisine.json"
+  },
+  "transform": [
+    {
+      "filter": "datum._vgsid_<=25"
+    }
+  ],
+  "mark": {
+    "type": "bar"
+  },
+  "selection": {
+    "search": {
+      "bind": {
+        "input": "input"
+      },
+      "empty": "none",
+      "on": "mouseover",
+      "fields": [
+        "term"
+      ],
+      "type": "single"
+    },
+    "highlight": {
+      "type": "single",
+      "on": "mouseover",
+      "empty": "none"
+    }
+  },
+  "encoding": {
+    "x": {
+      "field": "total",
+      "type": "quantitative",
+      "axis": {
+        "title": "Restaurants"
+      }
+    },
+    "y": {
+      "field": "cuisine",
+      "type": "ordinal",
+      "axis": {
+        "title": "Restaurants"
+      },
+      "sort": {
+        "field": "total",
+        "op": "argmax"
+      }
+    },
+    "color": {
+      "value": "LightGrey",
+      "condition": {
+        "test": "(indexof(lower(datum.cuisine), lower(search.term))>=0) || (highlight._vgsid_==datum._vgsid_)",
+        "value": "Orange"
+      }
+    }
+  }
+}

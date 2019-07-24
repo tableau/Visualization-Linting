@@ -1,0 +1,324 @@
+{
+  "config": {
+    "view": {
+      "width": 400,
+      "height": 300
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "interpolate": "step-before",
+        "opacity": 0.3
+      },
+      "encoding": {
+        "color": {
+          "type": "nominal",
+          "field": "parameterId",
+          "legend": {
+            "title": "Cut tov NGD (m³)"
+          }
+        },
+        "tooltip": [
+          {
+            "type": "nominal",
+            "field": "stationName"
+          },
+          {
+            "type": "quantitative",
+            "field": "value"
+          },
+          {
+            "type": "temporal",
+            "field": "date",
+            "format": "%A, %B %e"
+          }
+        ],
+        "x": {
+          "type": "temporal",
+          "field": "date"
+        },
+        "y": {
+          "type": "quantitative",
+          "field": "value",
+          "scale": {
+            "zero": false
+          },
+          "title": "volume (m³)"
+        }
+      },
+      "selection": {
+        "location": {
+          "type": "single",
+          "fields": [
+            "stationName"
+          ],
+          "bind": {
+            "input": "select",
+            "options": [
+              "Den Helder - Texel, Vaarweg",
+              "Den Helder veerhaven, Vak A",
+              "Den Helder veerhaven, Vak B",
+              "Den Helder veerhaven, Vak C",
+              "Texel veerhaven, Vak A",
+              "Texel veerhaven, Vak B",
+              "Texel veerhaven, Vak C",
+              "Texel veerhaven, Vak D",
+              "Texel veerhaven, Vak E",
+              "Visjagersgaatje",
+              "Den Helder - Den Oever, Visjagersgaatje -Den Oever",
+              "Den Oever, Toegangsgeul",
+              "Den Oever, Buitenhaven",
+              "Den Oever, Noorderhaven",
+              "Den Oever, Waddenhaven",
+              "Den Oever, Vissershaven",
+              "Kornwerderzand, Toegangsgeul",
+              "Boontjes",
+              "Slenk",
+              "Harlingen - Terschelling, Schuitengat",
+              "Pollendam",
+              "Harlingen - Noordzee, Pollendam",
+              "Harlingen - Noordzee, Blauwe Slenk",
+              "Blauwe Slenk",
+              "Pannengat",
+              "Holwerd - VA25",
+              "VA4 - VA6",
+              "VA9 - VA13",
+              "Reegeul",
+              "Holwerd, Veerdienst deel",
+              "Holwerd, Rijkssteiger",
+              "Holwerd, Westkant",
+              "Nes, Veerdienst deel",
+              "Nes, Voormalige rijkssteiger",
+              "Nes, Oostkant",
+              "Holwerd - Ameland, VA13 - VA25",
+              "Holwerd - Ameland, VA4 - Reegeul",
+              "Ballumerbocht, Loswal",
+              "Ballumerbocht, Vaargeul",
+              "Glinder",
+              "Glinder - Groote Siege",
+              "Groote Siege",
+              "Schiermonnikoog, Veerdienst deel zuid",
+              "Schiermonnikoog, Veerdienst deel noord",
+              "Schiermonnikoog, Noordkant KNRM Ponton",
+              "Lauwersoog, Veerdienst deel",
+              "Schiermonnikoog, Zuidkant Veerdam KNRM",
+              "Texel veerhaven, Vak F",
+              "Den Helder - Noordzee",
+              "Den Helder - Den Oever, Malzwin",
+              "Den Helder - Kornwerderzand, Texelstroom",
+              "Den Helder - Kornwerderzand, Doove Balg",
+              "Den Helder - Kornwerderzand, Gedeelte van Boontjes",
+              "Kornwerderzand - Harlingen, Zuid",
+              "Kornwerderzand - Harlingen, Noord",
+              "Harlingen - Terschelling, Westmeep - Noordmeep",
+              "Terschelling, Jachthaven",
+              "Terschelling, Veerkade",
+              "Vliesloot",
+              "Harlingen - Vlieland, Zuiderstortemelk",
+              "Harlingen - Vlieland, Vliesloot",
+              "Vlieland, Veerdienst deel",
+              "Vlieland, Sneldienst deel",
+              "Vlieland, Jachthaven",
+              "Vlieland, Voormalige werkhaven",
+              "Harlingen - Noordzee, Vliestroom",
+              "Harlingen - Noordzee, Stortemelk",
+              "Nes, Toegangsgeul",
+              "Nes, Jachthaven Nes Ameland",
+              "Holwerd - Ameland, VA9 - VA6",
+              "Ameland - Noordzee",
+              "Lauwersoog - Glinder",
+              "Schiermonnikoog, Jachthaven",
+              "Lauwersoog, Toegangsgeul",
+              "Lauwersoog, Visserijhaven",
+              "Lauwersoog - Noordzee",
+              "Haven Noordpolderzijl, Havendeel",
+              "Schanskerdiep"
+            ]
+          },
+          "init": {
+            "stationName": "Holwerd - Ameland, VA13 - VA25"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": {
+            "selection": "location"
+          }
+        }
+      ]
+    },
+    {
+      "mark": "point",
+      "encoding": {
+        "opacity": {
+          "value": 0
+        },
+        "x": {
+          "type": "temporal",
+          "field": "date"
+        }
+      },
+      "selection": {
+        "nearest": {
+          "type": "single",
+          "nearest": true,
+          "on": "mouseover",
+          "fields": [
+            "date"
+          ],
+          "empty": "none"
+        }
+      },
+      "transform": [
+        {
+          "filter": {
+            "selection": "location"
+          }
+        }
+      ]
+    },
+    {
+      "mark": "point",
+      "encoding": {
+        "color": {
+          "type": "nominal",
+          "field": "parameterId",
+          "legend": {
+            "title": "Cut tov NGD (m³)"
+          }
+        },
+        "opacity": {
+          "value": 0,
+          "condition": {
+            "value": 1,
+            "selection": "nearest"
+          }
+        },
+        "tooltip": [
+          {
+            "type": "nominal",
+            "field": "stationName"
+          },
+          {
+            "type": "quantitative",
+            "field": "value"
+          },
+          {
+            "type": "temporal",
+            "field": "date",
+            "format": "%A, %B %e"
+          }
+        ],
+        "x": {
+          "type": "temporal",
+          "field": "date"
+        },
+        "y": {
+          "type": "quantitative",
+          "field": "value",
+          "scale": {
+            "zero": false
+          },
+          "title": "volume (m³)"
+        }
+      },
+      "transform": [
+        {
+          "filter": {
+            "selection": "location"
+          }
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "gray"
+      },
+      "encoding": {
+        "x": {
+          "type": "temporal",
+          "field": "date"
+        }
+      },
+      "transform": [
+        {
+          "filter": {
+            "selection": "nearest"
+          }
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 5,
+        "dy": -5
+      },
+      "encoding": {
+        "color": {
+          "type": "nominal",
+          "field": "parameterId",
+          "legend": {
+            "title": "Cut tov NGD (m³)"
+          }
+        },
+        "text": {
+          "value": " ",
+          "condition": {
+            "type": "quantitative",
+            "field": "value",
+            "selection": "nearest"
+          }
+        },
+        "tooltip": [
+          {
+            "type": "nominal",
+            "field": "stationName"
+          },
+          {
+            "type": "quantitative",
+            "field": "value"
+          },
+          {
+            "type": "temporal",
+            "field": "date",
+            "format": "%A, %B %e"
+          }
+        ],
+        "x": {
+          "type": "temporal",
+          "field": "date"
+        },
+        "y": {
+          "type": "quantitative",
+          "field": "value",
+          "scale": {
+            "zero": false
+          },
+          "title": "volume (m³)"
+        }
+      },
+      "transform": [
+        {
+          "filter": {
+            "selection": "location"
+          }
+        }
+      ]
+    }
+  ],
+  "data": {
+    "url": "https://dmws.hkvservices.nl/dataportal/data.asmx/read?database=OMSWaddenzee&key=voorspelling",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "height": 300,
+  "width": 600,
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.2.1.json"
+}

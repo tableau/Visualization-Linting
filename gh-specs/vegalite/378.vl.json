@@ -1,0 +1,59 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "https://api.insa.gov.br/reservatorios/12172/monitoramento",
+    "format": {
+      "type": "json",
+      "property": "volumes",
+      "parse": {
+        "DataInformacao": "utc:'%d/%m/%Y'"
+      }
+    }
+  },
+  "mark": "tick",
+  "width": 150,
+  "height": 300,
+  "transform": [
+    {
+      "filter": {
+        "timeUnit": "yearmonth",
+        "field": "DataInformacao",
+        "range": [
+          {
+            "year": 1999,
+            "month": "Jan"
+          },
+          {
+            "year": 2003,
+            "month": "Dec"
+          }
+        ]
+      }
+    },
+    {
+      "timeUnit": "month",
+      "field": "DataInformacao",
+      "as": "mes"
+    },
+    {
+      "timeUnit": "year",
+      "field": "DataInformacao",
+      "as": "ano"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "ano",
+      "type": "temporal"
+    },
+    "color": {
+      "field": "mes",
+      "type": "temporal"
+    },
+    "y": {
+      "aggregate": "variance",
+      "field": "VolumePercentual",
+      "type": "quantitative"
+    }
+  }
+}

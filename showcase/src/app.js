@@ -12,6 +12,7 @@ import LogoHeader from './components/logo-header';
 import LintReport from './components/lint-report';
 /* eslint-enable no-unused-vars */
 import {BAD_CHARTS} from '../../test/vega-examples';
+import {CRASH, SPEC_NOT_SUPPORTED} from '../../src/codes';
 
 import {getRendering, lintSpec, classnames} from './utils';
 
@@ -53,25 +54,55 @@ class App extends React.Component {
   }
 
   renderSpec(currentSpec) {
-    this.setAsyncState({renderLoading: true, lintingTarget: null})
+    this.setAsyncState({
+      renderLoading: true,
+      lintingTarget: null,
+      chartServiceError: null
+    })
       .then(() => getRendering(currentSpec))
-      .then(lintingTarget => this.setState({lintingTarget, renderLoading: false}));
+      .then(x => {
+        const {code, result, msg} = x;
+        if (code === CRASH || code === SPEC_NOT_SUPPORTED) {
+          this.setState({
+            renderLoading: false,
+            chartServiceError: code === CRASH ? msg : 'SPEC NOT SUPPORTED'
+          });
+          return;
+        }
+        this.setState({lintingTarget: result, renderLoading: false});
+      });
   }
 
   lintSpec(currentSpec) {
-    this.setAsyncState({lintLoading: true, lintResults: null})
+    this.setAsyncState({
+      lintLoading: true,
+      lintResults: null,
+      lintServiceError: null
+    })
       .then(() => lintSpec(currentSpec))
-      .then(lintResults => this.setState({lintResults, lintLoading: false}));
+      .then((x) => {
+        const {code, lints, msg} = x;
+        if (code === CRASH || code === SPEC_NOT_SUPPORTED) {
+          this.setState({
+            lintLoading: false,
+            lintServiceError: code === CRASH ? msg : 'SPEC NOT SUPPORTED'
+          });
+          return;
+        }
+        this.setState({lintResults: lints, lintLoading: false});
+      });
   }
 
   render() {
     const {
+      chartError,
       currentSpec,
       currentCode,
       height,
       lintingTarget,
       lintLoading,
       lintResults,
+      lintServiceError,
       renderLoading,
       width
     } = this.state;
@@ -126,9 +157,11 @@ class App extends React.Component {
         </div>
           <div className="flex-down full-width">
             <ChartPreview
+              chartError={chartError}
               loading={renderLoading}
               lintingTarget={lintingTarget}/>
             <LintReport
+              lintServiceError={lintServiceError}
               loading={lintLoading}
               lintResults={lintResults}/>
           </div>

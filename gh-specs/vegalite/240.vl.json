@@ -1,0 +1,79 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "data/seattle-weather.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "vconcat": [
+    {
+      "mark": "line",
+      "width": 600,
+      "encoding": {
+        "x": {
+          "timeUnit": "monthyear",
+          "field": "date",
+          "type": "temporal"
+        },
+        "y": {
+          "aggregate": "mean",
+          "field": "precipitation",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "mark": "line",
+      "width": 600,
+      "encoding": {
+        "x": {
+          "timeUnit": "yearmonth",
+          "field": "date",
+          "type": "temporal"
+        },
+        "y": {
+          "aggregate": "max",
+          "field": "temp_max",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "timeUnit": "yearmonth",
+          "field": "date",
+          "type": "ordinal"
+        },
+        "y": {
+          "aggregate": "count",
+          "field": "*",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "weather",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "bin": {
+            "maxbins": 20
+          },
+          "field": "precipitation",
+          "type": "quantitative"
+        },
+        "y": {
+          "aggregate": "count",
+          "field": "*",
+          "type": "quantitative"
+        }
+      }
+    }
+  ]
+}

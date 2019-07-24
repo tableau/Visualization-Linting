@@ -1,0 +1,164 @@
+{
+  "config": {
+    "view": {
+      "width": 400,
+      "height": 300
+    }
+  },
+  "hconcat": [
+    {
+      "data": {
+        "values": [
+          {
+            "price": "$",
+            "primary_category": "chain",
+            "rating": 1.5,
+            "store_name": "McDonald's"
+          }
+        ]
+      },
+      "mark": {
+        "type": "bar",
+        "stroke": "Black"
+      },
+      "encoding": {
+        "color": {
+          "type": "nominal",
+          "field": "primary_category",
+          "legend": {
+            "title": "Coffee Shops"
+          },
+          "scale": {
+            "domain": [
+              "strictly_coffee",
+              "chain",
+              "bakeries",
+              "breakfast_and_brunch",
+              "diners",
+              "delis",
+              "ice_cream_and_froyo",
+              "juice_and_smoothie",
+              "other"
+            ],
+            "scheme": "tableau10"
+          }
+        },
+        "x": {
+          "type": "quantitative",
+          "aggregate": "count",
+          "axis": {
+            "title": "Number of Coffee Shops"
+          }
+        },
+        "y": {
+          "type": "nominal",
+          "axis": {
+            "title": "Coffee Shop Type"
+          },
+          "field": "primary_category",
+          "sort": {
+            "op": "count",
+            "order": "descending"
+          }
+        }
+      },
+      "height": 450,
+      "width": 200
+    },
+    {
+      "vconcat": [
+        {
+          "data": {
+            "values": [
+              {
+                "price": "$",
+                "primary_category": "chain",
+                "rating": 1.5,
+                "store_name": "McDonald's"
+              }
+            ]
+          },
+          "mark": {
+            "type": "bar",
+            "fill": "silver",
+            "stroke": "Black"
+          },
+          "encoding": {
+            "x": {
+              "type": "ordinal",
+              "axis": {
+                "title": "Rating"
+              },
+              "field": "Rating",
+              "scale": {
+                "domain": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ],
+                "type": "band"
+              }
+            },
+            "y": {
+              "type": "quantitative",
+              "aggregate": "count",
+              "axis": {
+                "title": "Number of Coffee Shops per Rating"
+              }
+            }
+          },
+          "height": 200,
+          "width": 200
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "price": "$",
+                "primary_category": "chain",
+                "rating": 1.5,
+                "store_name": "McDonald's"
+              }
+            ]
+          },
+          "mark": {
+            "type": "bar",
+            "fill": "Silver",
+            "stroke": "Black"
+          },
+          "encoding": {
+            "x": {
+              "type": "nominal",
+              "axis": {
+                "title": "Price"
+              },
+              "field": "Price"
+            },
+            "y": {
+              "type": "quantitative",
+              "aggregate": "count",
+              "axis": {
+                "title": "Number of Coffee Shops per Price"
+              }
+            }
+          },
+          "height": 200,
+          "width": 200
+        }
+      ]
+    }
+  ],
+  "data": {
+    "values": [
+      {
+        "price": "$",
+        "primary_category": "chain",
+        "rating": 1.5,
+        "store_name": "McDonald's"
+      }
+    ]
+  },
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.3.0.json"
+}

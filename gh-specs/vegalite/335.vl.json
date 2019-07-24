@@ -1,0 +1,27 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "width": 700,
+  "height": 400,
+  "data": {
+    "url": "https://api.insa.gov.br/reservatorios/12172/monitoramento",
+    "format": {
+      "type": "json",
+      "property": "volumes"
+    }
+  },
+  "mark": "area",
+  "encoding": {
+    "x": {
+      "field": "DataInformacao",
+      "type": "temporal",
+      "axis": {
+        "format": "%Y",
+        "title": "Data de registro"
+      }
+    },
+    "y": {
+      "field": "Volume",
+      "type": "quantitative"
+    }
+  }
+}

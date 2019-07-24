@@ -1,0 +1,71 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "layer": [
+    {
+      "encoding": {
+        "x": {
+          "field": "label",
+          "scale": {
+            "zero": false
+          },
+          "type": "ordinal",
+          "sort": {
+            "field": "value",
+            "op": "values"
+          }
+        },
+        "y": {
+          "field": "value",
+          "scale": {
+            "zero": false
+          },
+          "type": "quantitative"
+        },
+        "order": {
+          "field": "value",
+          "type": "quantitative"
+        }
+      },
+      "mark": "line"
+    },
+    {
+      "encoding": {
+        "x": {
+          "field": "label",
+          "scale": {
+            "zero": false
+          },
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "value",
+          "scale": {
+            "zero": false
+          },
+          "type": "quantitative"
+        }
+      },
+      "mark": "point"
+    }
+  ],
+  "data": {
+    "values": [
+      {
+        "value": 1,
+        "label": "blue"
+      },
+      {
+        "value": 2,
+        "label": "green"
+      },
+      {
+        "value": 3,
+        "label": "yellow"
+      },
+      {
+        "value": 4,
+        "label": "red"
+      }
+    ]
+  }
+}

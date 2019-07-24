@@ -1,0 +1,298 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "description": "The proportion of counties Trump won in each state.",
+  "data": {
+    "values": [
+      {
+        "color": "red",
+        "State": "Alabama",
+        "Proportion of Counties Won": "1.000"
+      },
+      {
+        "color": "red",
+        "State": "Alaska",
+        "Proportion of Counties Won": "0.375"
+      },
+      {
+        "color": "red",
+        "State": "Arizona",
+        "Proportion of Counties Won": "0.933"
+      },
+      {
+        "color": "red",
+        "State": "Arkansas",
+        "Proportion of Counties Won": "0.773"
+      },
+      {
+        "color": "red",
+        "State": "California",
+        "Proportion of Counties Won": "1.000"
+      },
+      {
+        "color": "red",
+        "State": "Colorado",
+        "Proportion of Counties Won": "1.000"
+      },
+      {
+        "color": "red",
+        "State": "Connecticut",
+        "Proportion of Counties Won": "0.970"
+      },
+      {
+        "color": "red",
+        "State": "Delaware",
+        "Proportion of Counties Won": "1.000"
+      },
+      {
+        "color": "red",
+        "State": "Florida",
+        "Proportion of Counties Won": "0.985"
+      },
+      {
+        "color": "red",
+        "State": "Georgia",
+        "Proportion of Counties Won": "0.975"
+      },
+      {
+        "color": "red",
+        "State": "Hawaii",
+        "Proportion of Counties Won": "1.000"
+      },
+      {
+        "color": "red",
+        "State": "Idaho",
+        "Proportion of Counties Won": "0.273"
+      },
+      {
+        "color": "red",
+        "State": "Illinois",
+        "Proportion of Counties Won": "0.786"
+      },
+      {
+        "color": "red",
+        "State": "Indiana",
+        "Proportion of Counties Won": "0.946"
+      },
+      {
+        "color": "red",
+        "State": "Iowa",
+        "Proportion of Counties Won": "0.384"
+      },
+      {
+        "color": "red",
+        "State": "Kansas",
+        "Proportion of Counties Won": "0.000"
+      },
+      {
+        "color": "red",
+        "State": "Kentucky",
+        "Proportion of Counties Won": "0.650"
+      },
+      {
+        "color": "red",
+        "State": "Louisiana",
+        "Proportion of Counties Won": "0.734"
+      },
+      {
+        "color": "red",
+        "State": "Maine",
+        "Proportion of Counties Won": "1.000"
+      },
+      {
+        "color": "red",
+        "State": "Maryland",
+        "Proportion of Counties Won": "1.000"
+      },
+      {
+        "color": "red",
+        "State": "Massachusetts",
+        "Proportion of Counties Won": "0.949"
+      },
+      {
+        "color": "red",
+        "State": "Michigan",
+        "Proportion of Counties Won": "0.867"
+      },
+      {
+        "color": "red",
+        "State": "Mississippi",
+        "Proportion of Counties Won": "0.915"
+      },
+      {
+        "color": "red",
+        "State": "Missouri",
+        "Proportion of Counties Won": "0.791"
+      },
+      {
+        "color": "red",
+        "State": "Montana",
+        "Proportion of Counties Won": "1.000"
+      },
+      {
+        "color": "red",
+        "State": "Nebraska",
+        "Proportion of Counties Won": "1.000"
+      },
+      {
+        "color": "red",
+        "State": "Nevada",
+        "Proportion of Counties Won": "0.882"
+      },
+      {
+        "color": "red",
+        "State": "New Hampshire",
+        "Proportion of Counties Won": "1.000"
+      },
+      {
+        "color": "red",
+        "State": "New Jersey",
+        "Proportion of Counties Won": "1.000"
+      },
+      {
+        "color": "red",
+        "State": "New Mexico",
+        "Proportion of Counties Won": "1.000"
+      },
+      {
+        "color": "red",
+        "State": "New York",
+        "Proportion of Counties Won": "0.984"
+      },
+      {
+        "color": "red",
+        "State": "North Carolina",
+        "Proportion of Counties Won": "0.780"
+      },
+      {
+        "color": "red",
+        "State": "North Dakota",
+        "Proportion of Counties Won": "1.000"
+      },
+      {
+        "color": "red",
+        "State": "Ohio",
+        "Proportion of Counties Won": "0.375"
+      },
+      {
+        "color": "red",
+        "State": "Oklahoma",
+        "Proportion of Counties Won": "0.208"
+      },
+      {
+        "color": "red",
+        "State": "Oregon",
+        "Proportion of Counties Won": "1.000"
+      },
+      {
+        "color": "red",
+        "State": "Pennsylvania",
+        "Proportion of Counties Won": "1.000"
+      },
+      {
+        "color": "red",
+        "State": "Rhode Island",
+        "Proportion of Counties Won": "0.976"
+      },
+      {
+        "color": "red",
+        "State": "South Carolina",
+        "Proportion of Counties Won": "0.957"
+      },
+      {
+        "color": "red",
+        "State": "South Dakota",
+        "Proportion of Counties Won": "1.000"
+      },
+      {
+        "color": "red",
+        "State": "Tennessee",
+        "Proportion of Counties Won": "0.989"
+      },
+      {
+        "color": "red",
+        "State": "Texas",
+        "Proportion of Counties Won": "0.028"
+      },
+      {
+        "color": "red",
+        "State": "Utah",
+        "Proportion of Counties Won": "0.000"
+      },
+      {
+        "color": "red",
+        "State": "Vermont",
+        "Proportion of Counties Won": "0.663"
+      },
+      {
+        "color": "red",
+        "State": "Virginia",
+        "Proportion of Counties Won": "0.835"
+      },
+      {
+        "color": "red",
+        "State": "Washington",
+        "Proportion of Counties Won": "1.000"
+      },
+      {
+        "color": "red",
+        "State": "West Virginia",
+        "Proportion of Counties Won": "1.000"
+      },
+      {
+        "color": "red",
+        "State": "Wisconsin",
+        "Proportion of Counties Won": "0.625"
+      },
+      {
+        "color": "red",
+        "State": "Wyoming",
+        "Proportion of Counties Won": "0.676"
+      }
+    ]
+  },
+  "transform": [
+    {
+      "calculate": "toString('black')",
+      "as": "color2"
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "State",
+      "type": "ordinal"
+    },
+    "x": {
+      "field": "Proportion of Counties Won",
+      "type": "quantitative"
+    },
+    "color": {
+      "field": "color",
+      "type": "nominal",
+      "scale": null
+    }
+  },
+  "layer": [
+    {
+      "mark": "bar"
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 7
+      },
+      "encoding": {
+        "text": {
+          "field": "Proportion of Counties Won",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "color2",
+          "type": "ordinal",
+          "scale": null
+        }
+      }
+    }
+  ]
+}

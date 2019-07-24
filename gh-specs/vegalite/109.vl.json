@@ -1,0 +1,114 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "description": "A ranged dot plot that uses 'layer' to convey changing life expectancy for the five most populous countries (between 1955 and 2000).",
+  "data": {
+    "url": "https://vega.github.io/editor/data/countries.json"
+  },
+  "height": 555,
+  "width": 333,
+  "transform": [
+    {
+      "filter": {
+        "field": "country",
+        "oneOf": [
+          "China",
+          "India",
+          "United States",
+          "Indonesia",
+          "Brazil",
+          "Chile",
+          "Mexico",
+          "Canada"
+        ]
+      }
+    },
+    {
+      "filter": {
+        "field": "year",
+        "oneOf": [
+          1955,
+          2000
+        ]
+      }
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "life_expect",
+      "type": "quantitative",
+      "axis": {
+        "title": "Life Expectancy (years)"
+      }
+    },
+    "y": {
+      "field": "fertility",
+      "type": "quantitative",
+      "axis": {
+        "title": "Fertility",
+        "offset": 5,
+        "ticks": false,
+        "minExtent": 70,
+        "domain": false
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": "line",
+      "encoding": {
+        "detail": {
+          "field": "country",
+          "type": "nominal"
+        },
+        "color": {
+          "value": "#db646f"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "dx": 8
+      },
+      "encoding": {
+        "text": {
+          "field": "country",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true
+      },
+      "encoding": {
+        "color": {
+          "field": "year",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              1955,
+              2000
+            ],
+            "range": [
+              "#e6959c",
+              "#911a24"
+            ]
+          },
+          "legend": {
+            "title": "Year"
+          }
+        },
+        "size": {
+          "value": 100
+        },
+        "opacity": {
+          "value": 1
+        }
+      }
+    }
+  ]
+}

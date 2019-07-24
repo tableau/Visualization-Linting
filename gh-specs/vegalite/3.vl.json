@@ -1,0 +1,69 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "https://vega.github.io/editor/data/barley.json"
+  },
+  "width": 500,
+  "height": 250,
+  "resolve": {
+    "scale": {
+      "color": "independent"
+    }
+  },
+  "layer": [
+    {
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "aggregate": "sum",
+          "field": "yield",
+          "type": "quantitative",
+          "stack": "zero"
+        },
+        "y": {
+          "field": "variety",
+          "type": "nominal"
+        },
+        "color": {
+          "field": "site",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dx": -15,
+        "dy": 3
+      },
+      "encoding": {
+        "x": {
+          "aggregate": "sum",
+          "field": "yield",
+          "type": "quantitative",
+          "stack": "zero"
+        },
+        "y": {
+          "field": "variety",
+          "type": "nominal"
+        },
+        "color": {
+          "field": "site",
+          "type": "nominal",
+          "scale": {
+            "range": [
+              "white"
+            ]
+          },
+          "legend": null
+        },
+        "text": {
+          "aggregate": "sum",
+          "field": "yield",
+          "type": "quantitative",
+          "format": ".1f"
+        }
+      }
+    }
+  ]
+}

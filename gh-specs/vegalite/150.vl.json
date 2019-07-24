@@ -1,0 +1,60 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/agconti/kaggle-titanic/master/data/train.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "transform": [
+    {
+      "calculate": "1",
+      "as": "number"
+    },
+    {
+      "stack": "number",
+      "groupby": [
+        "Pclass"
+      ],
+      "as": [
+        "v1",
+        "v2"
+      ],
+      "offset": "center",
+      "sort": {
+        "field": "Survived",
+        "order": "ascending"
+      }
+    },
+    {
+      "stack": "number",
+      "groupby": [
+        "Sex"
+      ],
+      "as": [
+        "v3",
+        "v4"
+      ],
+      "offset": "center"
+    }
+  ],
+  "mark": "rect",
+  "encoding": {
+    "x": {
+      "field": "v3",
+      "type": "ordinal"
+    },
+    "x2": {
+      "field": "v4",
+      "type": "ordinal"
+    },
+    "y": {
+      "field": "v1",
+      "type": "quantitative"
+    },
+    "y2": {
+      "field": "",
+      "type": "quantitative"
+    }
+  }
+}

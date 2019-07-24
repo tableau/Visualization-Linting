@@ -1,0 +1,97 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.0.json",
+  "data": {
+    "url": "data.csv"
+  },
+  "layer": [
+    {
+      "mark": "line",
+      "encoding": {
+        "x": {
+          "field": "date",
+          "timeUnit": "date",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "counts",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "date",
+          "timeUnit": "month",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "mark": "point",
+      "selection": {
+        "detail": {
+          "type": "single",
+          "on": "mouseover",
+          "nearest": true
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "timeUnit": "date",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "counts",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "date",
+          "timeUnit": "month",
+          "type": "nominal"
+        },
+        "size": {
+          "condition": {
+            "selection": {
+              "not": "detail"
+            },
+            "value": 50
+          },
+          "value": 300
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "dy": -15
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "timeUnit": "date",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "counts",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "date",
+          "timeUnit": "month",
+          "type": "nominal"
+        },
+        "text": {
+          "condition": {
+            "selection": {
+              "not": "detail"
+            },
+            "value": " "
+          },
+          "field": "counts"
+        }
+      }
+    }
+  ],
+  "width": 600,
+  "height": 400
+}

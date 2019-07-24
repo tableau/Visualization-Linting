@@ -1,3 +1,6 @@
 /node_modules/*
 /showcase/node_modules/*
 /server/node_modules/*
+/example-data/*
+/example-specs/*
+/gh-specs/*

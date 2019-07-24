@@ -1,0 +1,47 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.4.1.json",
+  "config": {
+    "view": {
+      "width": 400,
+      "height": 300
+    }
+  },
+  "data": {
+    "values": [
+      {
+        "name": "a0",
+        "a": {
+          "i": 0
+        }
+      },
+      {
+        "name": "a1",
+        "a": {
+          "i": 1
+        }
+      },
+      {
+        "name": "a2",
+        "a": {
+          "i": 2
+        }
+      }
+    ]
+  },
+  "encoding": {
+    "x": {
+      "field": "a.i",
+      "type": "quantitative"
+    },
+    "y": {
+      "sort": {
+        "order": "descending",
+        "op": "sum",
+        "field": "a.i"
+      },
+      "type": "ordinal",
+      "field": "name"
+    }
+  },
+  "mark": "bar"
+}

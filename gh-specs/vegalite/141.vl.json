@@ -1,0 +1,33 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.1.json",
+  "width": 700,
+  "height": 800,
+  "data": {
+    "url": "https://san-francisco.datasettes.com/sf-trees-ebc2ad9.jsono?sql=select+latitude%2C+longitude%2C+qSpecies+from+Street_Tree_List+where+latitude+is+not+null and Latitude > 37.77 and Longitude < -122.45",
+    "format": {
+      "type": "json",
+      "property": "rows"
+    }
+  },
+  "projection": {
+    "type": "albersUsa"
+  },
+  "mark": "point",
+  "encoding": {
+    "longitude": {
+      "field": "Longitude",
+      "type": "quantitative"
+    },
+    "latitude": {
+      "field": "Latitude",
+      "type": "quantitative"
+    },
+    "size": {
+      "value": 1
+    },
+    "color": {
+      "field": "qSpecies",
+      "type": "nominal"
+    }
+  }
+}

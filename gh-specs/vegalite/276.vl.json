@@ -1,0 +1,44 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "description": "A simple bar chart with embedded data.",
+  "width": 360,
+  "data": {
+    "values": [
+      {
+        "name": "John",
+        "age": 23,
+        "height": 1.93
+      },
+      {
+        "name": "Mafe",
+        "age": 22,
+        "height": 1.7
+      },
+      {
+        "name": "Sonia",
+        "age": 27,
+        "height": 1.6
+      },
+      {
+        "name": "Vicente",
+        "age": 73,
+        "height": 0.32
+      }
+    ]
+  },
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "name",
+      "type": "nominal"
+    },
+    "y": {
+      "field": "age",
+      "type": "quantitative"
+    },
+    "tooltip": {
+      "field": "name",
+      "type": "nominal"
+    }
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "description": "Billy's obsessive data obsession",
+  "title": {
+    "text": "Weight Data and Trendline"
+  },
+  "width": 200,
+  "height": 400,
+  "config": {
+    "axis": {
+      "grid": false
+    }
+  },
+  "data": {
+    "values": [
+      {
+        "date": "2018-12-06",
+        "weight": 74.1,
+        "trend": 74.1
+      },
+      {
+        "date": "2018-12-07",
+        "weight": 73.6,
+        "trend": 74.045
+      },
+      {
+        "date": "2018-12-08",
+        "weight": 73.9,
+        "trend": 74.02
+      },
+      {
+        "date": "2018-12-09",
+        "weight": 74,
+        "trend": 74.02
+      },
+      {
+        "date": "2018-12-10",
+        "weight": 72.3,
+        "trend": 73.81
+      },
+      {
+        "date": "2018-12-11",
+        "weight": 72.3,
+        "trend": 73.63
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "errorbar",
+        "color": "#4c4"
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "weight",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              72,
+              75
+            ]
+          }
+        },
+        "y2": {
+          "field": "trend",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "trend",
+          "type": "quantitative"
+        },
+        "strokeWidth": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "size": 80,
+        "fill": "#f60",
+        "opacity": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "weight",
+          "type": "quantitative"
+        }
+      }
+    }
+  ]
+}

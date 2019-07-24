@@ -1,0 +1,134 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "repeat": {
+    "row": [
+      "Page Views",
+      "Recommended Journals",
+      "Recommended Databases"
+    ],
+    "column": [
+      "Page Views",
+      "Recommended Journals",
+      "Recommended Databases"
+    ]
+  },
+  "spec": {
+    "data": {
+      "values": [
+        {
+          "Name": "CDISC ADaM",
+          "Type": "Model/format",
+          "Status": "Ready",
+          "Page Views": 343,
+          "Recommended Journals": 0,
+          "Recommended Databases": 0
+        },
+        {
+          "Name": "MIAME",
+          "Type": "Reporting Guideline",
+          "Status": "Ready",
+          "Page Views": 295,
+          "Recommended Journals": 2,
+          "Recommended Databases": 4
+        },
+        {
+          "Name": "MIAPPE",
+          "Type": "Reporting Guideline",
+          "Status": "Ready",
+          "Page Views": 214,
+          "Recommended Journals": 0,
+          "Recommended Databases": 2
+        },
+        {
+          "Name": "MINSEQE",
+          "Type": "Reporting Guideline",
+          "Status": "Ready",
+          "Page Views": 210,
+          "Recommended Journals": 1,
+          "Recommended Databases": 3
+        },
+        {
+          "Name": "MIxS - MIGS/MIMS",
+          "Type": "Reporting Guideline",
+          "Status": "Ready",
+          "Page Views": 170,
+          "Recommended Journals": 0,
+          "Recommended Databases": 2
+        },
+        {
+          "Name": "MIxS",
+          "Type": "Reporting Guideline",
+          "Status": "Ready",
+          "Page Views": 158,
+          "Recommended Journals": 3,
+          "Recommended Databases": 3
+        },
+        {
+          "Name": "BioPAX",
+          "Type": "Model/format",
+          "Status": "Ready",
+          "Page Views": 142,
+          "Recommended Journals": 0,
+          "Recommended Databases": 2
+        },
+        {
+          "Name": "ISA-Tab",
+          "Type": "Model/format",
+          "Status": "Ready",
+          "Page Views": 134,
+          "Recommended Journals": 3,
+          "Recommended Databases": 8
+        }
+      ]
+    },
+    "mark": "circle",
+    "selection": {
+      "brush": {
+        "type": "interval",
+        "resolve": "union",
+        "on": "[mousedown[event.shiftKey], window:mouseup] > window:mousemove!",
+        "translate": "[mousedown[event.shiftKey], window:mouseup] > window:mousemove!",
+        "zoom": "wheel![event.shiftKey]"
+      },
+      "grid": {
+        "type": "interval",
+        "resolve": "global",
+        "bind": "scales",
+        "translate": "[mousedown[!event.shiftKey], window:mouseup] > window:mousemove!",
+        "zoom": "wheel![!event.shiftKey]"
+      }
+    },
+    "encoding": {
+      "x": {
+        "field": {
+          "repeat": "row"
+        },
+        "type": "quantitative"
+      },
+      "y": {
+        "field": {
+          "repeat": "column"
+        },
+        "type": "quantitative"
+      },
+      "color": {
+        "field": "Status",
+        "type": "nominal",
+        "scale": {
+          "domain": [
+            "Ready",
+            "Development",
+            "Uncertain",
+            "Deprecated"
+          ],
+          "range": [
+            "#1abc9c",
+            "#e67e22",
+            "#bdc3c7",
+            "#c0392b"
+          ]
+        }
+      }
+    }
+  }
+}
