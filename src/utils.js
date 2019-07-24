@@ -160,7 +160,7 @@ export function sanitizeDatasetReference(spec) {
   }
   if (spec.data.url.startsWith('data/')) {
     const copy = shamefulDeepCopy(spec);
-    copy.data.url = `./node_modules/vega-datasets/${copy.data.url}`;
+    copy.data.url = `../example-specs/${copy.data.url}`;
     return copy;
   }
   return spec;

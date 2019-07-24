@@ -5,7 +5,7 @@ const app = express();
 /* eslint-disable */
 const PORT = process.env.PORT || 5000;
 /* eslint-enable */
-import {generateVegaRendering} from '../src/utils';
+import {generateVegaRendering, sanitizeDatasetReference} from '../src/utils';
 import {lint} from '../src';
 import {OK, CRASH} from '../src/codes';
 
@@ -33,7 +33,7 @@ app.post('/get-rendering', (req, res) => {
     },
     ...req.body
   };
-  generateVegaRendering(specWithDefaults, 'svg')
+  generateVegaRendering(sanitizeDatasetReference(specWithDefaults), 'svg')
     .then(result => {
       res.send(JSON.stringify({code: OK, result}));
     })
