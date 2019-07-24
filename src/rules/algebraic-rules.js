@@ -71,7 +71,7 @@ function identityProvMap(data) {
  * or at least, construct functions for building these lineage graphs
  */
 function provenencePass(tree, transform) {
-  if (!transform.length) {
+  if (!transform.length || !tree._targets || (tree._targets.length === 0)) {
     return [];
   }
   const relevantTarget = tree._targets[0];
@@ -180,7 +180,7 @@ const contractToSingleRecords = ['x', 'y'].map(name => ({
     Object.entries(aggregateOutputPairs).forEach(([terminalKey, aggValue]) => {
       const targetArray = tailToStartMap[terminalKey];
       // don't try to drop any records for single length data
-      if (targetArray.length <= 1) {
+      if (!targetArray || targetArray.length <= 1) {
         return;
       }
       const safeIndex = Math.floor(Math.random() * targetArray.length);

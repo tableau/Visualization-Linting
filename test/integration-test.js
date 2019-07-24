@@ -27,7 +27,7 @@ function integrationTest(directory, dirPresent) {
   return getFile(directory)
   .then(d => JSON.parse(d))
   .then(vlExamples => {
-    const subslice = vlExamples.vegalite.slice(0, 15);
+    const subslice = vlExamples.vegalite;
     totalSpecs = subslice.length;
     return executePromisesInSeries(subslice.map(fileName => {
       return () =>
