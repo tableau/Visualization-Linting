@@ -44,7 +44,7 @@ app.post('/get-rendering', (req, res) => {
 
 app.post('/lint', (req, res) => {
   console.log('linting');
-  lint(req.body)
+  lint(sanitizeDatasetReference(req.body))
     .then(result => {
       console.log('did done a lint');
       console.log(`STATUS: ${result.code} ${result.msg || ''}`);

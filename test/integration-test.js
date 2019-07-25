@@ -2,6 +2,19 @@
 import {lint} from '../src';
 import {executePromisesInSeries, getFile} from 'hoopoe';
 import {CRASH} from '../src/codes';
+import {shamefulDeepCopy} from '../src/utils';
+
+export function sanitizeDatasetReference(spec) {
+  if (!spec.data || !spec.data.url) {
+    return spec;
+  }
+  if (spec.data.url.startsWith('data/')) {
+    const copy = shamefulDeepCopy(spec);
+    copy.data.url = `./example-specs/${copy.data.url}`;
+    return copy;
+  }
+  return spec;
+}
 
 function integrationTest(directory, dirPresent) {
   const startTime = new Date().getTime();
@@ -12,7 +25,7 @@ function integrationTest(directory, dirPresent) {
     specCounter += 1;
     const fileName = fileNames[specCounter - 1];
     console.log(`Linting ${specCounter} ${fileName}`);
-    return lint(spec)
+    return lint(sanitizeDatasetReference(spec))
     .then(d => {
       console.log(`LINT RESULTS IN A ${d.code}${d.msg ? `: ${d.msg}` : ''}\n`);
       // codeCounts[d.code] = (codeCounts[d.code] || 0) + 1;

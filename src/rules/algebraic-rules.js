@@ -141,14 +141,19 @@ const destroyVariance = ['x', 'y'].map(name => ({
     // 1. for each record at tail of path, get aggregate value
     // 2. find each stop stream record id
     // 3. set aggregate value (field y some of the time) to be the downstream value
-    const aggregateOutputPairs = view._runtime.data.source_0.output.value.reduce((acc, row) => {
+    const initialOutput = view._runtime.data.source_0.output;
+    const isCollect = initialOutput.constructor.name === 'Collect';
+    const targetOutput = isCollect ? initialOutput : initialOutput.source;
+    const thirdThing = Array.isArray(targetOutput.value) ? targetOutput.value :
+      view._runtime.data.marks.input.value.map(d => d.datum);
+    const aggregateOutputPairs = thirdThing.reduce((acc, row) => {
       acc[row[aggregateFieldName]] = row[outputFieldName];
       return acc;
     }, {});
     // set each corresponding value in the original collection to aggregate value
     const data = clone(dataset);
     Object.entries(aggregateOutputPairs).forEach(([terminalKey, aggValue]) => {
-      tailToStartMap[terminalKey].forEach(startKey => {
+      (tailToStartMap[terminalKey] || []).forEach(startKey => {
         data[startKey][inputFieldName] = aggValue;
       });
     });
@@ -156,7 +161,12 @@ const destroyVariance = ['x', 'y'].map(name => ({
     return data;
   },
   evaluator: expectSame,
-  filter: filterForAggregates(name),
+  filter: (spec, data, view) => {
+    if (spec.encoding && (!spec.encoding.x || !spec.encoding.y)) {
+      return false;
+    }
+    return filterForAggregates(name)(spec, data, view);
+  },
   explain: 'destroying the variance should not affect the chart under aggregates'
 }));
 
@@ -172,7 +182,14 @@ const contractToSingleRecords = ['x', 'y'].map(name => ({
     // 2. find each stop stream record id
     // 3. for each mark set all but one mark in the input to nulls
     // 4. filter out nulls from input
-    const aggregateOutputPairs = view._runtime.data.source_0.output.value.reduce((acc, row) => {
+
+    // TODO lots of repeated code between this and previous rule, refactor
+    const initialOutput = view._runtime.data.source_0.output;
+    const isCollect = initialOutput.constructor.name === 'Collect';
+    const targetOutput = isCollect ? initialOutput : initialOutput.source;
+    const thirdThing = Array.isArray(targetOutput.value) ? targetOutput.value :
+      view._runtime.data.marks.input.value.map(d => d.datum);
+    const aggregateOutputPairs = thirdThing.reduce((acc, row) => {
       acc[row[aggregateFieldName]] = row[outputFieldName];
       return acc;
     }, {});
@@ -195,7 +212,12 @@ const contractToSingleRecords = ['x', 'y'].map(name => ({
     return data.filter(d => d);
   },
   evaluator: expectDifferent,
-  filter: filterForAggregates(name),
+  filter: (spec, data, view) => {
+    if (spec.encoding && (!spec.encoding.x || !spec.encoding.y)) {
+      return false;
+    }
+    return filterForAggregates(name)(spec, data, view);
+  },
   explain: 'reducing the aggregate values to a single record should affect the chart'
 }));
 
@@ -203,8 +225,12 @@ const shouldHaveCommonNumberOfRecords = ['x', 'y'].map(name => ({
   name: `algebraic-aggregates-should-have-a-similar-number-of-input-records--${name}-axis`,
   type: 'algebraic-spec',
   evaluator: (oldRendering, newRendering, spec, perturbedSpec, oldView, newView) => {
-    const measurements = newView._runtime.data.marks.values.value
-      .map(d => d[name]);
+    // debugger;
+    const viewData = newView._runtime.data;
+    const measurements = (
+      (Array.isArray(viewData.source_0.output.value) && viewData.source_0.output.value.map(d => d.__count)) ||
+      viewData.marks.values.value.map(d => d[name]));
+    // const measurements = newView._runtime.data.marks.values.value.map(d => d[name]);
     const allMeasuresSame = measurements.every(d => measurements[0] === d);
     // if there aren't enough observations to compute outliers dont
     if (measurements.length < 3) {
@@ -219,7 +245,13 @@ const shouldHaveCommonNumberOfRecords = ['x', 'y'].map(name => ({
     duppedSpec.encoding[name].aggregate = 'count';
     return duppedSpec;
   },
-  filter: filterForAggregates(name),
+  filter: (spec, data, view) => {
+    if (spec.encoding && (!spec.encoding.x || !spec.encoding.y)) {
+      return false;
+    }
+    // avoid stack
+    return filterForAggregates(name)(spec, data, view) && spec.mark !== 'area' && spec.mark.type !== 'area';
+  },
   explain: 'Encodings using aggregates to group records should probably have a common number of records in each of the bins.'
 }));
 

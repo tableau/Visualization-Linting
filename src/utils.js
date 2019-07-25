@@ -99,7 +99,8 @@ const runTimeCache = {};
 export function getDataset(spec) {
   const {data} = spec;
   if (data.values) {
-    return Promise.resolve().then(() => data.values);
+    return Promise.resolve()
+      .then(() => data.format ? read(data.values, data.format) : data.values);
   }
   if (!data.url) {
     console.log(data);
@@ -148,7 +149,7 @@ export function buildPixelDiff(oldRendering, newRendering) {
 /**
  * Create a deep copy of an object. This use the hacky and slow json serialization for copy.
  */
-const shamefulDeepCopy = obj => JSON.parse(JSON.stringify(obj));
+export const shamefulDeepCopy = obj => JSON.parse(JSON.stringify(obj));
 
 /**
  * A lot of the example from gh-pages make use of the data/DATASET shorthand
@@ -327,12 +328,24 @@ const vegaLiteDefaultConfig = {
 
 export const extractTransforms = spec => vegaLiteExtractTransforms(spec, vegaLiteDefaultConfig);
 
+const bannedTopLevelOperations = [
+  'concat',
+  'facet',
+  'hconcat',
+  'layer',
+  'repeat',
+  'vconcat'
+];
 export function checkIfSpecIsSupported(spec) {
-  if (spec.layer) {
+  if (bannedTopLevelOperations.some(d => spec[d])) {
     return false;
   }
 
   if (!spec.data || !(spec.data.url || spec.data.values)) {
+    return false;
+  }
+
+  if (spec.encoding && (spec.encoding.row || spec.encoding.column || spec.encoding.facet)) {
     return false;
   }
 

@@ -3,7 +3,6 @@ import {
   getDataset,
   generateVegaRendering,
   generateVegaView,
-  sanitizeDatasetReference,
   checkIfSpecIsSupported
 } from './utils';
 import algebraicRules from './rules/algebraic-rules';
@@ -43,6 +42,7 @@ export function lint(spec) {
     .then(results => results.reduce((acc, row) => acc.concat(row), []))
     .then(lints => ({code: OK, lints}))
     .catch(e => {
+      console.log(e)
       return {
         code: CRASH,
         lints: [],
@@ -53,7 +53,7 @@ export function lint(spec) {
 
 export function lintSingleSpec(spec) {
   // TODO should link the size of these to the sizes in the other render path
-  const specWithDefaults = sanitizeDatasetReference({
+  const specWithDefaults = {
     width: 200,
     height: 200,
     autosize: {
@@ -61,7 +61,7 @@ export function lintSingleSpec(spec) {
       contains: 'padding'
     },
     ...spec
-  });
+  };
   return Promise.all([
     getDataset(specWithDefaults),
     generateVegaView(specWithDefaults)
