@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
+import tape from 'tape';
 import {lint} from '../src';
 import {executePromisesInSeries, getFile} from 'hoopoe';
-import {CRASH} from '../src/codes';
+import {CRASH, SPEC_NOT_SUPPORTED, OK} from '../src/codes';
 import {shamefulDeepCopy} from '../src/utils';
 
 export function sanitizeDatasetReference(spec) {
@@ -53,12 +54,21 @@ function integrationTest(directory, dirPresent) {
     const endTime = new Date().getTime();
     console.log(`${Math.round((endTime - startTime) / 1000)} total seconds`);
     console.log(`${totalSpecs - failedSpecs} / ${totalSpecs} completely executed specs`);
-    console.table(Object.entries(codeCounts).map(([code, files]) => ({code, count: files.length})));
+    const summary = Object.entries(codeCounts).map(([code, files]) => ({code, count: files.length}));
+    console.table(summary);
     console.log(`Crashed specs: ${codeCounts[CRASH]}`);
+    return summary;
   });
 }
 
-integrationTest('./example-specs/examples-index.json', fileName => `./example-specs/vegalite/${fileName}`);
+tape('INTEGRATION TEST', t => {
+  integrationTest('./example-specs/examples-index.json', fileName => `./example-specs/vegalite/${fileName}`)
+    .then(summary => {
+      const expectedSummary = [{code: SPEC_NOT_SUPPORTED, count: 154}, {code: OK, count: 248}];
+      t.deepEqual(summary, expectedSummary, 'should find the expected integration test run');
+      t.end();
+    });
+});
 // integrationTest('./gh-specs/gh-specs-index.json', fileName => `./gh-specs/vegalite/${fileName}`);
 
 /* eslint-enable no-console */

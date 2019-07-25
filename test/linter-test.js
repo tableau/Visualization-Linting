@@ -15,8 +15,8 @@ const adjustFileRoot = spec => {
   const url = spec.data.url.slice(3);
   return {...spec, data: {url}};
 };
-const cleanResultsToPassFail = result =>
-  result.map(({name, passed}) => ({name, passed}));
+const cleanResultsToPassFail = ({lints}) =>
+  lints.map(({name, passed}) => ({name, passed}));
 
 const TEST_SPECS = [
   {
@@ -164,6 +164,7 @@ function buildTest({spec, expected, groupName, only}) {
       // full comparison of the test set with result set (for copyablility), disabled
       // t.deepEqual(cleanResultsToPassFail(result), expected, 'INTEGRATION');
       // individual comparisons (for ledigibility)
+      t.equal(results.length, expected.length, 'should find the the same number of lint considerations');
       results.forEach((row, idx) => {
         const testName = `${row.name} should evaluate correctly`;
         t.deepEqual(row, expectedMap[row.name], testName);

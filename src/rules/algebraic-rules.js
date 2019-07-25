@@ -103,7 +103,6 @@ function constructTransformProvenecePath(dataset, spec, view) {
       transform.provMap = groupByPointerCreation(upstreamTransform.data, transform.transform.groupby[0]);
     } else {
       // if not groupby then use identity map
-      // TODO: filter will probably have something to say here, also probably fold ugh
       transform.provMap = identityProvMap(transform.data);
     }
   }
@@ -129,27 +128,32 @@ function constructTransformProvenecePath(dataset, spec, view) {
 }
 
 const oppositeFiled = {x: 'y', y: 'x'};
+function prepProv(dataset, spec, view, name) {
+  const {tailToStartMap} = constructTransformProvenecePath(dataset, spec, view);
+  const extractedSpec = extractTransforms(spec);
+  const inputFieldName = spec.encoding[name].field;
+  const outputFieldName = extractedSpec.encoding[name].field;
+  const aggregateFieldName = extractedSpec.encoding[oppositeFiled[name]].field;
+  // 1. for each record at tail of path, get aggregate value
+  // 2. find each stop stream record id
+  // 3. set aggregate value (field y some of the time) to be the downstream value
+  const initialOutput = view._runtime.data.source_0.output;
+  const isCollect = initialOutput.constructor.name === 'Collect';
+  const targetOutput = isCollect ? initialOutput : initialOutput.source;
+  const outputValues = Array.isArray(targetOutput.value) ? targetOutput.value :
+    view._runtime.data.marks.input.value.map(d => d.datum);
+  const aggregateOutputPairs = outputValues.reduce((acc, row) => {
+    acc[row[aggregateFieldName]] = row[outputFieldName];
+    return acc;
+  }, {});
+  return {aggregateOutputPairs, tailToStartMap, inputFieldName};
+}
+
 const destroyVariance = ['x', 'y'].map(name => ({
   name: `algebraic-destroy-variance--${name}-axis`,
   type: 'algebraic-data',
   operation: (dataset, spec, view) => {
-    const {tailToStartMap} = constructTransformProvenecePath(dataset, spec, view);
-    const extractedSpec = extractTransforms(spec);
-    const inputFieldName = spec.encoding[name].field;
-    const outputFieldName = extractedSpec.encoding[name].field;
-    const aggregateFieldName = extractedSpec.encoding[oppositeFiled[name]].field;
-    // 1. for each record at tail of path, get aggregate value
-    // 2. find each stop stream record id
-    // 3. set aggregate value (field y some of the time) to be the downstream value
-    const initialOutput = view._runtime.data.source_0.output;
-    const isCollect = initialOutput.constructor.name === 'Collect';
-    const targetOutput = isCollect ? initialOutput : initialOutput.source;
-    const thirdThing = Array.isArray(targetOutput.value) ? targetOutput.value :
-      view._runtime.data.marks.input.value.map(d => d.datum);
-    const aggregateOutputPairs = thirdThing.reduce((acc, row) => {
-      acc[row[aggregateFieldName]] = row[outputFieldName];
-      return acc;
-    }, {});
+    const {aggregateOutputPairs, tailToStartMap, inputFieldName} = prepProv(dataset, spec, view, name);
     // set each corresponding value in the original collection to aggregate value
     const data = clone(dataset);
     Object.entries(aggregateOutputPairs).forEach(([terminalKey, aggValue]) => {
@@ -174,25 +178,7 @@ const contractToSingleRecords = ['x', 'y'].map(name => ({
   name: `algebraic-contract-to-single-record--${name}-axis`,
   type: 'algebraic-data',
   operation: (dataset, spec, view) => {
-    const {tailToStartMap} = constructTransformProvenecePath(dataset, spec, view);
-    const extractedSpec = extractTransforms(spec);
-    const outputFieldName = extractedSpec.encoding[name].field;
-    const aggregateFieldName = extractedSpec.encoding[oppositeFiled[name]].field;
-    // 1. for each record at tail of path, get aggregate value
-    // 2. find each stop stream record id
-    // 3. for each mark set all but one mark in the input to nulls
-    // 4. filter out nulls from input
-
-    // TODO lots of repeated code between this and previous rule, refactor
-    const initialOutput = view._runtime.data.source_0.output;
-    const isCollect = initialOutput.constructor.name === 'Collect';
-    const targetOutput = isCollect ? initialOutput : initialOutput.source;
-    const thirdThing = Array.isArray(targetOutput.value) ? targetOutput.value :
-      view._runtime.data.marks.input.value.map(d => d.datum);
-    const aggregateOutputPairs = thirdThing.reduce((acc, row) => {
-      acc[row[aggregateFieldName]] = row[outputFieldName];
-      return acc;
-    }, {});
+    const {aggregateOutputPairs, tailToStartMap} = prepProv(dataset, spec, view, name);
     const data = clone(dataset);
     Object.entries(aggregateOutputPairs).forEach(([terminalKey, aggValue]) => {
       const targetArray = tailToStartMap[terminalKey];
@@ -225,12 +211,11 @@ const shouldHaveCommonNumberOfRecords = ['x', 'y'].map(name => ({
   name: `algebraic-aggregates-should-have-a-similar-number-of-input-records--${name}-axis`,
   type: 'algebraic-spec',
   evaluator: (oldRendering, newRendering, spec, perturbedSpec, oldView, newView) => {
-    // debugger;
     const viewData = newView._runtime.data;
+    // lots of foot work to catch line and other stack based renderings
     const measurements = (
       (Array.isArray(viewData.source_0.output.value) && viewData.source_0.output.value.map(d => d.__count)) ||
       viewData.marks.values.value.map(d => d[name]));
-    // const measurements = newView._runtime.data.marks.values.value.map(d => d[name]);
     const allMeasuresSame = measurements.every(d => measurements[0] === d);
     // if there aren't enough observations to compute outliers dont
     if (measurements.length < 3) {

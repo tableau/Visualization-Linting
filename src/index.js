@@ -42,7 +42,9 @@ export function lint(spec) {
     .then(results => results.reduce((acc, row) => acc.concat(row), []))
     .then(lints => ({code: OK, lints}))
     .catch(e => {
-      console.log(e)
+      /* eslint-disable no-console */
+      console.log(e);
+      /* eslint-enable no-console */
       return {
         code: CRASH,
         lints: [],
