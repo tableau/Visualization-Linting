@@ -22,7 +22,8 @@ function integrationTest(directory, dirPresent) {
   let failedSpecs = 0;
   let specCounter = 0;
   const codeCounts = {};
-  const evalEpec = fileNames => spec => {
+  const resultGroups = {};
+  const evalSpec = fileNames => spec => {
     specCounter += 1;
     const fileName = fileNames[specCounter - 1];
     console.log(`Linting ${specCounter} ${fileName}`);
@@ -31,6 +32,12 @@ function integrationTest(directory, dirPresent) {
       console.log(`LINT RESULTS IN A ${d.code}${d.msg ? `: ${d.msg}` : ''}\n`);
       // codeCounts[d.code] = (codeCounts[d.code] || 0) + 1;
       codeCounts[d.code] = (codeCounts[d.code] || []).concat(fileName);
+      d.lints.forEach(({name, passed}) => {
+        if (passed) {
+          return;
+        }
+        resultGroups[name] = (resultGroups[name] || []).concat(fileName);
+      });
     })
     .catch(e => {
       console.log(`OH NO A ${fileName} FAILED`);
@@ -47,7 +54,7 @@ function integrationTest(directory, dirPresent) {
       return () =>
       getFile(dirPresent(fileName))
       .then(d => JSON.parse(d))
-      .then(evalEpec(subslice));
+      .then(evalSpec(subslice));
     }));
   })
   .then(() => {
@@ -57,6 +64,7 @@ function integrationTest(directory, dirPresent) {
     const summary = Object.entries(codeCounts).map(([code, files]) => ({code, count: files.length}));
     console.table(summary);
     console.log(`Crashed specs: ${codeCounts[CRASH]}`);
+    console.log(JSON.stringify(resultGroups, null, 2));
     return summary;
   });
 }
