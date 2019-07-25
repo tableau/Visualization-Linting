@@ -28,7 +28,8 @@ const TEST_SPECS = [
       {name: 'deception-vis-no-reversed-axes-y', passed: true},
       {name: 'deception-vis-no-zero-scales-y', passed: true},
       {name: 'deception-vis-scale-should-start-at-zero-y', passed: true},
-      {name: 'deception-vis-bar-chart-are-usually-aggregates--y-axis', passed: true}
+      {name: 'deception-vis-bar-chart-are-usually-aggregates--y-axis', passed: true},
+      {name: 'deception-vis-dont-use-non-linear-scales--y-axis', passed: true}
     ],
     groupName: 'BAR CHART'
   },
@@ -45,7 +46,8 @@ const TEST_SPECS = [
       {name: 'deception-vis-scale-should-start-at-zero-x', passed: false},
       {name: 'deception-vis-scale-should-start-at-zero-y', passed: true},
       {name: 'deception-vis-bar-chart-are-usually-aggregates--y-axis', passed: true},
-      {name: 'deception-vis-bar-chart-are-usually-aggregates--x-axis', passed: false}
+      {name: 'deception-vis-dont-use-non-linear-scales--x-axis', passed: true},
+      {name: 'deception-vis-dont-use-non-linear-scales--y-axis', passed: true}
     ],
     groupName: 'HISTOGRAM'
   },
@@ -60,7 +62,9 @@ const TEST_SPECS = [
       {name: 'deception-vis-no-zero-scales-x', passed: true},
       {name: 'deception-vis-no-zero-scales-y', passed: true},
       {name: 'deception-vis-scale-should-start-at-zero-x', passed: true},
-      {name: 'deception-vis-scale-should-start-at-zero-y', passed: true}
+      {name: 'deception-vis-scale-should-start-at-zero-y', passed: true},
+      {name: 'deception-vis-dont-use-non-linear-scales--x-axis', passed: true},
+      {name: 'deception-vis-dont-use-non-linear-scales--y-axis', passed: true}
     ],
     groupName: 'COLORED_SCATTERPLOT'
   },
@@ -76,7 +80,9 @@ const TEST_SPECS = [
       {name: 'deception-vis-no-zero-scales-x', passed: true},
       {name: 'deception-vis-no-zero-scales-y', passed: true},
       {name: 'deception-vis-scale-should-start-at-zero-x', passed: false},
-      {name: 'deception-vis-scale-should-start-at-zero-y', passed: true}
+      {name: 'deception-vis-scale-should-start-at-zero-y', passed: true},
+      {name: 'deception-vis-dont-use-non-linear-scales--x-axis', passed: true},
+      {name: 'deception-vis-dont-use-non-linear-scales--y-axis', passed: true}
     ],
     groupName: 'BAD CHART: OVERPLOT_SCATTERPLOT_REVERESED'
   },
@@ -92,7 +98,8 @@ const TEST_SPECS = [
       {name: 'deception-vis-scale-should-start-at-zero-y', passed: true},
       {name: 'algebraic-aggregates-should-have-a-similar-number-of-input-records--y-axis', passed: false},
       {name: 'deception-vis-bar-chart-are-usually-aggregates--y-axis', passed: true},
-      {name: 'algebraic-contract-to-single-record--y-axis', passed: true}
+      {name: 'algebraic-contract-to-single-record--y-axis', passed: true},
+      {name: 'deception-vis-dont-use-non-linear-scales--y-axis', passed: true}
     ],
     groupName: 'BAD CHART: MISSING_RECORDS_BAR_CHART'
   },
@@ -110,7 +117,9 @@ const TEST_SPECS = [
       {name: 'deception-vis-no-zero-scales-y', passed: true},
       {name: 'deception-vis-scale-should-start-at-zero-y', passed: false},
       {name: 'algebraic-aggregates-should-have-a-similar-number-of-input-records--y-axis', passed: false},
-      {name: 'algebraic-contract-to-single-record--y-axis', passed: true}
+      {name: 'algebraic-contract-to-single-record--y-axis', passed: true},
+      {name: 'deception-vis-dont-use-non-linear-scales--x-axis', passed: true},
+      {name: 'deception-vis-dont-use-non-linear-scales--y-axis', passed: true}
     ],
     groupName: 'BAD CHART: MISSING_QUARTER_LINESERIES'
   },
@@ -126,7 +135,9 @@ const TEST_SPECS = [
       {name: 'deception-vis-no-zero-scales-x', passed: true},
       {name: 'deception-vis-no-zero-scales-y', passed: true},
       {name: 'deception-vis-scale-should-start-at-zero-x', passed: true},
-      {name: 'deception-vis-scale-should-start-at-zero-y', passed: true}
+      {name: 'deception-vis-scale-should-start-at-zero-y', passed: true},
+      {name: 'deception-vis-dont-use-non-linear-scales--x-axis', passed: true},
+      {name: 'deception-vis-dont-use-non-linear-scales--y-axis', passed: true}
     ],
     groupName: 'BAD CHART: OUTLIER_SCATTERPLOT'
   },
@@ -142,7 +153,9 @@ const TEST_SPECS = [
       {name: 'deception-vis-no-zero-scales-x', passed: true},
       {name: 'deception-vis-no-zero-scales-y', passed: true},
       {name: 'deception-vis-scale-should-start-at-zero-x', passed: true},
-      {name: 'deception-vis-scale-should-start-at-zero-y', passed: true}
+      {name: 'deception-vis-scale-should-start-at-zero-y', passed: true},
+      {name: 'deception-vis-dont-use-non-linear-scales--x-axis', passed: true},
+      {name: 'deception-vis-dont-use-non-linear-scales--y-axis', passed: true}
     ],
     groupName: 'BAD CHART: OVERPLOT_SCATTERPLOT'
   }

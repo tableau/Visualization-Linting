@@ -6,10 +6,11 @@ import {PNG} from 'pngjs';
 export function getXYFieldNames(spec) {
   // not a sustainable version of this encoding grab:
   // what if we encounter univariate specs?
-  const {transform, encoding: {x, y}} = spec;
+  const {transform, encoding} = spec;
   // later this can be abstracted probably into a getRelevantColumns op i guess
   const foldTransform = transform && transform.find(d => d.fold);
-  return foldTransform ? foldTransform.fold : [x.field, y.field];
+  // return foldTransform ? foldTransform.fold : [x.field, y.field];
+  return foldTransform ? foldTransform.fold : ['x', 'y'].map(key => encoding[key] && encoding[key].field);
 }
 
 export const uniqueKeysAsBoolMap = obj => Object.keys(obj).reduce((acc, row) => {
