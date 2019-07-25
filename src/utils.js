@@ -45,7 +45,7 @@ export function generateSeededRandom(baseSeed = 2) {
  */
 export function shuffle(a, random = generateSeededRandom()) {
   for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(random() * (i + 1));
+    const j = Math.floor(Math.random() * (i + 1));
     const x = a[i];
     a[i] = a[j];
     a[j] = x;

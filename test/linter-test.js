@@ -23,7 +23,6 @@ const TEST_SPECS = [
     spec: BAR_CHART_SPEC,
     expected: [
       {name: 'algebraic-outliers-should-matter', passed: true},
-      {name: 'algebraic-permute-relevant-columns', passed: true},
       {name: 'algebraic-shuffle-input-data', passed: true},
       {name: 'algebraic-randomly-delete-rows', passed: true},
       {name: 'deception-vis-no-reversed-axes-y', passed: true},
@@ -37,7 +36,6 @@ const TEST_SPECS = [
     spec: HISTOGRAM,
     expected: [
       {name: 'algebraic-outliers-should-matter', passed: true},
-      {name: 'algebraic-permute-relevant-columns', passed: false},
       {name: 'algebraic-shuffle-input-data', passed: true},
       {name: 'algebraic-randomly-delete-rows', passed: true},
       {name: 'deception-vis-no-reversed-axes-x', passed: true},
@@ -54,7 +52,6 @@ const TEST_SPECS = [
   {
     spec: COLORED_SCATTERPLOT,
     expected: [
-      {name: 'algebraic-outliers-should-matter', passed: true},
       {name: 'algebraic-permute-relevant-columns', passed: true},
       {name: 'algebraic-shuffle-input-data', passed: false},
       {name: 'algebraic-randomly-delete-rows', passed: true},
@@ -72,7 +69,7 @@ const TEST_SPECS = [
     expected: [
       {name: 'algebraic-outliers-should-matter', passed: true},
       {name: 'algebraic-permute-relevant-columns', passed: true},
-      {name: 'algebraic-shuffle-input-data', passed: false},
+      {name: 'algebraic-shuffle-input-data', passed: true},
       {name: 'algebraic-randomly-delete-rows', passed: true},
       {name: 'deception-vis-no-reversed-axes-x', passed: false},
       {name: 'deception-vis-no-reversed-axes-y', passed: true},
@@ -103,7 +100,7 @@ const TEST_SPECS = [
     spec: MISSING_QUARTER_LINESERIES,
     expected: [
       {name: 'algebraic-destroy-variance--y-axis', passed: true},
-      {name: 'algebraic-outliers-should-matter', passed: false},
+      // MISSING QUARTER SHOULD NOT RUN have algebraic-outliers-should-matter bc it doesn't have outliers
       {name: 'algebraic-permute-relevant-columns', passed: true},
       {name: 'algebraic-shuffle-input-data', passed: true},
       {name: 'algebraic-randomly-delete-rows', passed: true},
@@ -122,7 +119,7 @@ const TEST_SPECS = [
     expected: [
       {name: 'algebraic-outliers-should-matter', passed: true},
       {name: 'algebraic-permute-relevant-columns', passed: true},
-      {name: 'algebraic-shuffle-input-data', passed: false},
+      {name: 'algebraic-shuffle-input-data', passed: true},
       {name: 'algebraic-randomly-delete-rows', passed: true},
       {name: 'deception-vis-no-reversed-axes-x', passed: true},
       {name: 'deception-vis-no-reversed-axes-y', passed: true},
@@ -138,8 +135,8 @@ const TEST_SPECS = [
     expected: [
       {name: 'algebraic-outliers-should-matter', passed: true},
       {name: 'algebraic-permute-relevant-columns', passed: true},
-      {name: 'algebraic-shuffle-input-data', passed: false},
-      {name: 'algebraic-randomly-delete-rows', passed: false},
+      {name: 'algebraic-shuffle-input-data', passed: true},
+      {name: 'algebraic-randomly-delete-rows', passed: true},
       {name: 'deception-vis-no-reversed-axes-x', passed: true},
       {name: 'deception-vis-no-reversed-axes-y', passed: true},
       {name: 'deception-vis-no-zero-scales-x', passed: true},
@@ -151,20 +148,25 @@ const TEST_SPECS = [
   }
 ];
 
+function toMap(arr) {
+  return arr.reduce((acc, row) => {
+    acc[row.name] = row;
+    return acc;
+  }, {});
+}
+
 function buildTest({spec, expected, groupName, only}) {
   const test = t => {
     lint(adjustFileRoot(spec))
     .then(result => {
       // flip to map, order of lints doesn't matter and shouldn't be tested
-      const expectedMap = expected.reduce((acc, row) => {
-        acc[row.name] = row;
-        return acc;
-      }, {});
+      const expectedMap = toMap(expected);
       const results = cleanResultsToPassFail(result);
-      // full comparison of the test set with result set (for copyablility), disabled
-      // t.deepEqual(cleanResultsToPassFail(result), expected, 'INTEGRATION');
-      // individual comparisons (for ledigibility)
-      t.equal(results.length, expected.length, 'should find the the same number of lint considerations');
+      const resultsNames = toMap(results);
+
+      t.deepEqual(
+        Object.keys(resultsNames).sort(),
+        Object.keys(expectedMap).sort(), 'should find the the same lint considerations');
       results.forEach((row, idx) => {
         const testName = `${row.name} should evaluate correctly`;
         t.deepEqual(row, expectedMap[row.name], testName);

@@ -200,7 +200,8 @@ export function corruptPartialColumn(data, x, y, mode = 'n') {
 // randomize relationship between two columns
 // keeps x fixed
 export function randomizeColumns(data, x, y) {
-  const shuffledYs = shuffle(data.map(d => d[y]));
+  const justYs = data.map(d => d[y]);
+  const shuffledYs = shuffle(justYs);
   for (let i = 0; i < data.length; i++) {
     data[i][y] = shuffledYs[i];
   }

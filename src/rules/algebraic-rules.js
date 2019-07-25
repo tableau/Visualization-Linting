@@ -36,7 +36,7 @@ const evaluationModes = {
     }
   }
 };
-const {expectSame, expectDifferent} = evaluationModes.STRING_BASED;
+const {expectSame, expectDifferent} = evaluationModes.PIXEL_DIFF;
 
 function groupByPointerCreation(data, groupbyKey) {
   const backwardGroupBy = data.reduce((acc, row, idx) => {
@@ -174,11 +174,11 @@ const destroyVariance = ['x', 'y'].map(name => ({
   explain: 'destroying the variance should not affect the chart under aggregates'
 }));
 
-const contractToSingleRecords = ['x', 'y'].map(name => ({
-  name: `algebraic-contract-to-single-record--${name}-axis`,
+const contractToSingleRecords = ['x', 'y'].map(key => ({
+  name: `algebraic-contract-to-single-record--${key}-axis`,
   type: 'algebraic-data',
   operation: (dataset, spec, view) => {
-    const {aggregateOutputPairs, tailToStartMap} = prepProv(dataset, spec, view, name);
+    const {aggregateOutputPairs, tailToStartMap} = prepProv(dataset, spec, view, key);
     const data = clone(dataset);
     Object.entries(aggregateOutputPairs).forEach(([terminalKey, aggValue]) => {
       const targetArray = tailToStartMap[terminalKey];
@@ -202,20 +202,29 @@ const contractToSingleRecords = ['x', 'y'].map(name => ({
     if (spec.encoding && (!spec.encoding.x || !spec.encoding.y)) {
       return false;
     }
-    return filterForAggregates(name)(spec, data, view);
+    if (!(filterForAggregates(key)(spec, data, view))) {
+      return false;
+    }
+    const {aggregateOutputPairs, tailToStartMap} = prepProv(data, spec, view, key);
+    const allAggsConsistOfOneRecord = Object.entries(aggregateOutputPairs)
+      .every(([terminalKey, aggValue]) => (tailToStartMap[terminalKey] || []).length <= 1);
+    if (allAggsConsistOfOneRecord) {
+      return false;
+    }
+    return true;
   },
   explain: 'reducing the aggregate values to a single record should affect the chart'
 }));
 
-const shouldHaveCommonNumberOfRecords = ['x', 'y'].map(name => ({
-  name: `algebraic-aggregates-should-have-a-similar-number-of-input-records--${name}-axis`,
+const shouldHaveCommonNumberOfRecords = ['x', 'y'].map(key => ({
+  name: `algebraic-aggregates-should-have-a-similar-number-of-input-records--${key}-axis`,
   type: 'algebraic-spec',
   evaluator: (oldRendering, newRendering, spec, perturbedSpec, oldView, newView) => {
     const viewData = newView._runtime.data;
     // lots of foot work to catch line and other stack based renderings
     const measurements = (
       (Array.isArray(viewData.source_0.output.value) && viewData.source_0.output.value.map(d => d.__count)) ||
-      viewData.marks.values.value.map(d => d[name]));
+      viewData.marks.values.value.map(d => d[key]));
     const allMeasuresSame = measurements.every(d => measurements[0] === d);
     // if there aren't enough observations to compute outliers dont
     if (measurements.length < 3) {
@@ -227,15 +236,15 @@ const shouldHaveCommonNumberOfRecords = ['x', 'y'].map(name => ({
   operation: (spec) => {
     // i feel so dirty, string parsing for deep copy is bad
     const duppedSpec = JSON.parse(JSON.stringify(spec));
-    duppedSpec.encoding[name].aggregate = 'count';
+    duppedSpec.encoding[key].aggregate = 'count';
     return duppedSpec;
   },
   filter: (spec, data, view) => {
     if (spec.encoding && (!spec.encoding.x || !spec.encoding.y)) {
       return false;
     }
-    // avoid stack
-    return filterForAggregates(name)(spec, data, view) && spec.mark !== 'area' && spec.mark.type !== 'area';
+    // avoid stack encodings
+    return filterForAggregates(key)(spec, data, view) && spec.mark !== 'area' && spec.mark.type !== 'area';
   },
   explain: 'Encodings using aggregates to group records should probably have a common number of records in each of the bins.'
 }));
@@ -269,7 +278,8 @@ const randomizingColumnsShouldMatter = {
   },
   evaluator: expectDifferent,
   filter: (spec, data, view) => {
-    if (!filterForXandY(spec, data, view)) {
+    // if x and y plot and aggregate is count, then this rule will always pass
+    if (['x', 'y'].some(key => spec.encoding[key] && spec.encoding[key].aggregate === 'count')) {
       return false;
     }
     const fields = getXYFieldNames(spec);
@@ -295,7 +305,7 @@ const deletingRowsShouldMatter = {
   type: 'algebraic-data',
   operation: (container) => {
     const clonedData = clone(container);
-    for (let i = 0; i < container.length * 0.3; i++) {
+    for (let i = 0; i < container.length * 0.1; i++) {
       dropRow(clonedData);
     }
     return clonedData;
