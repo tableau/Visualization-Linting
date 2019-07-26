@@ -1,0 +1,81 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "./gh-specs/data/214.vl.json",
+    "format": {
+      "type": "json",
+      "property": "volumes",
+      "parse": {
+        "DataInformacao": "utc:'%d/%m/%Y'"
+      }
+    }
+  },
+  "vconcat": [
+    {
+      "mark": "bar",
+      "transform": [
+        {
+          "filter": {
+            "timeUnit": "year",
+            "field": "DataInformacao",
+            "range": [
+              2017,
+              2017
+            ]
+          }
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "DataInformacao",
+          "timeUnit": "month",
+          "type": "ordinal"
+        },
+        "y": {
+          "aggregate": "median",
+          "field": "Volume",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              500
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mark": "bar",
+      "transform": [
+        {
+          "filter": {
+            "timeUnit": "year",
+            "field": "DataInformacao",
+            "range": [
+              1990,
+              2016
+            ]
+          }
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "DataInformacao",
+          "timeUnit": "month",
+          "type": "ordinal"
+        },
+        "y": {
+          "aggregate": "median",
+          "field": "Volume",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              500
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

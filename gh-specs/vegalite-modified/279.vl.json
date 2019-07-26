@@ -1,0 +1,42 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "./gh-specs/data/279.vl.json"
+  },
+  "width": 600,
+  "height": 300,
+  "mark": "line",
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "timeUnit": "utcmonthdate",
+      "axis": {
+        "format": "%B",
+        "title": "Month"
+      }
+    },
+    "y": {
+      "field": "ytdsum",
+      "type": "quantitative",
+      "aggregate": "max",
+      "stack": null,
+      "axis": {
+        "title": "Donations Till the Beginning of the Year"
+      }
+    },
+    "color": {
+      "field": "date",
+      "type": "ordinal",
+      "timeUnit": "utcyear",
+      "legend": {
+        "title": "Year"
+      }
+    },
+    "order": {
+      "field": "date",
+      "type": "ordinal",
+      "timeUnit": "year"
+    }
+  }
+}

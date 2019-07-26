@@ -1,0 +1,19 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "./gh-specs/data/164.vl.json"
+  },
+  "width": 800,
+  "height": 400,
+  "mark": "point",
+  "encoding": {
+    "x": {
+      "field": "DepDelay",
+      "type": "quantitative"
+    },
+    "y": {
+      "field": "ArrDelay",
+      "type": "quantitative"
+    }
+  }
+}

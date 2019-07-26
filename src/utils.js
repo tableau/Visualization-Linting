@@ -160,6 +160,11 @@ export function sanitizeDatasetReference(spec) {
   if (!spec.data || !spec.data.url) {
     return spec;
   }
+  if (spec.data.url.startsWith('./gh-specs/data')) {
+    const copy = shamefulDeepCopy(spec);
+    copy.data.url = `.${copy.data.url}`;
+    return copy;
+  }
   if (spec.data.url.startsWith('data/')) {
     const copy = shamefulDeepCopy(spec);
     copy.data.url = `../example-specs/${copy.data.url}`;

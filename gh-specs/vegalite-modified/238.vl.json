@@ -1,0 +1,64 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "data": {
+    "url": "./gh-specs/data/238.vl.json"
+  },
+  "width": 450,
+  "height": 440,
+  "padding": 15,
+  "layer": [
+    {
+      "selection": {
+        "brush": {
+          "type": "interval",
+          "encodings": [
+            "x"
+          ]
+        }
+      },
+      "title": "Happiness Score Average",
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "field": "Region",
+          "type": "ordinal"
+        },
+        "y": {
+          "aggregate": "mean",
+          "field": "HappinessScore",
+          "type": "quantitative"
+        },
+        "opacity": {
+          "condition": {
+            "selection": "brush",
+            "value": 1
+          },
+          "value": 0.7
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "selection": "brush"
+          }
+        }
+      ],
+      "mark": "rule",
+      "encoding": {
+        "y": {
+          "aggregate": "mean",
+          "field": "HappinessScore",
+          "type": "quantitative"
+        },
+        "color": {
+          "value": "firebrick"
+        },
+        "size": {
+          "value": 3
+        }
+      }
+    }
+  ]
+}

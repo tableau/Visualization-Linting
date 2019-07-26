@@ -6,7 +6,7 @@ import {CRASH, SPEC_NOT_SUPPORTED, OK} from '../src/codes';
 import {shamefulDeepCopy} from '../src/utils';
 
 export function sanitizeDatasetReference(spec) {
-  if (!spec.data || !spec.data.url) {
+  if (!spec || !spec.data || !spec.data.url || (typeof spec.data.url !== 'string')) {
     return spec;
   }
   if (spec.data.url.startsWith('data/')) {
@@ -54,7 +54,8 @@ function integrationTest(directory, dirPresent) {
       return () =>
       getFile(dirPresent(fileName))
       .then(d => JSON.parse(d))
-      .then(evalSpec(subslice));
+      .then(evalSpec(subslice))
+      .catch(e => console.log(e));
     }));
   })
   .then(() => {
@@ -70,7 +71,8 @@ function integrationTest(directory, dirPresent) {
 }
 
 tape('INTEGRATION TEST', t => {
-  integrationTest('./example-specs/examples-index.json', fileName => `./example-specs/vegalite/${fileName}`)
+  // integrationTest('./example-specs/examples-index.json', fileName => `./example-specs/vegalite/${fileName}`)
+  integrationTest('./gh-specs/gh-specs-index.json', fileName => `./gh-specs/vegalite-modified/${fileName}`)
     .then(summary => {
       const expectedSummary = [{code: SPEC_NOT_SUPPORTED, count: 154}, {code: OK, count: 248}];
       t.deepEqual(summary, expectedSummary, 'should find the expected integration test run');

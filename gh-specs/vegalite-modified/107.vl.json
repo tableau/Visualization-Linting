@@ -1,0 +1,29 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "./gh-specs/data/107.vl.json"
+  },
+  "width": 800,
+  "height": 400,
+  "mark": "rect",
+  "encoding": {
+    "x": {
+      "field": "DepDelay",
+      "type": "quantitative",
+      "bin": {
+        "maxbins": 50
+      }
+    },
+    "y": {
+      "field": "ArrDelay",
+      "type": "quantitative",
+      "bin": {
+        "maxbins": 50
+      }
+    },
+    "color": {
+      "aggregate": "count",
+      "type": "quantitative"
+    }
+  }
+}

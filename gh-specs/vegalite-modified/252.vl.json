@@ -1,0 +1,18 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "description": "A scatterplot template with URL.",
+  "data": {
+    "url": "./gh-specs/data/252.vl.json"
+  },
+  "mark": "point",
+  "encoding": {
+    "x": {
+      "field": "corrected_income",
+      "type": "quantitative"
+    },
+    "y": {
+      "field": "population",
+      "type": "quantitative"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "data": {
+    "url": "./gh-specs/data/202.vl.json",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "hconcat": [
+    {
+      "mark": {
+        "type": "boxplot",
+        "extent": 1.5
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "timeUnit": "month",
+          "type": "ordinal",
+          "axis": {
+            "format": "%b"
+          }
+        },
+        "y": {
+          "field": "temp_max",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point"
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "timeUnit": "month",
+          "type": "ordinal",
+          "axis": {
+            "format": "%b"
+          }
+        },
+        "y": {
+          "field": "temp_max",
+          "type": "quantitative"
+        }
+      }
+    }
+  ]
+}

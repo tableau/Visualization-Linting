@@ -1,0 +1,44 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "transform": [
+    {
+      "filter": "datum.symbol !== 'GOOG'"
+    }
+  ],
+  "width": 320,
+  "height": 130,
+  "data": {
+    "url": "./gh-specs/data/19.vl.json"
+  },
+  "mark": "area",
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "axis": {
+        "format": "%Y",
+        "labelAngle": 0,
+        "title": "Time",
+        "grid": false
+      },
+      "timeUnit": "yearmonthdate"
+    },
+    "y": {
+      "field": "price",
+      "type": "quantitative",
+      "stack": "zero",
+      "aggregate": "sum",
+      "axis": {
+        "title": "Price",
+        "grid": false
+      }
+    },
+    "color": {
+      "field": "symbol",
+      "type": "nominal",
+      "legend": {
+        "title": "Symbol"
+      }
+    }
+  }
+}

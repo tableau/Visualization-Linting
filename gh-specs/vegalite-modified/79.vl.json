@@ -1,0 +1,35 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "description": "Fertility rate.",
+  "data": {
+    "url": "./gh-specs/data/79.vl.json"
+  },
+  "mark": "line",
+  "transform": [
+    {
+      "filter": {
+        "field": "Country",
+        "oneOf": [
+          "Spain",
+          "Sweden"
+        ]
+      }
+    }
+  ],
+  "width": 500,
+  "height": 400,
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "ordinal"
+    },
+    "y": {
+      "field": "Fertility",
+      "type": "quantitative"
+    },
+    "color": {
+      "field": "Country",
+      "type": "nominal"
+    }
+  }
+}

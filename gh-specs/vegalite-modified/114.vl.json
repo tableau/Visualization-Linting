@@ -1,0 +1,116 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "./gh-specs/data/114.vl.json",
+    "format": {
+      "type": "json",
+      "property": "volumes",
+      "parse": {
+        "DataInformacao": "utc:'%d/%m/%Y'"
+      }
+    }
+  },
+  "vconcat": [
+    {
+      "width": 800,
+      "mark": "area",
+      "encoding": {
+        "x": {
+          "field": "DataInformacao",
+          "type": "temporal",
+          "scale": {
+            "domain": {
+              "selection": "brush1"
+            }
+          },
+          "axis": {
+            "title": "Mês/Ano",
+            "format": "%m/%Y"
+          }
+        },
+        "y": {
+          "field": "VolumePercentual",
+          "type": "quantitative",
+          "axis": {
+            "title": "Percentual da capacidade total"
+          }
+        }
+      }
+    },
+    {
+      "width": 800,
+      "height": 60,
+      "transform": [
+        {
+          "filter": {
+            "selection": "brush1"
+          }
+        }
+      ],
+      "mark": "rule",
+      "encoding": {
+        "y": {
+          "aggregate": "mean",
+          "field": "VolumePercentual",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          },
+          "axis": {
+            "title": "% médio"
+          }
+        },
+        "color": {
+          "value": "firebrick"
+        },
+        "size": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "width": 800,
+      "height": 60,
+      "mark": "area",
+      "selection": {
+        "brush1": {
+          "type": "interval",
+          "encodings": [
+            "x"
+          ],
+          "on": "[mousedown, window:mouseup] > window:mousemove!",
+          "translate": "[mousedown, window:mouseup] > window:mousemove!",
+          "zoom": "wheel!",
+          "mark": {
+            "fill": "#333",
+            "fillOpacity": 0.125,
+            "stroke": "white"
+          },
+          "resolve": "global"
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "DataInformacao",
+          "type": "temporal",
+          "axis": {
+            "title": "Ano",
+            "format": "%Y"
+          }
+        },
+        "y": {
+          "field": "VolumePercentual",
+          "type": "quantitative",
+          "axis": {
+            "title": "%",
+            "tickCount": 3,
+            "grid": false
+          }
+        }
+      }
+    }
+  ]
+}

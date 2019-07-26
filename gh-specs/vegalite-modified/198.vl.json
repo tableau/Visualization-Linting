@@ -1,0 +1,55 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "width": 600,
+  "height": 300,
+  "title": "",
+  "padding": 5,
+  "data": {
+    "url": "./gh-specs/data/198.vl.json"
+  },
+  "mark": {
+    "type": "line",
+    "style": "line"
+  },
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "timeUnit": "monthyear",
+      "axis": {
+        "grid": false,
+        "domainColor": "transparent",
+        "title": "Month",
+        "labelFontSize": 12,
+        "tickColor": "#b8b8bb",
+        "titleFontSize": 12,
+        "labelAngle": -45
+      }
+    },
+    "y": {
+      "aggregate": "mean",
+      "field": "temp_max",
+      "type": "quantitative",
+      "axis": {
+        "grid": false,
+        "domainColor": "transparent",
+        "title": "Average temperature",
+        "labelFontSize": 12,
+        "tickColor": "#b8b8bb",
+        "titleFontSize": 12
+      }
+    }
+  },
+  "config": {
+    "style": {
+      "line": {
+        "stroke": "#FFBB00",
+        "strokeWidth": 3,
+        "interpolate": "cardinal"
+      }
+    },
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}

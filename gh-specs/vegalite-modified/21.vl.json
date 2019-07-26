@@ -1,0 +1,240 @@
+{
+  "config": {
+    "view": {
+      "width": 400,
+      "height": 300
+    }
+  },
+  "vconcat": [
+    {
+      "hconcat": [
+        {
+          "mark": {
+            "type": "point",
+            "filled": true
+          },
+          "encoding": {
+            "color": {
+              "condition": {
+                "value": "darkblue",
+                "selection": "selector002"
+              },
+              "value": "lightgray"
+            },
+            "size": {
+              "value": 50
+            },
+            "tooltip": {
+              "type": "nominal",
+              "field": "mean_denom"
+            },
+            "x": {
+              "type": "quantitative",
+              "axis": {
+                "title": "Right Ascension"
+              },
+              "field": "mean_ra",
+              "scale": {
+                "zero": false
+              }
+            },
+            "y": {
+              "type": "quantitative",
+              "axis": {
+                "title": "Declination"
+              },
+              "field": "mean_dec",
+              "scale": {
+                "zero": false
+              }
+            }
+          },
+          "height": 300,
+          "selection": {
+            "selector002": {
+              "type": "single",
+              "empty": "none",
+              "fields": [
+                "number_mp"
+              ],
+              "on": "click",
+              "resolve": "global"
+            },
+            "selector003": {
+              "type": "interval",
+              "bind": "scales",
+              "encodings": [
+                "x",
+                "y"
+              ],
+              "on": "[mousedown, window:mouseup] > window:mousemove!",
+              "translate": "[mousedown, window:mouseup] > window:mousemove!",
+              "zoom": "wheel!",
+              "mark": {
+                "fill": "#333",
+                "fillOpacity": 0.125,
+                "stroke": "white"
+              },
+              "resolve": "global"
+            }
+          },
+          "transform": [
+            {
+              "filter": {
+                "selection": "selector001"
+              }
+            }
+          ],
+          "width": 500
+        },
+        {
+          "mark": "bar",
+          "encoding": {
+            "color": {
+              "condition": {
+                "value": "darkblue",
+                "selection": "selector001"
+              },
+              "value": "lightgrey"
+            },
+            "x": {
+              "type": "nominal",
+              "field": "cbin"
+            },
+            "y": {
+              "type": "quantitative",
+              "aggregate": "count"
+            }
+          },
+          "height": 300,
+          "selection": {
+            "selector001": {
+              "type": "interval",
+              "empty": "all",
+              "encodings": [
+                "x"
+              ],
+              "on": "[mousedown, window:mouseup] > window:mousemove!",
+              "translate": "[mousedown, window:mouseup] > window:mousemove!",
+              "zoom": "wheel!",
+              "mark": {
+                "fill": "#333",
+                "fillOpacity": 0.125,
+                "stroke": "white"
+              },
+              "resolve": "global"
+            }
+          },
+          "width": 300
+        }
+      ],
+      "data": {
+        "url": "https://epyc.astro.washington.edu/~dhuppenk/gaia_sso_test_data.json",
+        "format": {
+          "type": "json"
+        }
+      },
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "mean",
+              "field": "ra",
+              "as": "mean_ra"
+            },
+            {
+              "op": "mean",
+              "field": "dec",
+              "as": "mean_dec"
+            },
+            {
+              "op": "max",
+              "field": "denomination",
+              "as": "mean_denom"
+            },
+            {
+              "op": "mean",
+              "field": "counts",
+              "as": "mean_counts"
+            }
+          ],
+          "groupby": [
+            "number_mp"
+          ]
+        },
+        {
+          "bin": {
+            "maxbins": 60
+          },
+          "field": "mean_counts",
+          "as": "cbin"
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true
+      },
+      "encoding": {
+        "color": {
+          "value": "darkblue"
+        },
+        "x": {
+          "type": "quantitative",
+          "axis": {
+            "title": "Epoch [JD]"
+          },
+          "field": "epoch",
+          "scale": {
+            "zero": false
+          }
+        },
+        "y": {
+          "type": "quantitative",
+          "axis": {
+            "title": "G Magnitude"
+          },
+          "field": "g_mag",
+          "scale": {
+            "zero": false
+          }
+        }
+      },
+      "height": 200,
+      "selection": {
+        "selector004": {
+          "type": "interval",
+          "bind": "scales",
+          "encodings": [
+            "x"
+          ],
+          "on": "[mousedown, window:mouseup] > window:mousemove!",
+          "translate": "[mousedown, window:mouseup] > window:mousemove!",
+          "zoom": "wheel!",
+          "mark": {
+            "fill": "#333",
+            "fillOpacity": 0.125,
+            "stroke": "white"
+          },
+          "resolve": "global"
+        }
+      },
+      "transform": [
+        {
+          "filter": {
+            "selection": "selector002"
+          }
+        }
+      ],
+      "width": 800
+    }
+  ],
+  "data": {
+    "url": "./gh-specs/data/21.vl.json",
+    "format": {
+      "type": "json"
+    }
+  },
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.4.1.json"
+}

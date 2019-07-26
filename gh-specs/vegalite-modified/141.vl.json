@@ -1,0 +1,33 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.1.json",
+  "width": 700,
+  "height": 800,
+  "data": {
+    "url": "./gh-specs/data/141.vl.json",
+    "format": {
+      "type": "json",
+      "property": "rows"
+    }
+  },
+  "projection": {
+    "type": "albersUsa"
+  },
+  "mark": "point",
+  "encoding": {
+    "longitude": {
+      "field": "Longitude",
+      "type": "quantitative"
+    },
+    "latitude": {
+      "field": "Latitude",
+      "type": "quantitative"
+    },
+    "size": {
+      "value": 1
+    },
+    "color": {
+      "field": "qSpecies",
+      "type": "nominal"
+    }
+  }
+}

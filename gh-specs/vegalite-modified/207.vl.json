@@ -1,0 +1,43 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "width": 800,
+  "height": 450,
+  "data": {
+    "url": "./gh-specs/data/207.vl.json",
+    "format": {
+      "type": "json",
+      "property": "volumes"
+    }
+  },
+  "transform": [
+    {
+      "filter": {
+        "field": "DataInformacao",
+        "timeUnit": "year",
+        "range": [
+          2005,
+          2015
+        ]
+      }
+    }
+  ],
+  "mark": "line",
+  "encoding": {
+    "x": {
+      "field": "DataInformacao",
+      "type": "temporal",
+      "timeUnit": "yearmonth",
+      "axis": {
+        "title": "Data"
+      }
+    },
+    "y": {
+      "field": "Volume",
+      "type": "quantitative",
+      "aggregate": "mean",
+      "axis": {
+        "title": "Volume (em m³)"
+      }
+    }
+  }
+}

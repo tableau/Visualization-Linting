@@ -1,0 +1,52 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "./gh-specs/data/42.vl.json",
+    "format": {
+      "type": "json",
+      "property": "volumes",
+      "parse": {
+        "DataInformacao": "utc:'%d/%m/%Y'"
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "timeUnit": "year",
+          "field": "DataInformacao",
+          "type": "temporal",
+          "axis": {
+            "title": "Ano"
+          }
+        },
+        "y": {
+          "aggregate": "mean",
+          "field": "VolumePercentual",
+          "type": "quantitative",
+          "axis": {
+            "title": "Média"
+          }
+        }
+      }
+    },
+    {
+      "mark": "rule",
+      "encoding": {
+        "y": {
+          "aggregate": "mean",
+          "field": "VolumePercentual",
+          "type": "quantitative"
+        },
+        "color": {
+          "value": "red"
+        },
+        "size": {
+          "value": 2
+        }
+      }
+    }
+  ]
+}

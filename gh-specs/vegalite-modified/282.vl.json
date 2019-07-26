@@ -1,0 +1,34 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "./gh-specs/data/282.vl.json",
+    "format": {
+      "type": "json",
+      "property": "volumes",
+      "parse": {
+        "DataInformacao": "utc:'%d/%m/%Y'"
+      }
+    }
+  },
+  "mark": "bar",
+  "width": 900,
+  "height": 450,
+  "encoding": {
+    "x": {
+      "timeUnit": "year",
+      "field": "DataInformacao",
+      "type": "ordinal",
+      "axis": {
+        "title": ""
+      }
+    },
+    "y": {
+      "aggregate": "average",
+      "field": "VolumePercentual",
+      "type": "quantitative",
+      "axis": {
+        "title": "Percentual médio anual de água no açude de Boqueirão"
+      }
+    }
+  }
+}

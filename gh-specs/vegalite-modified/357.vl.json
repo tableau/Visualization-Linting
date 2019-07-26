@@ -1,0 +1,48 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "width": 500,
+  "height": 500,
+  "data": {
+    "url": "./gh-specs/data/357.vl.json",
+    "format": {
+      "type": "json",
+      "property": "rows"
+    }
+  },
+  "transform": [
+    {
+      "aggregate": [
+        {
+          "op": "count",
+          "field": "rowid",
+          "as": "total"
+        }
+      ],
+      "groupby": [
+        "SubjectRace",
+        "SubjectGender"
+      ]
+    }
+  ],
+  "mark": {
+    "type": "point",
+    "filled": true
+  },
+  "encoding": {
+    "x": {
+      "field": "SubjectRace",
+      "type": "nominal"
+    },
+    "y": {
+      "field": "SubjectGender",
+      "type": "nominal"
+    },
+    "size": {
+      "field": "total",
+      "type": "quantitative",
+      "scale": {
+        "type": "sqrt"
+      }
+    }
+  }
+}

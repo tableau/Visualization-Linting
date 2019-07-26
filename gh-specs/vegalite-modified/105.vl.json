@@ -1,0 +1,59 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "./gh-specs/data/105.vl.json",
+    "format": {
+      "type": "json"
+    }
+  },
+  "mark": {
+    "type": "bar",
+    "stroke": "black"
+  },
+  "transform": [
+    {
+      "filter": "datum._vgsid_ <= 25"
+    }
+  ],
+  "selection": {
+    "highlight": {
+      "type": "single",
+      "on": "mouseover",
+      "empty": "none"
+    },
+    "search": {
+      "bind": {
+        "input": "input"
+      },
+      "empty": "none",
+      "fields": [
+        "term"
+      ],
+      "type": "single"
+    }
+  },
+  "encoding": {
+    "color": {
+      "condition": {
+        "test": "indexof(lower(datum.cuisine), lower(search.term)) >= 0 || highlight._vgsid_ == datum._vgsid_",
+        "value": "SteelBlue"
+      },
+      "value": "LightGrey"
+    },
+    "y": {
+      "field": "cuisine",
+      "type": "ordinal",
+      "sort": {
+        "op": "argmax",
+        "field": "total"
+      },
+      "axis": {
+        "title": "Restaurants"
+      }
+    },
+    "x": {
+      "field": "total",
+      "type": "quantitative"
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "./gh-specs/data/194.vl.json"
+  },
+  "vconcat": [
+    {
+      "width": 1000,
+      "mark": "area",
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "scale": {
+            "domain": {
+              "selection": "brush"
+            }
+          },
+          "axis": {
+            "title": ""
+          }
+        },
+        "y": {
+          "field": "price",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "width": 1000,
+      "height": 60,
+      "mark": "area",
+      "selection": {
+        "brush": {
+          "type": "interval",
+          "encodings": [
+            "x"
+          ]
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "axis": {
+            "format": "%Y"
+          }
+        },
+        "y": {
+          "field": "price",
+          "type": "quantitative",
+          "axis": {
+            "tickCount": 3,
+            "grid": false
+          }
+        }
+      }
+    }
+  ]
+}

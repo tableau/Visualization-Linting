@@ -1,0 +1,35 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "./gh-specs/data/110.vl.json",
+    "format": {
+      "parse": {
+        "Date": "utc:'%Y-%m-%d'"
+      }
+    }
+  },
+  "mark": "line",
+  "width": 800,
+  "height": 350,
+  "encoding": {
+    "x": {
+      "field": "Date",
+      "axis": {
+        "title": "Time",
+        "format": "%Y"
+      },
+      "type": "temporal",
+      "timeUnit": "yearmonth"
+    },
+    "y": {
+      "field": "CO2",
+      "axis": {
+        "title": "CO2 concentration in ppm"
+      },
+      "type": "quantitative",
+      "scale": {
+        "zero": false
+      }
+    }
+  }
+}

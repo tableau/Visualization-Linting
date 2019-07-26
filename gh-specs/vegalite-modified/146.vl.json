@@ -1,0 +1,28 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "./gh-specs/data/146.vl.json",
+    "format": {
+      "type": "json",
+      "property": "volumes",
+      "parse": {
+        "DataInformacao": "utc:'%d/%m/%Y'"
+      }
+    }
+  },
+  "width": 800,
+  "height": 120,
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "timeUnit": "year",
+      "field": "DataInformacao",
+      "type": "ordinal"
+    },
+    "y": {
+      "aggregate": "count",
+      "field": "DataInformacao",
+      "type": "quantitative"
+    }
+  }
+}

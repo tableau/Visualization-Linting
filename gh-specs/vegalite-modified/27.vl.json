@@ -1,0 +1,97 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "description": "A boxplot across all the months",
+  "data": {
+    "url": "./gh-specs/data/27.vl.json"
+  },
+  "transform": [
+    {
+      "calculate": "parseInt(slice(datum.month,0,4))",
+      "as": "year"
+    },
+    {
+      "calculate": "parseInt(slice(datum.month,5,7))",
+      "as": "month"
+    },
+    {
+      "calculate": "monthAbbrevFormat(datum.month)",
+      "as": "month"
+    },
+    {
+      "filter": "datum.year <= 2016"
+    }
+  ],
+  "width": 600,
+  "height": 400,
+  "layer": [
+    {
+      "mark": "rule",
+      "encoding": {
+        "color": {
+          "value": "#aaa"
+        },
+        "x": {
+          "field": "month",
+          "type": "ordinal",
+          "axis": {
+            "title": "From 1983 to 2016"
+          }
+        },
+        "y": {
+          "field": "no_of_rainy_days",
+          "type": "quantitative",
+          "aggregate": "max",
+          "axis": {
+            "title": "Number of rainy days"
+          }
+        },
+        "y2": {
+          "field": "no_of_rainy_days",
+          "type": "quantitative",
+          "aggregate": "min"
+        }
+      }
+    },
+    {
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "field": "month",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "no_of_rainy_days",
+          "type": "quantitative",
+          "aggregate": "q3"
+        },
+        "y2": {
+          "field": "no_of_rainy_days",
+          "type": "quantitative",
+          "aggregate": "q1"
+        }
+      }
+    },
+    {
+      "mark": "tick",
+      "encoding": {
+        "color": {
+          "value": "#fff"
+        },
+        "x": {
+          "field": "month",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "no_of_rainy_days",
+          "type": "quantitative",
+          "aggregate": "median"
+        }
+      }
+    }
+  ],
+  "config": {
+    "scale": {
+      "bandPaddingInner": 0.3
+    }
+  }
+}

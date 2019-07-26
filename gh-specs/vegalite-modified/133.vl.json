@@ -1,0 +1,44 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "./gh-specs/data/133.vl.json"
+  },
+  "layer": [
+    {
+      "mark": "line",
+      "encoding": {
+        "x": {
+          "timeUnit": "month",
+          "field": "date",
+          "type": "temporal"
+        },
+        "y": {
+          "aggregate": "mean",
+          "field": "temp_min",
+          "type": "quantitative",
+          "axis": {
+            "orient": "left"
+          }
+        }
+      }
+    },
+    {
+      "mark": "line",
+      "encoding": {
+        "x": {
+          "timeUnit": "month",
+          "field": "date",
+          "type": "temporal"
+        },
+        "y": {
+          "aggregate": "mean",
+          "field": "temp_max",
+          "type": "quantitative",
+          "axis": {
+            "orient": "right"
+          }
+        }
+      }
+    }
+  ]
+}

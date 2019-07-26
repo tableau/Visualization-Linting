@@ -1,0 +1,127 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "./gh-specs/data/385.vl.json",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "width": 800,
+  "height": 400,
+  "layer": [
+    {
+      "mark": "line",
+      "encoding": {
+        "color": {
+          "type": "nominal",
+          "field": "category"
+        },
+        "x": {
+          "type": "quantitative",
+          "field": "x"
+        },
+        "y": {
+          "type": "quantitative",
+          "field": "y"
+        }
+      }
+    },
+    {
+      "mark": "point",
+      "encoding": {
+        "opacity": {
+          "value": 0
+        },
+        "x": {
+          "type": "quantitative",
+          "field": "x"
+        }
+      },
+      "selection": {
+        "tooltip": {
+          "type": "single",
+          "nearest": true,
+          "on": "mouseover",
+          "fields": [
+            "x"
+          ],
+          "empty": "none",
+          "resolve": "global"
+        }
+      }
+    },
+    {
+      "mark": "point",
+      "encoding": {
+        "color": {
+          "type": "nominal",
+          "field": "category"
+        },
+        "opacity": {
+          "condition": {
+            "selection": "tooltip",
+            "value": 1
+          },
+          "value": 0
+        },
+        "x": {
+          "type": "quantitative",
+          "field": "x"
+        },
+        "y": {
+          "type": "quantitative",
+          "field": "y"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "gray"
+      },
+      "encoding": {
+        "x": {
+          "type": "quantitative",
+          "field": "x"
+        }
+      },
+      "transform": [
+        {
+          "filter": {
+            "selection": "tooltip"
+          }
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 5,
+        "dy": -5
+      },
+      "encoding": {
+        "color": {
+          "type": "nominal",
+          "field": "category"
+        },
+        "text": {
+          "condition": {
+            "type": "quantitative",
+            "field": "y",
+            "selection": "tooltip"
+          },
+          "value": " "
+        },
+        "x": {
+          "type": "quantitative",
+          "field": "x"
+        },
+        "y": {
+          "type": "quantitative",
+          "field": "y"
+        }
+      }
+    }
+  ]
+}

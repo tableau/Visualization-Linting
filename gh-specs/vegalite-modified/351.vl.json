@@ -1,0 +1,73 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "description": "A simple bar chart with embedded data.",
+  "data": {
+    "url": "./gh-specs/data/351.vl.json"
+  },
+  "width": 480,
+  "height": 250,
+  "transform": [
+    {
+      "filter": "datum.change !== 0"
+    },
+    {
+      "calculate": "datum.change > 0",
+      "as": "sign"
+    }
+  ],
+  "layer": [
+    {
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "field": "change",
+          "type": "quantitative",
+          "axis": {
+            "title": "Rigs"
+          }
+        },
+        "y": {
+          "field": "formation",
+          "type": "ordinal",
+          "sort": null,
+          "axis": {
+            "title": null
+          }
+        },
+        "color": {
+          "field": "sign",
+          "type": "nominal",
+          "scale": {
+            "range": [
+              "brown",
+              "steelblue"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 3
+      },
+      "encoding": {
+        "x": {
+          "field": "change",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "formation",
+          "type": "ordinal"
+        },
+        "text": {
+          "field": "change",
+          "type": "quantitative"
+        }
+      }
+    }
+  ]
+}

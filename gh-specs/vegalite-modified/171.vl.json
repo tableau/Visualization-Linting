@@ -1,0 +1,62 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "data": {
+    "url": "./gh-specs/data/171.vl.json",
+    "format": {
+      "type": "json"
+    }
+  },
+  "transform": [
+    {
+      "filter": {
+        "field": "_vgsid_",
+        "range": [
+          null,
+          25
+        ]
+      }
+    }
+  ],
+  "selection": {
+    "search": {
+      "bind": {
+        "input": "input"
+      },
+      "empty": "none",
+      "fields": [
+        "term"
+      ],
+      "type": "single"
+    },
+    "highlight": {
+      "type": "single",
+      "on": "mouseover",
+      "empty": "none"
+    }
+  },
+  "mark": {
+    "type": "bar",
+    "stroke": "Black"
+  },
+  "encoding": {
+    "color": {
+      "condition": {
+        "test": "indexof(lower(datum.cuisine), lower(search.term))>=0 && (datum.total > 10000) ",
+        "value": "SteelBlue"
+      },
+      "value": "LightGrey"
+    },
+    "y": {
+      "field": "cuisine",
+      "type": "ordinal",
+      "sort": {
+        "field": "total",
+        "op": "argmax"
+      }
+    },
+    "x": {
+      "field": "total",
+      "type": "quantitative"
+    }
+  }
+}

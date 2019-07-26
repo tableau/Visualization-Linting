@@ -1,0 +1,81 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "title": "Visualização retirada de dados da AESA/ANA",
+  "data": {
+    "url": "./gh-specs/data/358.vl.json",
+    "format": {
+      "type": "json",
+      "property": "volumes",
+      "parse": {
+        "DataInformacao": "utc:'%d/%m/%Y'"
+      }
+    }
+  },
+  "vconcat": [
+    {
+      "width": 800,
+      "height": 400,
+      "mark": "area",
+      "encoding": {
+        "x": {
+          "timeUnit": "yearmonthdate",
+          "field": "DataInformacao",
+          "type": "temporal",
+          "scale": {
+            "domain": {
+              "selection": "brush"
+            }
+          },
+          "axis": {
+            "title": "Tempo"
+          }
+        },
+        "y": {
+          "field": "Volume",
+          "axis": {
+            "title": "Volume"
+          },
+          "type": "quantitative"
+        },
+        "color": {
+          "type": "nominal",
+          "field": "Fonte"
+        }
+      }
+    },
+    {
+      "width": 800,
+      "height": 100,
+      "mark": "area",
+      "selection": {
+        "brush": {
+          "type": "interval",
+          "encodings": [
+            "x"
+          ]
+        }
+      },
+      "encoding": {
+        "x": {
+          "timeUnit": "yearmonthdate",
+          "field": "DataInformacao",
+          "type": "temporal",
+          "axis": {
+            "title": "Tempo"
+          }
+        },
+        "y": {
+          "field": "VolumePercentual",
+          "type": "quantitative",
+          "axis": {
+            "title": "Volume (%)"
+          }
+        },
+        "color": {
+          "type": "nominal",
+          "field": "Fonte"
+        }
+      }
+    }
+  ]
+}

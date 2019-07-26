@@ -1,0 +1,120 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "description": "Gapminder bubble plot",
+  "height": 300,
+  "width": 600,
+  "title": {
+    "text": "Relationship between life expectancy and income, 2017",
+    "color": "#757575",
+    "fontSize": 16,
+    "offset": 10
+  },
+  "data": {
+    "url": "./gh-specs/data/175.vl.json"
+  },
+  "mark": {
+    "type": "circle",
+    "opacity": 0.8,
+    "stroke": "#ffffff",
+    "strokeWidth": 1
+  },
+  "encoding": {
+    "y": {
+      "field": "lifeExp",
+      "type": "quantitative",
+      "scale": {
+        "zero": false
+      },
+      "axis": {
+        "title": "Life expectancy, years",
+        "titleColor": "#757575",
+        "labelColor": "#757575",
+        "labelFontWeight": "bold"
+      }
+    },
+    "x": {
+      "field": "gdpPercap",
+      "type": "quantitative",
+      "scale": {
+        "type": "log",
+        "domain": [
+          1,
+          100000
+        ]
+      },
+      "axis": {
+        "grid": false,
+        "title": "Income per person, $/year (GDP/capita)",
+        "titleColor": "#757575",
+        "titlePadding": 10,
+        "format": "$3d",
+        "labelColor": "#757575",
+        "labelFontWeight": "bold"
+      }
+    },
+    "size": {
+      "field": "pop",
+      "type": "quantitative",
+      "scale": {
+        "range": [
+          0,
+          5000
+        ]
+      },
+      "legend": false
+    },
+    "color": {
+      "field": "region",
+      "type": "nominal",
+      "scale": {
+        "range": [
+          "#77DFF7",
+          "#7FEB00",
+          "#FF5872",
+          "#FFE700"
+        ]
+      },
+      "legend": false
+    },
+    "tooltip": [
+      {
+        "field": "country",
+        "type": "nominal",
+        "title": "Country"
+      },
+      {
+        "field": "region",
+        "type": "nominal",
+        "title": "Region"
+      },
+      {
+        "field": "lifeExp",
+        "type": "quantitative",
+        "title": "Life expectancy"
+      },
+      {
+        "field": "gdpPercap",
+        "type": "quantitative",
+        "title": "Income",
+        "format": "$,.0f"
+      },
+      {
+        "field": "pop",
+        "type": "quantitative",
+        "title": "Population",
+        "format": ",.0f"
+      }
+    ]
+  },
+  "config": {
+    "axis": {
+      "labelFont": "Roboto",
+      "grid": false
+    },
+    "style": {
+      "cell": {
+        "stroke": "transparent"
+      }
+    }
+  }
+}

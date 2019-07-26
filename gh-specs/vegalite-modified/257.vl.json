@@ -1,0 +1,66 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.0.json",
+  "title": "Fremont Bridge Daily Bike Crossings",
+  "data": {
+    "url": "./gh-specs/data/257.vl.json"
+  },
+  "vconcat": [
+    {
+      "width": 800,
+      "mark": "line",
+      "encoding": {
+        "x": {
+          "field": "Date",
+          "type": "temporal",
+          "scale": {
+            "domain": {
+              "selection": "brush"
+            }
+          },
+          "axis": {
+            "title": ""
+          }
+        },
+        "y": {
+          "field": "Daily Crossings",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "Side",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "width": 800,
+      "height": 60,
+      "mark": "line",
+      "selection": {
+        "brush": {
+          "type": "interval",
+          "encodings": [
+            "x"
+          ]
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "Date",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "Daily Crossings",
+          "type": "quantitative",
+          "axis": {
+            "tickCount": 3,
+            "grid": false
+          }
+        },
+        "color": {
+          "field": "Side",
+          "type": "nominal"
+        }
+      }
+    }
+  ]
+}

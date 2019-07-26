@@ -37,6 +37,7 @@
     "canvas": "^2.5.0",
     "datalib": "^1.9.2",
     "hoopoe": "^1.0.0",
+    "node-fetch": "^2.6.0",
     "outliers": "^0.0.3",
     "pixelmatch": "^5.0.2",
     "vega": "^5.4.0",

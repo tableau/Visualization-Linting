@@ -1,0 +1,60 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "description": "A scatterplot showing average miles per gallons for selection.",
+  "data": {
+    "url": "./gh-specs/data/230.vl.json"
+  },
+  "width": 400,
+  "height": 400,
+  "layer": [
+    {
+      "selection": {
+        "pts": {
+          "type": "interval"
+        }
+      },
+      "mark": "circle",
+      "encoding": {
+        "x": {
+          "field": "Horsepower",
+          "type": "Q"
+        },
+        "y": {
+          "field": "Miles_per_Gallon",
+          "type": "Q"
+        },
+        "color": {
+          "condition": {
+            "selection": "pts",
+            "field": "Origin",
+            "type": "nominal"
+          },
+          "value": "grey"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "selection": "pts"
+          }
+        }
+      ],
+      "mark": "rule",
+      "encoding": {
+        "y": {
+          "field": "Miles_per_Gallon",
+          "type": "Q",
+          "aggregate": "mean"
+        },
+        "size": {
+          "value": 3
+        },
+        "color": {
+          "value": "red"
+        }
+      }
+    }
+  ]
+}

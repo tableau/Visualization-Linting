@@ -1,0 +1,53 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "config": {
+    "cell": {
+      "width": 700,
+      "height": 300
+    },
+    "mark": {
+      "color": "#066CD2",
+      "font": "Arial"
+    },
+    "axis": {
+      "labelFont": "Input Mono Condensed",
+      "titleFont": "Input Mono Condensed"
+    },
+    "legend": {
+      "labelFont": "Input Mono Condensed",
+      "titleFont": "Input Mono Condensed"
+    }
+  },
+  "description": "Google's stock price over time.",
+  "data": {
+    "url": "./gh-specs/data/35.vl.json"
+  },
+  "mark": "line",
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "axis": {
+        "format": "%Y",
+        "labelAngle": 0
+      }
+    },
+    "y": {
+      "field": "price",
+      "type": "quantitative"
+    },
+    "color": {
+      "field": "symbol",
+      "type": "nominal",
+      "scale": {
+        "range": [
+          "#066cd2",
+          "#16afa1",
+          "#7a52dd",
+          "#f77900",
+          "#ce002f"
+        ]
+      }
+    }
+  }
+}

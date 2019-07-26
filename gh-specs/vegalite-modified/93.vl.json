@@ -1,0 +1,107 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "./gh-specs/data/93.vl.json",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "width": 800,
+  "height": 400,
+  "layer": [
+    {
+      "encoding": {
+        "x": {
+          "field": "Station",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "Delay",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "Train",
+          "type": "nominal"
+        }
+      },
+      "layer": [
+        {
+          "mark": "line"
+        },
+        {
+          "selection": {
+            "tooltip": {
+              "type": "single",
+              "nearest": true,
+              "on": "mouseover",
+              "encodings": [
+                "x"
+              ],
+              "empty": "none",
+              "resolve": "global"
+            }
+          },
+          "mark": "point",
+          "encoding": {
+            "opacity": {
+              "condition": {
+                "selection": "tooltip",
+                "value": 1
+              },
+              "value": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "selection": "tooltip"
+          }
+        }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "rule",
+            "color": "gray"
+          },
+          "encoding": {
+            "x": {
+              "type": "ordinal",
+              "field": "Station"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 5,
+            "dy": -5
+          },
+          "encoding": {
+            "text": {
+              "type": "quantitative",
+              "field": "Delay"
+            },
+            "color": {
+              "type": "nominal",
+              "field": "Train"
+            },
+            "x": {
+              "type": "ordinal",
+              "field": "Station"
+            },
+            "y": {
+              "type": "quantitative",
+              "field": "Delay"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

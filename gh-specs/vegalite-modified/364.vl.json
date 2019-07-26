@@ -1,0 +1,94 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "description": "A dashboard with cross-highlighting.",
+  "data": {
+    "url": "./gh-specs/data/364.vl.json"
+  },
+  "vconcat": [
+    {
+      "layer": [
+        {
+          "transform": [
+            {
+              "filter": {
+                "selection": "pts"
+              }
+            }
+          ],
+          "mark": "point",
+          "encoding": {
+            "x": {
+              "bin": {
+                "maxbins": 10
+              },
+              "field": "IMDB_Rating",
+              "type": "quantitative"
+            },
+            "y": {
+              "bin": {
+                "maxbins": 10
+              },
+              "field": "Rotten_Tomatoes_Rating",
+              "type": "quantitative"
+            },
+            "size": {
+              "aggregate": "count",
+              "type": "quantitative",
+              "legend": {
+                "title": "In Selected Category"
+              }
+            },
+            "color": {
+              "value": "#666"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "mark": "rect",
+      "selection": {
+        "pts": {
+          "type": "interval"
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "Major_Genre",
+          "type": "nominal",
+          "axis": {
+            "labelAngle": -40
+          }
+        },
+        "y": {
+          "bin": {
+            "maxbins": 10
+          },
+          "field": "Rotten_Tomatoes_Rating",
+          "type": "quantitative"
+        },
+        "color": {
+          "condition": {
+            "selection": "pts",
+            "field": "Rotten_Tomatoes_Rating",
+            "type": "quantitative"
+          },
+          "value": "grey"
+        }
+      }
+    }
+  ],
+  "resolve": {
+    "legend": {
+      "color": "independent",
+      "size": "independent"
+    }
+  },
+  "config": {
+    "range": {
+      "heatmap": {
+        "scheme": "greenblue"
+      }
+    }
+  }
+}

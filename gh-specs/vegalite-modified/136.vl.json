@@ -1,0 +1,127 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "description": "tentacle lines",
+  "width": 200,
+  "height": 200,
+  "data": {
+    "url": "./gh-specs/data/136.vl.json"
+  },
+  "transform": [
+    {
+      "calculate": "toBoolean('Mar 1 2010' === datum.date)",
+      "as": "is_max_date"
+    }
+  ],
+  "layer": [
+    {
+      "mark": "line",
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "axis": {
+            "format": "%Y",
+            "grid": false,
+            "domain": false,
+            "title": "",
+            "tickCount": 2,
+            "ticks": false,
+            "labelPadding": 10,
+            "labelAngle": 0
+          }
+        },
+        "y": {
+          "field": "price",
+          "type": "quantitative",
+          "axis": {
+            "grid": false,
+            "ticks": false,
+            "labelPadding": 5
+          }
+        },
+        "color": {
+          "field": "symbol",
+          "type": "nominal",
+          "legend": null
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "role": "myvarlabel"
+      },
+      "transform": [
+        {
+          "filter": "datum.is_max_date === true"
+        },
+        {
+          "calculate": "datum.symbol + ' ' + toString(datum.price)",
+          "as": "symbol_price"
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "axis": {
+            "format": "%Y",
+            "grid": false
+          }
+        },
+        "y": {
+          "field": "price",
+          "type": "quantitative",
+          "axis": {
+            "grid": false
+          }
+        },
+        "text": {
+          "field": "symbol_price",
+          "type": "nominal"
+        },
+        "color": {
+          "field": "symbol",
+          "type": "nominal",
+          "legend": null
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "role": "myrule"
+      },
+      "encoding": {
+        "y": {
+          "aggregate": "mean",
+          "field": "price",
+          "type": "quantitative",
+          "axis": {
+            "grid": false,
+            "title": ""
+          }
+        },
+        "color": {
+          "value": "gray"
+        }
+      }
+    }
+  ],
+  "config": {
+    "cell": {
+      "strokeWidth": 0
+    },
+    "myrule": {
+      "strokeDash": [
+        3,
+        3
+      ]
+    },
+    "myvarlabel": {
+      "dx": 5,
+      "baseline": "middle",
+      "align": "left"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.0.json",
+  "description": "Tick of Departure delays",
+  "data": {
+    "url": "./gh-specs/data/181.vl.json"
+  },
+  "mark": "tick",
+  "encoding": {
+    "x": {
+      "field": "DeptDelay",
+      "type": "quantitative"
+    }
+  }
+}

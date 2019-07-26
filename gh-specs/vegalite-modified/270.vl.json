@@ -1,0 +1,111 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "description": "Dot-dash plot à la Edward Tufte",
+  "data": {
+    "url": "./gh-specs/data/270.vl.json"
+  },
+  "hconcat": [
+    {
+      "mark": "tick",
+      "description": "y-axis dash plot",
+      "encoding": {
+        "y": {
+          "field": "Horsepower",
+          "type": "quantitative",
+          "axis": {
+            "labels": false,
+            "domain": false,
+            "ticks": false
+          }
+        },
+        "x": {
+          "field": "Origin",
+          "type": "nominal",
+          "axis": {
+            "title": "",
+            "labels": false,
+            "domain": false,
+            "ticks": false
+          }
+        },
+        "color": {
+          "field": "Origin",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "vconcat": [
+        {
+          "mark": "point",
+          "description": "dot plot",
+          "encoding": {
+            "x": {
+              "field": "Miles_per_Gallon",
+              "type": "quantitative",
+              "axis": {
+                "title": ""
+              }
+            },
+            "y": {
+              "field": "Horsepower",
+              "type": "quantitative",
+              "axis": {
+                "title": ""
+              }
+            },
+            "color": {
+              "field": "Origin",
+              "type": "nominal"
+            }
+          }
+        },
+        {
+          "mark": "tick",
+          "description": "x-axis dash plot",
+          "encoding": {
+            "x": {
+              "field": "Miles_per_Gallon",
+              "type": "quantitative",
+              "axis": {
+                "labels": false,
+                "domain": false,
+                "ticks": false
+              }
+            },
+            "y": {
+              "field": "Origin",
+              "type": "nominal",
+              "axis": {
+                "title": "",
+                "labels": false,
+                "domain": false,
+                "ticks": false
+              }
+            },
+            "color": {
+              "field": "Origin",
+              "type": "nominal"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "view": {
+      "strokeWidth": 0
+    },
+    "axis": {
+      "gridWidth": 0.3,
+      "domainColor": "lightgray",
+      "tickColor": "lightgray"
+    },
+    "axisY": {
+      "titlePadding": -15
+    },
+    "axisX": {
+      "titlePadding": 10
+    }
+  }
+}

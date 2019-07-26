@@ -1,0 +1,65 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "description": "A simple bar chart with embedded data.",
+  "data": {
+    "url": "./gh-specs/data/130.vl.json",
+    "format": {
+      "type": "json",
+      "property": "volumes",
+      "parse": {
+        "DataInformacao": "utc:'%d/%m/%Y'"
+      }
+    }
+  },
+  "vconcat": [
+    {
+      "width": 480,
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "timeUnit": "yearmonth",
+          "field": "DataInformacao",
+          "type": "ordinal",
+          "scale": {
+            "domain": {
+              "selection": "brush"
+            }
+          }
+        },
+        "y": {
+          "field": "VolumePercentual",
+          "type": "quantitative",
+          "aggregate": "max"
+        }
+      }
+    },
+    {
+      "width": 480,
+      "height": 60,
+      "mark": "bar",
+      "selection": {
+        "brush": {
+          "type": "interval",
+          "encodings": [
+            "x"
+          ]
+        }
+      },
+      "encoding": {
+        "x": {
+          "timeUnit": "yearmonth",
+          "field": "DataInformacao",
+          "type": "ordinal",
+          "axis": {
+            "format": "%Y"
+          }
+        },
+        "y": {
+          "field": "VolumePercentual",
+          "type": "quantitative",
+          "aggregate": "max"
+        }
+      }
+    }
+  ]
+}

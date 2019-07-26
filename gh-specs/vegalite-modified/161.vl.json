@@ -1,0 +1,177 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "./gh-specs/data/161.vl.json",
+    "format": {
+      "type": "json",
+      "property": "volumes",
+      "parse": {
+        "DataInformacao": "utc:%d/%m/%Y"
+      }
+    }
+  },
+  "vconcat": [
+    {
+      "transform": [
+        {
+          "filter": {
+            "timeUnit": "year",
+            "field": "DataInformacao",
+            "range": [
+              2008,
+              2012
+            ]
+          }
+        }
+      ],
+      "width": 800,
+      "mark": "area",
+      "encoding": {
+        "x": {
+          "field": "DataInformacao",
+          "type": "temporal",
+          "scale": {
+            "domain": {
+              "selection": "brush1"
+            }
+          },
+          "axis": {
+            "title": "Data"
+          }
+        },
+        "y": {
+          "field": "Volume",
+          "type": "quantitative",
+          "axis": {
+            "title": "Volume Percentual"
+          }
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "timeUnit": "year",
+            "field": "DataInformacao",
+            "range": [
+              2008,
+              2012
+            ]
+          }
+        }
+      ],
+      "width": 800,
+      "height": 60,
+      "mark": "line",
+      "selection": {
+        "brush1": {
+          "type": "interval",
+          "encodings": [
+            "x"
+          ]
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "DataInformacao",
+          "type": "temporal",
+          "axis": {
+            "format": "%Y",
+            "title": "Data"
+          }
+        },
+        "y": {
+          "field": "VolumePercentual",
+          "type": "quantitative",
+          "axis": {
+            "tickCount": 3,
+            "grid": false,
+            "title": "Volume Percentual"
+          }
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "timeUnit": "year",
+            "field": "DataInformacao",
+            "range": [
+              2013,
+              2017
+            ]
+          }
+        }
+      ],
+      "width": 800,
+      "mark": "area",
+      "encoding": {
+        "x": {
+          "field": "DataInformacao",
+          "type": "temporal",
+          "scale": {
+            "domain": {
+              "selection": "brush2"
+            }
+          },
+          "axis": {
+            "title": "Data"
+          }
+        },
+        "y": {
+          "field": "Volume",
+          "type": "quantitative",
+          "axis": {
+            "title": "Volume Percentual"
+          }
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "timeUnit": "year",
+            "field": "DataInformacao",
+            "range": [
+              2013,
+              2017
+            ]
+          }
+        }
+      ],
+      "width": 800,
+      "height": 60,
+      "mark": "line",
+      "selection": {
+        "brush2": {
+          "type": "interval",
+          "encodings": [
+            "x"
+          ]
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "DataInformacao",
+          "type": "temporal",
+          "axis": {
+            "format": "%Y",
+            "title": "Data"
+          }
+        },
+        "y": {
+          "field": "VolumePercentual",
+          "type": "quantitative",
+          "axis": {
+            "tickCount": 3,
+            "grid": false,
+            "title": "Volume Percentual"
+          }
+        }
+      }
+    }
+  ]
+}

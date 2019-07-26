@@ -1,0 +1,39 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "./gh-specs/data/50.vl.json",
+    "format": {
+      "property": "downloads"
+    }
+  },
+  "title": "NPM Downloads for Vega per Month",
+  "width": 600,
+  "height": 260,
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "timeUnit": "utcyearmonth",
+      "field": "day",
+      "type": "ordinal",
+      "axis": {
+        "title": null,
+        "labelFlush": false
+      }
+    },
+    "y": {
+      "field": "downloads",
+      "type": "quantitative",
+      "axis": {
+        "title": "Monthly Downloads"
+      },
+      "aggregate": "sum"
+    },
+    "opacity": {
+      "condition": {
+        "test": "year(datum.utcyearmonth_day) == year(now()) && month(datum.utcyearmonth_day) == month(now())",
+        "value": 0.5
+      },
+      "value": 1
+    }
+  }
+}

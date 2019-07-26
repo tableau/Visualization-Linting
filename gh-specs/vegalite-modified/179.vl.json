@@ -1,0 +1,21 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.0.json",
+  "description": "Histogram of Arrival delays",
+  "data": {
+    "url": "./gh-specs/data/179.vl.json"
+  },
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "ArrDelay",
+      "bin": {
+        "maxbins": 20
+      },
+      "type": "quantitative"
+    },
+    "y": {
+      "aggregate": "count",
+      "type": "quantitative"
+    }
+  }
+}

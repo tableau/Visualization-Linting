@@ -1,0 +1,50 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "description": "Stock prices of four large companies as a small multiples of area charts.",
+  "width": 1000,
+  "height": 80,
+  "data": {
+    "url": "./gh-specs/data/54.vl.json",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "date": "date"
+      }
+    }
+  },
+  "title": {
+    "text": "Average daily discharge in m3/s for each station based on last ~30 years"
+  },
+  "mark": "area",
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "axis": {
+        "format": "%B",
+        "title": "",
+        "grid": false
+      }
+    },
+    "y": {
+      "field": "value",
+      "type": "quantitative",
+      "axis": {
+        "title": "",
+        "grid": true
+      }
+    },
+    "color": {
+      "field": "symbol",
+      "type": "nominal",
+      "legend": null
+    },
+    "row": {
+      "field": "symbol",
+      "type": "nominal",
+      "header": {
+        "title": "Discharge (m3/s)"
+      }
+    }
+  }
+}

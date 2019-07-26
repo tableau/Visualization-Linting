@@ -1,0 +1,74 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "background": "#edf1f7",
+  "description": "Google's stock price over time.",
+  "data": {
+    "url": "./gh-specs/data/246.vl.json"
+  },
+  "width": 700,
+  "height": 400,
+  "layer": [
+    {
+      "selection": {
+        "year": {
+          "type": "single",
+          "encodings": [
+            "x"
+          ],
+          "init": {
+            "forecastYear": 2016
+          },
+          "bind": {
+            "forecastYear": {
+              "input": "range",
+              "min": 1980,
+              "max": 2016,
+              "step": 1
+            }
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.budgetYear <= year.forecastYear && datum.forecastYear == datum.budgetYear - 1"
+        }
+      ],
+      "mark": "line",
+      "encoding": {
+        "x": {
+          "field": "forecastYear",
+          "type": "quantitative",
+          "axis": {
+            "gridOpacity": 0.5
+          },
+          "scale": {
+            "domain": [
+              1982,
+              2018
+            ]
+          }
+        },
+        "y": {
+          "field": "value",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              -2,
+              1
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mark": "text",
+      "encoding": {
+        "text": {
+          "aggregate": "count",
+          "type": "quantitative"
+        }
+      }
+    }
+  ]
+}
