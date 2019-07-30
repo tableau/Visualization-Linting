@@ -135,6 +135,11 @@ class App extends React.Component {
         <LogoHeader />
         <ControlHeader
           buildChart={() => this.renderSpec(currentSpec)}
+          cleanUpCode={() => {
+            this.setState({
+              currentCode: JSON.stringify(currentSpec, null, 2)
+            });
+          }}
           executeSpec={() => {
             this.renderSpec(currentSpec);
             this.lintSpec(currentSpec);

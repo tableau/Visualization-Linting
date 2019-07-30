@@ -6,7 +6,7 @@ import Select from 'react-select';
 
 export default class ControlHeader extends React.PureComponent {
   render() {
-    const {executeSpec, buildChart, changeSpec} = this.props;
+    const {executeSpec, buildChart, changeSpec, cleanUpCode} = this.props;
     return (<div className="flex gray-background shadow z-10 header">
       <div className="select-container">
         <Select
@@ -19,6 +19,9 @@ export default class ControlHeader extends React.PureComponent {
           value="TEMPLATES"/>
       </div>
       <div className="flex">
+        <div
+          onClick={cleanUpCode}
+          className="button">Clean Up JSON</div>
         <div
           onClick={buildChart}
           className="button">Just Build Chart</div>
