@@ -1,8 +1,1 @@
-{
-  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-  "data": {
-    "url": "./gh-specs/data/11.vl.json"
-  },
-  "mark": "point",
-  "encoding": {}
-}
+{"$schema":"https://vega.github.io/schema/vega-lite/v2.json","data":{"url":"data/seattle-weather.csv"},"mark":"point","encoding":{}}

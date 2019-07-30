@@ -4,7 +4,7 @@ export default class LogoHeader extends React.Component {
   render() {
     return (<div className="flex black-background shadow z-100 header">
       <h3>
-        <span className="bold">PRESTIGE</span>
+        <span className="bold">vislint-vegalite-data</span>
         <span>: Metamorphic VegaLite Analyzer</span>
       </h3>
       <div>
