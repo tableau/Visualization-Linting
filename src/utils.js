@@ -44,7 +44,7 @@ export function generateSeededRandom(baseSeed = 2) {
  * Shuffles array in place.
  * @param {Array} a items An array containing the items.
  */
-export function shuffle(a, random = generateSeededRandom()) {
+export function shuffle(a) {
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     const x = a[i];
@@ -71,7 +71,8 @@ export function generateVegaRendering(spec, mode = 'raster') {
       .then(x => resolve(isSVG ? x : x.toDataURL()))
       .catch(e => {
         /* eslint-disable no-console */
-        console.error(e);
+        console.error(e)
+        reject(e);
       /* eslint-disable no-console */
       });
   });
@@ -132,7 +133,6 @@ const toBuffer = img =>
 /* eslint-enable */
 
 export function concatImages(images) {
-  console.log('hi!')
   const pngs = images.map(buff => PNG.sync.read(toBuffer(buff)));
   const totalWidth = pngs.reduce((acc, {width}) => width + acc, 0);
   const maxHeight = pngs.reduce((acc, {height}) => Math.max(height, acc), 0);
@@ -152,17 +152,44 @@ export function concatImages(images) {
     }
     widthOffset += 4 * width;
   });
-  return `data:image/png;base64,${PNG.sync.write(outputImage).toString('base64')}`;
+  return {
+    data: `data:image/png;base64,${PNG.sync.write(outputImage).toString('base64')}`,
+    dims: {height: maxHeight, width: totalWidth}
+  };
 }
 
+/**
+ * Make an image have particular dimensions, will crop if less, will fill with white if empty
+ */
+export function padImageToSize(png, padHeight, padWidth) {
+  /* eslint-disable max-depth */
+  const outputImage = new PNG({height: padHeight, width: padWidth});
+  for (let y = 0; y < padHeight; y++) {
+    for (let x = 0; x < padWidth; x++) {
+      const idx = 4 * (padWidth * y + x);
+      if (x < png.width) {
+        for (let color = 0; color < 4; color++) {
+          outputImage.data[idx + color] = png.data[idx + color];
+        }
+      }
+    }
+  }
+  /* eslint-enable max-depth */
+  return outputImage;
+}
+
+/**
+ * Create a pixelmatch based difference between two input data streams
+ */
 export function buildPixelDiff(oldRendering, newRendering) {
   const img2 = PNG.sync.read(toBuffer(oldRendering));
   const img1 = PNG.sync.read(toBuffer(newRendering));
-  const {width, height} = img1;
+  const width = Math.max(img1.width, img2.width);
+  const height = Math.max(img1.height, img2.height);
   const diff = new PNG({width, height});
   const delta = pixelmatch(
-    img1.data,
-    img2.data,
+    padImageToSize(img1, height, width).data,
+    padImageToSize(img2, height, width).data,
     diff.data,
     width,
     height,

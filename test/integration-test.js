@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import tape from 'tape';
 import {lint} from '../src';
-import {executePromisesInSeries, getFile} from 'hoopoe';
+import {executePromisesInSeries, getFile, writeFile} from 'hoopoe';
 import {CRASH, SPEC_NOT_SUPPORTED, OK} from '../src/codes';
 import {shamefulDeepCopy} from '../src/utils';
 
@@ -66,14 +66,30 @@ function integrationTest(directory, dirPresent) {
     console.table(summary);
     console.log(`Crashed specs: ${codeCounts[CRASH]}`);
     console.log(JSON.stringify(resultGroups, null, 2));
-    return summary;
+    return {summary, resultGroups};
   });
 }
 
+const SUITES = {
+  GH_EXAMPLES: {
+    index: './gh-specs/gh-specs-index.json',
+    fileNameAppend: fileName => `./gh-specs/vegalite-modified/${fileName}`,
+    recordedKey: 'gh-specs'
+  },
+  VEGALITE_EXAMPLES: {
+    index: './example-specs/examples-index.json',
+    fileNameAppend: fileName => `./example-specs/vegalite/${fileName}`,
+    recordedKey: 'example-specs'
+  }
+};
 tape('INTEGRATION TEST', t => {
-  integrationTest('./example-specs/examples-index.json', fileName => `./example-specs/vegalite/${fileName}`)
-  // integrationTest('./gh-specs/gh-specs-index.json', fileName => `./gh-specs/vegalite-modified/${fileName}`)
-    .then(summary => {
+  const target = SUITES.GH_EXAMPLES;
+  integrationTest(target.index, target.fileNameAppend)
+    .then(({summary, resultGroups}) => {
+      getFile('./test/integration-task-log.json').then(d => JSON.parse(d)).then(d => {
+        d[target.recordedKey] = resultGroups;
+        writeFile('./test/integration-task-log.json', JSON.stringify(d, null, 2));
+      });
       const expectedSummary = [{code: SPEC_NOT_SUPPORTED, count: 154}, {code: OK, count: 248}];
       t.deepEqual(summary, expectedSummary, 'should find the expected integration test run');
       t.end();

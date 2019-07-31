@@ -25,12 +25,12 @@ app.post('/get-rendering', (req, res) => {
   // TODO add query param (or something) to control svg/png rendering
   console.log('generate rendering');
   const specWithDefaults = {
-    width: 200,
-    height: 200,
-    autosize: {
-      type: 'fit',
-      contains: 'padding'
-    },
+    // width: 200,
+    // height: 200,
+    // autosize: {
+    //   type: 'fit',
+    //   contains: 'padding'
+    // },
     ...req.body
   };
   generateVegaRendering(sanitizeDatasetReference(specWithDefaults), 'svg')

@@ -210,7 +210,8 @@ export function randomizeColumns(data, x, y) {
 // randomize relationship between two columns
 // keeps x fixed
 export function partiallyDropColumn(data, x, fraction) {
-  const targets = shuffle(data.map((_, idx) => idx)).slice(Math.floor(data.length * fraction));
+  const numToDelete = Math.round(data.length * fraction);
+  const targets = shuffle(data.map((_, idx) => idx)).slice(0, numToDelete);
   for (let i = 0; i < targets.length; i++) {
     data[i][x] = null;
   }

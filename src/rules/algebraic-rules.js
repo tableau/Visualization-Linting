@@ -156,9 +156,14 @@ const destroyVariance = ['x', 'y'].map(name => ({
     const {aggregateOutputPairs, tailToStartMap, inputFieldName} = prepProv(dataset, spec, view, name);
     // set each corresponding value in the original collection to aggregate value
     const data = clone(dataset);
+    const aggType = spec.encoding[name].aggregate;
     Object.entries(aggregateOutputPairs).forEach(([terminalKey, aggValue]) => {
       (tailToStartMap[terminalKey] || []).forEach(startKey => {
-        data[startKey][inputFieldName] = aggValue;
+        if (aggType === 'sum') {
+          data[startKey][inputFieldName] = aggValue / tailToStartMap[terminalKey].length;
+        } else {
+          data[startKey][inputFieldName] = aggValue;
+        }
       });
     });
 
@@ -166,6 +171,9 @@ const destroyVariance = ['x', 'y'].map(name => ({
   },
   evaluator: expectSame,
   filter: (spec, data, view) => {
+    if (data.length === 0) {
+      return false;
+    }
     if (spec.encoding && (!spec.encoding.x || !spec.encoding.y)) {
       return false;
     }
@@ -199,6 +207,9 @@ const contractToSingleRecords = ['x', 'y'].map(key => ({
   },
   evaluator: expectDifferent,
   filter: (spec, data, view) => {
+    if (data.length === 0) {
+      return false;
+    }
     if (spec.encoding && (!spec.encoding.x || !spec.encoding.y)) {
       return false;
     }
@@ -240,6 +251,9 @@ const shouldHaveCommonNumberOfRecords = ['x', 'y'].map(key => ({
     return duppedSpec;
   },
   filter: (spec, data, view) => {
+    if (data.length === 0) {
+      return false;
+    }
     if (spec.encoding && (!spec.encoding.x || !spec.encoding.y)) {
       return false;
     }
@@ -256,6 +270,9 @@ const outliersShouldMatter = {
     .reduce((acc, column) => acc.filter(outliers(column)), clone(container)),
   evaluator: expectDifferent,
   filter: (spec, data, view) => {
+    if (data.length === 0) {
+      return false;
+    }
     if (!filterForXandY(spec, data, view)) {
       return false;
     }
@@ -274,10 +291,14 @@ const randomizingColumnsShouldMatter = {
   operation: (container, spec) => {
     const data = clone(container);
     randomizeColumns(data, ...(getXYFieldNames(spec)));
+    // console.log(JSON.stringify(data, null, 2), JSON.stringify(container, null, 2), getXYFieldNames(spec));
     return data;
   },
   evaluator: expectDifferent,
   filter: (spec, data, view) => {
+    if (data.length === 0) {
+      return false;
+    }
     // if x and y plot and aggregate is count, then this rule will always pass
     if (['x', 'y'].some(key => spec.encoding[key] && spec.encoding[key].aggregate === 'count')) {
       return false;
@@ -286,6 +307,10 @@ const randomizingColumnsShouldMatter = {
     if (fields.length !== fields.filter(d => d).length) {
       return false;
     }
+    // const oneOfFieldsIsInvalid = !data.some(d => fields.some(key => d.hasOwnProperty(key)));
+    // if (oneOfFieldsIsInvalid) {
+    //   return false;
+    // }
     const {transform} = spec;
     return !transform || transform && !transform.find(d => d.fold);
   },
@@ -297,12 +322,15 @@ const deletingRandomValuesShouldMatter = {
   type: 'algebraic-data',
   operation: (container, spec) => {
     const data = clone(container);
-    partiallyDropColumn(data, getXYFieldNames(spec)[0], 0.2);
+    partiallyDropColumn(data, getXYFieldNames(spec).filter(d => d)[0], 0.2);
     return data;
   },
   evaluator: expectDifferent,
   filter: (spec, data, view) => {
-    const fields = getXYFieldNames(spec);
+    if (data.length === 0) {
+      return false;
+    }
+    const fields = getXYFieldNames(spec).filter(d => d);
     if (fields.length < 1) {
       return false;
     }
@@ -318,6 +346,9 @@ const shufflingDataShouldMatter = {
   type: 'algebraic-data',
   operation: (container) => shuffle(clone(container)),
   evaluator: expectSame,
+  filter: (spec, data, view) => {
+    return data.length > 0;
+  },
   explain: 'After shuffling the input data randomly, the resulting image was detected as being different from the original. This may suggest that there is overplotting in your data or that there a visual aggregation removing some information from the rendering.'
 };
 
@@ -332,7 +363,9 @@ const deletingRowsShouldMatter = {
     return clonedData;
   },
   evaluator: expectDifferent,
-
+  filter: (spec, data, view) => {
+    return data.length > 0;
+  },
   explain: 'After randomly deleting a third of the rows the image has remained the same. This suggests that there is an aggregator that is doing too much work, be careful.'
 };
 

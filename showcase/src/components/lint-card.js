@@ -22,7 +22,7 @@ export default class LintCard extends React.Component {
     if (!failedRender || !open) {
       return;
     }
-    const {render, type} = failedRender;
+    const {render: {dims, data}, type} = failedRender;
     const domElement = this.refs[type === 'svg' ? 'svgTarget' : 'canvasTarget'];
     if (!domElement) {
       return;
@@ -30,14 +30,14 @@ export default class LintCard extends React.Component {
     if (type === 'raster') {
       const ctx = domElement.getContext('2d');
       const image = new Image();
-      image.src = render;
-      image.onload = () => ctx.drawImage(image, 0, 0, 200 * 3, 200);
+      image.src = data;
+      image.onload = () => ctx.drawImage(image, 0, 0, dims.width / 2, dims.height / 2);
     }
     if (type === 'svg') {
       const svg = domElement.querySelector('svg');
       if (svg) {
-        svg.setAttribute('width', 200);
-        svg.setAttribute('height', 200);
+        svg.setAttribute('width', dims.width);
+        svg.setAttribute('height', dims.height);
       }
     }
     // todo add error states
@@ -71,10 +71,12 @@ export default class LintCard extends React.Component {
             {failedRender && <div className="align-center text-align-center flex-down">
               <div className="white-background">
                 {failedRender.type === 'raster' &&
-                  <canvas width={600} height={200} ref="canvasTarget"/>}
+                  <canvas
+                    width={failedRender.render.dims.width / 2}
+                    height={failedRender.render.dims.height / 2} ref="canvasTarget"/>}
                 {failedRender.type === 'svg' &&
                   (<div ref="svgTarget"
-                  dangerouslySetInnerHTML={{__html: failedRender.render}} />)}
+                  dangerouslySetInnerHTML={{__html: failedRender.render.data}} />)}
               </div>
               <div>Difference between original and altered version</div>
             </div>}
