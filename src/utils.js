@@ -71,7 +71,7 @@ export function generateVegaRendering(spec, mode = 'raster') {
       .then(x => resolve(isSVG ? x : x.toDataURL()))
       .catch(e => {
         /* eslint-disable no-console */
-        console.error(e)
+        console.error(e);
         reject(e);
       /* eslint-disable no-console */
       });

@@ -55,28 +55,15 @@ export function lint(spec) {
 }
 
 export function lintSingleSpec(spec) {
-  // TODO should link the size of these to the sizes in the other render path
-  const specWithDefaults = {
-    // width: 200,
-    // height: 200,
-    // autosize: {
-    //   type: 'fit',
-    //   contains: 'padding'
-    // },
-    ...spec
-  };
-  // generateVegaRendering(specWithDefaults, 'svg').then(x => {
-  //   console.log(x)
-  // })
   return Promise.all([
-    getDataset(specWithDefaults),
-    generateVegaView(specWithDefaults)
+    getDataset(spec),
+    generateVegaView(spec)
   ])
   .then(([dataset, view]) => {
     return Promise.all(
       lintRules
-        .filter(({filter}) => filter(specWithDefaults, dataset, view))
-        .map(rule => evalMap[rule.type](rule, specWithDefaults, dataset, view))
+        .filter(({filter}) => filter(spec, dataset, view))
+        .map(rule => evalMap[rule.type](rule, spec, dataset, view))
     );
   });
 }
