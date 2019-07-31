@@ -31,7 +31,7 @@ export default class LintCard extends React.Component {
       const ctx = domElement.getContext('2d');
       const image = new Image();
       image.src = render;
-      image.onload = () => ctx.drawImage(image, 0, 0, 200, 200);
+      image.onload = () => ctx.drawImage(image, 0, 0, 200 * 3, 200);
     }
     if (type === 'svg') {
       const svg = domElement.querySelector('svg');
@@ -71,7 +71,7 @@ export default class LintCard extends React.Component {
             {failedRender && <div className="align-center text-align-center flex-down">
               <div className="white-background">
                 {failedRender.type === 'raster' &&
-                  <canvas width={200} height={200} ref="canvasTarget"/>}
+                  <canvas width={600} height={200} ref="canvasTarget"/>}
                 {failedRender.type === 'svg' &&
                   (<div ref="svgTarget"
                   dangerouslySetInnerHTML={{__html: failedRender.render}} />)}

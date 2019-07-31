@@ -3,7 +3,8 @@ import {
   getDataset,
   generateVegaRendering,
   generateVegaView,
-  checkIfSpecIsSupported
+  checkIfSpecIsSupported,
+  concatImages
 } from './utils';
 import algebraicRules from './rules/algebraic-rules';
 import deceptionRules from './rules/deception-rules';
@@ -107,9 +108,17 @@ function evaluateAlgebraicDataRule(rule, spec, dataset, oldView) {
   .then(([oldRendering, newRendering]) => {
     const failRender = buildPixelDiff(oldRendering, newRendering).diffStr;
     const passed = evaluator(oldRendering, newRendering, spec);
+
     // type is there to allow for svg renders, still to come
-    const failedRender = {type: 'raster', render: failRender};
-    return {name, explain, passed, failedRender: !passed ? failedRender : null};
+    return {
+      name,
+      explain,
+      passed,
+      failedRender: !passed ? {
+        type: 'raster',
+        render: concatImages([oldRendering, newRendering, failRender])
+      } : null
+    };
   });
 }
 

@@ -207,6 +207,15 @@ export function randomizeColumns(data, x, y) {
   }
 }
 
+// randomize relationship between two columns
+// keeps x fixed
+export function partiallyDropColumn(data, x, fraction) {
+  const targets = shuffle(data.map((_, idx) => idx)).slice(Math.floor(data.length * fraction));
+  for (let i = 0; i < targets.length; i++) {
+    data[i][x] = null;
+  }
+}
+
 // II.2 Integrity Failures pt 2 - Ones you might be able to catch
 
   // Wrong level of category

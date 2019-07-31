@@ -131,6 +131,30 @@ const toBuffer = img =>
   new Buffer.from(img.replace(/^data:image\/\w+;base64,/, ''), 'base64');
 /* eslint-enable */
 
+export function concatImages(images) {
+  console.log('hi!')
+  const pngs = images.map(buff => PNG.sync.read(toBuffer(buff)));
+  const totalWidth = pngs.reduce((acc, {width}) => width + acc, 0);
+  const maxHeight = pngs.reduce((acc, {height}) => Math.max(height, acc), 0);
+  const outputImage = new PNG({width: totalWidth, height: maxHeight});
+  let widthOffset = 0;
+  pngs.forEach(png => {
+    const {width, height, data} = png;
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        const idx = 4 * (width * y + x);
+        const targetIdx = 4 * (totalWidth * y + (x + widthOffset));
+        for (let color = 0; color < 4; color++) {
+          outputImage.data[targetIdx + color] = data[idx + color];
+          // outputImage.data[targetIdx] = 0;
+        }
+      }
+    }
+    widthOffset += 4 * width;
+  });
+  return `data:image/png;base64,${PNG.sync.write(outputImage).toString('base64')}`;
+}
+
 export function buildPixelDiff(oldRendering, newRendering) {
   const img2 = PNG.sync.read(toBuffer(oldRendering));
   const img1 = PNG.sync.read(toBuffer(newRendering));

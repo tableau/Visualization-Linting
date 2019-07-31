@@ -71,8 +71,8 @@ function integrationTest(directory, dirPresent) {
 }
 
 tape('INTEGRATION TEST', t => {
-  // integrationTest('./example-specs/examples-index.json', fileName => `./example-specs/vegalite/${fileName}`)
-  integrationTest('./gh-specs/gh-specs-index.json', fileName => `./gh-specs/vegalite-modified/${fileName}`)
+  integrationTest('./example-specs/examples-index.json', fileName => `./example-specs/vegalite/${fileName}`)
+  // integrationTest('./gh-specs/gh-specs-index.json', fileName => `./gh-specs/vegalite-modified/${fileName}`)
     .then(summary => {
       const expectedSummary = [{code: SPEC_NOT_SUPPORTED, count: 154}, {code: OK, count: 248}];
       t.deepEqual(summary, expectedSummary, 'should find the expected integration test run');

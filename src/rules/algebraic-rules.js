@@ -9,7 +9,7 @@ import {
   filterForAggregates,
   extractTransforms
 } from '../utils';
-import {dropRow, randomizeColumns} from '../dirty';
+import {dropRow, randomizeColumns, partiallyDropColumn} from '../dirty';
 
 // i can't really decide between these various modes, TODO follow up more deeply later
 const evaluationModes = {
@@ -292,6 +292,27 @@ const randomizingColumnsShouldMatter = {
   explain: 'After randomizing the relationship between the two data variables the chart remained the same. This suggests that your visualization is not showing their relationship in a discrenable manner.'
 };
 
+const deletingRandomValuesShouldMatter = {
+  name: 'algebraic-delete-some-of-relevant-columns',
+  type: 'algebraic-data',
+  operation: (container, spec) => {
+    const data = clone(container);
+    partiallyDropColumn(data, getXYFieldNames(spec)[0], 0.2);
+    return data;
+  },
+  evaluator: expectDifferent,
+  filter: (spec, data, view) => {
+    const fields = getXYFieldNames(spec);
+    if (fields.length < 1) {
+      return false;
+    }
+    return true;
+    // const {transform} = spec;
+    // return !transform || transform && !transform.find(d => d.fold);
+  },
+  explain: 'After nulling 20% of the values being visualized the chart remained the same, this indicates that your visualization is not resilliant to change.'
+};
+
 const shufflingDataShouldMatter = {
   name: 'algebraic-shuffle-input-data',
   type: 'algebraic-data',
@@ -322,7 +343,8 @@ const rules = [
   outliersShouldMatter,
   randomizingColumnsShouldMatter,
   shufflingDataShouldMatter,
-  deletingRowsShouldMatter
+  deletingRowsShouldMatter,
+  deletingRandomValuesShouldMatter
 ];
 
 export default rules;
