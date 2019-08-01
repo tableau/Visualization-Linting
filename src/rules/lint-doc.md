@@ -1,5 +1,7 @@
 # Lint Rule Format
 
+
+
 Written up here in pseudo-typescript
 
 ```ts
