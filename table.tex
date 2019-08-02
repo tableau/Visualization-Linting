@@ -1,0 +1,76 @@
+
+% \multirow{13}{1em}{\rotatebox{90}{\normalsize{Curation}}}
+\begin{table*}[]
+\centering
+\caption{Examples of errors arising at each of the stages in our taxonomy along with the ways that those errors can manifest themselves as mirages.}
+\small
+\begin{tabular}{c|p{6cm}p{10cm}}
+& \normalsize{Error} & \normalsize{Mirage}\\ \hline
+  \multirow{12}{1em}{\rotatebox{90}{\normalsize{Curating}}} &  Missing/Repeated Records & Aggregates might become inaccurate, impeding all comparisons \\
+&  Outliers & Aggregates might become inaccurate, impeding all comparisons \\
+&  Incorrectly assumed high Quality data &  \\
+&  Multiple comparisons problem &  \cite{pu2018garden, zgraggen2018investigating}\\
+&  Dubious data &  \\
+&  Insufficient data &  \\
+&  * &  \cite{kim2003taxonomy}\\
+&  Numeric outliers &  \cite{wang2019uni}\\
+&  Spelling mistakes & Differently spelled groups might fall into different aggregates, causing inaccurate comparisons \cite{wang2019uni}\\
+&  Uniqueness constraint failure & Marks assumed to represent single values might represent several (which may then be further skewed by aggregates like SUM) \cite{wang2019uni}\\
+&  unidentified functional dependencies & Visualization might show a strong relationship between variables, when in fact that relationship is part of the data composition (eg A+B = C, plot A vs C) \\
+&  Drill-down bias & Apparent trends might be attributed to the more specific/recently specified filters rather than relatively "simpler" explanations \cite{lee2019avoiding}\\
+  \multirow{13}{1em}{\rotatebox{90}{\normalsize{Preparing}}} & \rowcolor{Gray} Differing Number of Records by group &  \\
+& \rowcolor{Gray} Simpson's Paradox & Observed trend reverses \cite{guo2017you}\\
+& \rowcolor{Gray} Cherry Picking &  \\
+& \rowcolor{Gray} Over dominating outlier wrecks scale & Real trend is made invisible \\
+& \rowcolor{Gray} Spurious correlation & Gives the impression of an non-extant correlation \\
+& \rowcolor{Gray} High variability or noise in contrast to the effect size & Irrelevant conclusions could be made \\
+& \rowcolor{Gray} P-hacking & Gives the impression of an non-extant correlation \\
+& \rowcolor{Gray} Outliers combined with the wrong aggregation type. &  \\
+& \rowcolor{Gray} Aggregates mask second order statistics & Two things may appear to be equal when in fact their distributions are fundamentally different \cite{matejka2017same, few2019loom}\\
+& \rowcolor{Gray} Additional loom Statistical errors &  \cite{few2019loom}\\
+& \rowcolor{Gray} Inappropriate use of mean & Mean comparisons with normal distribution will be skewed \cite{few2019loom}\\
+& \rowcolor{Gray} Confusing imputation & Imputation that generates zeroes rather removing rows can radically alter aggregates \cite{song2018s}\\
+& \rowcolor{Gray} Sampling at a rate less than the nyquist rate & Apparent trend will be the aliases rather than the signal \\
+  \multirow{28}{1em}{\rotatebox{90}{\normalsize{Visualizing}}} &  Banking to 45 failure & Trend can appear from flat data or vice-versa \\
+&  area/length mismatches &  Correll YAxis truncation paper?\\
+&  Color too close & Reader mistakes one group for another \\
+&  Time not aligned in direction of language &  \\
+&  Overplotting &  \\
+&  Singularities &  \cite{kindlmann2014algebraic}\\
+&  Improper Layering & Overplotting can cause an non-existent trend to emerge from draw order \cite{kindlmann2014algebraic}\\
+&  Latent variables Missing &  \\
+&  Wrong/missing aggregation & Aggregate marks with no opacity overlapping each other do an implicit max \\
+&  Flipped & Trend understood to be opposite \cite{pandey2015deceptive, correll2017black, cleveland1982variables}\\
+&  Scale extents larger than the range of the data & Differences compressed and visual variability is removed \cite{cleveland1982variables}\\
+&  Distortions (log scales, say) and non-linearities & Can cause readers to inaccurately correlate variables and cluster values \\
+&  Truncated/expanded axes & Can cause sorting errors and errors in characterizing distribution \cite{pandey2015deceptive, correll2017black, cleveland1982variables}\\
+&  Colors binned unevenly &  \\
+&  Color just showing base rate & Mistake base rate for data signal rate \cite{correll2016surprise}\\
+&  Semantically color scale not relevant  & Reader may misinterpret color on a map as indicating the content of that region rather than a data variable \\
+&  Within-bar-bias &  \cite{newman2012bar}\\
+&  Highlight/downplaying outliers &  \\
+&  Clipped outliers & Chosen domain hides outliers, impending extrema detection \\
+&  Continuous marks describe nominal quantities &  \cite{mcnuttlinting}\\
+&  Using ordinal measures as (ratio/interval) measures &  \cite{stevens1946theory, few2019loom}\\
+&  V-hacking & Purported insight not robust to minor changes CITATION?\\
+&  Charting parameter masking data error &  \cite{correll2018looks}\\
+&  Poorly designed Charts &  \\
+&  Concealed uncertainty &  \\
+&  charts with misleading patterns &  \\
+&  Sole reliance on measure of central tendency &  \cite{wall2017warning}\\
+&  Staircasing & A trend on a noisy channel may appear to reverse because of the domain selection \\
+  \multirow{13}{1em}{\rotatebox{90}{\normalsize{Comprehending}}} & \rowcolor{Gray} Not accounting for bias &  \cite{wall2017warning}\\
+& \rowcolor{Gray} Causal Errors: Post hoc ergo propter hoc &  \cite{few2019loom}\\
+& \rowcolor{Gray} Causal Errors: unit bias &  \cite{few2019loom}\\
+& \rowcolor{Gray} Causal Errors: outcome bias &  \cite{few2019loom}\\
+& \rowcolor{Gray} Over-emphasizing data-ink minimalism & Chart might not actually get read, minimalist charts are easier to ignore full message might get lost \\
+& \rowcolor{Gray} Familiarity Errors: confirmation bias &  \\
+& \rowcolor{Gray} Familiarity Errors: availability heuristic &  \\
+& \rowcolor{Gray} Familiarity Errors: status quo bias &  \\
+& \rowcolor{Gray} Familiarity Errors: default effect &  \\
+& \rowcolor{Gray} Familiarity Errors: anchoring effect &  \\
+& \rowcolor{Gray} Familiarity Errors: semmelweis effect &  \\
+& \rowcolor{Gray} Familiarity Errors: appeal to common belief &  \\
+& \rowcolor{Gray} Familiarity Errors: law of instrument &  \\
+\end{tabular}
+\end{table*}

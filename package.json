@@ -40,6 +40,7 @@
     "node-fetch": "^2.6.0",
     "outliers": "^0.0.3",
     "pixelmatch": "^5.0.2",
+    "tsv": "^0.2.0",
     "vega": "^5.4.0",
     "vega-datasets": "^1.25.0",
     "vega-embed": "^4.2.0",
