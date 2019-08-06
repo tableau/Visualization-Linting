@@ -2,75 +2,61 @@
 % \multirow{13}{1em}{\rotatebox{90}{\normalsize{Curation}}}
 \begin{table*}[]
 \centering
-\caption{Examples of errors arising at each of the stages in our taxonomy along with the ways that those errors can manifest themselves as mirages.}
+\caption{Examples of errors arising at each of the stages in our taxonomy along with the ways that those errors can manifest themselves as mirages. This list does not try to be comprehensive, only evocative.}
 \small
 \begin{tabular}{c|p{6cm}p{10cm}}
 & \normalsize{Error} & \normalsize{Mirage}\\ \hline
-  \multirow{12}{1em}{\rotatebox{90}{\normalsize{Curating}}} &  Missing/Repeated Records & Aggregates might become inaccurate, impeding all comparisons \\
-&  Outliers & Aggregates might become inaccurate, impeding all comparisons \\
-&  Incorrectly assumed high Quality data &  \\
-&  Multiple comparisons problem &  \cite{pu2018garden, zgraggen2018investigating}\\
-&  Dubious data &  \\
-&  Insufficient data &  \\
-&  * &  \cite{kim2003taxonomy}\\
-&  Numeric outliers &  \cite{wang2019uni}\\
-&  Spelling mistakes & Differently spelled groups might fall into different aggregates, causing inaccurate comparisons \cite{wang2019uni}\\
-&  Uniqueness constraint failure & Marks assumed to represent single values might represent several (which may then be further skewed by aggregates like SUM) \cite{wang2019uni}\\
-&  unidentified functional dependencies & Visualization might show a strong relationship between variables, when in fact that relationship is part of the data composition (eg A+B = C, plot A vs C) \\
-&  Drill-down bias & Apparent trends might be attributed to the more specific/recently specified filters rather than relatively "simpler" explanations \cite{lee2019avoiding}\\
-  \multirow{13}{1em}{\rotatebox{90}{\normalsize{Preparing}}} & \rowcolor{Gray} Differing Number of Records by group &  \\
-& \rowcolor{Gray} Simpson's Paradox & Observed trend reverses \cite{guo2017you}\\
-& \rowcolor{Gray} Cherry Picking &  \\
-& \rowcolor{Gray} Over dominating outlier wrecks scale & Real trend is made invisible \\
-& \rowcolor{Gray} Spurious correlation & Gives the impression of an non-extant correlation \\
-& \rowcolor{Gray} High variability or noise in contrast to the effect size & Irrelevant conclusions could be made \\
-& \rowcolor{Gray} P-hacking & Gives the impression of an non-extant correlation \\
-& \rowcolor{Gray} Outliers combined with the wrong aggregation type. &  \\
-& \rowcolor{Gray} Aggregates mask second order statistics & Two things may appear to be equal when in fact their distributions are fundamentally different \cite{matejka2017same, few2019loom}\\
-& \rowcolor{Gray} Additional loom Statistical errors &  \cite{few2019loom}\\
-& \rowcolor{Gray} Inappropriate use of mean & Mean comparisons with normal distribution will be skewed \cite{few2019loom}\\
-& \rowcolor{Gray} Confusing imputation & Imputation that generates zeroes rather removing rows can radically alter aggregates \cite{song2018s}\\
-& \rowcolor{Gray} Sampling at a rate less than the nyquist rate & Apparent trend will be the aliases rather than the signal \\
-  \multirow{28}{1em}{\rotatebox{90}{\normalsize{Visualizing}}} &  Banking to 45 failure & Trend can appear from flat data or vice-versa \\
-&  area/length mismatches &  Correll YAxis truncation paper?\\
-&  Color too close & Reader mistakes one group for another \\
-&  Time not aligned in direction of language &  \\
-&  Overplotting &  \\
-&  Singularities &  \cite{kindlmann2014algebraic}\\
-&  Improper Layering & Overplotting can cause an non-existent trend to emerge from draw order \cite{kindlmann2014algebraic}\\
-&  Latent variables Missing &  \\
-&  Wrong/missing aggregation & Aggregate marks with no opacity overlapping each other do an implicit max \\
-&  Flipped & Trend understood to be opposite \cite{pandey2015deceptive, correll2017black, cleveland1982variables}\\
-&  Scale extents larger than the range of the data & Differences compressed and visual variability is removed \cite{cleveland1982variables}\\
-&  Distortions (log scales, say) and non-linearities & Can cause readers to inaccurately correlate variables and cluster values \\
-&  Truncated/expanded axes & Can cause sorting errors and errors in characterizing distribution \cite{pandey2015deceptive, correll2017black, cleveland1982variables}\\
-&  Colors binned unevenly &  \\
-&  Color just showing base rate & Mistake base rate for data signal rate \cite{correll2016surprise}\\
-&  Semantically color scale not relevant  & Reader may misinterpret color on a map as indicating the content of that region rather than a data variable \\
-&  Within-bar-bias &  \cite{newman2012bar}\\
-&  Highlight/downplaying outliers &  \\
-&  Clipped outliers & Chosen domain hides outliers, impending extrema detection \\
-&  Continuous marks describe nominal quantities &  \cite{mcnuttlinting}\\
-&  Using ordinal measures as (ratio/interval) measures &  \cite{stevens1946theory, few2019loom}\\
-&  V-hacking & Purported insight not robust to minor changes CITATION?\\
-&  Charting parameter masking data error &  \cite{correll2018looks}\\
-&  Poorly designed Charts &  \\
-&  Concealed uncertainty &  \\
-&  charts with misleading patterns &  \\
-&  Sole reliance on measure of central tendency &  \cite{wall2017warning}\\
-&  Staircasing & A trend on a noisy channel may appear to reverse because of the domain selection \\
-  \multirow{13}{1em}{\rotatebox{90}{\normalsize{Comprehending}}} & \rowcolor{Gray} Not accounting for bias &  \cite{wall2017warning}\\
-& \rowcolor{Gray} Causal Errors: Post hoc ergo propter hoc &  \cite{few2019loom}\\
-& \rowcolor{Gray} Causal Errors: unit bias &  \cite{few2019loom}\\
-& \rowcolor{Gray} Causal Errors: outcome bias &  \cite{few2019loom}\\
-& \rowcolor{Gray} Over-emphasizing data-ink minimalism & Chart might not actually get read, minimalist charts are easier to ignore full message might get lost \\
-& \rowcolor{Gray} Familiarity Errors: confirmation bias &  \\
-& \rowcolor{Gray} Familiarity Errors: availability heuristic &  \\
-& \rowcolor{Gray} Familiarity Errors: status quo bias &  \\
-& \rowcolor{Gray} Familiarity Errors: default effect &  \\
-& \rowcolor{Gray} Familiarity Errors: anchoring effect &  \\
-& \rowcolor{Gray} Familiarity Errors: semmelweis effect &  \\
-& \rowcolor{Gray} Familiarity Errors: appeal to common belief &  \\
-& \rowcolor{Gray} Familiarity Errors: law of instrument &  \\
+  \multirow{5}{1em}{\rotatebox{90}{\normalsize{Curating}}} & \rowcolor{colora} Missing/Repeated Records & Faulty data can cause aggregages to be inaccurate, or at least different from the user intution. \\
+& \rowcolor{colora-opaque} Outliers & Outliers can cause upstream failures if not addressed properly by wrecking the visual scale and warping the perception of the real distribution.  \\
+& \rowcolor{colora} Spelling mistakes & Differently spelled groups might cause rows to fall into unitentionally aggregates, causing inaccurate comparisons. \cite{wang2019uni}\\
+& \rowcolor{colora-opaque} Unidentified functional dependencies & Visualization might show a strong relationship between variables, when in fact that relationship is part of the data composition (eg A+B = C, plot A vs C). \\
+& \rowcolor{colora} Drill-down bias & Apparent trends might be attributed to the more specific/recently specified filters rather than relatively "simpler" explanations. \cite{lee2019avoiding}\\
+  \multirow{13}{1em}{\rotatebox{90}{\normalsize{Wrangling}}} & \rowcolor{colorb} Differing Number of Records by group & Marks assumed to represent consistant number of values might have a variable number of entries, which can mask missing data or can lead to incorrect assumptions about aggregates. \\
+& \rowcolor{colorb-opaque} Simpson's Paradox & An observed trends revereses when the aggregation level changes. \cite{guo2017you}\\
+& \rowcolor{colorb} Cherry Picking &  \\
+& \rowcolor{colorb-opaque} Spurious correlation &  \\
+& \rowcolor{colorb} High variability or noise in contrast to the effect size &  \\
+& \rowcolor{colorb-opaque} P-hacking &  QuickInsights, MORE\\
+& \rowcolor{colorb} Outliers combined with the wrong aggregation type. &  \\
+& \rowcolor{colorb-opaque} Aggregates mask second order statistics &  \cite{matejka2017same, few2019loom}\\
+& \rowcolor{colorb} insensitivity to small sample size &  \\
+& \rowcolor{colorb-opaque} Inappropriate use of mean &  \cite{few2019loom}\\
+& \rowcolor{colorb} Confusing imputation & Imputation that generates zeroes rather removing rows can radically alter aggregates. \cite{song2018s}\\
+& \rowcolor{colorb-opaque} Sampling rate errors  & An apparent trend may be an artifact of the sampling rate rather than the data. CITATION PLX\\
+& \rowcolor{colorb} Distinct data classes treated as the same &  \\
+  \multirow{26}{1em}{\rotatebox{90}{\normalsize{Visualizing}}} & \rowcolor{colorc} Banking to 45 failure &  \\
+& \rowcolor{colorc-opaque} area/length mismatches &  Correll YAxis truncation paper? Pandey et al\\
+& \rowcolor{colorc} Color too close &  \\
+& \rowcolor{colorc-opaque} Time not aligned in direction of language & Reverseing convention can cause reveresed interpretation. \cite{correll2017black}\\
+& \rowcolor{colorc} Singularities & Detail can become difficult to discern when collections of lines converge (such as in a parrallel coordinates chart). \cite{kindlmann2014algebraic}\\
+& \rowcolor{colorc-opaque} Improper Layering / Overplotting & Overplotting can cause an non-existent trend to emerge due to the draw order. \cite{kindlmann2014algebraic}\\
+& \rowcolor{colorc} Latent variables Missing &  \\
+& \rowcolor{colorc-opaque} Wrong/missing aggregation &  \\
+& \rowcolor{colorc} Flipped &  \cite{pandey2015deceptive, correll2017black, cleveland1982variables}\\
+& \rowcolor{colorc-opaque} Scale extents larger than the range of the data &  \cite{cleveland1982variables}\\
+& \rowcolor{colorc} Non-linear scales & Can cause readers to inaccurately correlate variables and cluster values. \\
+& \rowcolor{colorc-opaque} Truncated/expanded axes &  \cite{pandey2015deceptive, correll2017black, cleveland1982variables}\\
+& \rowcolor{colorc} Colors binned unevenly &  \\
+& \rowcolor{colorc-opaque} Color just showing base rate &  \cite{correll2016surprise}\\
+& \rowcolor{colorc} Semantically color scale not relevant  & Reader may misinterpret color on a map as indicating the content of that region rather than a data variable. \\
+& \rowcolor{colorc-opaque} Within-bar-bias &  \cite{newman2012bar}\\
+& \rowcolor{colorc} Highlight/downplaying outliers &  \\
+& \rowcolor{colorc-opaque} Clipped outliers & Chosen domain hides outliers, impending the reader from accurate extrema detection. \\
+& \rowcolor{colorc} Continuous marks describe nominal quantities & Reader may hallucinate a trend based on the rendered ordering. \cite{mcnuttlinting}\\
+& \rowcolor{colorc-opaque} Using ordinal measures as (ratio/interval) measures & Related to "area/length mismatches" a mark might be encoded as big/medium/small which readers might then read as quantitative . \cite{stevens1946theory, few2019loom}\\
+& \rowcolor{colorc} Charting parameter masking data error &  \cite{correll2018looks}\\
+& \rowcolor{colorc-opaque} Concealed uncertainty &  \\
+& \rowcolor{colorc} Sole reliance on measure of central tendency &  \cite{wall2017warning, few2019loom}\\
+& \rowcolor{colorc-opaque} Uncorrelated data decorated with best fit line &  \\
+& \rowcolor{colorc} Staircasing &  \\
+& \rowcolor{colorc-opaque} Nominal choropleth conflates color area with classed statistic &  CHOROPLETH CITATION?\\
+  \multirow{8}{1em}{\rotatebox{90}{\normalsize{Reading}}} & \rowcolor{colord} Incorrectly assumed high quality data & Trusting untrust worthy data can lead to missing upstream errors (such as falsey data) \\
+& \rowcolor{colord-opaque} Multiple comparisons problem & Too many iterative comparisons has high probability of generating a configuration that offers a false comparison. \cite{pu2018garden, zgraggen2018investigating}\\
+& \rowcolor{colord} Not accounting for bias &  \cite{wall2017warning}\\
+& \rowcolor{colord-opaque} Assuming view from no-where & The reader mighy falsey overly trust a visualization that doesn't present its origins. DATA FEM\\
+& \rowcolor{colord} Over-emphasizing data-ink minimalism &  \\
+& \rowcolor{colord-opaque} Confirmation bias &  \cite{valdez2017framework}\\
+& \rowcolor{colord} Default effect & Visualization system defaults are most used, which can mask data and falsey increase trust. CITATION VERY MUCH NEEDED HERE\\
+& \rowcolor{colord-opaque} Anchoring effect & Reader may be blind to changes, framing whatever they see later in terms of what they've seen earlier. \cite{ritchie2019lie}\\
 \end{tabular}
 \end{table*}

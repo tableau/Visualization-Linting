@@ -1,67 +1,76 @@
-Taxonomy (cause)	Error	Taxonomy (Mirage)	Citations	Notes	Detection Technique	Taxonomy Order	Initial Taxonomy zone	Group			LOOKUP	VALUE
-Curation	Missing/Repeated Records	Aggregates might become inaccurate, impeding all comparisons			Data, Spec	1	Totally Invisible	Aggregation issues			Curation	1
-Curation	Outliers	Aggregates might become inaccurate, impeding all comparisons			Data, Spec	1	Totally Invisible	Aggregation issues			Preparation	2
-Curation	Incorrectly assumed high Quality data				Data	1	Visible Only With Effort	Data quality errors			Visualization	3
-Curation	Multiple comparisons problem		\cite{pu2018garden, zgraggen2018investigating}	Garden of forking paths, Zerdraggen. Possibly not relevant as we've constrained ourselves to presentational VA	???	1	Statistical Malpractice				Comprehension	4
-Curation	Dubious data			Cairo's new book	Data	1	Statistical Malpractice
-Curation	Insufficient data			Cairo's new book	Data	1	Statistical Malpractice
-Curation	*		\cite{kim2003taxonomy}	EVERYTHING ELSE IN THE Kim et al DIRTY DATA TAXONOMY		1
-Curation	Numeric outliers		\cite{wang2019uni}		Data	1
-Curation	Spelling mistakes	Differently spelled groups might fall into different aggregates, causing inaccurate comparisons	\cite{wang2019uni}		Data	1
-Curation	Uniqueness constraint failure	Marks assumed to represent single values might represent several (which may then be further skewed by aggregates like SUM)	\cite{wang2019uni}	assumed singular values may be aggregated. Example: making a line chart of year has data from 1.5 years. Users assumes each mark indicates ONE measurement, when in fact their might be several	Data	1
-Curation	unidentified functional dependencies	Visualization might show a strong relationship between variables, when in fact that relationship is part of the data composition (eg A+B = C, plot A vs C)		Uni-Detect: A Unified Approach to Automated Error Detection in Tables	Data	1
-Curation	Drill-down bias	Apparent trends might be attributed to the more specific/recently specified filters rather than relatively "simpler" explanations	\cite{lee2019avoiding}		Data, Spec	1	Statistical Malpractice
-Preparation	Differing Number of Records by group			A mismatch in row cardinality (world indicators example)	Data, Spec	2	Totally Invisible	Aggregation issues
-Preparation	Simpson's Paradox	Observed trend reverses	\cite{guo2017you}		Data, Spec	2	Totally Invisible	Aggregation issues
-Preparation	Cherry Picking			e.g. the chart filters out to only a tiny subset of data where something is true	Data, Spec	2	Totally Invisible
-Preparation	Over dominating outlier wrecks scale	Real trend is made invisible		SLIGHTLY UNSURE ABOUT CLASSIFICATION	Data, Spec	2
-Preparation	Spurious correlation	Gives the impression of an non-extant correlation		Correlation is not robust to slight changes in the data	Data	2	Statistical Malpractice
-Preparation	High variability or noise in contrast to the effect size	Irrelevant conclusions could be made			Data	2	Statistical Malpractice
-Preparation	P-hacking	Gives the impression of an non-extant correlation		Spurious difference (due to p-hacking, say. or just un-communicated sampling variability)	Data	2	Statistical Malpractice
-Preparation	Outliers combined with the wrong aggregation type.				Data, Spec, Render	2
-Preparation	Aggregates mask second order statistics	Two things may appear to be equal when in fact their distributions are fundamentally different	\cite{matejka2017same, few2019loom}	dinosaurus box plot, anscombe's quartet, variation blindness (the median isn't the message - gould)	Data, Spec, Render	2	Totally Invisible	Aggregation issues
-Preparation	Additional loom Statistical errors		\cite{few2019loom}	data loom: law of small numbers (cherry picking, bias sample fallacy), insensitivity to small sample size, base rate fallacy, hot hand fallacy, appeal to coincidence, regression fallacy, variation blindness (the median isn't the message - gould)		2
-Preparation	Inappropriate use of mean	Mean comparisons with normal distribution will be skewed	\cite{few2019loom}	Data loom (mean is design for normal distributions)	Data, spec	2
-Preparation	Confusing imputation	Imputation that generates zeroes rather removing rows can radically alter aggregates	\cite{song2018s}	"Where's My Data?" 		2
-Preparation	Sampling at a rate less than the nyquist rate	Apparent trend will be the aliases rather than the signal				2
-Visualization	Banking to 45 failure	Trend can appear from flat data or vice-versa		HEER PAPER. Mirages can be perceptual in nature, but are driven by a decision somewhere in the analytics pipeline. The knob that controls this mirage is charts dimensions	Data, spec, render	3
-Visualization	area/length mismatches		Correll YAxis truncation paper?	e.g. “the incredible shrinking doctor”	Spec	3	Visible Only With Effort	Bad Quant Scales
-Visualization	Color too close	Reader mistakes one group for another			Spec	3	Visible Only With Effort	Bad color scale
-Visualization	Time not aligned in direction of language			Readers tend to think of time as flowing in the same direction as their language (CITATION), eg western language speakers tend to think of it as moving from left to right while REST OF EXAMPLE.	Spec, Data, Render	3
-Visualization	Overplotting				Data, Spec, Render	3	Totally Invisible	Rendering Issues
-Visualization	Singularities		\cite{kindlmann2014algebraic}	parallel coordinates AVD example	Data, Render	3	Totally Invisible	Rendering Issues
-Visualization	Improper Layering	Overplotting can cause an non-existent trend to emerge from draw order	\cite{kindlmann2014algebraic}	taxi AVD example	Data, Render	3	Totally Invisible	Rendering Issues
-Visualization	Latent variables Missing				Spec	3	Totally Invisible
-Visualization	Wrong/missing aggregation	Aggregate marks with no opacity overlapping each other do an implicit max			Spec, Render	3	Totally Invisible
-Visualization	Flipped	Trend understood to be opposite	\cite{pandey2015deceptive, correll2017black, cleveland1982variables}	Black hat, panday, Variables on Scatter Plots Look More Highly Correlated When the Scales are Increased	Spec	3	Visible Only With Effort	Bad Quant Scales
-Visualization	Scale extents larger than the range of the data	Differences compressed and visual variability is removed	\cite{cleveland1982variables}	Variables on Scatter Plots Look More Highly Correlated When the Scales are Increased	Spec	3	Visible Only With Effort	Bad Quant Scales
-Visualization	Distortions (log scales, say) and non-linearities	Can cause readers to inaccurately correlate variables and cluster values			Spec	3	Visible Only With Effort	Bad Quant Scales
-Visualization	Truncated/expanded axes	Can cause sorting errors and errors in characterizing distribution	\cite{pandey2015deceptive, correll2017black, cleveland1982variables}	Variables on Scatterplots Look More Highly Correlated When the Scales are Increased, Black hat, panday	Spec, Data	3
-Visualization	Colors binned unevenly				Spec	3	Visible Only With Effort	Bad color scale
-Visualization	Color just showing base rate	Mistake base rate for data signal rate	\cite{correll2016surprise}	Surprise Maps	Spec	3	Visible Only With Effort	Bad color scale
-Visualization	Semantically color scale not relevant 	Reader may misinterpret color on a map as indicating the content of that region rather than a data variable		Green or blue map regions can lead the reader to believe that those regions posses semantically meaningful trends (forest/ocean respectively). CITATION NEEDED, maybe Selecting Semantically‐Resonant Colors for Data Visualization	Spec?	3		Bad color scale
-Visualization	Within-bar-bias		\cite{newman2012bar}	Bar graphs depicting averages are perceptually misinterpreted: The within-the-bar bias	Spec	3	Visible Only With Effort	Rhetorical Nudges
-Visualization	Highlight/downplaying outliers				Spec	3	Visible Only With Effort	Rhetorical Nudges
-Visualization	Clipped outliers	Chosen domain hides outliers, impending extrema detection		specified domain removes significant outliers, may be the same as cherry picking	Data, Spec	3
-Visualization	Continuous marks describe nominal quantities		\cite{mcnuttlinting}	Eg Line chart across nominal data. Citation VisLint	Data, Spec	3	Charting malfeasance	Expressiveness mismatches
-Visualization	Using ordinal measures as (ratio/interval) measures		\cite{stevens1946theory, few2019loom}	Stevens, also data loom as "conflating rankings with measure of worth"	Data, spec	3
-Visualization	V-hacking	Purported insight not robust to minor changes	CITATION?		Spec, Render	3	Charting malfeasance
-Visualization	Charting parameter masking data error		\cite{correll2018looks}	Over/under smoothed KDE, Over/under binned histogram. Looks good to me	Data, Spec, Render	3	Charting malfeasance
-Visualization	Poorly designed Charts			Cairo's new book	Spec	3	Charting malfeasance
-Visualization	Concealed uncertainty			Cairo's new book, Slightly different than missing records, following "Where's My Data?" visualizations should represent their missing data in some way.	Data, Spec, Render	3	Charting malfeasance
-Visualization	charts with misleading patterns			Cairo's new book, black hat	Spec, Render	3	Charting malfeasance
-Visualization	Sole reliance on measure of central tendency		\cite{wall2017warning}	Src: data loom. Could be tested by executing datasarus style data manipulation: keep an invariant the same and rotate the data via optimization	Data, render	3
-Visualization	Staircasing	A trend on a noisy channel may appear to reverse because of the domain selection		https://twitter.com/NASAClimate/status/1154503255486955520  setting domain to a small subrange, particularly on a line chart		3
-Comprehension	Not accounting for bias		\cite{wall2017warning}	Ala "bias may occur"	??	4
-Comprehension	Causal Errors: Post hoc ergo propter hoc		\cite{few2019loom}		??	4
-Comprehension	Causal Errors: unit bias		\cite{few2019loom}		??	4
-Comprehension	Causal Errors: outcome bias		\cite{few2019loom}		??	4
-Comprehension	Over-emphasizing data-ink minimalism	Chart might not actually get read, minimalist charts are easier to ignore full message might get lost		Data humanism/feminism: extremely minimalist data visualizations aren't memorable (MONSTER CITATION) or as emotionally impactful as illustrative ones (Data fem) . Visual Difficulties also might be of note here	??	4
-Comprehension	Familiarity Errors: confirmation bias			Data loom	??	4
-Comprehension	Familiarity Errors: availability heuristic				??	4
-Comprehension	Familiarity Errors: status quo bias				??	4
-Comprehension	Familiarity Errors: default effect				??	4
-Comprehension	Familiarity Errors: anchoring effect				??	4
-Comprehension	Familiarity Errors: semmelweis effect				??	4
-Comprehension	Familiarity Errors: appeal to common belief				??	4
-Comprehension	Familiarity Errors: law of instrument				??	4
+Taxonomy (cause)	Error	Taxonomy (Mirage)	mirage-error	Citations	Hide	Notes	Detection Technique	Taxonomy Order	Initial Taxonomy zone	Group			LOOKUP	VALUE
+Curation	Missing/Repeated Records	Aggregates might become inaccurate, impeding all comparisons	Faulty data can cause aggregages to be inaccurate, or at least different from the user intution.				Data, Spec	1	Totally Invisible	Aggregation issues			Curation	1
+Curation	Outliers	Aggregates might become inaccurate, impeding all comparisons	Outliers can cause upstream failures if not addressed properly by wrecking the visual scale and warping the perception of the real distribution. 			Can effect ability to read aggregate visualization accuracately	Data, Spec	1	Totally Invisible	Aggregation issues			Wrangling	2
+Curation	Dubious data				TRUE	Cairo's new book	Data	1	Statistical Malpractice					
+Curation	Insufficient data				TRUE	Cairo's new book	Data	1	Statistical Malpractice					
+Curation	Spelling mistakes		Differently spelled groups might cause rows to fall into unitentionally aggregates, causing inaccurate comparisons.	\cite{wang2019uni}			Data	1						
+Curation	Uniqueness constraint failure		Marks assumed to represent single values might represent several (which may then be further skewed by aggregates like SUM).	\cite{wang2019uni}	TRUE	assumed singular values may be aggregated. Example: making a line chart of year has data from 1.5 years. Users assumes each mark indicates ONE measurement, when in fact their might be several	Data	1						
+Curation	Unidentified functional dependencies		Visualization might show a strong relationship between variables, when in fact that relationship is part of the data composition (eg A+B = C, plot A vs C).			Uni-Detect: A Unified Approach to Automated Error Detection in Tables	Data	1						
+Curation	Drill-down bias		Apparent trends might be attributed to the more specific/recently specified filters rather than relatively "simpler" explanations.	\cite{lee2019avoiding}			Data, Spec	1	Statistical Malpractice					
+Curation	For more see Kim etals Dirty Data Taxonomy	*		\cite{kim2003taxonomy}	TRUE			1						
+Wrangling	Differing Number of Records by group	Aggregate may be percieved as having a common cardinality	Marks assumed to represent consistant number of values might have a variable number of entries, which can mask missing data or can lead to incorrect assumptions about aggregates.			A mismatch in row cardinality (world indicators example)	Data, Spec	2	Totally Invisible	Aggregation issues				
+Wrangling	Simpson's Paradox	Observed trend reverses when aggregation changes	An observed trends revereses when the aggregation level changes.	\cite{guo2017you}			Data, Spec	2	Totally Invisible	Aggregation issues				
+Wrangling	Cherry Picking	Filtering down to an uncharacteristic offers an incorrect distribution				e.g. the chart filters out to only a tiny subset of data where something is true. data loom: law of small numbers (cherry picking, bias sample fallacy)	Data, Spec	2	Totally Invisible					
+Wrangling	Over dominating outlier wrecks scale	Real trend is made invisible			TRUE	SLIGHTLY UNSURE ABOUT CLASSIFICATION	Data, Spec	2						
+Wrangling	Spurious correlation	Gives the impression of an non-extant correlation				Correlation is not robust to slight changes in the data	Data	2	Statistical Malpractice					
+Wrangling	High variability or noise in contrast to the effect size	Irrelevant conclusions could be made					Data	2	Statistical Malpractice					
+Wrangling	P-hacking	Gives the impression of an non-extant correlation		QuickInsights, MORE		Spurious difference (due to p-hacking, say. or just un-communicated sampling variability)	Data	2	Statistical Malpractice					
+Wrangling	Outliers combined with the wrong aggregation type.						Data, Spec, Render	2						
+Wrangling	Aggregates mask second order statistics	Two things may appear to be equal when in fact their distributions are fundamentally different		\cite{matejka2017same, few2019loom}		dinosaurus box plot, anscombe's quartet, variation blindness (the median isn't the message - gould)	Data, Spec, Render	2	Totally Invisible	Aggregation issues				
+Wrangling	Additional loom Statistical errors			\cite{few2019loom}	TRUE	data loom: law of small numbers (cherry picking, bias sample fallacy), insensitivity to small sample size, base rate fallacy, hot hand fallacy, appeal to coincidence, regression fallacy, variation blindness (the median isn't the message - gould)		2						
+Wrangling	insensitivity to small sample size					data loom								
+Wrangling	hot hand fallacy				TRUE	data loom								
+Wrangling	appeal to coincidence				TRUE	data loom								
+Wrangling	regression fallacy				TRUE	data loom								
+Wrangling	Inappropriate use of mean	Mean comparisons between non-normal and normal distribution will be skewed		\cite{few2019loom}		Data loom (mean is design for normal distributions)	Data, spec	2						
+Wrangling	Confusing imputation		Imputation that generates zeroes rather removing rows can radically alter aggregates.	\cite{song2018s}		"Where's My Data?" 		2						
+Wrangling	Sampling rate errors 	Apparent trend will be the aliases rather than the signal	An apparent trend may be an artifact of the sampling rate rather than the data.	CITATION PLX				2						
+Wrangling	Distinct data classes treated as the same	An apparent trend can be reversed				Automatic Selection of Partitioning Variables for Small Multiple Displays,related to simpsons paradox	Data, spec	2						
+Visualization	Banking to 45 failure	Trend can appear from flat data or vice-versa				HEER PAPER. Mirages can be perceptual in nature, but are driven by a decision somewhere in the analytics pipeline. The knob that controls this mirage is charts dimensions	Data, spec, render	3						
+Visualization	area/length mismatches	Misunderstand meaning of encoded variable		Correll YAxis truncation paper? Pandey et al		e.g. “the incredible shrinking doctor”	Spec	3	Visible Only With Effort	Bad Quant Scales				
+Visualization	Color too close	Reader mistakes one group for another					Spec	3	Visible Only With Effort	Bad color scale				
+Visualization	Time not aligned in direction of language		Reverseing convention can cause reveresed interpretation.	\cite{correll2017black}		Readers tend to think of time as flowing in the same direction as their language (CITATION), eg western language speakers tend to think of it as moving from left to right while REST OF EXAMPLE.	Spec, Data, Render	3						
+Visualization	Overplotting				TRUE	Merged into impropert layering	Data, Spec, Render	3	Totally Invisible	Rendering Issues				
+Visualization	Singularities		Detail can become difficult to discern when collections of lines converge (such as in a parrallel coordinates chart).	\cite{kindlmann2014algebraic}		parallel coordinates AVD example	Data, Render	3	Totally Invisible	Rendering Issues				
+Visualization	Improper Layering / Overplotting		Overplotting can cause an non-existent trend to emerge due to the draw order.	\cite{kindlmann2014algebraic}		taxi AVD example	Data, Render	3	Totally Invisible	Rendering Issues				
+Visualization	Latent variables Missing						Spec	3	Totally Invisible					
+Visualization	Wrong/missing aggregation	Aggregate marks with no opacity overlapping each other do an implicit max					Spec, Render	3	Totally Invisible					
+Visualization	Flipped	Trend understood to be opposite		\cite{pandey2015deceptive, correll2017black, cleveland1982variables}		Black hat, panday, Variables on Scatter Plots Look More Highly Correlated When the Scales are Increased	Spec	3	Visible Only With Effort	Bad Quant Scales				
+Visualization	Scale extents larger than the range of the data	Differences compressed and visual variability is removed		\cite{cleveland1982variables}		Variables on Scatter Plots Look More Highly Correlated When the Scales are Increased	Spec	3	Visible Only With Effort	Bad Quant Scales				
+Visualization	Non-linear scales		Can cause readers to inaccurately correlate variables and cluster values.				Spec	3	Visible Only With Effort	Bad Quant Scales				
+Visualization	Truncated/expanded axes	Can cause sorting errors and errors in characterizing distribution		\cite{pandey2015deceptive, correll2017black, cleveland1982variables}		Variables on Scatterplots Look More Highly Correlated When the Scales are Increased, Black hat, panday	Spec, Data	3						
+Visualization	Colors binned unevenly	May affect interpration of bin meaning					Spec	3	Visible Only With Effort	Bad color scale				
+Visualization	Color just showing base rate	Mistake base rate for data signal rate		\cite{correll2016surprise}		Surprise Maps	Spec	3	Visible Only With Effort	Bad color scale				
+Visualization	Semantically color scale not relevant 		Reader may misinterpret color on a map as indicating the content of that region rather than a data variable.			Green or blue map regions can lead the reader to believe that those regions posses semantically meaningful trends (forest/ocean respectively). CITATION NEEDED, maybe Selecting Semantically‐Resonant Colors for Data Visualization	Spec?	3		Bad color scale				
+Visualization	Within-bar-bias	Readers misunderstand variablility 		\cite{newman2012bar}		Bar graphs depicting averages are perceptually misinterpreted: The within-the-bar bias	Spec	3	Visible Only With Effort	Rhetorical Nudges				
+Visualization	Highlight/downplaying outliers						Spec	3	Visible Only With Effort	Rhetorical Nudges				
+Visualization	Clipped outliers		Chosen domain hides outliers, impending the reader from accurate extrema detection.			specified domain removes significant outliers, may be the same as cherry picking	Data, Spec	3						
+Visualization	Continuous marks describe nominal quantities		Reader may hallucinate a trend based on the rendered ordering.	\cite{mcnuttlinting}		Eg Line chart across nominal data. Citation VisLint	Data, Spec	3	Charting malfeasance	Expressiveness mismatches				
+Visualization	Using ordinal measures as (ratio/interval) measures		Related to "area/length mismatches" a mark might be encoded as big/medium/small which readers might then read as quantitative .	\cite{stevens1946theory, few2019loom}		Stevens, also data loom as "conflating rankings with measure of worth"	Data, spec	3						
+Visualization	V-hacking	Purported insight not robust to minor changes		CITATION?	TRUE		Spec, Render	3	Charting malfeasance					
+Visualization	Charting parameter masking data error	Non-data parameter can mask a critical data error. Ex: a histogram binning hiding a missing value.		\cite{correll2018looks}		Over/under smoothed KDE, Over/under binned histogram. Looks good to me	Data, Spec, Render	3	Charting malfeasance					
+Visualization	Poorly designed Charts				TRUE	Cairo's new book	Spec	3	Charting malfeasance					
+Visualization	Concealed uncertainty	Reader assume that task was completed with certainty				Cairo's new book, Slightly different than missing records, following "Where's My Data?" visualizations should represent their missing data in some way.	Data, Spec, Render	3	Charting malfeasance					
+Visualization	charts with misleading patterns				TRUE	Cairo's new book, black hat	Spec, Render	3	Charting malfeasance					
+Visualization	Sole reliance on measure of central tendency	Second order statistics carry more critical information or variance 		\cite{wall2017warning, few2019loom}		Src: data loom. Could be tested by executing datasarus style data manipulation: keep an invariant the same and rotate the data via optimization	Data, render	3						
+Visualization	Dual y-axes	Relationship between lines is arbitrary (example: jason chaffetz chart)		black hat, cairo?	TRUE	Cairo (poorly designed charts)								
+Visualization	Uncorrelated data decorated with best fit line	Uncareful reader might not investigate if the line of best fit actually matches with anything				Uncorrelated data decorated with line of best fit.								
+Visualization	Staircasing	A trend on a noisy channel may appear to reverse because of the domain selection				https://twitter.com/NASAClimate/status/1154503255486955520  setting domain to a small subrange, particularly on a line chart, this might also be a subcase of cherry picking?		3						
+Visualization	Nominal choropleth conflates color area with classed statistic	Conflated color area with underlying value. Ex: Trump's election map is very red just because of the large and less populous parts of country		CHOROPLETH CITATION?										
+Comprehension	Incorrectly assumed high quality data	Trusting untrust worthy data can lead to missing upstream errors (such as falsey data)	Trusting untrust worthy data can lead to missing upstream errors (such as falsey data)				Data	4	Visible Only With Effort	Data quality errors			Visualization	3
+Comprehension	Multiple comparisons problem	False inference from too many iterative comparisons	Too many iterative comparisons has high probability of generating a configuration that offers a false comparison.	\cite{pu2018garden, zgraggen2018investigating}		Garden of forking paths, Zerdraggen. Possibly not relevant as we've constrained ourselves to presentational VA.	???	4	Statistical Malpractice				Comprehension	4
+Comprehension	Not accounting for bias			\cite{wall2017warning}		Ala "bias may occur"	??	4						
+Comprehension	Assuming view from no-where	Falsely trust visualizations that have a bias	The reader mighy falsey overly trust a visualization that doesn't present its origins.	DATA FEM		maybe same as not accounting for bias								
+Comprehension	Causal Errors: Post hoc ergo propter hoc			\cite{few2019loom}	TRUE		??	4						
+Comprehension	Causal Errors: unit bias			\cite{few2019loom}	TRUE		??	4						
+Comprehension	Causal Errors: outcome bias			\cite{few2019loom}	TRUE		??	4						
+Comprehension	Over-emphasizing data-ink minimalism	Chart might not actually get read, minimalist charts are easier to ignore full message might get lost				Data humanism/feminism: extremely minimalist data visualizations aren't memorable (MONSTER CITATION) or as emotionally impactful as illustrative ones (Data fem) . Visual Difficulties also might be of note here	??	4						
+Comprehension	Confirmation bias	Reader may see trend where one  doesn't exisit		\cite{valdez2017framework}		Data loom	??	4						
+Comprehension	Familiarity Errors: availability heuristic	Falsey extrapolate meaning from data based on competionist set of data			TRUE	Data loom	??	4						
+Comprehension	Familiarity Errors: status quo bias				TRUE	Data loom	??	4						
+Comprehension	Default effect		Visualization system defaults are most used, which can mask data and falsey increase trust.	CITATION VERY MUCH NEEDED HERE		Data loom	??	4						
+Comprehension	Anchoring effect		Reader may be blind to changes, framing whatever they see later in terms of what they've seen earlier.	\cite{ritchie2019lie}		Data loom	??	4						
+Comprehension	Familiarity Errors: semmelweis effect			\cite{valdez2017framework}	TRUE	MAybe should delete, covers same content as confirmation bias, Data loom	??	4						
+Comprehension	Familiarity Errors: appeal to common belief				TRUE	Data loom	??	4						
+Comprehension	Familiarity Errors: law of instrument				TRUE	Data loom, maybe same as default effect	??	4						
+Comprehension	For more see Dimara etals taxonomy of biases in vis	*		\cite{dimara2018task}	TRUE		??	4						
