@@ -45,8 +45,8 @@ export const MENS_WORLD_DASH = {
     },
     y: {
       field: 'Time',
-      type: 'quantitative',
-      // scale: {domain: [9.55, 10.7]}
+      // scale: {domain: [9.55, 10.7]},
+      type: 'quantitative'
     }
   }
 };
@@ -134,6 +134,35 @@ export const MISSING_RECORDS_BAR_CHART = {
       field: 'value',
       type: 'quantitative',
       aggregate: 'average'
+    }
+  }
+};
+
+export const MISSPELLING_BAR_CHART = {
+  $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
+  data: {
+    url: '../example-data/bad/misspelling.csv'
+  },
+  transform: [
+    {filter: {field: 'Category', oneOf: ['A', 'B']}},
+    {
+      aggregate: [{
+        op: 'mean',
+        field: 'Value',
+        as: 'Val'
+      }],
+      groupby: ['Category']
+    }
+  ],
+  mark: 'bar',
+  encoding: {
+    x: {
+      field: 'Category',
+      type: 'nominal'
+    },
+    y: {
+      field: 'Val',
+      type: 'quantitative'
     }
   }
 };
@@ -268,6 +297,7 @@ const OTHER_QUARTETS = [...new Array(3)]
   }, {});
 
 export const BAD_CHARTS = {
+  MISSPELLING_BAR_CHART,
   MENS_WORLD_DASH,
   COLORED_SCATTERPLOT,
   QUARTET_1,
