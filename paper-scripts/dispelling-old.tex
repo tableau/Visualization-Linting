@@ -1,0 +1,134 @@
+
+\section{Dispelling Mirages}
+
+Protecting a visualization against mirages is an important problem, as unaddressed mirages can have lasting effects both on the immediate viewer (such as in the case of presentational visualizations) as well as on analytical decision making to chart maker themselves. For instance, if a user sees a particular visualization showing one trend, when in fact another is latent in the data, and uses this observed trend as a the basis for subsequent exploration they may be subject to an anchoring effect CITATION. This anchoring can lead to additional downstream mirages and confusions. A SENTENCE DESCRIBING OUR (PROPOSED) METHOD. In this section we will first review defenses against mirages from previous work, detail several new ideas for mirage defense, describe our system implementing those ideas, and finally provide a detailed case study of system in action. (REORDER)
+
+\subsection{Systemic Defenses}
+
+While the notion of visualization mirages is original to this work there has been some work on dispelling them in the past. Typically these efforts have involved either intelligent systems that try to do away with problems automatically or, as described at length above, improving chart maker's knowledge through guidelines and best practices.
+%
+Smart systems can be helpful for creating visualizations as they allow users to focus on their data rather than engineering their visualization, however this type of system is not without problems.
+% PHACKING
+Some systems, such as SeeDB and OTHERS CITATIONS, seek to surface interesting insights to users, which as the unfortunate side-effect of creating p-hacked insights (or what might be called v-hacked visualizations). but many create their own problems as they can act as p-hacking machine \cite{pu2018garden} (or what might be coined as v-hacking machines).
+%TOO MUCH TRUST
+Users place a lot of trust in systems that appear to be competent, which can cause them to incorrectly trust data that might contain flaws (DOES AN EXAMPLE OF THIS EXIST?).
+% OVER SPECIALIZED
+Some specialized analytics systems like QUDE attempt to directly surface data problems in the context of the analysis process \cite{binnig2017toward}, such as possible Simpsons Paradoxes (a problem in which a dataset viewed from granularity appears to have a trend that becomes reversed when viewed from another direction) \cite{guo2017you}.
+% CANT RECOMMEND WHAT THEY DONT KNOW ABOUT
+Recommendation and guidance systems can only make commentary on classes of visualization they are explicitly made aware of. For instance while Draco can effectively and efficiently recommend visualization CITATION it is unable to recommend visualization outside of the vega-lite spec which does not contain pie charts.
+% EDUCATION
+Finally recommendation systems are not auditable: they are typically unable to provide an explanation for their choices, which prevents users from learning to make the best practices encoded into that particular tool in other tools.
+
+
+
+
+
+
+
+\begin{figure}[bth]
+   \centering
+   \includegraphics[width=\columnwidth]{./figures/commutative-diagram.pdf}
+   \caption{Algebraic visualization design commutative diagram. A good visualization will commute: a change to the data $\alpha$ will be matched by a corresponding change $\omega$.}
+   \label{fig:commutative-diagram}
+\end{figure}
+
+
+
+% \mc{Include commutative graph here along with some examples}
+
+
+
+
+\begin{figure}[bth]
+   \centering
+   \includegraphics[width=\columnwidth]{./figures/confuser-example.pdf}
+   \caption{Algebraic Visualization Design's confusers describe charts that fail to acknowledge plausible and significant changes in to the data.}
+   \label{fig:confuser-example}
+\end{figure}
+
+
+
+\subsection{Metamorphic Testing For Disillusionment}
+
+
+In complex systems it is difficult or prohibitively expensive to understand whether or not the software is in producing correct results. In the field of software testing this is known as the oracle problem. The Metamorphic Testing (MT) ideology attempts to address this challenge by verifying properties of system outputs across input changes \cite{segura2016survey}. Rather than checking that particular inputs give correct outputs, MT asserts that properties called \textit{metamorphic relations} should remain invariant across all appropriate metamorphoses of a particular data set. MT has been successfully applied to a wide variety of systems including computer graphics, self-driving cars, and deep learning.
+
+Let's consider a specific example from computer graphics for motivation.  Donaldson \etal make use of a MT strategy to identify bugs in graphics shader compilers \cite{metamorphicoopsla17}. They do so by considering an ostensibly bug-free shader, making changes to the code that shouldn't effect the the rendered image (such as introducing code paths that will never be reached), and comparing the result through image comparison techniques.  They formalize this technique by asserting that following equation should be an invariant:
+    \begin{equation}\label{equation:shader}
+        \forall x: p(f_I (x)) = f_O (p(x))
+    \end{equation}
+where $x$ is a given shader program, $p$ a shader compiler, $f_I$  perturbations to the input, and $f_O$ changes to the output (usually the identity under their framework). The selection of the meaning of equality in MT plays a significant role in it's ability to offer effective analysis. To wit Donaldson \etal use a threshold of chi-squared distance between image histograms as a proxy for image equality. Using this methodology they find over 60 bugs in commercial GPU systems.
+
+
+Interestingly, Eqn. \ref{equation:shader} is functionally isomorphic to the equation representation of AVD's principle commutative relation \cite{kindlmann2014algebraic}, which describes the commutative properties of an effective visualization across potential data transformations:
+    \begin{align}
+        v \circ r_2  \circ \alpha = \omega \circ v \circ r_1
+    \end{align}
+Which is represented in \figref{fig:commutative-diagram} as a category theoretic commutative diagram. We suggest that this implies that AVD and MT are intrinsically linked UGH. Veras and Collins DO XYZ THING WITH THEIR METRIC \cite{veras2019discriminability}.
+
+We now introduce the idea of use metamorphic testing as a mechanism to verify individual visualizations. SENTENCE DESCIBRING WHY USING METAMOPHORIC STUFF IS GOOD. This perspective has the advantage that we can test a wide variety of types of visualization without knowing about much about the chart being rendered.
+%
+METAMORPHIC TESTING OFFERS SOME INTERESTING PROPERTIES, YET WILL DOES NOT ALWAYS OFFER THE MOST DIRECT ROUTE TOWARDS DETECTING ERRORS. TO WIT, OUR SHUFFLE RULE IS EFFECTIVE AT CATCHING OVERDRAW, YET THIS IS A VISUALIZATION PROPERTY THAT CAN DETECTED THROUGH OTHER OVERDRAW DETECTION TECHNIQUES. THE ADVANTAGE THAT METAMORPHIC TESTING HAS IS IT'S NAIVITY, THROUGH SIMPLE METAMORPHESES WE ARE ABLE TO CONSIDER A WIDE VARIETY OF AVENUES.
+
+
+
+\begin{figure}[bth]
+   \centering
+   \includegraphics[width=\columnwidth]{./figures/opacity-permute.pdf}
+   \caption{
+    Visualization spec permutation over a chart describing the amount of rain in Seattle. After permuting the opacity we would expect there to be the center image, yet permute the opacity reveals the iamge on the right. This indicates that the chart maker forgot to set an aggregation type for the percipitation axis, causing there to be an implicit (and unintended!) max aggregation for this chart.
+   }
+   \label{fig:opacity-permute}
+\end{figure}
+
+
+
+
+To our knowledge metamorphic testing has not previously been used explicitly in the context of data visualization, though there have been a variety of works related to visualization that touch on explicitly or use implicitly related techniques.  Ramanathan \etal make use of metamorphic technique in conjunction with visualization in order verify implementations of epidemiological models \cite{ramanathan2012verification}. Guo \etal use a metamorphic like strategy to detect instances of Simpsons's paradox \cite{guo2017you}. McNutt and Kindlmann construct a linting system that provides ad hoc guidance through a linting metaphor \cite{mcnuttlinting} and briefly touch on some ideas related to MT. Chiw \etal make use of MT techniques to analyze a scientific visualization DSL compiler, though their focus is on evaluating the correctness of the compiler rather than the the correctness of the visualizations \cite{chiw2017datm}.
+
+
+
+\begin{figure}[bth]
+   \centering
+   \includegraphics[width=\columnwidth]{./figures/system-screenshot.png}
+   \caption{
+   We provide a web-based interface to \SYSTEMNAME{ } which is a feature-light redesign of the online vega editor \protect\cite{vegaonline}.
+   %
+   Users provide their vega-lite chart specification on the left and then receive a rendering of their chart on the right, along with a collection of passing and failing lint rules.
+   %
+   The lint rules include a text explanation and, in the case of the data-metamorphic rules, a visual explanation showing the modified chart and the difference from the original image.
+   }
+   \label{fig:system-diagram}
+\end{figure}
+
+
+
+
+\subsection{System Design}
+We implement a proof of concept, \SYSTEMNAME, which automatically surfaces potential mirages. \SYSTEMNAME{ } evaluates visualizations created in vega-lite \cite{satyanarayan2016vega} by checking against a variety of assertions. These assertions come in two varieties: those which identify problems through visualization-spec introspection (which focuses on catching reading-level mirages) and metamorphic perturbations (which primarily focus on catching AVD hallucinators and confusers). We focus on vega-lite because of its advantageous API which allows us to apply a wide variety of analytic techniques in programmatic and consistent way. Following the precedent set by Kim \etal we focus on a subset of vega-lite\cite{kim2017graphscape}, in which we ignore concat and layer operations, as well as charts without a true data source (such as those fed by data generators).
+
+
+
+Following McNutt and Kindlmann's \textit{vislint$\_$mpl}, a linter which principally considers stylistic issues in matplotlib charts \cite{Hunter:2007}, we construct our analysis system as following the structure of a linter \cite{mcnuttlinting}.
+Linters are a type of software typically seen as a mechanism at employ static analysis techniques to catch semantic and stylistic programming bugs, like a spell-checker for code \cite{johnson1977lint}. Recently a variety of systems have moved beyond this definition and have started consider non-programming domains such as deep learning training data \cite{hynes2017data}, English prose \cite{proselint, writegood}, and spreadsheets \cite{barowy2018excelint}. Linters often give incorrect warnings (false-positives) as they are typically designed with the perspective that it is better for the user to be altered to a non-existent bug than to be left in the dark about real one (false-negatives). To this end they allow their users to opt out of specific lint checks (called rules) both in general or for specific cases, a degree of user-agency which is often not-respected by guidance systems that ignore the users choices (such as the infamously impolite Microsoft Clippy \cite{whitworth2005polite}). We believe that this type of granular and polite control over analysis is an ideal fit for the level and accuracy of analysis our system can provide.
+
+
+Our system is focused on detecting errors in the visualization stage of our taxonomy. We forgo implementing a suite of data error detection systems because there is already a substantial literature on them, both on purely statistical grounds \cite{raman2001potter, kandel2012profiler, naumann2014data} as well as in domain specific contexts \cite{mucslu2015preventing, barowy2014checkcell}. Closely related to our system is Jannah's MetaReader, which surfaces possible statistical and semantic data errors to analysts as a pre-analytics step \cite{jannahmetareader}. In the other direction there has been some initial work on that automatically testing for bias \cite{wall2017warning}, although we are lightly skeptical of any system that believes it can automatically determine fairness\footnote{(MULCHING PROPOSAL?)}.
+
+
+We offer three types of rules in our analysis. Rules which look for deceptive mirages, which are executed by statically analyzing the visualization specification, spec-metamorphic rules in which we modify the spec and compare rendered visualizations, and data-metamorphic rules in which we modify the input data and compare the rendered images. We find the last of these to be the most effective class of rule at inferring mirages as they are agnostic to specific chart configuration and typically only care if out image doesn't change when it should (a confuser) or changes when it shouldn't (a hallucinator). We don't specifically differentiate between classes of AVD failures in our system that super structure is not necessary to alert the user to problem identified using those tools.
+
+We verify that our system runs correctly by evaluating it against both the corpus of examples that makes of vega-lite's test suite, as well as a corpus of vega-lite specifications scraped from Github's Gists CITATION. Together this corpus of example charts is comprised of ~800 charts. Within both of these example sets we are able to find a number of interesting test failures, such as XYZ. While these tests are valuable, both for developing and validating our tool, they don't really capture many in the wild errors, likely due to the fact that vega-lite is primarily used as tool on top of which other charting tools are built (see for instance it's origins as part of Voyager CITATION). In future work we would like to apply our system to a more ad hoc charting context, such as Altair CITATION (which is now the default charting library in JupyterLab CITATION) or LitVis CITATION, which both consume vega-lite as charting engine.
+
+In order to demonstrate the validity of our this testing strategy we implement a small number of metamorphic relations. \textbf{SHUFFLE}: Reorders the input data. The visualization should remain unchanged across this transformation: if not it indicates that the visualization possess a halluncinators. This primarily allows us to detect over plotting, as in \figref{fig:shuffle-lint}, but surfaces a vareity of other interesting chart properties. \textbf{RANDOMIZE}: Identifies columns being visualized and randomizes their relationship in the vein of Wickham \etals lineup technique \cite{wickham2010graphical}. In our naive pixel difference technique we assert that images should be different across this change. This allows us to detect XXXX. MORE \textbf{REMOVE ROWS}, \textbf{REMOVE OUTLIERS}, \textbf{NULLIFY SOME DATA}, \textbf{SAMPLE FROM AGGREGATE MARKS} This collection is paralleled by Murphy \etals list of metamorphic relations for deep learning systems consisting of \textbf{Additive}, \textbf{Multiplicative}, \textbf{Permutative}, \textbf{Invertive}, \textbf{Inclusive}, and \textbf{Exclusive} relations \cite{murphy2008properties}.
+
+
+
+\begin{figure}[bth]
+   \centering
+   \includegraphics[width=\columnwidth]{./figures/shuffle-failure.png}
+   \caption{
+    An example of true positive lint rule execution, shuffling the data. On the left we see the original visualization, in the center we see the image after shuffle, and on the right we see the pixel difference between the two. This reveals a property of this spec and data combo that it is not resilient to order permutation, (in the language of AVD, a hallucinator), or more plainly overdraw.
+   }
+   \label{fig:shuffle-lint}
+\end{figure}

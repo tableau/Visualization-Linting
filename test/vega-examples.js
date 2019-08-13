@@ -31,6 +31,26 @@ export const BAR_CHART_SPEC = {
   }
 };
 
+export const MENS_WORLD_DASH = {
+  data: {
+    url: '../example-data/real/mens-100m-dash.json'
+  },
+  height: 200,
+  width: 200,
+  mark: 'line',
+  encoding: {
+    x: {
+      field: 'Date',
+      type: 'temporal'
+    },
+    y: {
+      field: 'Time',
+      type: 'quantitative',
+      // scale: {domain: [9.55, 10.7]}
+    }
+  }
+};
+
 export const BAR_CHART_BUT_FORGOT_TO_ADD = {
   data: {
     url: '../node_modules/vega-datasets/data/seattle-weather.csv'
@@ -248,6 +268,7 @@ const OTHER_QUARTETS = [...new Array(3)]
   }, {});
 
 export const BAD_CHARTS = {
+  MENS_WORLD_DASH,
   COLORED_SCATTERPLOT,
   QUARTET_1,
   ...OTHER_QUARTETS,
