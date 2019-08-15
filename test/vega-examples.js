@@ -1,3 +1,5 @@
+import WorldIndicatorMirages from './world-indicator-mirages';
+
 export const CARS_CARS_BAR_CHART = {
   $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
   width: 120,
@@ -121,6 +123,8 @@ export const MISSING_RECORDS_BAR_CHART = {
   data: {url: '../example-data/bad/missingrecords.csv'},
   transform: [
     // there is some white space weirdness going on in x1, can't tell what
+    // i done figured it out: tableau returns csvs in utf-16, but everything else
+    // everywhere needs utf8. TODO fix all of the csvs
     {fold: ['﻿x1', 'x2']},
     // this is a dumb hacky filter, but whatever
     {filter: {field: 'value', gt: 0}}
@@ -297,6 +301,7 @@ const OTHER_QUARTETS = [...new Array(3)]
   }, {});
 
 export const BAD_CHARTS = {
+  ...WorldIndicatorMirages,
   MISSPELLING_BAR_CHART,
   MENS_WORLD_DASH,
   COLORED_SCATTERPLOT,
