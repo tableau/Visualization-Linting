@@ -144,6 +144,7 @@ class App extends React.Component {
             this.renderSpec(currentSpec);
             this.lintSpec(currentSpec);
           }}
+          lintingTarget={lintingTarget}
           changeSpec={changeSpec(true)}
           currentSpec={currentSpec}/>
         <div className="flex margin-top-20 full-width">

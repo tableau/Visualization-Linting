@@ -4,9 +4,25 @@ import {BAD_CHARTS} from '../../../test/vega-examples';
 import Select from 'react-select';
 /* eslint-enable no-unused-vars */
 
+// copied from https://github.com/notablemind/downloadbutton/blob/master/save-as.js
+function saveAs(uri, filename) {
+  const link = document.createElement('a');
+  if (typeof link.download === 'string') {
+    // Firefox requires the link to be in the body
+    document.body.appendChild(link);
+    link.download = filename;
+    link.href = uri;
+    link.click();
+    // remove the link when done
+    document.body.removeChild(link);
+  } else {
+    location.replace(uri);
+  }
+}
+
 export default class ControlHeader extends React.PureComponent {
   render() {
-    const {executeSpec, buildChart, changeSpec, cleanUpCode} = this.props;
+    const {executeSpec, buildChart, changeSpec, cleanUpCode, lintingTarget} = this.props;
     return (<div className="flex gray-background shadow z-10 header">
       <div className="select-container">
         <Select
@@ -28,6 +44,16 @@ export default class ControlHeader extends React.PureComponent {
         <div
           onClick={executeSpec}
           className="button">Build and Evaluate Chart</div>
+        {lintingTarget && <div
+          className="button"
+          onClick={() => {
+            const blob = new Blob([lintingTarget], {type: 'svg'});
+            const url = URL.createObjectURL(blob);
+            saveAs(url, 'vis-lint-file.svg');
+          }}
+          color="transparent"
+          target="_blank"
+          download>Download Chart</div>}
       </div>
     </div>);
   }
