@@ -109,12 +109,27 @@ export const INSANITY = {
 
 export const COLORED_SCATTERPLOT = {
   $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
-  data: {url: '../node_modules/vega-datasets/data/cars.json'},
-  mark: 'point',
+  data: {
+    url: '../node_modules/vega-datasets/data/cars.json'
+  },
+  mark: {
+    type: 'circle',
+    opacity: 1
+  },
   encoding: {
-    x: {field: 'Horsepower', type: 'quantitative'},
-    y: {field: 'Miles_per_Gallon', type: 'quantitative'},
-    color: {field: 'Origin', type: 'nominal'}
+    x: {
+      field: 'Horsepower',
+      type: 'quantitative'
+    },
+    y: {
+      field: 'Miles_per_Gallon',
+      type: 'quantitative'
+    },
+    color: {
+      field: 'Origin',
+      type: 'nominal',
+      scale: {range: ['#E15658', '#58A14E', '#EDC948']}
+    }
   }
 };
 
