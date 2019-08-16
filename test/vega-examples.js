@@ -243,6 +243,26 @@ export const MISSING_QUARTER_LINESERIES = {
   }
 };
 
+export const MISSING_QUARTER_LINESERIES_DISPELL = {
+  data: {url: '../example-data/bad/missingquarter.csv'},
+  height: 200,
+  width: 200,
+  mark: 'line',
+  encoding: {
+    x: {
+      timeUnit: 'yearquarter',
+      // agh the white space thing here too, what
+      field: '﻿Time',
+      type: 'temporal'
+    },
+    y: {
+      aggregate: 'mean',
+      field: 'Sales',
+      type: 'quantitative'
+    }
+  }
+};
+
 export const STRIP_PLOT = {
   $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
   data: {
@@ -257,6 +277,8 @@ export const STRIP_PLOT = {
   }
 };
 
+const salesEncode = {field: 'sales', type: 'quantitative', aggregate: 'average'};
+const locationEncode = {field: 'location', type: 'nominal'};
 const QUARTET_1 = {
   $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
   data: {
@@ -264,15 +286,8 @@ const QUARTET_1 = {
   },
   mark: 'bar',
   encoding: {
-    x: {
-      field: 'location',
-      type: 'nominal'
-    },
-    y: {
-      field: 'sales',
-      type: 'quantitative',
-      aggregate: 'average'
-    }
+    x: locationEncode,
+    y: salesEncode
   }
 };
 
@@ -281,23 +296,12 @@ const OTHER_QUARTETS = [...new Array(3)]
   .reduce((acc, idx) => {
     acc[`QUARTET_${idx}`] = {
       $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
-      data: {
-        url: `../example-data/bad/quartet${idx}.csv`
-      },
-      encoding: {
-        x: {
-          field: 'location',
-          type: 'nominal'
-        }
-      },
+      data: {url: `../example-data/bad/quartet${idx}.csv`},
+      encoding: {x: locationEncode},
       layer: [{
         mark: 'bar',
         encoding: {
-          y: {
-            field: 'sales',
-            type: 'quantitative',
-            aggregate: 'average'
-          }
+          y: salesEncode
         }
       }, {
         mark: 'circle',
@@ -306,9 +310,7 @@ const OTHER_QUARTETS = [...new Array(3)]
             field: 'sales',
             type: 'quantitative'
           },
-          color: {
-            value: 'red'
-          }
+          color: {value: 'red'}
         }
       }]
     };
