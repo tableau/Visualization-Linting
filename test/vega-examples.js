@@ -13,9 +13,7 @@ export const CARS_CARS_BAR_CHART = {
 };
 
 export const BAR_CHART_SPEC = {
-  data: {
-    url: '../node_modules/vega-datasets/data/seattle-weather.csv'
-  },
+  data: {url: '../node_modules/vega-datasets/data/seattle-weather.csv'},
   height: 200,
   width: 200,
   mark: 'bar',
@@ -95,9 +93,15 @@ export const INSANITY = {
   description: 'A simple bar chart with embedded data.',
   data: {
     values: [
-      {a: 'A', b: 28}, {a: 'B', b: 55}, {a: 'C', b: 43},
-      {a: 'D', b: 91}, {a: 'E', b: 81}, {a: 'F', b: 53},
-      {a: 'G', b: 19}, {a: 'H', b: 87}, {a: 'I', b: 52}
+      {a: 'A', b: 28},
+      {a: 'B', b: 55},
+      {a: 'C', b: 43},
+      {a: 'D', b: 91},
+      {a: 'E', b: 81},
+      {a: 'F', b: 53},
+      {a: 'G', b: 19},
+      {a: 'H', b: 87},
+      {a: 'I', b: 52}
     ]
   },
   mark: 'bar',
@@ -147,7 +151,8 @@ export const MISSING_RECORDS_BAR_CHART = {
   mark: 'bar',
   encoding: {
     x: {
-      field: 'key', type: 'ordinal'
+      field: 'key',
+      type: 'ordinal'
     },
     y: {
       field: 'value',
@@ -165,11 +170,13 @@ export const MISSPELLING_BAR_CHART = {
   transform: [
     {filter: {field: 'Category', oneOf: ['A', 'B']}},
     {
-      aggregate: [{
-        op: 'mean',
-        field: 'Value',
-        as: 'Val'
-      }],
+      aggregate: [
+        {
+          op: 'mean',
+          field: 'Value',
+          as: 'Val'
+        }
+      ],
       groupby: ['Category']
     }
   ],
@@ -237,11 +244,33 @@ export const MISSING_QUARTER_LINESERIES = {
     y: {
       aggregate: 'mean',
       field: 'Sales',
-      type: 'quantitative',
-      scale: {domain: [85, 5]}
+      type: 'quantitative'
+      // scale: {domain: [85, 5]}
     }
   }
 };
+
+export const MISSING_QUARTER_LINESERIES_EXPOSED = {
+  data: {url: '../example-data/bad/missingquarter-exposed.csv'},
+  height: 200,
+  width: 200,
+  mark: 'line',
+  encoding: {
+    x: {
+      field: 'Time',
+      type: 'temporal'
+    },
+    y: {
+      aggregate: 'mean',
+      field: 'Sales',
+      type: 'quantitative'
+    },
+    color: {
+      field: 'Series'
+    }
+  }
+};
+// "mark": {"type": "line", "strokeDash": [3, 3]},
 
 export const MISSING_QUARTER_LINESERIES_DISPELL = {
   data: {url: '../example-data/bad/missingquarter.csv'},
@@ -277,7 +306,12 @@ export const STRIP_PLOT = {
   }
 };
 
-const salesEncode = {field: 'sales', type: 'quantitative', aggregate: 'average'};
+const salesEncode = {
+  field: 'sales',
+  type: 'quantitative',
+  aggregate: 'average',
+  scale: {domain: [0, 320]}
+};
 const locationEncode = {field: 'location', type: 'nominal'};
 const QUARTET_1 = {
   $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
@@ -298,34 +332,33 @@ const OTHER_QUARTETS = [...new Array(3)]
       $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
       data: {url: `../example-data/bad/quartet${idx}.csv`},
       encoding: {x: locationEncode},
-      layer: [{
-        mark: 'bar',
-        encoding: {
-          y: salesEncode
+      layer: [
+        {
+          mark: 'bar',
+          encoding: {y: salesEncode}
+        },
+        {
+          mark: 'circle',
+          encoding: {
+            y: {...salesEncode, aggregate: null},
+            color: {value: '#E15658'}
+          }
         }
-      }, {
-        mark: 'circle',
-        encoding: {
-          y: {
-            field: 'sales',
-            type: 'quantitative'
-          },
-          color: {value: 'red'}
-        }
-      }]
+      ]
     };
     return acc;
   }, {});
 
 export const BAD_CHARTS = {
+  MISSING_QUARTER_LINESERIES_EXPOSED,
+  MISSING_QUARTER_LINESERIES,
+  QUARTET_1,
+  ...OTHER_QUARTETS,
   ...WorldIndicatorMirages,
   MISSPELLING_BAR_CHART,
   MENS_WORLD_DASH,
   COLORED_SCATTERPLOT,
-  QUARTET_1,
-  ...OTHER_QUARTETS,
   BAR_CHART_BUT_FORGOT_TO_ADD,
-  MISSING_QUARTER_LINESERIES,
   MISSING_RECORDS_BAR_CHART,
   OUTLIER_SCATTERPLOT,
   OVERPLOT_SCATTERPLOT_REVERESED,

@@ -4,7 +4,9 @@
     "browser": true
   },
   "extends": [
-    "uber-es2015"
+    "uber-es2015",
+    "prettier",
+    "prettier/react"
   ],
   "rules": {
     "consistent-return": 0,
@@ -16,6 +18,7 @@
   "parser": "babel-eslint",
   "plugins": [
     "react",
-    "babel"
+    "babel",
+    "prettier"
   ]
 }

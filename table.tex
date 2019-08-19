@@ -5,54 +5,56 @@
 \small
 \begin{tabular}{p{5cm}p{12cm}}
 \normalsize{Error} & \normalsize{Mirage}\\ \hline
-   \rowcolor{colora}\multirow{6}{0em}{\hspace{-0.6cm}\rotatebox{90}{\normalsize{Curating}}}Forgotten Population & A dataset which ignores a critical population is liable to come to conclusions that might harm that population. \cite{missingdatasets, correll2019ethical}\\
- \rowcolor{colora-opaque}Missing/Repeated Records & Faulty data can cause aggregates to be inaccurate, or at least different from the user intuition. \cite{kim2003taxonomy}  CITATION?\\
- \rowcolor{colora}Outliers & Outliers can cause upstream failures if not addressed properly by wrecking the visual scale and warping the perception of the real distribution.  \\
+   \rowcolor{colora}\multirow{6}{0em}{\hspace{-0.6cm}\rotatebox{90}{\normalsize{Curating}}}Forgotten Population/Missing dataset & A dataset which ignores a critical population is liable to come to conclusions that might harm that population. \cite{missingdatasets, correll2019ethical}\\
+ \rowcolor{colora-opaque}Missing/Repeated Records & Faulty data can cause aggregates to be inaccurate, or at least different from the user intuition. \cite{kim2003taxonomy} \\
+ \rowcolor{colora}Outliers & Outliers can cause upstream failures if not addressed properly by wrecking the visual scale and warping the perception of the real distribution.  \cite{kim2003taxonomy} \\
  \rowcolor{colora-opaque}Spelling Mistakes & Differently spelled groups can cause rows to mis-aggregate, causing inaccurate comparisons. \cite{wang2019uni}\\
  \rowcolor{colora}Unidentified Functional Dependencies & Visualization might show a strong relationship between variables, when in fact that relationship is part of the data composition (eg A+B = C, plot A vs C). \cite{wang2019uni}\\
  \rowcolor{colora-opaque}Drill-down Bias & Apparent trends might be attributed to the more specific/recently specified filters rather than relatively "simpler" explanations. \cite{lee2019avoiding}\\
 
-   \rowcolor{colorb}\multirow{9}{0em}{\hspace{-0.6cm}\rotatebox{90}{\normalsize{Wrangling}}}Differing Number of Records by Group & Marks assumed to represent consistent number of values might have a variable number of entries, which can mask missing data or can lead to incorrect assumptions about aggregates. \\
- \rowcolor{colorb-opaque}Simpson's Paradox & An observed trends reverses when the aggregation level changes. \cite{guo2017you}\\
- \rowcolor{colorb}Cherry Picking & Filtering down to an uncharacteristic subset offers an incorrect distribution. \cite{few2019loom}\\
- \rowcolor{colorb-opaque}Higher Noise than Effect Size & A high variability or noise in can mask the real information being presented, causing readers to identify non-existent trends. WICKAM LINEUPS?\\
- \rowcolor{colorb}P-Hacking & Spurious difference (due to p-hacking, say. or just un-communicated sampling variability) can give the impression of non-extant correlation. \cite{pu2018garden}\\
- \rowcolor{colorb-opaque}Outliers Combined with Wrong Aggregation Type & Using extremal aggregates (such as min/max) will likely cause misinterpretation of bars as readers tend to assume bars show sums. (I THINK THIS WHAT WITHIN BAR SAYS) \cite{newman2012bar}\\
- \rowcolor{colorb}Confusing Imputation & Imputation that generates zeroes rather removing rows can radically alter aggregates. \cite{song2018s}\\
- \rowcolor{colorb-opaque}Sampling Rate Errors  & An apparent trend may be an artifact of the sampling rate rather than the data. \cite{kindlmann2014algebraic}\\
- \rowcolor{colorb}Data Classes Distinctions Ignored & Multiple distinct data classes presented as the same can cause errors in the inference of trends. \cite{anand2015automatic}\\
+   \rowcolor{colorb}\multirow{10}{0em}{\hspace{-0.6cm}\rotatebox{90}{\normalsize{Wrangling}}}Geopolitical Boundaries in Question &  \\
+ \rowcolor{colorb-opaque}Differing Number of Records by Group & Marks assumed to represent consistent number of values might have a variable number of entries, which can mask missing data or can lead to incorrect assumptions about aggregates. \\
+ \rowcolor{colorb}Simpson's Paradox & An observed trends reverses when the aggregation level changes. \cite{guo2017you}\\
+ \rowcolor{colorb-opaque}Cherry Picking & Filtering down to an uncharacteristic subset offers an incorrect distribution. \cite{few2019loom}\\
+ \rowcolor{colorb}Higher Noise than Effect Size & A high variability or noise in can mask the real information being presented, causing readers to identify non-existent trends. WICKAM LINEUPS?\\
+ \rowcolor{colorb-opaque}P-Hacking & Spurious difference (due to p-hacking, say. or just un-communicated sampling variability) can give the impression of non-extant correlation. \cite{pu2018garden}\\
+ \rowcolor{colorb}Outliers Combined with Wrong Aggregation Type & Using extremal aggregates (such as min/max) will likely cause misinterpretation of bars as readers tend to assume bars show sums. (I THINK THIS WHAT WITHIN BAR SAYS) \cite{newman2012bar}\\
+ \rowcolor{colorb-opaque}Confusing Imputation & Imputation that generates zeroes rather removing rows can radically alter aggregates. \cite{song2018s}\\
+ \rowcolor{colorb}Sampling Rate Errors  & An apparent trend may be an artifact of the sampling rate rather than the data. \cite{kindlmann2014algebraic}\\
+ \rowcolor{colorb-opaque}Data Classes Distinctions Ignored & Multiple distinct data classes presented as the same can cause errors in the inference of trends. \cite{anand2015automatic}\\
 
-   \rowcolor{colorc}\multirow{29}{0em}{\hspace{-0.6cm}\rotatebox{90}{\normalsize{Visualizing}}}Banking to 45 Failure & Not using an appropriate aspect ratio can cause trends to be hallucinated in otherwise trend-free data. \cite{heer2006multi}\\
- \rowcolor{colorc-opaque}Misunderstand Area as Quantity & Area encoded marks can be misunderstood as encoding length or area, which will describe different magnitudes of meaning (though consistent ordinal meaning). \cite{pandey2015deceptive, correll2017black}\\
- \rowcolor{colorc}Color too Close & Readers may mistake one data class for another. JND CITATION?\\
- \rowcolor{colorc-opaque}Unconventional Direction of Time  & Readers expect time to progress in the same direction as their language, reversing convention can cause reversed interpretation. \cite{correll2017black}\\
- \rowcolor{colorc}Singularities & Detail can become difficult to discern when collections of lines converge (such as in a parallel coordinates chart). \cite{kindlmann2014algebraic}\\
- \rowcolor{colorc-opaque}Improper Layering / Overplotting & Overplotting can cause an non-existent trend to emerge due to the draw order. \cite{kindlmann2014algebraic}\\
- \rowcolor{colorc}Latent Variables Missing &  \\
- \rowcolor{colorc-opaque}Wrong/Missing Aggregation & Aggregate marks with no opacity overlapping each other do an implicit max, as shown in \figref{fig:opacity-permute}. \\
- \rowcolor{colorc}Flipped Axes & A visualization presented with axes flipped from the usual direction can cause the viewer to understand the opposite message of the data. \cite{pandey2015deceptive, correll2017black, cleveland1982variables}\\
- \rowcolor{colorc-opaque}Scale Extents Larger than Range of the Data & Differences compressed and visual variability is removed. \cite{cleveland1982variables}\\
- \rowcolor{colorc}Non-linear Scales & Can cause readers to inaccurately correlate variables and cluster values. \cite{pandey2015deceptive}\\
- \rowcolor{colorc-opaque}Truncated/Expanded Axes & Axes constructed in an unintuitive manner may hide variance or cause errors in sorting marks or characterizing the distribution. \cite{pandey2015deceptive, correll2017black, cleveland1982variables, ritchie2019lie, correll2019truncating}\\
- \rowcolor{colorc}Colors Binned Unevenly & Irregular or uintutive binning may negatively affect interpretation of bin meaning. CITATION?\\
- \rowcolor{colorc-opaque}Base Rate Masquerading as Data & Mistake base rate for data signal rate, such as in maps which purport to show data but in fact just show population. \cite{correll2016surprise}\\
- \rowcolor{colorc}Inappropriate Semantic Color Scale  & Reader may misinterpret color on a map as indicating the content of that region rather than a data variable, for instance green being interpreted as indicating forests and blue indicating ocean. \\
- \rowcolor{colorc-opaque}Within-bar-bias & Bar charts that have variability are frequently misunderstood. \cite{newman2012bar}\\
- \rowcolor{colorc}Highlight/Downplaying Outliers & Over highlighting outliers can mask important data features, however so can ignoring them. CITATION?\\
- \rowcolor{colorc-opaque}Clipped Outliers & Chosen domain hides outliers, impending the reader from accurate extrema detection. \\
- \rowcolor{colorc}Continuous Marks for Nominal Quantities & Reader may hallucinate a trend based on the rendered ordering. \cite{kindlmann2014algebraic, mcnuttlinting}\\
- \rowcolor{colorc-opaque}Using Ordinal Measures as (Ratio/Interval) Measures & Related to "area/length mismatches" a mark might be encoded as big/medium/small which readers might then read as quantitative. \cite{stevens1946theory, few2019loom}\\
- \rowcolor{colorc}V-Hacking & Visualization includes arbitrary choices made by the designer that causes reader to hallucinate un-meaningful inferences. The modifiable areal unit problem is an example of this problem. \cite{fotheringham1991modifiable, kindlmann2014algebraic}\\
- \rowcolor{colorc-opaque}Charting Parameter Masking Data Error & Non-data parameter can mask a critical data error, such as a histogram binning hiding a missing value. \cite{correll2018looks}\\
- \rowcolor{colorc}Concealed Uncertainty & Charts that don't indicate that they contain uncertainty risk giving a false impression as well a possible extreme mistrust of the data if the reader realizes the information hasn't been presented clearly.  \cite{song2018s, few2019loom, mayrTrust2019, sacha2015role}\\
- \rowcolor{colorc-opaque}Sole Reliance on Measure of Central Tendency & Second order statistics often carry critical information about the variance or distribution, which is masked through simple central tendencies.  \cite{wall2017warning, few2019loom, matejka2017same, anscombe1973graphs}\\
- \rowcolor{colorc}Trend in Dual Y-Axis Charts are Arbitrary & Scales are unconnected and so any almost any relative trend can be made to appear. \cite{KindlmannAlgebraicVisPedagogyPDV2016, cairo2015graphics}\\
- \rowcolor{colorc-opaque}Uncorrelated Data Decorated with Best Fit Line & Uncareful reader might not investigate if the line of best fit actually matches with anything, instead taking a potentially incorrect trend at face value. \\
- \rowcolor{colorc}Staircasing & A trend on a noisy channel may appear to reverse because of the domain selection. MAYBE A SUBSET OF CHERRY PICKING? IS THIS A KNOWN THING\\
- \rowcolor{colorc-opaque}Nominal Choropleth Conflates Color Area with Classed Statistic & Conflating class coloring and area can give a misinterpretation of base rate, as is often this case in american presidential election maps.  \cite{gastner2005maps} CHOROPLETH CITATION?\\
- \rowcolor{colorc}Presentation Masks Information & The choice of graphical rendering may obscure data found in similar encodings. For instance, some graph layouts present their data clearly while others more closely resemble hairballs. \cite{hofmann2012graphical} GRAPH CITATION\\
+   \rowcolor{colorc}\multirow{30}{0em}{\hspace{-0.6cm}\rotatebox{90}{\normalsize{Visualizing}}}Non-sequitur visualization & Visualizations being used as decoration (rather than a mapping between data and image) prey on the readers assumption that the chart is being used as normal. \cite{correll2017black}\\
+ \rowcolor{colorc-opaque}Banking to 45 Failure & Not using an appropriate aspect ratio can cause trends to be hallucinated in otherwise trend-free data. \cite{heer2006multi}\\
+ \rowcolor{colorc}Misunderstand Area as Quantity & Area encoded marks can be misunderstood as encoding length or area, which will describe different magnitudes of meaning (though consistent ordinal meaning). \cite{pandey2015deceptive, correll2017black}\\
+ \rowcolor{colorc-opaque}Color too Close & Readers may mistake one data class for another. JND CITATION?\\
+ \rowcolor{colorc}Unconventional Direction of Time  & Readers expect time to progress in the same direction as their language, reversing convention can cause reversed interpretation. \cite{correll2017black}\\
+ \rowcolor{colorc-opaque}Singularities & Detail can become difficult to discern when collections of lines converge (such as in a parallel coordinates chart). \cite{kindlmann2014algebraic}\\
+ \rowcolor{colorc}Improper Layering / Overplotting & Overplotting can cause an non-existent trend to emerge due to the draw order. \cite{kindlmann2014algebraic}\\
+ \rowcolor{colorc-opaque}Latent Variables Missing &  \\
+ \rowcolor{colorc}Wrong/Missing Aggregation & Aggregate marks with no opacity overlapping each other do an implicit max, as shown in \figref{fig:opacity-permute}. \\
+ \rowcolor{colorc-opaque}Flipped Axes & A visualization presented with axes flipped from the usual direction can cause the viewer to understand the opposite message of the data. \cite{pandey2015deceptive, correll2017black, cleveland1982variables}\\
+ \rowcolor{colorc}Scale Extents Larger than Range of the Data & Differences compressed and visual variability is removed. \cite{cleveland1982variables}\\
+ \rowcolor{colorc-opaque}Non-linear Scales & Can cause readers to inaccurately correlate variables and cluster values. \cite{pandey2015deceptive}\\
+ \rowcolor{colorc}Truncated/Expanded Axes & Axes constructed in an unintuitive manner may hide variance or cause errors in sorting marks or characterizing the distribution. \cite{pandey2015deceptive, correll2017black, cleveland1982variables, ritchie2019lie, correll2019truncating}\\
+ \rowcolor{colorc-opaque}Colors Binned Unevenly & Irregular or uintutive binning may negatively affect interpretation of bin meaning. CITATION?\\
+ \rowcolor{colorc}Base Rate Masquerading as Data & Mistake base rate for data signal rate, such as in maps which purport to show data but in fact just show population. \cite{correll2016surprise}\\
+ \rowcolor{colorc-opaque}Inappropriate Semantic Color Scale  & Reader may misinterpret color on a map as indicating the content of that region rather than a data variable, for instance green being interpreted as indicating forests and blue indicating ocean. \\
+ \rowcolor{colorc}Within-bar-bias & Bar charts that have variability are frequently misunderstood. \cite{newman2012bar}\\
+ \rowcolor{colorc-opaque}Highlight/Downplaying Outliers & Over highlighting outliers can mask important data features, however so can ignoring them. CITATION?\\
+ \rowcolor{colorc}Clipped Outliers & Chosen domain hides outliers, impending the reader from accurate extrema detection. \\
+ \rowcolor{colorc-opaque}Continuous Marks for Nominal Quantities & Reader may hallucinate a trend based on the rendered ordering. \cite{mcnuttlinting, zacks1999bars}\\
+ \rowcolor{colorc}Using Ordinal Measures as (Ratio/Interval) Measures & Related to "area/length mismatches" a mark might be encoded as big/medium/small which readers might then read as quantitative. \cite{stevens1946theory, few2019loom}\\
+ \rowcolor{colorc-opaque}V-Hacking & Visualization includes arbitrary choices made by the designer that causes reader to hallucinate un-meaningful inferences. The modifiable areal unit problem is an example of this problem. \cite{fotheringham1991modifiable, kindlmann2014algebraic}\\
+ \rowcolor{colorc}Charting Parameter Masking Data Error & Non-data parameter can mask a critical data error, such as a histogram binning hiding a missing value. \cite{correll2018looks}\\
+ \rowcolor{colorc-opaque}Concealed Uncertainty & Charts that don't indicate that they contain uncertainty risk giving a false impression as well a possible extreme mistrust of the data if the reader realizes the information hasn't been presented clearly.  \cite{song2018s, few2019loom, mayrTrust2019, sacha2015role}\\
+ \rowcolor{colorc}Sole Reliance on Measure of Central Tendency & Second order statistics often carry critical information about the variance or distribution, which is masked through simple central tendencies.  \cite{wall2017warning, few2019loom, matejka2017same, anscombe1973graphs}\\
+ \rowcolor{colorc-opaque}Trend in Dual Y-Axis Charts are Arbitrary & Scales are unconnected and so any almost any relative trend can be made to appear. \cite{KindlmannAlgebraicVisPedagogyPDV2016, cairo2015graphics}\\
+ \rowcolor{colorc}Uncorrelated Data Decorated with Best Fit Line & Uncareful reader might not investigate if the line of best fit actually matches with anything, instead taking a potentially incorrect trend at face value. \\
+ \rowcolor{colorc-opaque}Staircasing & A trend on a noisy channel may appear to reverse because of the domain selection. MAYBE A SUBSET OF CHERRY PICKING? IS THIS A KNOWN THING\\
+ \rowcolor{colorc}Nominal Choropleth Conflates Color Area with Classed Statistic & Conflating class coloring and area can give a misinterpretation of base rate, as is often this case in American presidential election maps.  \cite{gastner2005maps} CHOROPLETH CITATION?\\
+ \rowcolor{colorc-opaque}Presentation Masks Information & The choice of graphical rendering may obscure data found in similar encodings. For instance, some graph layouts present their data clearly while others more closely resemble hairballs. \cite{hofmann2012graphical} GRAPH CITATION\\
 
-   \rowcolor{colord}\multirow{9}{0em}{\hspace{-0.6cm}\rotatebox{90}{\normalsize{Reading}}}Incorrectly Assumed High Quality Data & Trusting untrustworthy data cause readers to make incorrect conclusions about the information presented in a visualization. \cite{mayrTrust2019, sacha2015role}\\
+   \rowcolor{colord}\multirow{9}{0em}{\hspace{-0.6cm}\rotatebox{90}{\normalsize{Reading}}}Incorrectly Assumed High Quality Data/ Completeness bias & Trusting untrustworthy data cause readers to make incorrect conclusions about the information presented in a visualization. \cite{mayrTrust2019, sacha2015role}\\
  \rowcolor{colord-opaque}Unwarranted causal implications & Correlated data misunderstood (based on visual encoding) as being causally related. \cite{xiong2019illusion, few2019loom}\\
  \rowcolor{colord}Multiple Comparisons Problem & Too many iterative comparisons has high probability of generating a configuration that offers a false comparison. \cite{pu2018garden, zgraggen2018investigating}\\
  \rowcolor{colord-opaque}Not Accounting for Bias & Not addressing bias in the visual analytics process can lead analysts towards false conclusions. \cite{wall2017warning}\\
