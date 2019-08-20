@@ -16,7 +16,8 @@ const evaluationModes = {
   // pure string based
   STRING_BASED: {
     expectSame: (oldRendering, newRendering) => oldRendering === newRendering,
-    expectDifferent: (oldRendering, newRendering) => oldRendering !== newRendering
+    expectDifferent: (oldRendering, newRendering) =>
+      oldRendering !== newRendering
   },
   // sanity checkers
   SANITY_CHECKS: {
@@ -48,12 +49,15 @@ function groupByPointerCreation(data, groupbyKey) {
     return acc;
   }, {});
 
-  return Object.entries(backwardGroupBy).reduce((acc, [outputKey, groupedRows]) => {
-    groupedRows.forEach(({idx}) => {
-      acc[idx] = outputKey;
-    });
-    return acc;
-  }, {});
+  return Object.entries(backwardGroupBy).reduce(
+    (acc, [outputKey, groupedRows]) => {
+      groupedRows.forEach(({idx}) => {
+        acc[idx] = outputKey;
+      });
+      return acc;
+    },
+    {}
+  );
 }
 
 function identityProvMap(data) {
@@ -71,21 +75,27 @@ function identityProvMap(data) {
  * or at least, construct functions for building these lineage graphs
  */
 function provenencePass(tree, transform) {
-  if (!transform.length || !tree._targets || (tree._targets.length === 0)) {
+  if (!transform.length || !tree._targets || tree._targets.length === 0) {
     return [];
   }
   const relevantTarget = tree._targets[0];
   const thisTransform = transform[0];
   const data = Array.isArray(tree.value) ? tree.value : null;
-  return [{transform: thisTransform, data, transformFunction: tree._argval}]
-    .concat(provenencePass(relevantTarget, transform.slice(1)));
+  return [
+    {transform: thisTransform, data, transformFunction: tree._argval}
+  ].concat(provenencePass(relevantTarget, transform.slice(1)));
 }
 
 // almost certainly misseplling prov
 function constructTransformProvenecePath(dataset, spec, view) {
   const specDecoratedWithTransforms = extractTransforms(spec);
-  const transforms = [{type: 'identity'}].concat(specDecoratedWithTransforms.transform);
-  const linearizedProvPath = provenencePass(view._runtime.data.source_0.input, transforms);
+  const transforms = [{type: 'identity'}].concat(
+    specDecoratedWithTransforms.transform
+  );
+  const linearizedProvPath = provenencePass(
+    view._runtime.data.source_0.input,
+    transforms
+  );
   // forward pass, ensure each transform step has data
   for (let i = 0; i < linearizedProvPath.length; i++) {
     if (!linearizedProvPath[i].data && i > 0) {
@@ -93,14 +103,17 @@ function constructTransformProvenecePath(dataset, spec, view) {
     }
   }
   // backward pass, infer prov maps
-  for (let i = (linearizedProvPath.length - 1); i > 0; i--) {
+  for (let i = linearizedProvPath.length - 1; i > 0; i--) {
     const transform = linearizedProvPath[i];
     const upstreamTransform = linearizedProvPath[i - 1];
     // aggregate operator
     if (transform.transform.groupby) {
       // now find each of the values in the current transform value
       // use groupByRelations to create the relavant prov map.
-      transform.provMap = groupByPointerCreation(upstreamTransform.data, transform.transform.groupby[0]);
+      transform.provMap = groupByPointerCreation(
+        upstreamTransform.data,
+        transform.transform.groupby[0]
+      );
     } else {
       // if not groupby then use identity map
       transform.provMap = identityProvMap(transform.data);
@@ -115,15 +128,17 @@ function constructTransformProvenecePath(dataset, spec, view) {
     });
     return acc;
   }, identityProvMap(dataset));
-  const tailToStartMap = Object.entries(startToTailMap)
-    .reduce((acc, [start, tail]) => {
+  const tailToStartMap = Object.entries(startToTailMap).reduce(
+    (acc, [start, tail]) => {
       if (!acc[tail]) {
         acc[tail] = [];
       }
       // setting number here maybe be wrong
       acc[tail].push(Number(start));
       return acc;
-    }, {});
+    },
+    {}
+  );
   return {startToTailMap, tailToStartMap};
 }
 
@@ -140,8 +155,9 @@ function prepProv(dataset, spec, view, name) {
   const initialOutput = view._runtime.data.source_0.output;
   const isCollect = initialOutput.constructor.name === 'Collect';
   const targetOutput = isCollect ? initialOutput : initialOutput.source;
-  const outputValues = Array.isArray(targetOutput.value) ? targetOutput.value :
-    view._runtime.data.marks.input.value.map(d => d.datum);
+  const outputValues = Array.isArray(targetOutput.value)
+    ? targetOutput.value
+    : view._runtime.data.marks.input.value.map(d => d.datum);
   const aggregateOutputPairs = outputValues.reduce((acc, row) => {
     acc[row[aggregateFieldName]] = row[outputFieldName];
     return acc;
@@ -153,14 +169,20 @@ const destroyVariance = ['x', 'y'].map(name => ({
   name: `algebraic-destroy-variance--${name}-axis`,
   type: 'algebraic-data',
   operation: (dataset, spec, view) => {
-    const {aggregateOutputPairs, tailToStartMap, inputFieldName} = prepProv(dataset, spec, view, name);
+    const {aggregateOutputPairs, tailToStartMap, inputFieldName} = prepProv(
+      dataset,
+      spec,
+      view,
+      name
+    );
     // set each corresponding value in the original collection to aggregate value
     const data = clone(dataset);
     const aggType = spec.encoding[name].aggregate;
     Object.entries(aggregateOutputPairs).forEach(([terminalKey, aggValue]) => {
       (tailToStartMap[terminalKey] || []).forEach(startKey => {
         if (aggType === 'sum') {
-          data[startKey][inputFieldName] = aggValue / tailToStartMap[terminalKey].length;
+          data[startKey][inputFieldName] =
+            aggValue / tailToStartMap[terminalKey].length;
         } else {
           data[startKey][inputFieldName] = aggValue;
         }
@@ -179,14 +201,20 @@ const destroyVariance = ['x', 'y'].map(name => ({
     }
     return filterForAggregates(name)(spec, data, view);
   },
-  explain: 'destroying the variance should not affect the chart under aggregates'
+  explain:
+    'destroying the variance should not affect the chart under aggregates'
 }));
 
 const contractToSingleRecords = ['x', 'y'].map(key => ({
   name: `algebraic-contract-to-single-record--${key}-axis`,
   type: 'algebraic-data',
   operation: (dataset, spec, view) => {
-    const {aggregateOutputPairs, tailToStartMap} = prepProv(dataset, spec, view, key);
+    const {aggregateOutputPairs, tailToStartMap} = prepProv(
+      dataset,
+      spec,
+      view,
+      key
+    );
     const data = clone(dataset);
     Object.entries(aggregateOutputPairs).forEach(([terminalKey, aggValue]) => {
       const targetArray = tailToStartMap[terminalKey];
@@ -213,29 +241,47 @@ const contractToSingleRecords = ['x', 'y'].map(key => ({
     if (spec.encoding && (!spec.encoding.x || !spec.encoding.y)) {
       return false;
     }
-    if (!(filterForAggregates(key)(spec, data, view))) {
+    if (!filterForAggregates(key)(spec, data, view)) {
       return false;
     }
-    const {aggregateOutputPairs, tailToStartMap} = prepProv(data, spec, view, key);
-    const allAggsConsistOfOneRecord = Object.entries(aggregateOutputPairs)
-      .every(([terminalKey, aggValue]) => (tailToStartMap[terminalKey] || []).length <= 1);
+    const {aggregateOutputPairs, tailToStartMap} = prepProv(
+      data,
+      spec,
+      view,
+      key
+    );
+    const allAggsConsistOfOneRecord = Object.entries(
+      aggregateOutputPairs
+    ).every(
+      ([terminalKey, aggValue]) =>
+        (tailToStartMap[terminalKey] || []).length <= 1
+    );
     if (allAggsConsistOfOneRecord) {
       return false;
     }
     return true;
   },
-  explain: 'reducing the aggregate values to a single record should affect the chart'
+  explain:
+    'reducing the aggregate values to a single record should affect the chart'
 }));
 
 const shouldHaveCommonNumberOfRecords = ['x', 'y'].map(key => ({
   name: `algebraic-aggregates-should-have-a-similar-number-of-input-records--${key}-axis`,
   type: 'algebraic-spec',
-  evaluator: (oldRendering, newRendering, spec, perturbedSpec, oldView, newView) => {
+  evaluator: (
+    oldRendering,
+    newRendering,
+    spec,
+    perturbedSpec,
+    oldView,
+    newView
+  ) => {
     const viewData = newView._runtime.data;
     // lots of foot work to catch line and other stack based renderings
-    const measurements = (
-      (Array.isArray(viewData.source_0.output.value) && viewData.source_0.output.value.map(d => d.__count)) ||
-      viewData.marks.values.value.map(d => d[key]));
+    const measurements =
+      (Array.isArray(viewData.source_0.output.value) &&
+        viewData.source_0.output.value.map(d => d.__count)) ||
+      viewData.marks.values.value.map(d => d[key]);
     const allMeasuresSame = measurements.every(d => measurements[0] === d);
     // if there aren't enough observations to compute outliers dont
     if (measurements.length < 3) {
@@ -244,7 +290,7 @@ const shouldHaveCommonNumberOfRecords = ['x', 'y'].map(key => ({
     // otherwise use outliers as you wish
     return allMeasuresSame || outliers(measurements).length === 0;
   },
-  operation: (spec) => {
+  operation: spec => {
     // i feel so dirty, string parsing for deep copy is bad
     const duppedSpec = JSON.parse(JSON.stringify(spec));
     duppedSpec.encoding[key].aggregate = 'count';
@@ -258,16 +304,24 @@ const shouldHaveCommonNumberOfRecords = ['x', 'y'].map(key => ({
       return false;
     }
     // avoid stack encodings
-    return filterForAggregates(key)(spec, data, view) && spec.mark !== 'area' && spec.mark.type !== 'area';
+    return (
+      filterForAggregates(key)(spec, data, view) &&
+      spec.mark !== 'area' &&
+      spec.mark.type !== 'area'
+    );
   },
-  explain: 'Encodings using aggregates to group records should probably have a common number of records in each of the bins.'
+  explain:
+    'Encodings using aggregates to group records should probably have a common number of records in each of the bins.'
 }));
 
 const outliersShouldMatter = {
   name: 'algebraic-outliers-should-matter',
   type: 'algebraic-data',
-  operation: (container, spec) => getXYFieldNames(spec)
-    .reduce((acc, column) => acc.filter(outliers(column)), clone(container)),
+  operation: (container, spec) =>
+    getXYFieldNames(spec).reduce(
+      (acc, column) => acc.filter(outliers(column)),
+      clone(container)
+    ),
   evaluator: expectDifferent,
   filter: (spec, data, view) => {
     if (data.length === 0) {
@@ -278,11 +332,14 @@ const outliersShouldMatter = {
     }
     // dont apply rule if there aren't outliers,
     // ie disinclude this rule if filtering does nothing to the data
-    const result = getXYFieldNames(spec)
-      .reduce((acc, column) => acc.filter(outliers(column)), clone(data));
+    const result = getXYFieldNames(spec).reduce(
+      (acc, column) => acc.filter(outliers(column)),
+      clone(data)
+    );
     return result.length !== data.length;
   },
-  explain: 'After deleting the outliers the chart remained unchanged, this suggests that extreme values may not be detected. Make sure that it is behaving as expected'
+  explain:
+    'After deleting the outliers the chart remained unchanged, this suggests that extreme values may not be detected. Make sure that it is behaving as expected'
 };
 
 const randomizingColumnsShouldMatter = {
@@ -290,7 +347,7 @@ const randomizingColumnsShouldMatter = {
   type: 'algebraic-data',
   operation: (container, spec) => {
     const data = clone(container);
-    randomizeColumns(data, ...(getXYFieldNames(spec)));
+    randomizeColumns(data, ...getXYFieldNames(spec));
     // console.log(JSON.stringify(data, null, 2), JSON.stringify(container, null, 2), getXYFieldNames(spec));
     return data;
   },
@@ -300,7 +357,11 @@ const randomizingColumnsShouldMatter = {
       return false;
     }
     // if x and y plot and aggregate is count, then this rule will always pass
-    if (['x', 'y'].some(key => spec.encoding[key] && spec.encoding[key].aggregate === 'count')) {
+    if (
+      ['x', 'y'].some(
+        key => spec.encoding[key] && spec.encoding[key].aggregate === 'count'
+      )
+    ) {
       return false;
     }
     const fields = getXYFieldNames(spec);
@@ -312,9 +373,10 @@ const randomizingColumnsShouldMatter = {
     //   return false;
     // }
     const {transform} = spec;
-    return !transform || transform && !transform.find(d => d.fold);
+    return !transform || (transform && !transform.find(d => d.fold));
   },
-  explain: 'After randomizing the relationship between the two data variables the chart remained the same. This suggests that your visualization is not showing their relationship in a discrenable manner.'
+  explain:
+    'After randomizing the relationship between the two data variables the chart remained the same. This suggests that your visualization is not showing their relationship in a discrenable manner.'
 };
 
 const deletingRandomValuesShouldMatter = {
@@ -338,24 +400,26 @@ const deletingRandomValuesShouldMatter = {
     // const {transform} = spec;
     // return !transform || transform && !transform.find(d => d.fold);
   },
-  explain: 'After nulling 20% of the values being visualized the chart remained the same, this indicates that your visualization is not resilliant to change.'
+  explain:
+    'After nulling 20% of the values being visualized the chart remained the same, this indicates that your visualization is not resilliant to change.'
 };
 
 const shufflingDataShouldMatter = {
   name: 'algebraic-shuffle-input-data',
   type: 'algebraic-data',
-  operation: (container) => shuffle(clone(container)),
+  operation: container => shuffle(clone(container)),
   evaluator: expectSame,
   filter: (spec, data, view) => {
     return data.length > 0;
   },
-  explain: 'After shuffling the input data randomly, the resulting image was detected as being different from the original. This may suggest that there is overplotting in your data or that there a visual aggregation removing some information from the rendering.'
+  explain:
+    'After shuffling the input data randomly, the resulting image was detected as being different from the original. This may suggest that there is overplotting in your data or that there a visual aggregation removing some information from the rendering.'
 };
 
 const deletingRowsShouldMatter = {
   name: 'algebraic-randomly-delete-rows',
   type: 'algebraic-data',
-  operation: (container) => {
+  operation: container => {
     const clonedData = clone(container);
     for (let i = 0; i < container.length * 0.1; i++) {
       dropRow(clonedData);
@@ -366,7 +430,8 @@ const deletingRowsShouldMatter = {
   filter: (spec, data, view) => {
     return data.length > 0;
   },
-  explain: 'After randomly deleting a third of the rows the image has remained the same. This suggests that there is an aggregator that is doing too much work, be careful.'
+  explain:
+    'After randomly deleting a third of the rows the image has remained the same. This suggests that there is an aggregator that is doing too much work, be careful.'
 };
 
 const rules = [

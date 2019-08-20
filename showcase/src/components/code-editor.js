@@ -9,12 +9,7 @@ export default class CodeEditor extends React.Component {
   }
 
   render() {
-    const {
-      currentCode,
-      changeSpec,
-      height,
-      width
-    } = this.props;
+    const {currentCode, changeSpec, height, width} = this.props;
     const options = {
       selectOnLineNumbers: true,
       minimap: {
@@ -33,7 +28,7 @@ export default class CodeEditor extends React.Component {
           onChange={changeSpec}
           editorDidMount={this.editorDidMount}
         />
-    </div>
+      </div>
     );
   }
 }

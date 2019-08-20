@@ -1,5 +1,8 @@
 import {parse, View, loader, read} from 'vega';
-import {compile, extractTransforms as vegaLiteExtractTransforms} from 'vega-lite';
+import {
+  compile,
+  extractTransforms as vegaLiteExtractTransforms
+} from 'vega-lite';
 import pixelmatch from 'pixelmatch';
 import {PNG} from 'pngjs';
 
@@ -10,15 +13,19 @@ export function getXYFieldNames(spec) {
   // later this can be abstracted probably into a getRelevantColumns op i guess
   const foldTransform = transform && transform.find(d => d.fold);
   // return foldTransform ? foldTransform.fold : [x.field, y.field];
-  return foldTransform ? foldTransform.fold : ['x', 'y'].map(key => encoding[key] && encoding[key].field);
+  return foldTransform
+    ? foldTransform.fold
+    : ['x', 'y'].map(key => encoding[key] && encoding[key].field);
 }
 
-export const uniqueKeysAsBoolMap = obj => Object.keys(obj).reduce((acc, row) => {
-  acc[row] = true;
-  return acc;
-}, {});
+export const uniqueKeysAsBoolMap = obj =>
+  Object.keys(obj).reduce((acc, row) => {
+    acc[row] = true;
+    return acc;
+  }, {});
 
-const getScaleFileds = (spec, data, view) => Object.keys(uniqueKeysAsBoolMap(view._runtime.scales)).sort();
+const getScaleFileds = (spec, data, view) =>
+  Object.keys(uniqueKeysAsBoolMap(view._runtime.scales)).sort();
 // if a spec doesn't have x and y, reject that spec
 export const filterForXandY = (spec, data, view) => {
   const [xExpect, yExpect] = getScaleFileds(spec, data, view);
@@ -67,13 +74,13 @@ export function generateVegaRendering(spec, mode = 'raster') {
     const view = new View(runtime, config).initialize();
     view
       .runAsync()
-      .then(() => isSVG ? view.toSVG(2) : view.toCanvas(2))
+      .then(() => (isSVG ? view.toSVG(2) : view.toCanvas(2)))
       .then(x => resolve(isSVG ? x : x.toDataURL()))
       .catch(e => {
         /* eslint-disable no-console */
         console.error(e);
         reject(e);
-      /* eslint-disable no-console */
+        /* eslint-disable no-console */
       });
   });
 }
@@ -89,7 +96,7 @@ export function generateVegaView(spec) {
       .catch(e => {
         /* eslint-disable no-console */
         console.error(e);
-      /* eslint-disable no-console */
+        /* eslint-disable no-console */
       });
   });
 }
@@ -101,8 +108,9 @@ const runTimeCache = {};
 export function getDataset(spec) {
   const {data} = spec;
   if (data.values) {
-    return Promise.resolve()
-      .then(() => data.format ? read(data.values, data.format) : data.values);
+    return Promise.resolve().then(() =>
+      data.format ? read(data.values, data.format) : data.values
+    );
   }
   if (!data.url) {
     console.log(data);
@@ -122,10 +130,11 @@ export function getDataset(spec) {
     });
 }
 
-export const hasKey = (data, key) => (new Set(Object.keys(data))).has(key);
-export const clone = (data) => data.map(d => ({...d}));
+export const hasKey = (data, key) => new Set(Object.keys(data)).has(key);
+export const clone = data => data.map(d => ({...d}));
 // check if two objects are equal to a first approx
-export const shallowDeepEqual = (a, b) => Object.entries(a).every(([k, v]) => b[k] === v);
+export const shallowDeepEqual = (a, b) =>
+  Object.entries(a).every(([k, v]) => b[k] === v);
 
 /* eslint-disable */
 const toBuffer = img =>
@@ -153,7 +162,9 @@ export function concatImages(images) {
     widthOffset += 4 * width;
   });
   return {
-    data: `data:image/png;base64,${PNG.sync.write(outputImage).toString('base64')}`,
+    data: `data:image/png;base64,${PNG.sync
+      .write(outputImage)
+      .toString('base64')}`,
     dims: {height: maxHeight, width: totalWidth}
   };
 }
@@ -193,8 +204,11 @@ export function buildPixelDiff(oldRendering, newRendering) {
     diff.data,
     width,
     height,
-    {threshold: 0.01});
-  const diffStr = `data:image/png;base64,${PNG.sync.write(diff).toString('base64')}`;
+    {threshold: 0.01}
+  );
+  const diffStr = `data:image/png;base64,${PNG.sync
+    .write(diff)
+    .toString('base64')}`;
   return {delta, diffStr};
 }
 
@@ -383,7 +397,8 @@ const vegaLiteDefaultConfig = {
   concat: {spacing: DEFAULT_SPACING}
 };
 
-export const extractTransforms = spec => vegaLiteExtractTransforms(spec, vegaLiteDefaultConfig);
+export const extractTransforms = spec =>
+  vegaLiteExtractTransforms(spec, vegaLiteDefaultConfig);
 
 const bannedTopLevelOperations = [
   'concat',
@@ -402,7 +417,10 @@ export function checkIfSpecIsSupported(spec) {
     return false;
   }
 
-  if (spec.encoding && (spec.encoding.row || spec.encoding.column || spec.encoding.facet)) {
+  if (
+    spec.encoding &&
+    (spec.encoding.row || spec.encoding.column || spec.encoding.facet)
+  ) {
     return false;
   }
 

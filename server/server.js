@@ -15,7 +15,10 @@ app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
   next();
 });
 
@@ -35,14 +38,14 @@ app.post('/get-rendering', (req, res) => {
 
 app.post('/lint', (req, res) => {
   console.log('linting');
-  lint(sanitizeDatasetReference(req.body))
-    .then(result => {
-      console.log('did done a lint');
-      console.log(`STATUS: ${result.code} ${result.msg || ''}`);
-      console.table(result.lints.map(({name, passed}) => ({name, passed: `${passed}`})));
-      res.send(JSON.stringify(result));
-    });
-
+  lint(sanitizeDatasetReference(req.body)).then(result => {
+    console.log('did done a lint');
+    console.log(`STATUS: ${result.code} ${result.msg || ''}`);
+    console.table(
+      result.lints.map(({name, passed}) => ({name, passed: `${passed}`}))
+    );
+    res.send(JSON.stringify(result));
+  });
 });
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));

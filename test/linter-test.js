@@ -28,7 +28,10 @@ const TEST_SPECS = [
       {name: 'deception-vis-no-reversed-axes-y', passed: true},
       {name: 'deception-vis-no-zero-scales-y', passed: true},
       {name: 'deception-vis-scale-should-start-at-zero-y', passed: true},
-      {name: 'deception-vis-bar-chart-are-usually-aggregates--y-axis', passed: true},
+      {
+        name: 'deception-vis-bar-chart-are-usually-aggregates--y-axis',
+        passed: true
+      },
       {name: 'deception-vis-dont-use-non-linear-scales--y-axis', passed: true},
       {name: 'algebraic-delete-some-of-relevant-columns', passed: true}
     ],
@@ -46,7 +49,10 @@ const TEST_SPECS = [
       {name: 'deception-vis-no-zero-scales-y', passed: true},
       {name: 'deception-vis-scale-should-start-at-zero-x', passed: false},
       {name: 'deception-vis-scale-should-start-at-zero-y', passed: true},
-      {name: 'deception-vis-bar-chart-are-usually-aggregates--y-axis', passed: true},
+      {
+        name: 'deception-vis-bar-chart-are-usually-aggregates--y-axis',
+        passed: true
+      },
       {name: 'deception-vis-dont-use-non-linear-scales--x-axis', passed: true},
       {name: 'deception-vis-dont-use-non-linear-scales--y-axis', passed: true},
       {name: 'algebraic-delete-some-of-relevant-columns', passed: true}
@@ -100,8 +106,15 @@ const TEST_SPECS = [
       {name: 'deception-vis-no-reversed-axes-y', passed: true},
       {name: 'deception-vis-no-zero-scales-y', passed: true},
       {name: 'deception-vis-scale-should-start-at-zero-y', passed: true},
-      {name: 'algebraic-aggregates-should-have-a-similar-number-of-input-records--y-axis', passed: false},
-      {name: 'deception-vis-bar-chart-are-usually-aggregates--y-axis', passed: true},
+      {
+        name:
+          'algebraic-aggregates-should-have-a-similar-number-of-input-records--y-axis',
+        passed: false
+      },
+      {
+        name: 'deception-vis-bar-chart-are-usually-aggregates--y-axis',
+        passed: true
+      },
       {name: 'algebraic-contract-to-single-record--y-axis', passed: true},
       {name: 'deception-vis-dont-use-non-linear-scales--y-axis', passed: true},
       {name: 'algebraic-delete-some-of-relevant-columns', passed: true}
@@ -121,7 +134,11 @@ const TEST_SPECS = [
       {name: 'deception-vis-no-zero-scales-x', passed: true},
       {name: 'deception-vis-no-zero-scales-y', passed: true},
       {name: 'deception-vis-scale-should-start-at-zero-y', passed: false},
-      {name: 'algebraic-aggregates-should-have-a-similar-number-of-input-records--y-axis', passed: false},
+      {
+        name:
+          'algebraic-aggregates-should-have-a-similar-number-of-input-records--y-axis',
+        passed: false
+      },
       {name: 'algebraic-contract-to-single-record--y-axis', passed: true},
       {name: 'deception-vis-dont-use-non-linear-scales--x-axis', passed: true},
       {name: 'deception-vis-dont-use-non-linear-scales--y-axis', passed: true},
@@ -179,21 +196,23 @@ function toMap(arr) {
 function buildTest({spec, expected, groupName, only}) {
   const test = t => {
     lint(adjustFileRoot(spec))
-    .then(result => {
-      // flip to map, order of lints doesn't matter and shouldn't be tested
-      const expectedMap = toMap(expected);
-      const results = cleanResultsToPassFail(result);
-      const resultsNames = toMap(results);
+      .then(result => {
+        // flip to map, order of lints doesn't matter and shouldn't be tested
+        const expectedMap = toMap(expected);
+        const results = cleanResultsToPassFail(result);
+        const resultsNames = toMap(results);
 
-      t.deepEqual(
-        Object.keys(resultsNames).sort(),
-        Object.keys(expectedMap).sort(), 'should find the the same lint considerations');
-      results.forEach((row, idx) => {
-        const testName = `${row.name} should evaluate correctly`;
-        t.deepEqual(row, expectedMap[row.name], testName);
-      });
-    })
-    .then(() => t.end());
+        t.deepEqual(
+          Object.keys(resultsNames).sort(),
+          Object.keys(expectedMap).sort(),
+          'should find the the same lint considerations'
+        );
+        results.forEach((row, idx) => {
+          const testName = `${row.name} should evaluate correctly`;
+          t.deepEqual(row, expectedMap[row.name], testName);
+        });
+      })
+      .then(() => t.end());
   };
   const msg = `${groupName} Linting Tests`;
   // allow testing to be zeroed in on a single test

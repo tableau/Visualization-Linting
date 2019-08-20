@@ -1,6 +1,4 @@
-import {
-  uniqueKeysAsBoolMap
-} from '../utils';
+import {uniqueKeysAsBoolMap} from '../utils';
 
 /* eslint-disable max-len */
 const nonLinearScales = {
@@ -36,9 +34,9 @@ const noReversedAxes = [
     const scale = view.scale(key);
     const domainIncreasing = (([lD, uD]) => lD < uD)(scale.domain());
     const rangeIncreasing = (([lR, uR]) => lR < uR)(scale.range());
-    return shouldReverse ?
-      (domainIncreasing && !rangeIncreasing) :
-      (domainIncreasing && rangeIncreasing);
+    return shouldReverse
+      ? domainIncreasing && !rangeIncreasing
+      : domainIncreasing && rangeIncreasing;
   },
   filter: filterForScale(key),
   explain: `Axes should generally point in a direction which is familiar to most readers. The direction of your ${key} axis is out of line with the common usage. Make sure that it is intentional.`
@@ -78,7 +76,9 @@ const barChartsAreUsuallyAggregates = ['x', 'y'].map(key => ({
   },
   filter: (spec, data, view) => {
     const field = spec.encoding[key];
-    return filterForScale(key)(spec, data, view) && spec.mark === 'bar' && !field.bin;
+    return (
+      filterForScale(key)(spec, data, view) && spec.mark === 'bar' && !field.bin
+    );
   },
   explain: `Bar charts usually contain aggregates, make sure that you intended to not have an aggregate for this ${key} axis.`
 }));

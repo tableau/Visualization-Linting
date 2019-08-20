@@ -270,7 +270,6 @@ export const MISSING_QUARTER_LINESERIES_EXPOSED = {
     }
   }
 };
-// "mark": {"type": "line", "strokeDash": [3, 3]},
 
 export const MISSING_QUARTER_LINESERIES_DISPELL = {
   data: {url: '../example-data/bad/missingquarter.csv'},
@@ -350,10 +349,10 @@ const OTHER_QUARTETS = [...new Array(3)]
   }, {});
 
 export const BAD_CHARTS = {
+  QUARTET_1,
   ...WorldIndicatorMirages,
   MISSING_QUARTER_LINESERIES_EXPOSED,
   MISSING_QUARTER_LINESERIES,
-  QUARTET_1,
   ...OTHER_QUARTETS,
   MISSPELLING_BAR_CHART,
   MENS_WORLD_DASH,

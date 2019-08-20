@@ -42,7 +42,7 @@ class App extends React.Component {
   }
 
   setAsyncState(newState) {
-    return new Promise((resolve) => this.setState(newState, () => resolve()));
+    return new Promise(resolve => this.setState(newState, () => resolve()));
   }
 
   resize() {
@@ -80,7 +80,7 @@ class App extends React.Component {
       lintServiceError: null
     })
       .then(() => lintSpec(currentSpec))
-      .then((x) => {
+      .then(x => {
         const {code, lints, msg} = x;
         if (code === CRASH || code === SPEC_NOT_SUPPORTED) {
           this.setState({
@@ -112,22 +112,26 @@ class App extends React.Component {
     const changeSpec = triggerRelint => newValue => {
       const newCode = newValue;
       this.setAsyncState({currentCode: newCode})
-      .then(() => {
-        return new Promise((resolve, reject) => resolve(JSON.parse(newCode)))
-        .then(code => this.setAsyncState({
-          currentSpec: code,
-          JSONerror: null
-        }))
-        .catch(e => this.setAsyncState({
-          JSONerror: e
-        }));
-      })
-      .then(() => {
-        if (!this.state.JSONerror && triggerRelint) {
-          this.renderSpec(this.state.currentSpec);
-          this.lintSpec(this.state.currentSpec);
-        }
-      });
+        .then(() => {
+          return new Promise((resolve, reject) => resolve(JSON.parse(newCode)))
+            .then(code =>
+              this.setAsyncState({
+                currentSpec: code,
+                JSONerror: null
+              })
+            )
+            .catch(e =>
+              this.setAsyncState({
+                JSONerror: e
+              })
+            );
+        })
+        .then(() => {
+          if (!this.state.JSONerror && triggerRelint) {
+            this.renderSpec(this.state.currentSpec);
+            this.lintSpec(this.state.currentSpec);
+          }
+        });
     };
 
     return (
@@ -146,7 +150,8 @@ class App extends React.Component {
           }}
           lintingTarget={lintingTarget}
           changeSpec={changeSpec(true)}
-          currentSpec={currentSpec}/>
+          currentSpec={currentSpec}
+        />
         <div className="flex margin-top-20 full-width">
           <div className="flex-down relative">
             <div
@@ -154,22 +159,28 @@ class App extends React.Component {
                 'flex-down': true,
                 'error-message': true,
                 'show-error-message': this.state.JSONerror
-              })}>JSON ERROR</div>
+              })}
+            >
+              JSON ERROR
+            </div>
             <CodeEditor
               height={height - 128 - 20}
               width={width / 3}
               changeSpec={changeSpec(false)}
-              currentCode={currentCode}/>
-        </div>
+              currentCode={currentCode}
+            />
+          </div>
           <div className="flex-down full-width">
             <ChartPreview
               chartError={chartError}
               loading={renderLoading}
-              lintingTarget={lintingTarget}/>
+              lintingTarget={lintingTarget}
+            />
             <LintReport
               lintServiceError={lintServiceError}
               loading={lintLoading}
-              lintResults={lintResults}/>
+              lintResults={lintResults}
+            />
           </div>
         </div>
       </div>

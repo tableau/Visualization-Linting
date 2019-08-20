@@ -22,7 +22,10 @@ export default class LintCard extends React.Component {
     if (!failedRender || !open) {
       return;
     }
-    const {render: {dims, data}, type} = failedRender;
+    const {
+      render: {dims, data},
+      type
+    } = failedRender;
     const domElement = this.refs[type === 'svg' ? 'svgTarget' : 'canvasTarget'];
     if (!domElement) {
       return;
@@ -31,7 +34,8 @@ export default class LintCard extends React.Component {
       const ctx = domElement.getContext('2d');
       const image = new Image();
       image.src = data;
-      image.onload = () => ctx.drawImage(image, 0, 0, dims.width / 2, dims.height / 2);
+      image.onload = () =>
+        ctx.drawImage(image, 0, 0, dims.width / 2, dims.height / 2);
     }
     if (type === 'svg') {
       const svg = domElement.querySelector('svg');
@@ -62,31 +66,48 @@ export default class LintCard extends React.Component {
           'lint-fail': !passed,
           'lint-warn': false,
           'lint-card': true
-        })}>
+        })}
+      >
         <div className="card-head">
           <div className="card-title">{`${name}`}</div>
         </div>
-        {open && <div className="card-body">
-          <div className="z-1 flex padding-20">
-            {failedRender && <div className="align-center text-align-center flex-down">
-              <div className="white-background">
-                {failedRender.type === 'raster' &&
-                  <canvas
-                    width={failedRender.render.dims.width / 2}
-                    height={failedRender.render.dims.height / 2} ref="canvasTarget"/>}
-                {failedRender.type === 'svg' &&
-                  (<div ref="svgTarget"
-                  dangerouslySetInnerHTML={{__html: failedRender.render.data}} />)}
+        {open && (
+          <div className="card-body">
+            <div className="z-1 flex padding-20">
+              {failedRender && (
+                <div className="align-center text-align-center flex-down">
+                  <div className="white-background">
+                    {failedRender.type === 'raster' && (
+                      <canvas
+                        width={failedRender.render.dims.width / 2}
+                        height={failedRender.render.dims.height / 2}
+                        ref="canvasTarget"
+                      />
+                    )}
+                    {failedRender.type === 'svg' && (
+                      <div
+                        ref="svgTarget"
+                        dangerouslySetInnerHTML={{
+                          __html: failedRender.render.data
+                        }}
+                      />
+                    )}
+                  </div>
+                  <div>Difference between original and altered version</div>
+                </div>
+              )}
+              <div className="flex-down">
+                <div className="lint-explain">{explain}</div>
+                <div className="lint-button">
+                  This result is wrong, ignore it for now
+                </div>
+                <div className="lint-button">
+                  This rule doesn’t apply to this chart
+                </div>
               </div>
-              <div>Difference between original and altered version</div>
-            </div>}
-            <div className="flex-down">
-              <div className="lint-explain">{explain}</div>
-              <div className="lint-button">This result is wrong, ignore it for now</div>
-              <div className="lint-button">This rule doesn’t apply to this chart</div>
             </div>
           </div>
-        </div>}
+        )}
       </div>
     );
   }
