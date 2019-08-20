@@ -82,45 +82,88 @@ const isEnergyUsageDrivenByLifeExpectancy = {
   resolve: {scale: {y: 'independent'}}
 };
 
-// INCOMPLETE
-// const NonNullsAreOECDCountires2012GEOM = {
-//   ...COMMON,
-//   description: '2012 Non-Nulls Are OECD Countries',
-//   data: {
-//     url: '../example-data/real/countries.geojson',
-//     // format: {
-//     //   type: 'geojson',
-//     //   // feature: 'countries'
-//     // }
-//   },
-//   transform: [{
-//     filter: {timeUnit: 'year', field: 'Year', equal: '2012'}
-//   }, {
-//     lookup: 'ADMIN',
-//     from: {
-//       data: {url: '../example-data/real/world-indicators.json'},
-//       key: 'Country',
-//       fields: ['Energy Usage']
-//     }
-//   }],
-//   projection: {type: 'mercator'},
-//   mark: 'geoshape',
-//   encoding: {
-//     color: {
-//       field: 'Energy Usage',
-//       type: 'quantitative',
-//       aggregate: 'sum'
-//     }
-//   }
-// };
+const isEnergyUsageDrivenByLifeExpectancyDispellEnergy = {
+  ...COMMON,
+  transform: [{filter: {timeUnit: 'year', field: 'Year', lt: '2012'}}],
+  description: 'Is Energy Usage Driven By Life Expectancy?',
+  mark: {type: 'line', color: '#F28E2C', opacity: 0.3},
+  encoding: {
+    x: TIME_ENCODING,
+    y: {
+      ...ENERGY_ENCODING,
+      axis: {
+        ...ENERGY_ENCODING.axis,
+        title: 'Sum. Energy Usage',
+        grid: true
+      }
+    },
+    detail: {
+      field: 'Country',
+      type: 'nominal',
+      legend: null
+    }
+  }
+};
+
+const isEnergyUsageDrivenByLifeExpectancyDispellLifeExpect = {
+  ...COMMON,
+  transform: [{filter: {timeUnit: 'year', field: 'Year', lt: '2012'}}],
+  description: 'Is Energy Usage Driven By Life Expectancy?',
+  mark: {type: 'line', color: '#E15658', opacity: 0.3},
+  encoding: {
+    x: TIME_ENCODING,
+    y: {
+      aggregate: 'average',
+      field: 'Life Expectancy',
+      type: 'quantitative',
+      axis: {title: 'Avg. Life Expectancy'},
+      scale: {domain: [35, 90]}
+    },
+    detail: {
+      field: 'Country',
+      type: 'nominal',
+      legend: null
+    }
+  }
+};
 
 const OECD_COUNTRIES = [
-  'Australia', 'Austria', 'Belgium', 'Canada', 'Chile', 'Czech Republic', 'Denmark',
-  'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Iceland',
-  'Ireland', 'Israel', 'Italy', 'Japan', 'Korea, Rep.', 'Latvia', 'Lithuania',
-  'Luxembourg', 'Mexico', 'Netherlands', 'New Zealand', 'Norway', 'Poland',
-  'Portugal', 'Slovak Republic', 'Slovenia', 'Spain', 'Sweden', 'Switzerland',
-  'Turkey', 'United Kingdom', 'United States'
+  'Australia',
+  'Austria',
+  'Belgium',
+  'Canada',
+  'Chile',
+  'Czech Republic',
+  'Denmark',
+  'Estonia',
+  'Finland',
+  'France',
+  'Germany',
+  'Greece',
+  'Hungary',
+  'Iceland',
+  'Ireland',
+  'Israel',
+  'Italy',
+  'Japan',
+  'Korea, Rep.',
+  'Latvia',
+  'Lithuania',
+  'Luxembourg',
+  'Mexico',
+  'Netherlands',
+  'New Zealand',
+  'Norway',
+  'Poland',
+  'Portugal',
+  'Slovak Republic',
+  'Slovenia',
+  'Spain',
+  'Sweden',
+  'Switzerland',
+  'Turkey',
+  'United Kingdom',
+  'United States'
 ].map(country => ({oecd: 'oecd', country}));
 
 const NonNullsAreOECDCountires2012 = {
@@ -131,7 +174,9 @@ const NonNullsAreOECDCountires2012 = {
     {
       lookup: 'Country',
       from: {
-        data: {values: OECD_COUNTRIES}, key: 'country', fields: ['oecd']
+        data: {values: OECD_COUNTRIES},
+        key: 'country',
+        fields: ['oecd']
       },
       default: false
     }
@@ -145,7 +190,11 @@ const NonNullsAreOECDCountires2012 = {
       sort: {op: 'sum', field: 'Energy Usage'}
     },
     y: ENERGY_ENCODING,
-    color: {field: 'oecd', type: 'ordinal', scale: {range: ['#4D79A7', '#E15658']}}
+    color: {
+      field: 'oecd',
+      type: 'ordinal',
+      scale: {range: ['#4D79A7', '#E15658']}
+    }
   }
 };
 
@@ -166,7 +215,59 @@ const NonNullsAreHighEnergyUsers2012 = {
   }
 };
 
+const OverplottingMirage = {
+  ...COMMON,
+  transform: [
+    {
+      calculate: 'parseFloat(datum["Health Exp % GDP"])',
+      as: 'Health Express % GDP'
+    },
+    {
+      filter: {field: 'Health Express % GDP', valid: true}
+    },
+    {
+      filter: {field: 'Life Expectancy', valid: true}
+    }
+    // {
+    //   calculate: 'toString(merge(datum["Year"],datum["Country"]))',
+    //   as: 'XXXX'
+    // }
+  ],
+  description: 'Overplotting Mirage',
+  mark: 'circle',
+  encoding: {
+    x: {
+      field: 'Health Express % GDP',
+      type: 'quantitative',
+      aggregate: 'mean'
+    },
+    y: {
+      field: 'Life Expectancy',
+      type: 'quantitative',
+      aggregate: 'mean'
+    },
+    color: {
+      field: 'Region',
+      type: 'nominal',
+      legend: null
+    },
+    detail: [
+      {
+        field: 'Country',
+        type: 'nominal'
+      },
+      {
+        field: 'Year',
+        type: 'nominal'
+      }
+    ]
+  }
+};
+
 export default {
+  isEnergyUsageDrivenByLifeExpectancyDispellLifeExpect,
+  isEnergyUsageDrivenByLifeExpectancyDispellEnergy,
+  OverplottingMirage,
   NonNullsAreHighEnergyUsers2012,
   NonNullsAreOECDCountires2012,
   isEnergyUsageDrivenByLifeExpectancy,

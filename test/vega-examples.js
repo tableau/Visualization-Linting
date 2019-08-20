@@ -350,11 +350,11 @@ const OTHER_QUARTETS = [...new Array(3)]
   }, {});
 
 export const BAD_CHARTS = {
+  ...WorldIndicatorMirages,
   MISSING_QUARTER_LINESERIES_EXPOSED,
   MISSING_QUARTER_LINESERIES,
   QUARTET_1,
   ...OTHER_QUARTETS,
-  ...WorldIndicatorMirages,
   MISSPELLING_BAR_CHART,
   MENS_WORLD_DASH,
   COLORED_SCATTERPLOT,
