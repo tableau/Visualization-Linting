@@ -1,13 +1,12 @@
-/* eslint-disable max-len */
 import destroyVariance from './algebraic-rules/destroy-variance';
 import {
-  contractToSingleRecords,
-  inflateToCommonNumberOfRecords
+  contractToSingleRecords
+  // inflateToCommonNumberOfRecords
 } from './algebraic-rules/change-number-of-records';
-import filterOutNullRecords from './algebraic-rules/remove-nulls';
+// import filterOutNullRecords from './algebraic-rules/remove-nulls';
 import shouldHaveCommonNumberOfRecords from './algebraic-rules/aggregates-should-have-a-similar-number-of-input-records';
 import outliersShouldMatter from './algebraic-rules/outliers-should-matter';
-import FLIPEVERYTHING from './algebraic-rules/invert-on-quant-fields';
+// import FLIPEVERYTHING from './algebraic-rules/invert-on-quant-fields';
 import randomizingColumnsShouldMatter from './algebraic-rules/permute-relevant-columns';
 import deletingRandomValuesShouldMatter from './algebraic-rules/delete-some-of-relevant-columns';
 import shufflingDataShouldMatter from './algebraic-rules/shuffle-input-data';

@@ -19,7 +19,7 @@ const deletingRandomValuesShouldMatter = {
     if (fields.length < 1) {
       return false;
     }
-    return true;
+    return data.some(row => fields.some(key => isFinite(row[key])));
     // const {transform} = spec;
     // return !transform || transform && !transform.find(d => d.fold);
   },

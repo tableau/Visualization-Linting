@@ -459,7 +459,8 @@ function identityProvMap(data) {
  * Recursively forward pass across tree
  * goal of this pass is to link data at each stage in the transform
  * such that each layer has a pointers either to where each row ended up in the next transform,
- * or is null, in order to execute this, it will likely be necessary to lightly reimplement all of the operators,
+ * or is null, in order to execute this, it will likely be necessary to
+ *            lightly reimplement all of the operators,
  * or at least, construct functions for building these lineage graphs
  */
 function provenencePass(tree, transform) {
