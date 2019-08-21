@@ -11,7 +11,8 @@
     "serve": "(cd server && yarn && yarn start)",
     "serve-debug": "(cd server && yarn && yarn start-debug)",
     "integration": "babel-node test/integration-test.js",
-    "full-test": "babel-node test/full-test.js"
+    "full-test": "babel-node test/full-test.js",
+    "reduce-dups": "(cd gh-specs && babel-node ./reduce-dups-in-gh-specs.js)"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

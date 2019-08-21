@@ -1,1 +1,141 @@
-{"$schema":"https://vega.github.io/schema/vega-lite/v2.json","title":"SK🇸🇰 Poll March 2018","data":{"values":[{"party":"SMER-SD","poll_03-2018_perc":20.2,"votes_2016":737481,"votes_2016_perc":28.28,"seats_2016":49},{"party":"SaS","poll_03-2018_perc":14,"votes_2016":315558,"votes_2016_perc":12.1,"seats_2016":21},{"party":"OĽaNO-Nova","poll_03-2018_perc":10.4,"votes_2016":287611,"votes_2016_perc":11.03,"seats_2016":19},{"party":"Sme rodina","poll_03-2018_perc":10.4,"votes_2016":172860,"votes_2016_perc":6.63,"seats_2016":11},{"party":"Kotleba - ĽSNS","poll_03-2018_perc":10.1,"votes_2016":209779,"votes_2016_perc":8.04,"seats_2016":14},{"party":"SNS","poll_03-2018_perc":10,"votes_2016":225386,"votes_2016_perc":8.64,"seats_2016":15},{"party":"KDH","poll_03-2018_perc":7,"votes_2016":128908,"votes_2016_perc":4.94,"seats_2016":0},{"party":"Most-Híd","poll_03-2018_perc":5.6,"votes_2016":169593,"votes_2016_perc":6.5,"seats_2016":11},{"party":"SMK-MKP","poll_03-2018_perc":4.1,"votes_2016":105495,"votes_2016_perc":4.05,"seats_2016":0},{"party":"KSS","poll_03-2018_perc":1.5,"votes_2016":16278,"votes_2016_perc":0.62,"seats_2016":0},{"party":"Progresívne Slovensko","poll_03-2018_perc":1.4},{"party":"Spolu-občianska demokracia","poll_03-2018_perc":1.1}]},"mark":"bar","encoding":{"y":{"field":"party","type":"nominal","sort":{"op":"values","field":"poll_03-2018_perc"},"axis":{"title":"Party"}},"x":{"field":"poll_03-2018_perc","type":"quantitative","axis":{"title":"% of votes"}},"color":{"field":"party","type":"nominal","scale":{"domain":["SMER-SD","SaS","OĽaNO-Nova","Sme rodina","Kotleba - ĽSNS","SNS","KDH","Most-Híd","SMK-MKP","KSS","Progresívne Slovensko","Spolu-občianska demokracia"],"range":["#BA1514","#A8E734","#489648","#6559C9","#404040","#3F128B","#F2F19F","#DE7F27","#828282","#F43530","#00C1E2","#0070C5"]}}}}
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "title": "SK🇸🇰 Poll March 2018",
+  "data": {
+    "values": [
+      {
+        "party": "SMER-SD",
+        "poll_03-2018_perc": 20.2,
+        "votes_2016": 737481,
+        "votes_2016_perc": 28.28,
+        "seats_2016": 49
+      },
+      {
+        "party": "SaS",
+        "poll_03-2018_perc": 14,
+        "votes_2016": 315558,
+        "votes_2016_perc": 12.1,
+        "seats_2016": 21
+      },
+      {
+        "party": "OĽaNO-Nova",
+        "poll_03-2018_perc": 10.4,
+        "votes_2016": 287611,
+        "votes_2016_perc": 11.03,
+        "seats_2016": 19
+      },
+      {
+        "party": "Sme rodina",
+        "poll_03-2018_perc": 10.4,
+        "votes_2016": 172860,
+        "votes_2016_perc": 6.63,
+        "seats_2016": 11
+      },
+      {
+        "party": "Kotleba - ĽSNS",
+        "poll_03-2018_perc": 10.1,
+        "votes_2016": 209779,
+        "votes_2016_perc": 8.04,
+        "seats_2016": 14
+      },
+      {
+        "party": "SNS",
+        "poll_03-2018_perc": 10,
+        "votes_2016": 225386,
+        "votes_2016_perc": 8.64,
+        "seats_2016": 15
+      },
+      {
+        "party": "KDH",
+        "poll_03-2018_perc": 7,
+        "votes_2016": 128908,
+        "votes_2016_perc": 4.94,
+        "seats_2016": 0
+      },
+      {
+        "party": "Most-Híd",
+        "poll_03-2018_perc": 5.6,
+        "votes_2016": 169593,
+        "votes_2016_perc": 6.5,
+        "seats_2016": 11
+      },
+      {
+        "party": "SMK-MKP",
+        "poll_03-2018_perc": 4.1,
+        "votes_2016": 105495,
+        "votes_2016_perc": 4.05,
+        "seats_2016": 0
+      },
+      {
+        "party": "KSS",
+        "poll_03-2018_perc": 1.5,
+        "votes_2016": 16278,
+        "votes_2016_perc": 0.62,
+        "seats_2016": 0
+      },
+      {
+        "party": "Progresívne Slovensko",
+        "poll_03-2018_perc": 1.4
+      },
+      {
+        "party": "Spolu-občianska demokracia",
+        "poll_03-2018_perc": 1.1
+      }
+    ]
+  },
+  "mark": "bar",
+  "encoding": {
+    "y": {
+      "field": "party",
+      "type": "nominal",
+      "sort": {
+        "op": "values",
+        "field": "poll_03-2018_perc"
+      },
+      "axis": {
+        "title": "Party"
+      }
+    },
+    "x": {
+      "field": "poll_03-2018_perc",
+      "type": "quantitative",
+      "axis": {
+        "title": "% of votes"
+      }
+    },
+    "color": {
+      "field": "party",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "SMER-SD",
+          "SaS",
+          "OĽaNO-Nova",
+          "Sme rodina",
+          "Kotleba - ĽSNS",
+          "SNS",
+          "KDH",
+          "Most-Híd",
+          "SMK-MKP",
+          "KSS",
+          "Progresívne Slovensko",
+          "Spolu-občianska demokracia"
+        ],
+        "range": [
+          "#BA1514",
+          "#A8E734",
+          "#489648",
+          "#6559C9",
+          "#404040",
+          "#3F128B",
+          "#F2F19F",
+          "#DE7F27",
+          "#828282",
+          "#F43530",
+          "#00C1E2",
+          "#0070C5"
+        ]
+      }
+    }
+  }
+}

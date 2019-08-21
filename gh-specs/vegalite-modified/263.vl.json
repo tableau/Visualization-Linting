@@ -2,7 +2,10 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
   "description": "Vietnam population",
   "data": {
-    "url": "./gh-specs/data/263.vl.json"
+    "url": "./gh-specs/data/263.vl.json",
+    "format": {
+      "type": "csv"
+    }
   },
   "mark": "bar",
   "encoding": {

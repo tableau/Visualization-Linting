@@ -2,7 +2,8 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
   "description": "Fertility rate.",
   "data": {
-    "url": "./gh-specs/data/79.vl.json"
+    "url": "./gh-specs/data/79.vl.json",
+    "format": {"type": "csv"}
   },
   "mark": "line",
   "transform": [

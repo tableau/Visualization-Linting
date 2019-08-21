@@ -27,23 +27,14 @@ export function lint(spec) {
   if (!checkIfSpecIsSupported(spec)) {
     return Promise.resolve({code: SPEC_NOT_SUPPORTED, lints: []});
   }
-  // this function wraps the single lint function, so that each individual layer
-  // in the vega-lite spec is linted by itself. It is unclear if this stratagey is a good one.
-  const denormalizedLayers = !spec.layer
-    ? [spec]
-    : spec.layer.map(innerSpec => {
-        const result = {
-          ...spec,
-          layer: [],
-          ...innerSpec
-        };
-        delete result.layer;
-        return result;
-      });
-  return Promise.all(
-    denormalizedLayers.map(singleSpec => lintSingleSpec(singleSpec))
-  )
-    .then(results => results.reduce((acc, row) => acc.concat(row), []))
+  return Promise.all([getDataset(spec), generateVegaView(spec)])
+    .then(([dataset, view]) => {
+      return Promise.all(
+        lintRules
+          .filter(({filter}) => filter(spec, dataset, view))
+          .map(rule => evalMap[rule.type](rule, spec, dataset, view))
+      );
+    })
     .then(lints => ({code: OK, lints}))
     .catch(e => {
       /* eslint-disable no-console */
@@ -57,22 +48,12 @@ export function lint(spec) {
     });
 }
 
-export function lintSingleSpec(spec) {
-  return Promise.all([getDataset(spec), generateVegaView(spec)]).then(
-    ([dataset, view]) => {
-      return Promise.all(
-        lintRules
-          .filter(({filter}) => filter(spec, dataset, view))
-          .map(rule => evalMap[rule.type](rule, spec, dataset, view))
-      );
-    }
-  );
-}
+const ruleOutput = ({name, explain}) => ({name, explain, failRender: null});
 
 // TODO: refactor this function and the next one to be instances of a HOF
 function evaluateAlgebraicSpecRule(rule, spec, dataset, oldView) {
-  const {operation, evaluator, name, explain} = rule;
-  const perturbedSpec = operation(spec);
+  const evaluator = rule.selectEvaluator(spec);
+  const perturbedSpec = rule.operation(spec);
   return Promise.all([
     generateVegaRendering(spec, 'raster'),
     generateVegaRendering(perturbedSpec, 'raster'),
@@ -86,22 +67,30 @@ function evaluateAlgebraicSpecRule(rule, spec, dataset, oldView) {
       oldView,
       newView
     );
-    return {name, explain, passed};
+    return {...ruleOutput(rule), passed};
   });
 }
 
+function prepOutput(oldRendering, newRendering) {
+  const failRender = buildPixelDiff(oldRendering, newRendering).diffStr;
+  // type is there to allow for svg renders, still to come
+  return {
+    type: 'raster',
+    render: concatImages([oldRendering, newRendering, failRender])
+  };
+}
+
 function evaluateAlgebraicDataRule(rule, spec, dataset, oldView) {
-  const {operation, evaluator, name, explain} = rule;
+  const evaluator = rule.selectEvaluator(spec);
   const perturbedSpec = {
     ...spec,
-    data: {values: operation(dataset, spec, oldView)}
+    data: {values: rule.operation(dataset, spec, oldView)}
   };
-  return Promise.all(
-    [spec, perturbedSpec, generateVegaView(perturbedSpec)].map(d =>
-      generateVegaRendering(d, 'raster')
-    )
-  ).then(([oldRendering, newRendering, newView]) => {
-    const failRender = buildPixelDiff(oldRendering, newRendering).diffStr;
+  return Promise.all([
+    generateVegaRendering(spec, 'raster'),
+    generateVegaRendering(perturbedSpec, 'raster'),
+    generateVegaView(perturbedSpec)
+  ]).then(([oldRendering, newRendering, newView]) => {
     const passed = evaluator(
       oldRendering,
       newRendering,
@@ -111,26 +100,17 @@ function evaluateAlgebraicDataRule(rule, spec, dataset, oldView) {
       newView
     );
 
-    // type is there to allow for svg renders, still to come
     return {
-      name,
-      explain,
+      ...ruleOutput(rule),
       passed,
-      failedRender: !passed
-        ? {
-            type: 'raster',
-            render: concatImages([oldRendering, newRendering, failRender])
-          }
-        : null
+      failedRender: !passed ? prepOutput(oldRendering, newRendering) : null
     };
   });
 }
 
 function evaluateStylisticRule(rule, spec, dataset, oldView) {
-  const {evaluator, name, explain = 'todo'} = rule;
-
-  return generateVegaRendering(spec, 'svg').then(([view, render]) => {
-    const passed = evaluator(oldView, spec, render);
-    return {name, explain, passed, failedRender: null};
-  });
+  return generateVegaRendering(spec, 'svg').then(([view, render]) => ({
+    ...ruleOutput(rule),
+    passed: rule.evaluator(oldView, spec, render)
+  }));
 }

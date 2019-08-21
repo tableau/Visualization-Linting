@@ -5,7 +5,8 @@
     "format": {
       "parse": {
         "Date": "utc:'%Y-%m-%d'"
-      }
+      },
+      "type": "csv"
     }
   },
   "mark": "line",

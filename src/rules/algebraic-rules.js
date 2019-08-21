@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 import outliers from 'outliers';
 import {
-  buildPixelDiff,
   clone,
   getXYFieldNames,
   shuffle,
@@ -10,34 +9,11 @@ import {
   extractTransforms
 } from '../utils';
 import {dropRow, randomizeColumns, partiallyDropColumn} from '../dirty';
-
-// i can't really decide between these various modes, TODO follow up more deeply later
-const evaluationModes = {
-  // pure string based
-  STRING_BASED: {
-    expectSame: (oldRendering, newRendering) => oldRendering === newRendering,
-    expectDifferent: (oldRendering, newRendering) =>
-      oldRendering !== newRendering
-  },
-  // sanity checkers
-  SANITY_CHECKS: {
-    expectSame: () => false,
-    expectDifferent: () => false
-  },
-  // pixel diff based
-  PIXEL_DIFF: {
-    // this seems like it should be the best, but is not necessarilly
-    expectSame: (oldRend, newRend) => {
-      const {delta} = buildPixelDiff(oldRend, newRend);
-      return delta < 10;
-    },
-    expectDifferent: (oldRend, newRend) => {
-      const {delta} = buildPixelDiff(oldRend, newRend);
-      return delta > 10;
-    }
-  }
-};
-const {expectSame, expectDifferent} = evaluationModes.PIXEL_DIFF;
+import {
+  expectSame,
+  expectDifferent,
+  expectDifferentBars
+} from './algebraic-detectors';
 
 function groupByPointerCreation(data, groupbyKey) {
   const backwardGroupBy = data.reduce((acc, row, idx) => {
@@ -191,7 +167,7 @@ const destroyVariance = ['x', 'y'].map(name => ({
 
     return data;
   },
-  evaluator: expectSame,
+  selectEvaluator: spec => expectSame,
   filter: (spec, data, view) => {
     if (data.length === 0) {
       return false;
@@ -233,7 +209,7 @@ const contractToSingleRecords = ['x', 'y'].map(key => ({
 
     return data.filter(d => d);
   },
-  evaluator: expectDifferent,
+  selectEvaluator: spec => expectDifferent,
   filter: (spec, data, view) => {
     if (data.length === 0) {
       return false;
@@ -268,7 +244,7 @@ const contractToSingleRecords = ['x', 'y'].map(key => ({
 const shouldHaveCommonNumberOfRecords = ['x', 'y'].map(key => ({
   name: `algebraic-aggregates-should-have-a-similar-number-of-input-records--${key}-axis`,
   type: 'algebraic-spec',
-  evaluator: (
+  selectEvaluator: spec => (
     oldRendering,
     newRendering,
     spec,
@@ -322,7 +298,7 @@ const outliersShouldMatter = {
       (acc, column) => acc.filter(outliers(column)),
       clone(container)
     ),
-  evaluator: expectDifferent,
+  selectEvaluator: spec => expectDifferent,
   filter: (spec, data, view) => {
     if (data.length === 0) {
       return false;
@@ -351,7 +327,12 @@ const randomizingColumnsShouldMatter = {
     // console.log(JSON.stringify(data, null, 2), JSON.stringify(container, null, 2), getXYFieldNames(spec));
     return data;
   },
-  evaluator: expectDifferent,
+  selectEvaluator: spec => {
+    if (spec.mark === 'bar' || spec.mark.type === 'bar') {
+      return expectDifferentBars;
+    }
+    return expectDifferent;
+  },
   filter: (spec, data, view) => {
     if (data.length === 0) {
       return false;
@@ -368,10 +349,12 @@ const randomizingColumnsShouldMatter = {
     if (fields.length !== fields.filter(d => d).length) {
       return false;
     }
-    // const oneOfFieldsIsInvalid = !data.some(d => fields.some(key => d.hasOwnProperty(key)));
-    // if (oneOfFieldsIsInvalid) {
-    //   return false;
-    // }
+    const oneOfFieldsIsInvalid = data.some(
+      d => !fields.every(key => d.hasOwnProperty(key))
+    );
+    if (oneOfFieldsIsInvalid) {
+      return false;
+    }
     const {transform} = spec;
     return !transform || (transform && !transform.find(d => d.fold));
   },
@@ -387,7 +370,7 @@ const deletingRandomValuesShouldMatter = {
     partiallyDropColumn(data, getXYFieldNames(spec).filter(d => d)[0], 0.2);
     return data;
   },
-  evaluator: expectDifferent,
+  selectEvaluator: spec => expectDifferent,
   filter: (spec, data, view) => {
     if (data.length === 0) {
       return false;
@@ -408,7 +391,7 @@ const shufflingDataShouldMatter = {
   name: 'algebraic-shuffle-input-data',
   type: 'algebraic-data',
   operation: container => shuffle(clone(container)),
-  evaluator: expectSame,
+  selectEvaluator: spec => expectSame,
   filter: (spec, data, view) => {
     return data.length > 0;
   },
@@ -426,7 +409,7 @@ const deletingRowsShouldMatter = {
     }
     return clonedData;
   },
-  evaluator: expectDifferent,
+  selectEvaluator: spec => expectDifferent,
   filter: (spec, data, view) => {
     return data.length > 0;
   },

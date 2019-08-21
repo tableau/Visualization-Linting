@@ -1,7 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
   "data": {
-    "url": "./gh-specs/data/107.vl.json"
+    "url": "./gh-specs/data/107.vl.json",
+    "format": {"type": "csv"}
   },
   "width": 800,
   "height": 400,

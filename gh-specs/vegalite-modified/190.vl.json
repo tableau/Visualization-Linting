@@ -1,1 +1,73 @@
-{"$schema":"https://vega.github.io/schema/vega-lite/v2.json","data":{"values":[{"name":"Reporting guidelines","type":"total","value":116},{"name":"Reporting guidelines","type":"implemented","value":59},{"name":"Models/formats","type":"total","value":223},{"name":"Models/formats","type":"implemented","value":146},{"name":"Terminology artifacts","type":"total","value":343},{"name":"Terminology artifacts","type":"implemented","value":121}]},"mark":"bar","encoding":{"x":{"field":"name","type":"nominal","axis":{"title":"Type"}},"y":{"field":"value","type":"quantitative","axis":{"title":"Count"}},"color":{"field":"type","type":"nominal","scale":{"domain":["Total","Implemented"],"range":["#2C3E50","#1ABC9C"]},"legend":{"title":""}}},"config":{"facet":{"cell":{"strokeWidth":0}},"axis":{"domainWidth":1}},"width":200,"height":150}
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "values": [
+      {
+        "name": "Reporting guidelines",
+        "type": "total",
+        "value": 116
+      },
+      {
+        "name": "Reporting guidelines",
+        "type": "implemented",
+        "value": 59
+      },
+      {
+        "name": "Models/formats",
+        "type": "total",
+        "value": 223
+      },
+      {
+        "name": "Models/formats",
+        "type": "implemented",
+        "value": 146
+      },
+      {
+        "name": "Terminology artifacts",
+        "type": "total",
+        "value": 343
+      },
+      {
+        "name": "Terminology artifacts",
+        "type": "implemented",
+        "value": 121
+      }
+    ]
+  },
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "name",
+      "type": "nominal",
+      "axis": {
+        "title": "Type"
+      }
+    },
+    "y": {
+      "field": "value",
+      "type": "quantitative",
+      "axis": {
+        "title": "Count"
+      }
+    },
+    "color": {
+      "field": "type",
+      "type": "nominal",
+      "legend": {
+        "title": ""
+      }
+    }
+  },
+  "config": {
+    "facet": {
+      "cell": {
+        "strokeWidth": 0
+      }
+    },
+    "axis": {
+      "domainWidth": 1
+    }
+  },
+  "width": 200,
+  "height": 150
+}

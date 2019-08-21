@@ -2,7 +2,8 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v3.0.json",
   "description": "Relationship between mileage and fare",
   "data": {
-    "url": "./gh-specs/data/180.vl.json"
+    "url": "./gh-specs/data/180.vl.json",
+    "format": {"type": "csv"}
   },
   "mark": "point",
   "encoding": {

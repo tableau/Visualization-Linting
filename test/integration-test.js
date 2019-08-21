@@ -96,6 +96,7 @@ const SUITES = {
     recordedKey: 'example-specs'
   }
 };
+const WRITE_TO_FILE = true;
 tape('INTEGRATION TEST', t => {
   const target = SUITES.GH_EXAMPLES;
   integrationTest(target.index, target.fileNameAppend).then(
@@ -104,10 +105,12 @@ tape('INTEGRATION TEST', t => {
         .then(d => JSON.parse(d))
         .then(d => {
           d[target.recordedKey] = resultGroups;
-          writeFile(
-            './test/integration-task-log.json',
-            JSON.stringify(d, null, 2)
-          );
+          if (WRITE_TO_FILE) {
+            writeFile(
+              './test/integration-task-log.json',
+              JSON.stringify(d, null, 2)
+            );
+          }
         });
       const expectedSummary = [
         {code: SPEC_NOT_SUPPORTED, count: 154},
