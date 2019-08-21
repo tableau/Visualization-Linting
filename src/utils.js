@@ -426,3 +426,129 @@ export function checkIfSpecIsSupported(spec) {
 
   return true;
 }
+
+function groupByPointerCreation(data, groupbyKey) {
+  const backwardGroupBy = data.reduce((acc, row, idx) => {
+    const key = row[groupbyKey];
+    if (!acc[key]) {
+      acc[key] = [];
+    }
+    acc[key].push({row, idx});
+    return acc;
+  }, {});
+
+  return Object.entries(backwardGroupBy).reduce(
+    (acc, [outputKey, groupedRows]) => {
+      groupedRows.forEach(({idx}) => {
+        acc[idx] = outputKey;
+      });
+      return acc;
+    },
+    {}
+  );
+}
+
+function identityProvMap(data) {
+  return data.reduce((acc, row, idx) => {
+    acc[idx] = idx;
+    return acc;
+  }, {});
+}
+
+/**
+ * Recursively forward pass across tree
+ * goal of this pass is to link data at each stage in the transform
+ * such that each layer has a pointers either to where each row ended up in the next transform,
+ * or is null, in order to execute this, it will likely be necessary to lightly reimplement all of the operators,
+ * or at least, construct functions for building these lineage graphs
+ */
+function provenencePass(tree, transform) {
+  if (!transform.length || !tree._targets || tree._targets.length === 0) {
+    return [];
+  }
+  const relevantTarget = tree._targets[0];
+  const thisTransform = transform[0];
+  const data = Array.isArray(tree.value) ? tree.value : null;
+  return [
+    {transform: thisTransform, data, transformFunction: tree._argval}
+  ].concat(provenencePass(relevantTarget, transform.slice(1)));
+}
+
+// almost certainly misseplling prov
+function constructTransformProvenecePath(dataset, spec, view) {
+  const specDecoratedWithTransforms = extractTransforms(spec);
+  const transforms = [{type: 'identity'}].concat(
+    specDecoratedWithTransforms.transform
+  );
+  const linearizedProvPath = provenencePass(
+    view._runtime.data.source_0.input,
+    transforms
+  );
+  // forward pass, ensure each transform step has data
+  for (let i = 0; i < linearizedProvPath.length; i++) {
+    if (!linearizedProvPath[i].data && i > 0) {
+      linearizedProvPath[i].data = linearizedProvPath[i - 1].data;
+    }
+  }
+  // backward pass, infer prov maps
+  for (let i = linearizedProvPath.length - 1; i > 0; i--) {
+    const transform = linearizedProvPath[i];
+    const upstreamTransform = linearizedProvPath[i - 1];
+    // aggregate operator
+    if (transform.transform.groupby) {
+      // now find each of the values in the current transform value
+      // use groupByRelations to create the relavant prov map.
+      transform.provMap = groupByPointerCreation(
+        upstreamTransform.data,
+        transform.transform.groupby[0]
+      );
+    } else {
+      // if not groupby then use identity map
+      transform.provMap = identityProvMap(transform.data);
+    }
+  }
+  const startToTailMap = linearizedProvPath.reduce((acc, stage) => {
+    if (!stage.provMap) {
+      return acc;
+    }
+    Object.entries(acc).forEach(([source, target]) => {
+      acc[source] = stage.provMap[target];
+    });
+    return acc;
+  }, identityProvMap(dataset));
+  const tailToStartMap = Object.entries(startToTailMap).reduce(
+    (acc, [start, tail]) => {
+      if (!acc[tail]) {
+        acc[tail] = [];
+      }
+      // setting number here maybe be wrong
+      acc[tail].push(Number(start));
+      return acc;
+    },
+    {}
+  );
+  return {startToTailMap, tailToStartMap};
+}
+
+const oppositeFiled = {x: 'y', y: 'x'};
+export function prepProv(dataset, spec, view, name) {
+  const {tailToStartMap} = constructTransformProvenecePath(dataset, spec, view);
+  const extractedSpec = extractTransforms(spec);
+  const inputFieldName = spec.encoding[name].field;
+  const outputFieldName = extractedSpec.encoding[name].field;
+  const aggregateFieldName = extractedSpec.encoding[oppositeFiled[name]].field;
+  // 1. for each record at tail of path, get aggregate value
+  // 2. find each stop stream record id
+  // 3. set aggregate value (field y some of the time) to be the downstream value
+  const initialOutput = view._runtime.data.source_0.output;
+  const isCollect = initialOutput.constructor.name === 'Collect';
+  const targetOutput = isCollect ? initialOutput : initialOutput.source;
+  const outputValues = Array.isArray(targetOutput.value)
+    ? targetOutput.value
+    : view._runtime.data.marks.input.value.map(d => d.datum);
+  const aggregateOutputPairs = outputValues.reduce((acc, row) => {
+    acc[row[aggregateFieldName]] = row[outputFieldName];
+    return acc;
+  }, {});
+  return {aggregateOutputPairs, tailToStartMap, inputFieldName};
+}

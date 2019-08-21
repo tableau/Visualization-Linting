@@ -144,7 +144,7 @@ export const MISSING_RECORDS_BAR_CHART = {
     // there is some white space weirdness going on in x1, can't tell what
     // i done figured it out: tableau returns csvs in utf-16, but everything else
     // everywhere needs utf8. TODO fix all of the csvs
-    {fold: ['﻿x1', 'x2']},
+    {fold: ['x1', 'x2']},
     // this is a dumb hacky filter, but whatever
     {filter: {field: 'value', gt: 0}}
   ],
@@ -198,7 +198,7 @@ export const OUTLIER_SCATTERPLOT = {
   data: {url: '../example-data/bad/outlier.csv'},
   mark: 'circle',
   encoding: {
-    x: {field: '﻿x1', type: 'quantitative'},
+    x: {field: 'x1', type: 'quantitative'},
     y: {field: 'x2', type: 'quantitative'}
   }
 };
@@ -211,7 +211,7 @@ export const OVERPLOT_SCATTERPLOT = {
     opacity: 1
   },
   encoding: {
-    x: {field: '﻿x', type: 'quantitative'},
+    x: {field: 'x', type: 'quantitative'},
     y: {field: 'y', type: 'quantitative'}
   }
 };
@@ -224,7 +224,7 @@ export const OVERPLOT_SCATTERPLOT_REVERESED = {
     opacity: 1
   },
   encoding: {
-    x: {field: '﻿x', type: 'quantitative', scale: {domain: [14, 0]}},
+    x: {field: 'x', type: 'quantitative', scale: {domain: [14, 0]}},
     y: {field: 'y', type: 'quantitative'}
   }
 };
@@ -238,7 +238,7 @@ export const MISSING_QUARTER_LINESERIES = {
     x: {
       timeUnit: 'yearquarter',
       // agh the white space thing here too, what
-      field: '﻿Time',
+      field: 'Time',
       type: 'temporal'
     },
     y: {
@@ -280,7 +280,7 @@ export const MISSING_QUARTER_LINESERIES_DISPELL = {
     x: {
       timeUnit: 'yearquarter',
       // agh the white space thing here too, what
-      field: '﻿Time',
+      field: 'Time',
       type: 'temporal'
     },
     y: {

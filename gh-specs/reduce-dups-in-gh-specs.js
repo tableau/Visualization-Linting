@@ -82,13 +82,11 @@ function checkIfSpecIsResteraunt(spec) {
 getFile('../gh-specs/gh-specs-index.json')
   .then(d => JSON.parse(d).vegalite)
   .then(files => {
-    // d.vegalite
     Promise.all(
       files.map((file, idx) => {
         return getFile(`../gh-specs/vegalite-modified/${file}`)
           .then(d => JSON.parse(d))
           .then(spec => {
-            // uncomment to get pictures of all of the charts
             const cleanedSpec = sanitizeDatasetReference(spec);
             if (!checkIfSpecIsSupported(cleanedSpec)) {
               console.log('rejected', idx);

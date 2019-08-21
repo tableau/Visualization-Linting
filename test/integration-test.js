@@ -96,9 +96,9 @@ const SUITES = {
     recordedKey: 'example-specs'
   }
 };
-const WRITE_TO_FILE = true;
+const WRITE_TO_FILE = false;
 tape('INTEGRATION TEST', t => {
-  const target = SUITES.GH_EXAMPLES;
+  const target = SUITES.VEGALITE_EXAMPLES;
   integrationTest(target.index, target.fileNameAppend).then(
     ({summary, resultGroups}) => {
       getFile('./test/integration-task-log.json')

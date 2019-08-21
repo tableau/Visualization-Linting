@@ -30,9 +30,9 @@ const evaluationModes = {
     }
   }
 };
-
-export const expectSame = evaluationModes.PIXEL_DIFF.expectSame;
-export const expectDifferent = evaluationModes.PIXEL_DIFF.expectDifferent;
+const selectedMode = evaluationModes.PIXEL_DIFF;
+export const expectSame = selectedMode.expectSame;
+export const expectDifferent = selectedMode.expectDifferent;
 
 /**
  * Compare two arrays of numbers [1,32, 3, 4]

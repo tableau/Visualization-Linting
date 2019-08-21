@@ -19,21 +19,21 @@ const ENERGY_ENCODING = {
   }
 };
 
-const energyUsageDown = {
+const WIMenergyUsageDown = {
   ...COMMON,
   description: 'Energy Usage Down?',
   mark: 'line',
   encoding: {x: TIME_ENCODING, y: ENERGY_ENCODING}
 };
 
-const energyUsageUp = {
+const WIMenergyUsageUp = {
   ...COMMON,
   description: 'Energy Usage Up?',
   mark: 'line',
   encoding: {x: TIME_ENCODING, y: {...ENERGY_ENCODING, aggregate: 'average'}}
 };
 
-const lotsOfNullsIn2012 = {
+const WIMlotsOfNullsIn2012 = {
   ...COMMON,
   description: 'Lots of Nulls in 2012',
   mark: 'bar',
@@ -47,7 +47,7 @@ const lotsOfNullsIn2012 = {
   }
 };
 
-const isEnergyUsageDrivenByLifeExpectancy = {
+const WIMisEnergyUsageDrivenByLifeExpectancy = {
   ...COMMON,
   transform: [{filter: {timeUnit: 'year', field: 'Year', lt: '2012'}}],
   description: 'Is Energy Usage Driven By Life Expectancy?',
@@ -82,7 +82,7 @@ const isEnergyUsageDrivenByLifeExpectancy = {
   resolve: {scale: {y: 'independent'}}
 };
 
-const isEnergyUsageDrivenByLifeExpectancyDispellEnergy = {
+const WIMisEnergyUsageDrivenByLifeExpectancyDispellEnergy = {
   ...COMMON,
   transform: [{filter: {timeUnit: 'year', field: 'Year', lt: '2012'}}],
   description: 'Is Energy Usage Driven By Life Expectancy?',
@@ -105,7 +105,7 @@ const isEnergyUsageDrivenByLifeExpectancyDispellEnergy = {
   }
 };
 
-const isEnergyUsageDrivenByLifeExpectancyDispellLifeExpect = {
+const WIMisEnergyUsageDrivenByLifeExpectancyDispellLifeExpect = {
   ...COMMON,
   transform: [{filter: {timeUnit: 'year', field: 'Year', lt: '2012'}}],
   description: 'Is Energy Usage Driven By Life Expectancy?',
@@ -166,7 +166,7 @@ const OECD_COUNTRIES = [
   'United States'
 ].map(country => ({oecd: 'oecd', country}));
 
-const NonNullsAreOECDCountires2012 = {
+const WIMNonNullsAreOECDCountires2012 = {
   ...COMMON,
   transform: [
     {filter: {field: 'Energy Usage', valid: true}},
@@ -198,7 +198,7 @@ const NonNullsAreOECDCountires2012 = {
   }
 };
 
-const NonNullsAreHighEnergyUsers2012 = {
+const WIMNonNullsAreHighEnergyUsers2012 = {
   ...COMMON,
   transform: [
     {filter: {timeUnit: 'year', field: 'Year', equal: '2012'}},
@@ -215,7 +215,7 @@ const NonNullsAreHighEnergyUsers2012 = {
   }
 };
 
-const OverplottingMirage = {
+const WIMOverplottingMirage = {
   ...COMMON,
   transform: [
     {
@@ -265,13 +265,13 @@ const OverplottingMirage = {
 };
 
 export default {
-  isEnergyUsageDrivenByLifeExpectancyDispellLifeExpect,
-  isEnergyUsageDrivenByLifeExpectancyDispellEnergy,
-  OverplottingMirage,
-  NonNullsAreHighEnergyUsers2012,
-  NonNullsAreOECDCountires2012,
-  isEnergyUsageDrivenByLifeExpectancy,
-  energyUsageUp,
-  lotsOfNullsIn2012,
-  energyUsageDown
+  WIMisEnergyUsageDrivenByLifeExpectancyDispellLifeExpect,
+  WIMisEnergyUsageDrivenByLifeExpectancyDispellEnergy,
+  WIMOverplottingMirage,
+  WIMNonNullsAreHighEnergyUsers2012,
+  WIMNonNullsAreOECDCountires2012,
+  WIMisEnergyUsageDrivenByLifeExpectancy,
+  WIMenergyUsageUp,
+  WIMlotsOfNullsIn2012,
+  WIMenergyUsageDown
 };
