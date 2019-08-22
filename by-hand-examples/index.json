@@ -1,0 +1,32 @@
+{
+  "vegalite": [
+    "QUARTET_1.vl.json",
+    "WIMisEnergyUsageDrivenByLifeExpectancyDispellLifeExpect.vl.json",
+    "WIMisEnergyUsageDrivenByLifeExpectancyDispellEnergy.vl.json",
+    "WIMOverplottingMirage.vl.json",
+    "WIMNonNullsAreHighEnergyUsers2012.vl.json",
+    "WIMNonNullsAreOECDCountires2012.vl.json",
+    "WIMisEnergyUsageDrivenByLifeExpectancy.vl.json",
+    "WIMenergyUsageUp.vl.json",
+    "WIMlotsOfNullsIn2012.vl.json",
+    "WIMenergyUsageDown.vl.json",
+    "MISSING_QUARTER_LINESERIES_EXPOSED.vl.json",
+    "MISSING_QUARTER_LINESERIES.vl.json",
+    "QUARTET_2.vl.json",
+    "QUARTET_3.vl.json",
+    "QUARTET_4.vl.json",
+    "MISSPELLING_BAR_CHART.vl.json",
+    "MENS_WORLD_DASH.vl.json",
+    "COLORED_SCATTERPLOT.vl.json",
+    "BAR_CHART_BUT_FORGOT_TO_ADD.vl.json",
+    "MISSING_RECORDS_BAR_CHART.vl.json",
+    "OUTLIER_SCATTERPLOT.vl.json",
+    "OVERPLOT_SCATTERPLOT_REVERESED.vl.json",
+    "OVERPLOT_SCATTERPLOT.vl.json",
+    "BAR_CHART_SPEC.vl.json",
+    "HISTOGRAM.vl.json",
+    "INSANITY.vl.json",
+    "STRIP_PLOT.vl.json",
+    "CARS_CARS_BAR_CHART.vl.json"
+  ]
+}

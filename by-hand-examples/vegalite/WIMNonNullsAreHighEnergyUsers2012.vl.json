@@ -1,0 +1,35 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "data": {
+    "url": "example-data/real/world-indicators.json"
+  },
+  "transform": [
+    {
+      "filter": {
+        "timeUnit": "year",
+        "field": "Year",
+        "equal": "2012"
+      }
+    },
+    {
+      "calculate": "if(isNumber(datum[\"Energy Usage\"]), \"in\", \"out\")",
+      "as": "inOut"
+    }
+  ],
+  "description": "2012 Non-Nulls Are High Energy Users",
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "inOut",
+      "type": "ordinal"
+    },
+    "y": {
+      "field": "Energy Usage",
+      "type": "quantitative",
+      "aggregate": "count",
+      "axis": {
+        "format": "~s"
+      }
+    }
+  }
+}

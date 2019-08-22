@@ -1,0 +1,53 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "data": {
+    "url": "example-data/real/world-indicators.json"
+  },
+  "transform": [
+    {
+      "calculate": "parseFloat(datum[\"Health Exp % GDP\"])",
+      "as": "Health Express % GDP"
+    },
+    {
+      "filter": {
+        "field": "Health Express % GDP",
+        "valid": true
+      }
+    },
+    {
+      "filter": {
+        "field": "Life Expectancy",
+        "valid": true
+      }
+    }
+  ],
+  "description": "Overplotting Mirage",
+  "mark": "circle",
+  "encoding": {
+    "x": {
+      "field": "Health Express % GDP",
+      "type": "quantitative",
+      "aggregate": "mean"
+    },
+    "y": {
+      "field": "Life Expectancy",
+      "type": "quantitative",
+      "aggregate": "mean"
+    },
+    "color": {
+      "field": "Region",
+      "type": "nominal",
+      "legend": null
+    },
+    "detail": [
+      {
+        "field": "Country",
+        "type": "nominal"
+      },
+      {
+        "field": "Year",
+        "type": "nominal"
+      }
+    ]
+  }
+}

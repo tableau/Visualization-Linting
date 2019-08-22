@@ -94,11 +94,16 @@ const SUITES = {
     index: './example-specs/examples-index.json',
     fileNameAppend: fileName => `./example-specs/vegalite/${fileName}`,
     recordedKey: 'example-specs'
+  },
+  BY_HAND_EXAMPLES: {
+    index: './by-hand-examples/index.json',
+    fileNameAppend: fileName => `./by-hand-examples/vegalite/${fileName}`,
+    recordedKey: 'by-hand'
   }
 };
-const WRITE_TO_FILE = false;
+const WRITE_TO_FILE = true;
 tape('INTEGRATION TEST', t => {
-  const target = SUITES.VEGALITE_EXAMPLES;
+  const target = SUITES.GH_EXAMPLES;
   integrationTest(target.index, target.fileNameAppend).then(
     ({summary, resultGroups}) => {
       getFile('./test/integration-task-log.json')

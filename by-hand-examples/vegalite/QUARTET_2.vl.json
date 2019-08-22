@@ -1,0 +1,49 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "data": {
+    "url": "example-data/bad/quartet2.csv"
+  },
+  "encoding": {
+    "x": {
+      "field": "location",
+      "type": "nominal"
+    }
+  },
+  "layer": [
+    {
+      "mark": "bar",
+      "encoding": {
+        "y": {
+          "field": "sales",
+          "type": "quantitative",
+          "aggregate": "average",
+          "scale": {
+            "domain": [
+              0,
+              320
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mark": "circle",
+      "encoding": {
+        "y": {
+          "field": "sales",
+          "type": "quantitative",
+          "aggregate": null,
+          "scale": {
+            "domain": [
+              0,
+              320
+            ]
+          }
+        },
+        "color": {
+          "value": "#E15658"
+        }
+      }
+    }
+  ]
+}

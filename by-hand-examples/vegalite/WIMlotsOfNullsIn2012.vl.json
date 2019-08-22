@@ -1,0 +1,30 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "data": {
+    "url": "example-data/real/world-indicators.json"
+  },
+  "description": "Lots of Nulls in 2012",
+  "mark": "bar",
+  "transform": [
+    {
+      "filter": {
+        "field": "Energy Usage",
+        "valid": false
+      }
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "temporal",
+      "timeUnit": "year",
+      "axis": {
+        "title": "Year"
+      }
+    },
+    "y": {
+      "type": "quantitative",
+      "aggregate": "count"
+    }
+  }
+}

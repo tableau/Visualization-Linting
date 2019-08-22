@@ -1,0 +1,50 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "data": {
+    "url": "example-data/real/world-indicators.json"
+  },
+  "transform": [
+    {
+      "filter": {
+        "timeUnit": "year",
+        "field": "Year",
+        "lt": "2012"
+      }
+    }
+  ],
+  "description": "Is Energy Usage Driven By Life Expectancy?",
+  "mark": {
+    "type": "line",
+    "color": "#E15658",
+    "opacity": 0.3
+  },
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "temporal",
+      "timeUnit": "year",
+      "axis": {
+        "title": "Year"
+      }
+    },
+    "y": {
+      "aggregate": "average",
+      "field": "Life Expectancy",
+      "type": "quantitative",
+      "axis": {
+        "title": "Avg. Life Expectancy"
+      },
+      "scale": {
+        "domain": [
+          35,
+          90
+        ]
+      }
+    },
+    "detail": {
+      "field": "Country",
+      "type": "nominal",
+      "legend": null
+    }
+  }
+}

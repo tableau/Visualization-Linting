@@ -1,17 +1,16 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
   "data": {
-    "url": "data/movies.csv"
+    "url": "example-data/bad/outlier.csv"
   },
-  "mark": "bar",
+  "mark": "circle",
   "encoding": {
     "x": {
-      "bin": true,
-      "field": "IMDB_Rating",
+      "field": "x1",
       "type": "quantitative"
     },
     "y": {
-      "aggregate": "count",
+      "field": "x2",
       "type": "quantitative"
     }
   }

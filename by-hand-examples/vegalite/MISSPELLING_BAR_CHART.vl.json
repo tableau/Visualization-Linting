@@ -1,0 +1,40 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "data": {
+    "url": "example-data/bad/misspelling.csv"
+  },
+  "transform": [
+    {
+      "filter": {
+        "field": "Category",
+        "oneOf": [
+          "A",
+          "B"
+        ]
+      }
+    },
+    {
+      "aggregate": [
+        {
+          "op": "mean",
+          "field": "Value",
+          "as": "Val"
+        }
+      ],
+      "groupby": [
+        "Category"
+      ]
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "Category",
+      "type": "nominal"
+    },
+    "y": {
+      "field": "Val",
+      "type": "quantitative"
+    }
+  }
+}

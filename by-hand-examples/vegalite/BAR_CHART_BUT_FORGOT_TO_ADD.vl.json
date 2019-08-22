@@ -1,0 +1,19 @@
+{
+  "data": {
+    "url": "data/seattle-weather.csv"
+  },
+  "height": 200,
+  "width": 200,
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "timeUnit": "month",
+      "field": "date",
+      "type": "ordinal"
+    },
+    "y": {
+      "field": "precipitation",
+      "type": "quantitative"
+    }
+  }
+}

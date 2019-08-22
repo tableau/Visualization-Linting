@@ -1,0 +1,24 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "data": {
+    "url": "example-data/bad/quartet1.csv"
+  },
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "location",
+      "type": "nominal"
+    },
+    "y": {
+      "field": "sales",
+      "type": "quantitative",
+      "aggregate": "average",
+      "scale": {
+        "domain": [
+          0,
+          320
+        ]
+      }
+    }
+  }
+}

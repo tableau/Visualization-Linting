@@ -1,0 +1,209 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "data": {
+    "url": "example-data/real/world-indicators.json"
+  },
+  "transform": [
+    {
+      "filter": {
+        "field": "Energy Usage",
+        "valid": true
+      }
+    },
+    {
+      "filter": {
+        "timeUnit": "year",
+        "field": "Year",
+        "equal": "2012"
+      }
+    },
+    {
+      "lookup": "Country",
+      "from": {
+        "data": {
+          "values": [
+            {
+              "oecd": "oecd",
+              "country": "Australia"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Austria"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Belgium"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Canada"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Chile"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Czech Republic"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Denmark"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Estonia"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Finland"
+            },
+            {
+              "oecd": "oecd",
+              "country": "France"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Germany"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Greece"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Hungary"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Iceland"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Ireland"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Israel"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Italy"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Japan"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Korea, Rep."
+            },
+            {
+              "oecd": "oecd",
+              "country": "Latvia"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Lithuania"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Luxembourg"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Mexico"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Netherlands"
+            },
+            {
+              "oecd": "oecd",
+              "country": "New Zealand"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Norway"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Poland"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Portugal"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Slovak Republic"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Slovenia"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Spain"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Sweden"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Switzerland"
+            },
+            {
+              "oecd": "oecd",
+              "country": "Turkey"
+            },
+            {
+              "oecd": "oecd",
+              "country": "United Kingdom"
+            },
+            {
+              "oecd": "oecd",
+              "country": "United States"
+            }
+          ]
+        },
+        "key": "country",
+        "fields": [
+          "oecd"
+        ]
+      },
+      "default": false
+    }
+  ],
+  "description": "2012 Non-Nulls Are OECD Countries",
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "Country",
+      "type": "ordinal",
+      "sort": {
+        "op": "sum",
+        "field": "Energy Usage"
+      }
+    },
+    "y": {
+      "field": "Energy Usage",
+      "type": "quantitative",
+      "aggregate": "sum",
+      "axis": {
+        "format": "~s"
+      }
+    },
+    "color": {
+      "field": "oecd",
+      "type": "ordinal",
+      "scale": {
+        "range": [
+          "#4D79A7",
+          "#E15658"
+        ]
+      }
+    }
+  }
+}

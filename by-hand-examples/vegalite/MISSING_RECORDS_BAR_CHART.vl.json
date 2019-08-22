@@ -1,0 +1,32 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "data": {
+    "url": "example-data/bad/missingrecords.csv"
+  },
+  "transform": [
+    {
+      "fold": [
+        "x1",
+        "x2"
+      ]
+    },
+    {
+      "filter": {
+        "field": "value",
+        "gt": 0
+      }
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "key",
+      "type": "ordinal"
+    },
+    "y": {
+      "field": "value",
+      "type": "quantitative",
+      "aggregate": "average"
+    }
+  }
+}

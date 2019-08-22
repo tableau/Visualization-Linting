@@ -1,0 +1,26 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "data": {
+    "url": "example-data/bad/overplot.csv"
+  },
+  "mark": {
+    "type": "circle",
+    "opacity": 1
+  },
+  "encoding": {
+    "x": {
+      "field": "x",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          14,
+          0
+        ]
+      }
+    },
+    "y": {
+      "field": "y",
+      "type": "quantitative"
+    }
+  }
+}

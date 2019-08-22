@@ -4,7 +4,7 @@ export const CARS_CARS_BAR_CHART = {
   $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
   width: 120,
   height: 120,
-  data: {url: '../node_modules/vega-datasets/data/cars.json'},
+  data: {url: 'data/cars.json'},
   mark: 'bar',
   encoding: {
     x: {field: 'Origin', type: 'nominal'},
@@ -13,7 +13,7 @@ export const CARS_CARS_BAR_CHART = {
 };
 
 export const BAR_CHART_SPEC = {
-  data: {url: '../node_modules/vega-datasets/data/seattle-weather.csv'},
+  data: {url: 'data/seattle-weather.csv'},
   height: 200,
   width: 200,
   mark: 'bar',
@@ -53,7 +53,7 @@ export const MENS_WORLD_DASH = {
 
 export const BAR_CHART_BUT_FORGOT_TO_ADD = {
   data: {
-    url: '../node_modules/vega-datasets/data/seattle-weather.csv'
+    url: 'data/seattle-weather.csv'
   },
   height: 200,
   width: 200,
@@ -73,7 +73,7 @@ export const BAR_CHART_BUT_FORGOT_TO_ADD = {
 
 export const HISTOGRAM = {
   $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
-  data: {url: '../node_modules/vega-datasets/data/movies.json'},
+  data: {url: 'data/movies.json'},
   mark: 'bar',
   encoding: {
     x: {
@@ -114,7 +114,7 @@ export const INSANITY = {
 export const COLORED_SCATTERPLOT = {
   $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
   data: {
-    url: '../node_modules/vega-datasets/data/cars.json'
+    url: 'data/cars.json'
   },
   mark: {
     type: 'circle',
@@ -294,7 +294,7 @@ export const MISSING_QUARTER_LINESERIES_DISPELL = {
 export const STRIP_PLOT = {
   $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
   data: {
-    url: '../node_modules/vega-datasets/data/seattle-weather.csv'
+    url: 'data/seattle-weather.csv'
   },
   mark: 'tick',
   encoding: {

@@ -1,0 +1,22 @@
+{
+  "data": {
+    "url": "example-data/bad/missingquarter-exposed.csv"
+  },
+  "height": 200,
+  "width": 200,
+  "mark": "line",
+  "encoding": {
+    "x": {
+      "field": "Time",
+      "type": "temporal"
+    },
+    "y": {
+      "aggregate": "mean",
+      "field": "Sales",
+      "type": "quantitative"
+    },
+    "color": {
+      "field": "Series"
+    }
+  }
+}
