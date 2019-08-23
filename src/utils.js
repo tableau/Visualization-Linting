@@ -553,3 +553,27 @@ export function prepProv(dataset, spec, view, name) {
   }, {});
   return {aggregateOutputPairs, tailToStartMap, inputFieldName};
 }
+
+export const nonLinearScales = {
+  log: true,
+  pow: true,
+  sqrt: true,
+  symlog: true
+};
+const quantScales = {
+  ...nonLinearScales,
+  linear: true,
+  time: true,
+  utc: true,
+  sequential: true
+};
+
+export const filterForScale = scaleName => (_, __, view) => {
+  // not a valid spec to check for this scale name if that scale doesn't exisit
+  if (!uniqueKeysAsBoolMap(view._runtime.scales)[scaleName]) {
+    return false;
+  }
+
+  const scale = view.scale(scaleName);
+  return scale && quantScales[scale.type];
+};

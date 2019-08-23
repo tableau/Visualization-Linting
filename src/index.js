@@ -6,16 +6,8 @@ import {
   checkIfSpecIsSupported,
   concatImages
 } from './utils';
-import algebraicRules from './rules/algebraic-rules';
-import deceptionRules from './rules/deception-rules';
+import lintRules from './rules';
 import {SPEC_NOT_SUPPORTED, CRASH, OK} from './codes';
-
-// todo should make the lint rules generate their own specs
-const lintRules = [
-  ...algebraicRules,
-  ...deceptionRules
-  // the map adds default inclusion
-].map(d => ({filter: () => true, ...d}));
 
 const evalMap = {
   'algebraic-spec': evaluateAlgebraicSpecRule,

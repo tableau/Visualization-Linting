@@ -12,7 +12,16 @@ import deletingRandomValuesShouldMatter from './algebraic-rules/delete-some-of-r
 import shufflingDataShouldMatter from './algebraic-rules/shuffle-input-data';
 import deletingRowsShouldMatter from './algebraic-rules/randomly-delete-rows';
 
-const rules = [
+import dontUseNonLinearScales from './deception-rules/bar-chart-are-usually-aggregates';
+import barChartsAreUsuallyAggregates from './deception-rules/dont-use-non-linear-scales';
+import noReversedAxes from './deception-rules/no-reversed-axes';
+import noZeroScale from './deception-rules/no-zero-scales';
+import visScaleFromZero from './deception-rules/scale-should-start-at-zero';
+
+const lintRules = [
+  // ...algebraicRules,
+  // ...deceptionRules
+  // ALGEBRAIC RULES
   ...filterOutNullRecords,
   ...inflateToCommonNumberOfRecords,
   FLIPEVERYTHING,
@@ -23,7 +32,15 @@ const rules = [
   randomizingColumnsShouldMatter,
   shufflingDataShouldMatter,
   deletingRowsShouldMatter,
-  deletingRandomValuesShouldMatter
-];
+  deletingRandomValuesShouldMatter,
 
-export default rules;
+  // DECEPTION RULES
+  ...dontUseNonLinearScales,
+  ...barChartsAreUsuallyAggregates,
+  ...noReversedAxes,
+  ...noZeroScale,
+  ...visScaleFromZero
+  // the map adds default inclusion
+].map(d => ({filter: () => true, ...d}));
+
+export default lintRules;
