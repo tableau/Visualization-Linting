@@ -31,7 +31,6 @@ const bootstrapBars = {
     // return numPassing > 333;
   },
   generateNumberOfIterations: (dataset, spec, view) => 500,
-  // TODO fill out filter
   filter: (spec, data, view) => {
     if (data.length === 0) {
       return false;

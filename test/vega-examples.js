@@ -141,9 +141,6 @@ export const MISSING_RECORDS_BAR_CHART = {
   $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
   data: {url: '../example-data/bad/missingrecords.csv'},
   transform: [
-    // there is some white space weirdness going on in x1, can't tell what
-    // i done figured it out: tableau returns csvs in utf-16, but everything else
-    // everywhere needs utf8. TODO fix all of the csvs
     {fold: ['x1', 'x2']},
     // this is a dumb hacky filter, but whatever
     {filter: {field: 'value', gt: 0}}
@@ -166,9 +163,6 @@ export const MISSING_RECORDS_BAR_CHART_EXPLAINED = {
   $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
   data: {url: '../example-data/bad/missingrecords.csv'},
   transform: [
-    // there is some white space weirdness going on in x1, can't tell what
-    // i done figured it out: tableau returns csvs in utf-16, but everything else
-    // everywhere needs utf8. TODO fix all of the csvs
     {fold: ['x1', 'x2']},
     // this is a dumb hacky filter, but whatever
     {filter: {field: 'value', gt: 0}}
@@ -279,7 +273,6 @@ export const MISSING_QUARTER_LINESERIES = {
   encoding: {
     x: {
       timeUnit: 'yearquarter',
-      // agh the white space thing here too, what
       field: 'Time',
       type: 'temporal'
     },
@@ -321,7 +314,6 @@ export const MISSING_QUARTER_LINESERIES_DISPELL = {
   encoding: {
     x: {
       timeUnit: 'yearquarter',
-      // agh the white space thing here too, what
       field: 'Time',
       type: 'temporal'
     },
