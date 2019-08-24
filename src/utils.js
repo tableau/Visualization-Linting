@@ -3,8 +3,6 @@ import {
   compile,
   extractTransforms as vegaLiteExtractTransforms
 } from 'vega-lite';
-import pixelmatch from 'pixelmatch';
-import {PNG} from 'pngjs';
 
 export function getXYFieldNames(spec) {
   // not a sustainable version of this encoding grab:
@@ -61,10 +59,18 @@ export function shuffle(a) {
   return a;
 }
 
+// cache gets dumped across run times
+// might br problematic for a larger system but fine here
+const vegaRenderingCache = {};
 /**
- * generateVegaRendering, takes in a vega lint spec and returns an svg rendering of it
+ * generateVegaRendering, takes in a vega spec and returns a rendering of it
  */
 export function generateVegaRendering(spec, mode = 'raster') {
+  // memo-ized function
+  const specKey = `${JSON.stringify(spec)}-${mode}`;
+  if (vegaRenderingCache[specKey]) {
+    return Promise.resolve(vegaRenderingCache[specKey]);
+  }
   const isSVG = mode === 'svg';
   const config = {
     renderer: isSVG ? 'svg' : 'none'
@@ -75,7 +81,11 @@ export function generateVegaRendering(spec, mode = 'raster') {
     view
       .runAsync()
       .then(() => (isSVG ? view.toSVG(2) : view.toCanvas(2)))
-      .then(x => resolve(isSVG ? x : x.toDataURL()))
+      .then(x => {
+        const content = isSVG ? x : x.toDataURL();
+        vegaRenderingCache[specKey] = content;
+        resolve(content);
+      })
       .catch(e => {
         /* eslint-disable no-console */
         console.error(e);
@@ -135,82 +145,6 @@ export const clone = data => data.map(d => ({...d}));
 // check if two objects are equal to a first approx
 export const shallowDeepEqual = (a, b) =>
   Object.entries(a).every(([k, v]) => b[k] === v);
-
-/* eslint-disable */
-const toBuffer = img =>
-  new Buffer.from(img.replace(/^data:image\/\w+;base64,/, ''), 'base64');
-/* eslint-enable */
-
-export function concatImages(images) {
-  const pngs = images.map(buff => PNG.sync.read(toBuffer(buff)));
-  const totalWidth = pngs.reduce((acc, {width}) => width + acc, 0);
-  const maxHeight = pngs.reduce((acc, {height}) => Math.max(height, acc), 0);
-  const outputImage = new PNG({width: totalWidth, height: maxHeight});
-  let widthOffset = 0;
-  pngs.forEach(png => {
-    const {width, height, data} = png;
-    for (let y = 0; y < height; y++) {
-      for (let x = 0; x < width; x++) {
-        const idx = 4 * (width * y + x);
-        const targetIdx = 4 * (totalWidth * y + (x + widthOffset));
-        for (let color = 0; color < 4; color++) {
-          outputImage.data[targetIdx + color] = data[idx + color];
-          // outputImage.data[targetIdx] = 0;
-        }
-      }
-    }
-    widthOffset += 4 * width;
-  });
-  return {
-    data: `data:image/png;base64,${PNG.sync
-      .write(outputImage)
-      .toString('base64')}`,
-    dims: {height: maxHeight, width: totalWidth}
-  };
-}
-
-/**
- * Make an image have particular dimensions, will crop if less, will fill with white if empty
- */
-export function padImageToSize(png, padHeight, padWidth) {
-  /* eslint-disable max-depth */
-  const outputImage = new PNG({height: padHeight, width: padWidth});
-  for (let y = 0; y < padHeight; y++) {
-    for (let x = 0; x < padWidth; x++) {
-      const idx = 4 * (padWidth * y + x);
-      if (x < png.width) {
-        for (let color = 0; color < 4; color++) {
-          outputImage.data[idx + color] = png.data[idx + color];
-        }
-      }
-    }
-  }
-  /* eslint-enable max-depth */
-  return outputImage;
-}
-
-/**
- * Create a pixelmatch based difference between two input data streams
- */
-export function buildPixelDiff(oldRendering, newRendering) {
-  const img2 = PNG.sync.read(toBuffer(oldRendering));
-  const img1 = PNG.sync.read(toBuffer(newRendering));
-  const width = Math.max(img1.width, img2.width);
-  const height = Math.max(img1.height, img2.height);
-  const diff = new PNG({width, height});
-  const delta = pixelmatch(
-    padImageToSize(img1, height, width).data,
-    padImageToSize(img2, height, width).data,
-    diff.data,
-    width,
-    height,
-    {threshold: 0.01}
-  );
-  const diffStr = `data:image/png;base64,${PNG.sync
-    .write(diff)
-    .toString('base64')}`;
-  return {delta, diffStr};
-}
 
 /**
  * Create a deep copy of an object. This use the hacky and slow json serialization for copy.

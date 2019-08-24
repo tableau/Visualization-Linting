@@ -1,3 +1,4 @@
+// ALGEBRAIC RULES
 import destroyVariance from './algebraic-rules/destroy-variance';
 import {
   contractToSingleRecords,
@@ -11,35 +12,40 @@ import randomizingColumnsShouldMatter from './algebraic-rules/permute-relevant-c
 import deletingRandomValuesShouldMatter from './algebraic-rules/delete-some-of-relevant-columns';
 import shufflingDataShouldMatter from './algebraic-rules/shuffle-input-data';
 import deletingRowsShouldMatter from './algebraic-rules/randomly-delete-rows';
-
+// DECEPTION RULES
 import dontUseNonLinearScales from './deception-rules/bar-chart-are-usually-aggregates';
 import barChartsAreUsuallyAggregates from './deception-rules/dont-use-non-linear-scales';
 import noReversedAxes from './deception-rules/no-reversed-axes';
 import noZeroScale from './deception-rules/no-zero-scales';
 import visScaleFromZero from './deception-rules/scale-should-start-at-zero';
+// STAT ALGEBRAIC RULES
+import bootstrapBars from './statistical-algebraic-rules/data-bootstrap-bar-order';
+import withInGroupResample from './statistical-algebraic-rules/within-group-bootstrap';
 
 const lintRules = [
-  // ...algebraicRules,
-  // ...deceptionRules
+  // STAT ALGEBRAIC RULES
+  bootstrapBars,
+  withInGroupResample
+
   // ALGEBRAIC RULES
-  ...filterOutNullRecords,
-  ...inflateToCommonNumberOfRecords,
-  FLIPEVERYTHING,
-  ...contractToSingleRecords,
-  ...destroyVariance,
-  ...shouldHaveCommonNumberOfRecords,
-  outliersShouldMatter,
-  randomizingColumnsShouldMatter,
-  shufflingDataShouldMatter,
-  deletingRowsShouldMatter,
-  deletingRandomValuesShouldMatter,
+  // ...filterOutNullRecords,
+  // ...inflateToCommonNumberOfRecords,
+  // FLIPEVERYTHING,
+  // ...contractToSingleRecords,
+  // ...destroyVariance,
+  // ...shouldHaveCommonNumberOfRecords,
+  // outliersShouldMatter,
+  // randomizingColumnsShouldMatter,
+  // shufflingDataShouldMatter,
+  // deletingRowsShouldMatter,
+  // deletingRandomValuesShouldMatter,
 
   // DECEPTION RULES
-  ...dontUseNonLinearScales,
-  ...barChartsAreUsuallyAggregates,
-  ...noReversedAxes,
-  ...noZeroScale,
-  ...visScaleFromZero
+  // ...dontUseNonLinearScales,
+  // ...barChartsAreUsuallyAggregates,
+  // ...noReversedAxes,
+  // ...noZeroScale,
+  // ...visScaleFromZero
   // the map adds default inclusion
 ].map(d => ({filter: () => true, ...d}));
 

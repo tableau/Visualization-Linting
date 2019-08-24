@@ -162,6 +162,48 @@ export const MISSING_RECORDS_BAR_CHART = {
   }
 };
 
+export const MISSING_RECORDS_BAR_CHART_EXPLAINED = {
+  $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
+  data: {url: '../example-data/bad/missingrecords.csv'},
+  transform: [
+    // there is some white space weirdness going on in x1, can't tell what
+    // i done figured it out: tableau returns csvs in utf-16, but everything else
+    // everywhere needs utf8. TODO fix all of the csvs
+    {fold: ['x1', 'x2']},
+    // this is a dumb hacky filter, but whatever
+    {filter: {field: 'value', gt: 0}}
+  ],
+  layer: [
+    {
+      encoding: {
+        x: {
+          field: 'key',
+          type: 'ordinal'
+        },
+        y: {
+          field: 'value',
+          type: 'quantitative',
+          aggregate: 'average'
+        }
+      },
+      mark: 'bar'
+    },
+    {
+      encoding: {
+        x: {
+          field: 'key',
+          type: 'ordinal'
+        },
+        y: {
+          field: 'value',
+          type: 'quantitative'
+        }
+      },
+      mark: {type: 'circle', color: 'red'}
+    }
+  ]
+};
+
 export const MISSPELLING_BAR_CHART = {
   $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
   data: {
@@ -359,6 +401,7 @@ export const BAD_CHARTS = {
   COLORED_SCATTERPLOT,
   BAR_CHART_BUT_FORGOT_TO_ADD,
   MISSING_RECORDS_BAR_CHART,
+  MISSING_RECORDS_BAR_CHART_EXPLAINED,
   OUTLIER_SCATTERPLOT,
   OVERPLOT_SCATTERPLOT_REVERESED,
   OVERPLOT_SCATTERPLOT,
