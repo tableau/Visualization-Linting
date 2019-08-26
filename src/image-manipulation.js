@@ -9,11 +9,12 @@ const toBuffer = img =>
   new Buffer.from(img.replace(/^data:image\/\w+;base64,/, ''), 'base64');
 /* eslint-enable */
 
+// always give back an image
 export function concatImages(images) {
   const pngs = images.map(buff => PNG.sync.read(toBuffer(buff)));
   const totalWidth = pngs.reduce((acc, {width}) => width + acc, 0);
   const maxHeight = getMax(pngs, 'height');
-  const outputImage = new PNG({width: totalWidth, height: maxHeight});
+  const outputImage = new PNG({width: totalWidth || 1, height: maxHeight || 1});
   let widthOffset = 0;
   pngs.forEach(png => {
     const {width, height, data} = png;
@@ -38,7 +39,14 @@ export function concatImages(images) {
 }
 
 const floorClamp = x => Math.max(Math.min(Math.floor(x), 255), 0);
+// always give back an image
 export function overlayImages(images, opacity) {
+  if (!images.length) {
+    return {
+      data: null,
+      dims: {height: 0, width: 0}
+    };
+  }
   const pngs = images.map(buff => PNG.sync.read(toBuffer(buff)));
   const maxWidth = getMax(pngs, 'width');
   const maxHeight = getMax(pngs, 'height');

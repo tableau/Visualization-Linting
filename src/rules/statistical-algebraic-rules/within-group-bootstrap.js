@@ -26,11 +26,11 @@ const bootstrapBars = {
   selectEvaluator: spec => expectSameBars,
   statisticalEval: results => {
     const numPassing = results.reduce((x, {passed}) => x + (passed ? 1 : 0), 0);
-    console.log(numPassing);
+    console.log('within-group-bootstrap', numPassing);
     return false;
     // return numPassing > 333;
   },
-  generateNumberOfIterations: (dataset, spec, view) => 500,
+  generateNumberOfIterations: (dataset, spec, view) => 100,
   filter: (spec, data, view) => {
     if (data.length === 0) {
       return false;

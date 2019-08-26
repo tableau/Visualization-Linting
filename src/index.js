@@ -117,10 +117,23 @@ function evaluateStylisticRule(rule, spec, dataset, oldView) {
   }));
 }
 
-function prepOverlayOutput(allRenderings) {
+function prepOverlayOutput(allRenderings, oldRendering) {
+  const toImg = ({newRendering}) => newRendering;
+  const opacity = 0.9 - 1 / allRenderings.length;
+
+  const passing = allRenderings.filter(({passed}) => passed).map(toImg);
+  const passedOverlays = overlayImages(passing, opacity);
+  const failing = allRenderings.filter(({passed}) => !passed).map(toImg);
+  const failingOverlays = overlayImages(failing, opacity);
+
+  const allOverlays = overlayImages(allRenderings.map(toImg), opacity);
+
+  const imagesToConcat = [allOverlays, passedOverlays, failingOverlays]
+    .map(d => d.data)
+    .filter(d => d);
   return {
     type: 'raster',
-    render: overlayImages(allRenderings, 0.9 - 1 / allRenderings.length)
+    render: concatImages(imagesToConcat)
   };
 }
 
@@ -166,7 +179,7 @@ function evaluateStatisticalAlgebraicRule(rule, spec, dataset, oldView) {
           ...ruleOutput(rule),
           passed,
           failedRender: !passed
-            ? prepOverlayOutput(results.map(({newRendering}) => newRendering))
+            ? prepOverlayOutput(results, oldRendering)
             : null
         };
       });

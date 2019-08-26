@@ -67,15 +67,11 @@ function compareBarOrders(
   [oldRendering, newRendering, spec, perturbedSpec, oldView, newView],
   expectSameOrder
 ) {
-  // console.log(dist(heightsOrder(oldView), heightsOrder(newView)));
   const rankScore = rank(heightsOrder(oldView), heightsOrder(newView));
   const distScore = dist(heightsOrder(oldView), heightsOrder(newView));
   const binaryPass = sameArr(heightsOrder(oldView), heightsOrder(newView));
-  // console.log(
-  //   `RANK SCORE ${rankScore}, DIST SCORE ${distScore}, BINARY ${binaryPass}`
-  // );
-  // return binaryPass;
-  return distScore > 0.8;
+  return binaryPass;
+  // return distScore > 0.8;
   // return assert(
   //   sameArr(heightsOrder(oldView), heightsOrder(newView)),
   //   expectSameOrder
