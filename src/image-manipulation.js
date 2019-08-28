@@ -9,6 +9,8 @@ const toBuffer = img =>
   new Buffer.from(img.replace(/^data:image\/\w+;base64,/, ''), 'base64');
 /* eslint-enable */
 
+export const toPng = buff => PNG.sync.read(toBuffer(buff));
+
 // always give back an image
 export function concatImages(images) {
   const pngs = images.map(buff => PNG.sync.read(toBuffer(buff)));
@@ -109,6 +111,26 @@ export function padImageToSize(png, padHeight, padWidth) {
   }
   /* eslint-enable max-depth */
   return outputImage;
+}
+
+export function makeBlank(height, width, color = [255, 255, 255, 1]) {
+  /* eslint-disable max-depth */
+  const outputImage = new PNG({height, width});
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const idx = 4 * (width * y + x);
+      for (let cdx = 0; cdx < 4; cdx++) {
+        outputImage.data[idx + cdx] = color[color];
+      }
+    }
+  }
+  /* eslint-enable max-depth */
+  return {
+    data: `data:image/png;base64,${PNG.sync
+      .write(outputImage)
+      .toString('base64')}`,
+    dims: {height, width}
+  };
 }
 
 /**

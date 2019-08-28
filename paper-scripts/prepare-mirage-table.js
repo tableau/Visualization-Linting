@@ -4,7 +4,9 @@ const {getFile, writeFile} = require('hoopoe');
 //   `& ${isGray ? '\\rowcolor{Gray}' : ''} ${row.Error} & ${row['Taxonomy (Mirage)']} ${row.Citations}`;
 const toRow = (colorSuffix, name) => (row, idx, rows) => {
   const rotater = `\\multirow{${rows.length}}{0em}{\\hspace{-0.6cm}\\rotatebox{90}{\\normalsize{${name}}}}`;
-  const mirage = `${row.Error} & ${row['mirage-error']} ${row.Citations}`;
+  const rowTitle = row.Error.split('(checked)')[0];
+  const rowContent = row['mirage-error'];
+  const mirage = `${rowTitle} & ${rowContent} ${row.Citations}`;
   return ` \\rowcolor{color${colorSuffix}${idx % 2 ? '-opaque' : ''}}${
     idx ? '' : rotater
   }${mirage}`;

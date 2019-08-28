@@ -7,7 +7,9 @@ import {
 import {
   buildPixelDiff,
   concatImages,
-  overlayImages
+  overlayImages,
+  makeBlank,
+  toPng
 } from './image-manipulation';
 import lintRules from './rules';
 import {SPEC_NOT_SUPPORTED, CRASH, OK} from './codes';
@@ -118,6 +120,7 @@ function evaluateStylisticRule(rule, spec, dataset, oldView) {
 }
 
 function prepOverlayOutput(allRenderings, oldRendering) {
+  const oldPng = toPng(oldRendering);
   const toImg = ({newRendering}) => newRendering;
   const opacity = 0.9 - 1 / allRenderings.length;
 
@@ -129,7 +132,7 @@ function prepOverlayOutput(allRenderings, oldRendering) {
   const allOverlays = overlayImages(allRenderings.map(toImg), opacity);
 
   const imagesToConcat = [allOverlays, passedOverlays, failingOverlays]
-    .map(d => d.data)
+    .map(d => d.data || makeBlank(oldPng.height, oldPng.width).data)
     .filter(d => d);
   return {
     type: 'raster',
@@ -162,7 +165,6 @@ function generateMorphEval(rule, dataset, spec, oldView, oldRendering) {
   };
 }
 
-// DO WE MAYBE WANT TO STACK ALL OF THE CASES ON TOP OF EACH OTHER TO SHOW THE VARIABLITY?
 function evaluateStatisticalAlgebraicRule(rule, spec, dataset, oldView) {
   const {generateNumberOfIterations, statisticalEval} = rule;
   return generateVegaRendering(spec, 'raster').then(oldRendering => {

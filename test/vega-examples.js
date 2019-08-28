@@ -346,6 +346,7 @@ const salesEncode = {
   scale: {domain: [0, 320]}
 };
 const locationEncode = {field: 'location', type: 'nominal'};
+const noAxisLabel = {axis: {title: false}};
 const QUARTET_1 = {
   $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
   data: {
@@ -353,8 +354,8 @@ const QUARTET_1 = {
   },
   mark: 'bar',
   encoding: {
-    x: locationEncode,
-    y: salesEncode
+    x: {...locationEncode, ...noAxisLabel},
+    y: {...salesEncode, ...noAxisLabel}
   }
 };
 
@@ -364,16 +365,16 @@ const OTHER_QUARTETS = [...new Array(3)]
     acc[`QUARTET_${idx}`] = {
       $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
       data: {url: `../example-data/bad/quartet${idx}.csv`},
-      encoding: {x: locationEncode},
+      encoding: {x: {...locationEncode, ...noAxisLabel}},
       layer: [
         {
           mark: 'bar',
-          encoding: {y: salesEncode}
+          encoding: {y: salesEncode, ...noAxisLabel}
         },
         {
           mark: 'circle',
           encoding: {
-            y: {...salesEncode, aggregate: null},
+            y: {...salesEncode, aggregate: null, ...noAxisLabel},
             color: {value: '#E15658'}
           }
         }
