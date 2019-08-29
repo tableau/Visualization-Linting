@@ -12,7 +12,7 @@ const toRow = (colorSuffix, name) => (row, idx, rows) => {
   }${mirage}`;
 };
 const CAPTION =
-  'Examples of errors arising at each of the stages in our taxonomy along with the ways that those errors can manifest themselves as mirages. A larger table of mirage errors is available in the supplemental materials. Even so, tThis list does not try to be comprehensive, only evocative.';
+  'Examples of errors arising at each of the stages in our taxonomy along with the ways that those errors can manifest themselves as mirages. A larger table of mirage errors is available in the supplemental materials. Even so, this list does not try to be comprehensive, only evocative.';
 const toBlock = (rows, name, colorSuffix) =>
   `${rows.map(toRow(colorSuffix, name)).join('\\\\\n')}\\\\`;
 // % \\multirow{13}{1em}{\\hspace{-0.4cm}\\rotatebox{90}{\\normalsize{\\normalsize{Curation}}}}
