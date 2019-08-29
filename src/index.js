@@ -1,18 +1,24 @@
 import {
-  buildPixelDiff,
   getDataset,
   generateVegaRendering,
   generateVegaView,
-  checkIfSpecIsSupported,
-  concatImages
+  checkIfSpecIsSupported
 } from './utils';
+import {
+  buildPixelDiff,
+  concatImages,
+  overlayImages,
+  makeBlank,
+  toPng
+} from './image-manipulation';
 import lintRules from './rules';
 import {SPEC_NOT_SUPPORTED, CRASH, OK} from './codes';
 
 const evalMap = {
   'algebraic-spec': evaluateAlgebraicSpecRule,
   'algebraic-data': evaluateAlgebraicDataRule,
-  stylistic: evaluateStylisticRule
+  stylistic: evaluateStylisticRule,
+  'algebraic-stat-data': evaluateStatisticalAlgebraicRule
 };
 
 export function lint(spec) {
@@ -63,7 +69,14 @@ function evaluateAlgebraicSpecRule(rule, spec, dataset, oldView) {
   });
 }
 
-function prepOutput(oldRendering, newRendering) {
+function perturbSpec(dataset, spec, oldView, rule) {
+  return {
+    ...spec,
+    data: {values: rule.operation(dataset, spec, oldView)}
+  };
+}
+
+function prepConcatOutput(oldRendering, newRendering) {
   const failRender = buildPixelDiff(oldRendering, newRendering).diffStr;
   // type is there to allow for svg renders, still to come
   return {
@@ -74,10 +87,7 @@ function prepOutput(oldRendering, newRendering) {
 
 function evaluateAlgebraicDataRule(rule, spec, dataset, oldView) {
   const evaluator = rule.selectEvaluator(spec);
-  const perturbedSpec = {
-    ...spec,
-    data: {values: rule.operation(dataset, spec, oldView)}
-  };
+  const perturbedSpec = perturbSpec(dataset, spec, oldView, rule);
   return Promise.all([
     generateVegaRendering(spec, 'raster'),
     generateVegaRendering(perturbedSpec, 'raster'),
@@ -95,7 +105,9 @@ function evaluateAlgebraicDataRule(rule, spec, dataset, oldView) {
     return {
       ...ruleOutput(rule),
       passed,
-      failedRender: !passed ? prepOutput(oldRendering, newRendering) : null
+      failedRender: !passed
+        ? prepConcatOutput(oldRendering, newRendering)
+        : null
     };
   });
 }
@@ -105,4 +117,73 @@ function evaluateStylisticRule(rule, spec, dataset, oldView) {
     ...ruleOutput(rule),
     passed: rule.evaluator(oldView, spec, render)
   }));
+}
+
+function prepOverlayOutput(allRenderings, oldRendering) {
+  const oldPng = toPng(oldRendering);
+  const toImg = ({newRendering}) => newRendering;
+  const opacity = 0.9 - 1 / allRenderings.length;
+
+  const passing = allRenderings.filter(({passed}) => passed).map(toImg);
+  const passedOverlays = overlayImages(passing, opacity);
+  const failing = allRenderings.filter(({passed}) => !passed).map(toImg);
+  const failingOverlays = overlayImages(failing, opacity);
+
+  const allOverlays = overlayImages(allRenderings.map(toImg), opacity);
+
+  const imagesToConcat = [allOverlays, passedOverlays, failingOverlays]
+    .map(d => d.data || makeBlank(oldPng.height, oldPng.width).data)
+    .filter(d => d);
+  return {
+    type: 'raster',
+    render: concatImages(imagesToConcat)
+  };
+}
+
+function generateMorphEval(rule, dataset, spec, oldView, oldRendering) {
+  const evaluator = rule.selectEvaluator(spec);
+  return (_, idx) => {
+    const perturbedSpec = perturbSpec(dataset, spec, oldView, rule);
+    return Promise.all([
+      generateVegaRendering(perturbedSpec, 'raster'),
+      generateVegaView(perturbedSpec)
+    ]).then(([newRendering, newView]) => {
+      const passed = evaluator(
+        oldRendering,
+        newRendering,
+        spec,
+        perturbedSpec,
+        oldView,
+        newView
+      );
+      return {
+        passed,
+        newView,
+        newRendering
+      };
+    });
+  };
+}
+
+function evaluateStatisticalAlgebraicRule(rule, spec, dataset, oldView) {
+  const {generateNumberOfIterations, statisticalEval} = rule;
+  return generateVegaRendering(spec, 'raster').then(oldRendering => {
+    const numIterations = generateNumberOfIterations(dataset, spec, oldView);
+    // run a bunch of evaluations at once
+    return Promise.all(
+      [...new Array(numIterations)].map(
+        generateMorphEval(rule, dataset, spec, oldView, oldRendering)
+      )
+    )
+      .then(results => ({passed: statisticalEval(results), results}))
+      .then(({passed, results}) => {
+        return {
+          ...ruleOutput(rule),
+          passed,
+          failedRender: !passed
+            ? prepOverlayOutput(results, oldRendering)
+            : null
+        };
+      });
+  });
 }

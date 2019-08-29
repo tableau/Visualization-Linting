@@ -1,4 +1,6 @@
-import {buildPixelDiff} from '../utils';
+import {cor} from 'datalib';
+const {rank, dist} = cor;
+import {buildPixelDiff} from '../image-manipulation';
 /**
  * SYNTATIC SUGAR AROUND BOOL COMPARE, EASE OF READABILITY
  */
@@ -65,8 +67,13 @@ function compareBarOrders(
   [oldRendering, newRendering, spec, perturbedSpec, oldView, newView],
   expectSameOrder
 ) {
-  return assert(
-    sameArr(heightsOrder(oldView), heightsOrder(newView)),
-    expectSameOrder
-  );
+  const rankScore = rank(heightsOrder(oldView), heightsOrder(newView));
+  const distScore = dist(heightsOrder(oldView), heightsOrder(newView));
+  const binaryPass = sameArr(heightsOrder(oldView), heightsOrder(newView));
+  return binaryPass;
+  // return distScore > 0.8;
+  // return assert(
+  //   sameArr(heightsOrder(oldView), heightsOrder(newView)),
+  //   expectSameOrder
+  // );
 }
