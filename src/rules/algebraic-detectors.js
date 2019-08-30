@@ -1,6 +1,7 @@
 import {cor} from 'datalib';
 const {rank, dist} = cor;
 import {buildPixelDiff} from '../image-manipulation';
+import DynamicTimeWarping from 'dynamic-time-warping';
 /**
  * SYNTATIC SUGAR AROUND BOOL COMPARE, EASE OF READABILITY
  */
@@ -70,10 +71,33 @@ function compareBarOrders(
   const rankScore = rank(heightsOrder(oldView), heightsOrder(newView));
   const distScore = dist(heightsOrder(oldView), heightsOrder(newView));
   const binaryPass = sameArr(heightsOrder(oldView), heightsOrder(newView));
-  return binaryPass;
+  return assert(binaryPass, expectSame);
   // return distScore > 0.8;
   // return assert(
   //   sameArr(heightsOrder(oldView), heightsOrder(newView)),
   //   expectSameOrder
   // );
+}
+
+function getPath(view) {
+  // thats my guess
+  // debugger;
+  return view._runtime.data.marks.input.value.map(({y}) => y);
+}
+
+export const expectDifferentLines = (...args) => compareLines([...args], false);
+export const expectSameLines = (...args) => compareLines([...args], true);
+function compareLines(
+  [oldRendering, newRendering, spec, perturbedSpec, oldView, newView],
+  expectNoChange
+) {
+  const comaprePoints = (a, b) => Math.abs(a - b);
+  const dtw = new DynamicTimeWarping(
+    getPath(oldView),
+    getPath(newView),
+    comaprePoints
+  );
+  // 30 is magic number drawn this demo by dtw packages author
+  // https://gordonlesti.com/touch-signature-identification-with-javascript/
+  return assert(dtw.getDistance() < 30, expectNoChange);
 }

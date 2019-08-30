@@ -1,5 +1,9 @@
 import {prepProv} from '../../utils';
-import {expectSameBars} from '../algebraic-detectors';
+import {
+  expectSameBars,
+  expectSameLines,
+  expectSame
+} from '../algebraic-detectors';
 import {fullResample} from '../../bootstrap';
 
 const bootstrapBars = {
@@ -14,7 +18,7 @@ const bootstrapBars = {
       'y' //opposite key as expected
     );
     const data = [];
-    debugger;
+    // debugger;
     Object.keys(aggregateOutputPairs).forEach(terminalKey => {
       fullResample(tailToStartMap[terminalKey] || []).forEach(idx =>
         data.push(dataset[idx])
@@ -23,7 +27,15 @@ const bootstrapBars = {
 
     return data;
   },
-  selectEvaluator: spec => expectSameBars,
+  selectEvaluator: spec => {
+    if (spec.mark === 'bar') {
+      return expectSameBars;
+    }
+    if (spec.mark === 'line') {
+      return expectSameLines;
+    }
+    return expectSame;
+  },
   statisticalEval: results => {
     const numPassing = results.reduce((x, {passed}) => x + (passed ? 1 : 0), 0);
     console.log('within-group-bootstrap', numPassing);
@@ -35,9 +47,10 @@ const bootstrapBars = {
     if (data.length === 0) {
       return false;
     }
-    if (spec.mark !== 'bar') {
+    if (spec.mark !== 'bar' && spec.mark !== 'line') {
       return false;
     }
+    // i dont get why this is necessary
     if (!spec.encoding.x.aggregate && !spec.encoding.y.aggregate) {
       return false;
     }

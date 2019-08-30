@@ -11,7 +11,6 @@ import FLIPEVERYTHING from './algebraic-rules/invert-on-quant-fields';
 import randomizingColumnsShouldMatter from './algebraic-rules/permute-relevant-columns';
 import deletingRandomValuesShouldMatter from './algebraic-rules/delete-some-of-relevant-columns';
 import shufflingDataShouldMatter from './algebraic-rules/shuffle-input-data';
-import deletingRowsShouldMatter from './algebraic-rules/randomly-delete-rows';
 // DECEPTION RULES
 import dontUseNonLinearScales from './deception-rules/bar-chart-are-usually-aggregates';
 import barChartsAreUsuallyAggregates from './deception-rules/dont-use-non-linear-scales';
@@ -21,11 +20,13 @@ import visScaleFromZero from './deception-rules/scale-should-start-at-zero';
 // STAT ALGEBRAIC RULES
 import bootstrapBars from './statistical-algebraic-rules/data-bootstrap-bar-order';
 import withInGroupResample from './statistical-algebraic-rules/within-group-bootstrap';
+import deletingRowsShouldMatter from './statistical-algebraic-rules/randomly-delete-rows';
 
 const lintRules = [
   // STAT ALGEBRAIC RULES
+  deletingRowsShouldMatter,
   bootstrapBars,
-  withInGroupResample
+  withInGroupResample,
 
   // ALGEBRAIC RULES
   // ...filterOutNullRecords,
@@ -34,10 +35,9 @@ const lintRules = [
   // ...contractToSingleRecords,
   // ...destroyVariance,
   // ...shouldHaveCommonNumberOfRecords,
-  // outliersShouldMatter,
+  outliersShouldMatter
   // randomizingColumnsShouldMatter,
   // shufflingDataShouldMatter,
-  // deletingRowsShouldMatter,
   // deletingRandomValuesShouldMatter,
 
   // DECEPTION RULES

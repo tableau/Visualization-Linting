@@ -41,6 +41,7 @@
   "dependencies": {
     "canvas": "^2.5.0",
     "datalib": "^1.9.2",
+    "dynamic-time-warping": "^1.0.0",
     "hoopoe": "^1.0.0",
     "node-fetch": "^2.6.0",
     "outliers": "^0.0.3",
