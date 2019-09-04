@@ -6,7 +6,8 @@ import {
 } from './algebraic-rules/change-number-of-records';
 import filterOutNullRecords from './algebraic-rules/remove-nulls';
 import shouldHaveCommonNumberOfRecords from './algebraic-rules/aggregates-should-have-a-similar-number-of-input-records';
-import outliersShouldMatter from './algebraic-rules/outliers-should-matter';
+// import outliersShouldMatter from './algebraic-rules/outliers-should-matter';
+import outliersByMark from './algebraic-rules/outliers-by-mark';
 import FLIPEVERYTHING from './algebraic-rules/invert-on-quant-fields';
 import randomizingColumnsShouldMatter from './algebraic-rules/permute-relevant-columns';
 import deletingRandomValuesShouldMatter from './algebraic-rules/delete-some-of-relevant-columns';
@@ -21,12 +22,14 @@ import visScaleFromZero from './deception-rules/scale-should-start-at-zero';
 import bootstrapBars from './statistical-algebraic-rules/data-bootstrap-bar-order';
 import withInGroupResample from './statistical-algebraic-rules/within-group-bootstrap';
 import deletingRowsShouldMatter from './statistical-algebraic-rules/randomly-delete-rows';
+import contractToFloorRecords from './statistical-algebraic-rules/contract-to-floor-records';
 
 const lintRules = [
   // STAT ALGEBRAIC RULES
-  deletingRowsShouldMatter,
-  bootstrapBars,
-  withInGroupResample,
+  // deletingRowsShouldMatter
+  // bootstrapBars,
+  // withInGroupResample,
+  ...contractToFloorRecords
 
   // ALGEBRAIC RULES
   // ...filterOutNullRecords,
@@ -35,7 +38,8 @@ const lintRules = [
   // ...contractToSingleRecords,
   // ...destroyVariance,
   // ...shouldHaveCommonNumberOfRecords,
-  outliersShouldMatter
+  // outliersShouldMatter
+  // outliersByMark
   // randomizingColumnsShouldMatter,
   // shufflingDataShouldMatter,
   // deletingRandomValuesShouldMatter,

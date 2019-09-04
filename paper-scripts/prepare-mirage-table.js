@@ -17,11 +17,11 @@ const toBlock = (rows, name, colorSuffix) =>
   `${rows.map(toRow(colorSuffix, name)).join('\\\\\n')}\\\\`;
 // % \\multirow{13}{1em}{\\hspace{-0.4cm}\\rotatebox{90}{\\normalsize{\\normalsize{Curation}}}}
 const template = (curating, wrangling, visualizing, comprehending) => `
-\\begin{table*}[h!]
+\\begin{table*}[ht!]
 \\centering
 \\caption{${CAPTION}}
 \\small
-\\begin{tabular}{p{5cm}p{12cm}}
+\\begin{tabular}{p{3cm}p{14cm}}
 \\normalsize{Error} & \\normalsize{Mirage}\\\\ \\hline
   ${toBlock(curating, 'Curating', 'a')}
 

@@ -68,23 +68,20 @@ function compareBarOrders(
   [oldRendering, newRendering, spec, perturbedSpec, oldView, newView],
   expectSameOrder
 ) {
-  const rankScore = rank(heightsOrder(oldView), heightsOrder(newView));
-  const distScore = dist(heightsOrder(oldView), heightsOrder(newView));
-  const binaryPass = sameArr(heightsOrder(oldView), heightsOrder(newView));
-  return assert(binaryPass, expectSame);
-  // return distScore > 0.8;
+  const oldOrder = heightsOrder(oldView);
+  const newOrder = heightsOrder(newView);
+  const rankScore = rank(oldOrder, newOrder);
+  const distScore = dist(oldOrder, newOrder);
+  const binaryPass = sameArr(oldOrder, newOrder);
+  const pass = binaryPass;
+  return expectSame ? pass : !pass;
   // return assert(
   //   sameArr(heightsOrder(oldView), heightsOrder(newView)),
   //   expectSameOrder
   // );
 }
 
-function getPath(view) {
-  // thats my guess
-  // debugger;
-  return view._runtime.data.marks.input.value.map(({y}) => y);
-}
-
+const getPath = view => view._runtime.data.marks.input.value.map(({y}) => y);
 export const expectDifferentLines = (...args) => compareLines([...args], false);
 export const expectSameLines = (...args) => compareLines([...args], true);
 function compareLines(
