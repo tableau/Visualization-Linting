@@ -1,7 +1,5 @@
 const tsv = require('tsv');
 const {getFile, writeFile} = require('hoopoe');
-// const toRow = isGray => row =>
-//   `& ${isGray ? '\\rowcolor{Gray}' : ''} ${row.Error} & ${row['Taxonomy (Mirage)']} ${row.Citations}`;
 const toRow = (colorSuffix, name) => (row, idx, rows) => {
   const rotater = `\\multirow{${rows.length}}{0em}{\\hspace{-0.6cm}\\rotatebox{90}{\\normalsize{${name}}}}`;
   const rowTitle = row.Error.split('(checked)')[0];
@@ -12,7 +10,7 @@ const toRow = (colorSuffix, name) => (row, idx, rows) => {
   }${mirage}`;
 };
 const CAPTION =
-  'Examples of errors arising at each of the stages in our taxonomy along with the ways that those errors can manifest themselves as mirages. A larger table of mirage errors is available in the supplemental materials. Even so, this list does not try to be comprehensive, only evocative.';
+  'Examples of errors arising at each of the stages in our model along with the ways that those errors can manifest themselves as mirages. We do not try to be comprehensive in this list, only evocative, as a complete list would span a number of disciplines.';
 const toBlock = (rows, name, colorSuffix) =>
   `${rows.map(toRow(colorSuffix, name)).join('\\\\\n')}\\\\`;
 // % \\multirow{13}{1em}{\\hspace{-0.4cm}\\rotatebox{90}{\\normalsize{\\normalsize{Curation}}}}
@@ -21,7 +19,7 @@ const template = (curating, wrangling, visualizing, comprehending) => `
 \\centering
 \\caption{${CAPTION}}
 \\small
-\\begin{tabular}{p{3cm}p{14cm}}
+\\begin{tabular}{p{2.5cm}p{14.5cm}}
 \\normalsize{Error} & \\normalsize{Mirage}\\\\ \\hline
   ${toBlock(curating, 'Curating', 'a')}
 

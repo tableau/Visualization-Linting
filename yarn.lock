@@ -3544,6 +3544,11 @@ hash.js@^1.0.0, hash.js@^1.0.3:
     inherits "^2.0.3"
     minimalistic-assert "^1.0.1"
 
+hex-over@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/hex-over/-/hex-over-0.0.2.tgz#50b62b5e63934f8288f5bf0bdc6651987379e774"
+  integrity sha512-srWLQxf7DElxLHIHhFVlZ8aX6YndPxZgOtVQWd707fVgDFG1KGhqC3/J76NVIPlLYgYbJZCS/be7f4qb0O/pwg==
+
 hmac-drbg@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/hmac-drbg/-/hmac-drbg-1.0.1.tgz#d2745701025a6c775a6c545793ed502fc0c649a1"

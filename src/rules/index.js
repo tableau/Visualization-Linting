@@ -27,22 +27,22 @@ import contractToFloorRecords from './statistical-algebraic-rules/contract-to-fl
 const lintRules = [
   // STAT ALGEBRAIC RULES
   // deletingRowsShouldMatter
-  // bootstrapBars,
+  // bootstrapBars
   // withInGroupResample,
-  ...contractToFloorRecords
+  // ...contractToFloorRecords
 
   // ALGEBRAIC RULES
-  // ...filterOutNullRecords,
-  // ...inflateToCommonNumberOfRecords,
-  // FLIPEVERYTHING,
-  // ...contractToSingleRecords,
-  // ...destroyVariance,
-  // ...shouldHaveCommonNumberOfRecords,
-  // outliersShouldMatter
-  // outliersByMark
-  // randomizingColumnsShouldMatter,
-  // shufflingDataShouldMatter,
-  // deletingRandomValuesShouldMatter,
+  ...filterOutNullRecords,
+  ...inflateToCommonNumberOfRecords,
+  FLIPEVERYTHING,
+  ...contractToSingleRecords,
+  ...destroyVariance,
+  ...shouldHaveCommonNumberOfRecords,
+  // outliersShouldMatter,
+  outliersByMark,
+  randomizingColumnsShouldMatter,
+  shufflingDataShouldMatter,
+  deletingRandomValuesShouldMatter
 
   // DECEPTION RULES
   // ...dontUseNonLinearScales,
