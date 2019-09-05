@@ -165,21 +165,21 @@ const OECD_COUNTRIES = [
   'United Kingdom',
   'United States'
 ].map(country => ({oecd: 'oecd', country}));
-
+const labelWithOECD = {
+  lookup: 'Country',
+  from: {
+    data: {values: OECD_COUNTRIES},
+    key: 'country',
+    fields: ['oecd']
+  },
+  default: false
+};
 const WIMNonNullsAreOECDCountires2012 = {
   ...COMMON,
   transform: [
     {filter: {field: 'Energy Usage', valid: true}},
     {filter: {timeUnit: 'year', field: 'Year', equal: '2012'}},
-    {
-      lookup: 'Country',
-      from: {
-        data: {values: OECD_COUNTRIES},
-        key: 'country',
-        fields: ['oecd']
-      },
-      default: false
-    }
+    labelWithOECD
   ],
   description: '2012 Non-Nulls Are OECD Countries',
   mark: 'bar',
@@ -202,16 +202,47 @@ const WIMNonNullsAreHighEnergyUsers2012 = {
   ...COMMON,
   transform: [
     {filter: {timeUnit: 'year', field: 'Year', equal: '2012'}},
-    {calculate: 'if(isNumber(datum["Energy Usage"]), "in", "out")', as: 'inOut'}
+    {
+      calculate: 'if(isNumber(datum["Energy Usage"]), "NON-NULL", "NULL")',
+      as: 'inOut'
+    },
+    labelWithOECD
   ],
   description: '2012 Non-Nulls Are High Energy Users',
   mark: 'bar',
   encoding: {
     x: {
+      axis: {title: false},
       field: 'inOut',
       type: 'ordinal'
     },
-    y: {...ENERGY_ENCODING, aggregate: 'count'}
+    y: {...ENERGY_ENCODING, aggregate: 'count'},
+    color: {
+      field: 'oecd',
+      type: 'nominal'
+    }
+  }
+};
+
+const WIOECDisHighEnergy = {
+  ...COMMON,
+  transform: [
+    {filter: {timeUnit: 'year', field: 'Year', equal: '2012'}},
+    labelWithOECD
+  ],
+  description: '2012 Non-Nulls Are High Energy Users',
+  mark: 'bar',
+  encoding: {
+    x: {
+      axis: {title: false},
+      field: 'oecd',
+      type: 'ordinal'
+    },
+    y: {...ENERGY_ENCODING, aggregate: 'average'},
+    color: {
+      field: 'oecd',
+      type: 'nominal'
+    }
   }
 };
 
@@ -228,10 +259,6 @@ const WIMOverplottingMirage = {
     {
       filter: {field: 'Life Expectancy', valid: true}
     }
-    // {
-    //   calculate: 'toString(merge(datum["Year"],datum["Country"]))',
-    //   as: 'XXXX'
-    // }
   ],
   description: 'Overplotting Mirage',
   mark: 'circle',
@@ -265,6 +292,7 @@ const WIMOverplottingMirage = {
 };
 
 export default {
+  WIOECDisHighEnergy,
   WIMisEnergyUsageDrivenByLifeExpectancyDispellLifeExpect,
   WIMisEnergyUsageDrivenByLifeExpectancyDispellEnergy,
   WIMOverplottingMirage,

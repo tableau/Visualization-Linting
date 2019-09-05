@@ -306,6 +306,45 @@ export const MISSING_QUARTER_LINESERIES_EXPOSED = {
   }
 };
 
+export const MISSING_QUARTER_LINESERIES_EXPOSED_2 = {
+  data: {
+    url: '../example-data/bad/missingquarter-exposed.csv'
+  },
+  height: 200,
+  width: 200,
+  layer: [
+    {
+      mark: 'line',
+      encoding: {
+        x: {
+          timeUnit: 'yearquarter',
+          field: 'Time',
+          type: 'temporal'
+        },
+        y: {
+          aggregate: 'sum',
+          field: 'Sales',
+          type: 'quantitative'
+        }
+      }
+    },
+    {
+      mark: 'circle',
+      encoding: {
+        x: {
+          field: 'Time',
+          type: 'temporal'
+        },
+        y: {
+          aggregate: 'sum',
+          field: 'Sales',
+          type: 'quantitative'
+        }
+      }
+    }
+  ]
+};
+
 export const MISSING_QUARTER_LINESERIES_DISPELL = {
   data: {url: '../example-data/bad/missingquarter.csv'},
   height: 200,
@@ -384,10 +423,11 @@ const OTHER_QUARTETS = [...new Array(3)]
   }, {});
 
 export const BAD_CHARTS = {
-  QUARTET_1,
   ...WorldIndicatorMirages,
+  QUARTET_1,
   MISSING_QUARTER_LINESERIES_EXPOSED,
   MISSING_QUARTER_LINESERIES,
+  MISSING_QUARTER_LINESERIES_EXPOSED_2,
   ...OTHER_QUARTETS,
   MISSPELLING_BAR_CHART,
   MENS_WORLD_DASH,
