@@ -1,33 +1,13 @@
-import {clone, filterForAggregates, prepProv} from '../../utils';
+import {clone, prepProv, filterForMarkRecordChange} from '../../utils';
 import {expectDifferent} from '../algebraic-detectors';
 
-const filterForMarkRecordChange = key => (spec, data, view) => {
-  if (data.length === 0) {
-    return false;
-  }
-  if (spec.encoding && (!spec.encoding.x || !spec.encoding.y)) {
-    return false;
-  }
-  if (!filterForAggregates(key)(spec, data, view)) {
-    return false;
-  }
-  const {aggregateOutputPairs, tailToStartMap} = prepProv(
-    data,
-    spec,
-    view,
-    key
-  );
-  const allAggsConsistOfOneRecord = Object.entries(aggregateOutputPairs).every(
-    ([terminalKey, aggValue]) => (tailToStartMap[terminalKey] || []).length <= 1
-  );
-  if (allAggsConsistOfOneRecord) {
-    return false;
-  }
-  return true;
-};
-
-export const inflateToCommonNumberOfRecords = ['x', 'y'].map(key => ({
-  name: `algebraic-inflate-number-of-records--${key}-axis`,
+/**
+ * HEY THIS ONE DOESN"T WORK
+ * SPECIFICALLY: detecting "values" that go into the final group is hard, not done
+ * relatively easy to compute the input tuples, but hard to know which part of them ends up going into mark
+ */
+const outliersByMark = ['x', 'y'].map(key => ({
+  name: `algebraic-outlier-by-mark--${key}-axis`,
   type: 'algebraic-data',
   operation: (dataset, spec, view) => {
     const {aggregateOutputPairs, tailToStartMap} = prepProv(
@@ -36,7 +16,9 @@ export const inflateToCommonNumberOfRecords = ['x', 'y'].map(key => ({
       view,
       key
     );
+    console.log('??!???!???!');
     const data = clone(dataset);
+    debugger;
     const arrayOfArrays = Object.keys(aggregateOutputPairs).map(
       terminalKey => tailToStartMap[terminalKey]
     );
@@ -60,6 +42,7 @@ export const inflateToCommonNumberOfRecords = ['x', 'y'].map(key => ({
   },
   selectEvaluator: spec => () => false,
   filter: filterForMarkRecordChange(key),
-  explain:
-    'bootstrapping the aggregate values to the max number of records should affect the chart'
+  explain: 'XXXXXXX'
 }));
+
+export default outliersByMark;

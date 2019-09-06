@@ -61,16 +61,16 @@ export function shuffle(a) {
 
 // cache gets dumped across run times
 // might br problematic for a larger system but fine here
-const vegaRenderingCache = {};
+// const vegaRenderingCache = {};
 /**
  * generateVegaRendering, takes in a vega spec and returns a rendering of it
  */
 export function generateVegaRendering(spec, mode = 'raster') {
   // memo-ized function
-  const specKey = `${JSON.stringify(spec)}-${mode}`;
-  if (vegaRenderingCache[specKey]) {
-    return Promise.resolve(vegaRenderingCache[specKey]);
-  }
+  // const specKey = `${JSON.stringify(spec)}-${mode}`;
+  // if (vegaRenderingCache[specKey]) {
+  //   return Promise.resolve(vegaRenderingCache[specKey]);
+  // }
   const isSVG = mode === 'svg';
   const config = {
     renderer: isSVG ? 'svg' : 'none'
@@ -83,7 +83,7 @@ export function generateVegaRendering(spec, mode = 'raster') {
       .then(() => (isSVG ? view.toSVG(2) : view.toCanvas(2)))
       .then(x => {
         const content = isSVG ? x : x.toDataURL();
-        vegaRenderingCache[specKey] = content;
+        // vegaRenderingCache[specKey] = content;
         resolve(content);
       })
       .catch(e => {
@@ -510,4 +510,30 @@ export const filterForScale = scaleName => (_, __, view) => {
 
   const scale = view.scale(scaleName);
   return scale && quantScales[scale.type];
+};
+
+// util methnod for identifying rules that need provenance stuff
+export const filterForMarkRecordChange = key => (spec, data, view) => {
+  if (data.length === 0) {
+    return false;
+  }
+  if (spec.encoding && (!spec.encoding.x || !spec.encoding.y)) {
+    return false;
+  }
+  if (!filterForAggregates(key)(spec, data, view)) {
+    return false;
+  }
+  const {aggregateOutputPairs, tailToStartMap} = prepProv(
+    data,
+    spec,
+    view,
+    key
+  );
+  const allAggsConsistOfOneRecord = Object.entries(aggregateOutputPairs).every(
+    ([terminalKey, aggValue]) => (tailToStartMap[terminalKey] || []).length <= 1
+  );
+  if (allAggsConsistOfOneRecord) {
+    return false;
+  }
+  return true;
 };

@@ -23,22 +23,27 @@ import bootstrapBars from './statistical-algebraic-rules/data-bootstrap-bar-orde
 import withInGroupResample from './statistical-algebraic-rules/within-group-bootstrap';
 import deletingRowsShouldMatter from './statistical-algebraic-rules/randomly-delete-rows';
 import contractToFloorRecords from './statistical-algebraic-rules/contract-to-floor-records';
+import inflateToCommonNumberOfRecordsBootstrap from './statistical-algebraic-rules/inflate-to-max-records';
+import decreaseByOne from './statistical-algebraic-rules/decrease-by-one';
+
+// LEFT OFF AT IMPORTING FILE
 
 const lintRules = [
   // STAT ALGEBRAIC RULES
   // deletingRowsShouldMatter
   // bootstrapBars
   // withInGroupResample
-  // ...contractToFloorRecords
+  ...contractToFloorRecords,
+  // ...decreaseByOne,
+  ...inflateToCommonNumberOfRecordsBootstrap
   // ALGEBRAIC RULES
   // ...filterOutNullRecords,
-  // ...inflateToCommonNumberOfRecords,
+  // ...inflateToCommonNumberOfRecords
   // FLIPEVERYTHING,
   // ...contractToSingleRecords,
   // ...destroyVariance,
   // ...shouldHaveCommonNumberOfRecords,
   // outliersShouldMatter
-  // outliersByMark
   // randomizingColumnsShouldMatter,
   // shufflingDataShouldMatter,
   // deletingRandomValuesShouldMatter,

@@ -1,4 +1,5 @@
 import {prepProv, shuffle} from '../../utils';
+import {fullResample} from '../../bootstrap';
 import {
   expectSameBars,
   expectSameLines,
@@ -30,12 +31,10 @@ const contractToFloorRecords = ['y'].map(key => ({
       if (!targetArray) {
         return;
       }
-      // identity map for shallow clone
-      shuffle(targetArray.map(d => d))
-        .slice(0, minSize)
-        .forEach(idx => {
-          data.push(dataset[idx]);
-        });
+      const x = fullResample(targetArray).slice(0, minSize);
+      x.forEach(idx => {
+        data.push(dataset[idx]);
+      });
     });
     return data;
   },

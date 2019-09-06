@@ -1,30 +1,5 @@
-import {clone, filterForAggregates, prepProv} from '../../utils';
+import {clone, prepProv, filterForMarkRecordChange} from '../../utils';
 import {expectDifferent} from '../algebraic-detectors';
-
-const filterForMarkRecordChange = key => (spec, data, view) => {
-  if (data.length === 0) {
-    return false;
-  }
-  if (spec.encoding && (!spec.encoding.x || !spec.encoding.y)) {
-    return false;
-  }
-  if (!filterForAggregates(key)(spec, data, view)) {
-    return false;
-  }
-  const {aggregateOutputPairs, tailToStartMap} = prepProv(
-    data,
-    spec,
-    view,
-    key
-  );
-  const allAggsConsistOfOneRecord = Object.entries(aggregateOutputPairs).every(
-    ([terminalKey, aggValue]) => (tailToStartMap[terminalKey] || []).length <= 1
-  );
-  if (allAggsConsistOfOneRecord) {
-    return false;
-  }
-  return true;
-};
 
 export const contractToSingleRecords = ['x', 'y'].map(key => ({
   name: `algebraic-contract-to-single-record--${key}-axis`,
