@@ -4,6 +4,7 @@ import {
   contractToSingleRecords,
   inflateToCommonNumberOfRecords
 } from './algebraic-rules/change-number-of-records';
+import deduplicatationShouldntMatter from './algebraic-rules/deduplicate';
 import filterOutNullRecords from './algebraic-rules/remove-nulls';
 import shouldHaveCommonNumberOfRecords from './algebraic-rules/aggregates-should-have-a-similar-number-of-input-records';
 // import outliersShouldMatter from './algebraic-rules/outliers-should-matter';
@@ -26,17 +27,17 @@ import contractToFloorRecords from './statistical-algebraic-rules/contract-to-fl
 import inflateToCommonNumberOfRecordsBootstrap from './statistical-algebraic-rules/inflate-to-max-records';
 import decreaseByOne from './statistical-algebraic-rules/decrease-by-one';
 
-// LEFT OFF AT IMPORTING FILE
-
 const lintRules = [
   // STAT ALGEBRAIC RULES
   // deletingRowsShouldMatter
-  // bootstrapBars
+  bootstrapBars
   // withInGroupResample
-  ...contractToFloorRecords,
+  // ...contractToFloorRecords,
   // ...decreaseByOne,
-  ...inflateToCommonNumberOfRecordsBootstrap
+  // ...inflateToCommonNumberOfRecordsBootstrap
+
   // ALGEBRAIC RULES
+  // deduplicatationShouldntMatter
   // ...filterOutNullRecords,
   // ...inflateToCommonNumberOfRecords
   // FLIPEVERYTHING,
@@ -47,6 +48,7 @@ const lintRules = [
   // randomizingColumnsShouldMatter,
   // shufflingDataShouldMatter,
   // deletingRandomValuesShouldMatter,
+
   // DECEPTION RULES
   // ...dontUseNonLinearScales,
   // ...barChartsAreUsuallyAggregates,
