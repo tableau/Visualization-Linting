@@ -2,7 +2,9 @@ const tsv = require('tsv');
 const {getFile, writeFile} = require('hoopoe');
 const toRow = (colorSuffix, name) => (row, idx, rows) => {
   const rotater = `\\multirow{${rows.length}}{0em}{\\hspace{-0.6cm}\\rotatebox{90}{\\normalsize{${name}}}}`;
-  const rowTitle = row.Error.split('(checked)')[0];
+  const rowTitle = row.Error.replace(/LINEBREAK/g, '\\newline').split(
+    '(checked)'
+  )[0];
   const rowContent = row['mirage-error'];
   const mirage = `${rowTitle} & ${rowContent} ${row.Citations}`;
   return ` \\rowcolor{color${colorSuffix}${idx % 2 ? '-opaque' : ''}}${
@@ -19,7 +21,7 @@ const template = (curating, wrangling, visualizing, comprehending) => `
 \\centering
 \\caption{${CAPTION}}
 \\small
-\\begin{tabular}{p{2.5cm}p{14.5cm}}
+\\begin{tabular}{p{2.2cm}p{14.8cm}}
 \\normalsize{Error} & \\normalsize{Mirage}\\\\ \\hline
   ${toBlock(curating, 'Curating', 'a')}
 

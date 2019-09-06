@@ -1,7 +1,9 @@
 const tsv = require('tsv');
 const {getFile, writeFile} = require('hoopoe');
 const toRow = (colorSuffix, name) => (row, idx, rows) => {
-  const rowTitle = row.Error.split('(checked)')[0];
+  const rowTitle = row.Error.replace(/LINEBREAK/g, '\\newline').split(
+    '(checked)'
+  )[0];
   const rowColor = `rowcolor{color${colorSuffix}${idx % 2 ? '-opaque' : ''}}`;
   const mirage = `${rowTitle} & ${row['mirage-error']} ${row.Citations}`;
   return ` \\${rowColor}${mirage}`;
