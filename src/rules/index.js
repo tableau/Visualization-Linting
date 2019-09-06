@@ -28,7 +28,7 @@ const lintRules = [
   // STAT ALGEBRAIC RULES
   // deletingRowsShouldMatter
   // bootstrapBars
-  // withInGroupResample,
+  // withInGroupResample
   // ...contractToFloorRecords
   // ALGEBRAIC RULES
   // ...filterOutNullRecords,

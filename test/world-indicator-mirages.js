@@ -74,7 +74,10 @@ const WIMisEnergyUsageDrivenByLifeExpectancy = {
           aggregate: 'average',
           field: 'Life Expectancy',
           type: 'quantitative',
-          axis: {title: 'Avg. Life Expectancy', titleColor: '#E15658'}
+          axis: {title: 'Avg. Life Expectancy', titleColor: '#E15658'},
+          scale: {
+            domain: [54, 72]
+          }
         }
       }
     }
@@ -127,6 +130,18 @@ const WIMisEnergyUsageDrivenByLifeExpectancyDispellLifeExpect = {
   }
 };
 
+// had to do some dumb things to get which countries were null
+// tailToStartMap.NULL
+// .map(idx => dataset[idx])
+// .filter(row => {
+//   const OECD_COUNTRIES = [ 'Australia', 'Austria', 'Belgium', 'Canada', 'Chile', 'Czech Republic', 'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Iceland', 'Ireland', 'Israel', 'Italy', 'Japan', 'Korea, Rep.', 'Latvia', 'Lithuania', 'Luxembourg', 'Mexico', 'Netherlands', 'New Zealand', 'Norway', 'Poland', 'Portugal', 'Slovak Republic', 'Slovenia', 'Spain', 'Sweden', 'Switzerland', 'Turkey', 'United Kingdom', 'United States'
+//   ].reduce((acc, country) => {
+//     acc[country] = true;
+//     return acc;
+//   }, {})
+//   return OECD_COUNTRIES[row.Country];
+// })
+
 const OECD_COUNTRIES = [
   'Australia',
   'Austria',
@@ -147,8 +162,8 @@ const OECD_COUNTRIES = [
   'Italy',
   'Japan',
   'Korea, Rep.',
-  'Latvia',
-  'Lithuania',
+  // 'Latvia',
+  // 'Lithuania',
   'Luxembourg',
   'Mexico',
   'Netherlands',
