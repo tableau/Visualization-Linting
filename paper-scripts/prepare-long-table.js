@@ -14,18 +14,22 @@ const toBlock = (rows, name, colorSuffix) =>
 // % \\multirow{13}{1em}{\\hspace{-0.4cm}\\rotatebox{90}{\\normalsize{\\normalsize{Curation}}}}
 const template = (curating, wrangling, visualizing, comprehending) => `
 \\begin{longtable}{p{3cm}p{14cm}}
-\\normalsize{Error} & \\normalsize{Mirage}\\\\ \\hline
 
-  \\hbox{\\textbf{CURATING ERRORS}}& \\\\
+
+  \\\\\\hbox{\\normalsize{\\textbf{CURATING ERRORS}}}&\\\\ \\\\
+  \\normalsize{Error} & \\normalsize{Mirage}\\\\ \\hline
   ${toBlock(curating, 'Curating', 'a')}
 
-  \\hbox{\\textbf{WRANGLING ERRORS}}& \\\\
+  \\\\\\hbox{\\normalsize{\\textbf{WRANGLING ERRORS}}}&\\\\ \\\\
+  \\normalsize{Error} & \\normalsize{Mirage}\\\\ \\hline
   ${toBlock(wrangling, 'Wrangling', 'b')}
 
-  \\hbox{\\textbf{VISUALIZING ERRORS}}& \\\\
+  \\\\\\hbox{\\normalsize{\\textbf{VISUALIZING ERRORS}}}&\\\\ \\\\
+  \\normalsize{Error} & \\normalsize{Mirage}\\\\ \\hline
   ${toBlock(visualizing, 'Visualizing', 'c')}
 
-  \\hbox{\\textbf{READING ERRORS}}& \\\\
+  \\\\\\hbox{\\normalsize{\\textbf{READING ERRORS}}}&\\\\ \\\\
+  \\normalsize{Error} & \\normalsize{Mirage}\\\\ \\hline
   ${toBlock(comprehending, 'Reading', 'd')}
 \\end{longtable}
 \\label{table:mirage-table}
