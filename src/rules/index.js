@@ -29,12 +29,12 @@ import decreaseByOne from './statistical-algebraic-rules/decrease-by-one';
 
 const lintRules = [
   // STAT ALGEBRAIC RULES
-  // deletingRowsShouldMatter
-  bootstrapBars
-  // withInGroupResample
-  // ...contractToFloorRecords,
-  // ...decreaseByOne,
-  // ...inflateToCommonNumberOfRecordsBootstrap
+  deletingRowsShouldMatter,
+  bootstrapBars,
+  withInGroupResample,
+  ...contractToFloorRecords,
+  ...decreaseByOne,
+  ...inflateToCommonNumberOfRecordsBootstrap
 
   // ALGEBRAIC RULES
   // deduplicatationShouldntMatter

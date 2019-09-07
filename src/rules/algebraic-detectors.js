@@ -73,6 +73,10 @@ function compareBarOrders(
   const rankScore = rank(oldOrder, newOrder);
   const distScore = dist(oldOrder, newOrder);
   const binaryPass = sameArr(oldOrder, newOrder);
+  // console.log(
+  //   oldView._runtime.data.marks.input.value.map(x => x.datum.average_value),
+  //   newView._runtime.data.marks.input.value.map(x => x.datum.average_value)
+  // );
   const pass = binaryPass;
   return expectSame ? pass : !pass;
   // return assert(
