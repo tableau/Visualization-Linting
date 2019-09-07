@@ -422,7 +422,41 @@ const OTHER_QUARTETS = [...new Array(3)]
     return acc;
   }, {});
 
+const evalExample = {
+  $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
+  $$$identifier$$$: {
+    errorType: 'missing',
+    levelOfDegrade: 0,
+    idx: 0
+  },
+  data: {
+    url: '../example-data/testData/missing/0/0.csv'
+  },
+  mark: 'bar',
+  encoding: {
+    x: {
+      field: 'category',
+      type: 'nominal',
+      axis: {
+        title: false
+      }
+    },
+    y: {
+      field: 'value',
+      type: 'quantitative',
+      aggregate: 'average',
+      scale: {
+        domain: [0, 320]
+      },
+      axis: {
+        title: false
+      }
+    }
+  }
+};
+
 export const BAD_CHARTS = {
+  evalExample,
   ...WorldIndicatorMirages,
   QUARTET_1,
   MISSING_QUARTER_LINESERIES_EXPOSED,

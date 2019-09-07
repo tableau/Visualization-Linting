@@ -21,7 +21,7 @@ const evalMap = {
   'algebraic-stat-data': evaluateStatisticalAlgebraicRule
 };
 
-export function lint(spec) {
+export function lint(spec, options = {}) {
   if (!checkIfSpecIsSupported(spec)) {
     return Promise.resolve({code: SPEC_NOT_SUPPORTED, lints: []});
   }
@@ -30,7 +30,7 @@ export function lint(spec) {
       return Promise.all(
         lintRules
           .filter(({filter}) => filter(spec, dataset, view))
-          .map(rule => evalMap[rule.type](rule, spec, dataset, view))
+          .map(rule => evalMap[rule.type](rule, spec, dataset, view, options))
       );
     })
     .then(lints => ({code: OK, lints}))
@@ -49,7 +49,7 @@ export function lint(spec) {
 const ruleOutput = ({name, explain}) => ({name, explain, failRender: null});
 
 // TODO: refactor this function and the next one to be instances of a HOF
-function evaluateAlgebraicSpecRule(rule, spec, dataset, oldView) {
+function evaluateAlgebraicSpecRule(rule, spec, dataset, oldView, options) {
   const evaluator = rule.selectEvaluator(spec);
   const perturbedSpec = rule.operation(spec);
   return Promise.all([
@@ -85,7 +85,8 @@ function prepConcatOutput(oldRendering, newRendering) {
   };
 }
 
-function evaluateAlgebraicDataRule(rule, spec, dataset, oldView) {
+function evaluateAlgebraicDataRule(rule, spec, dataset, oldView, options) {
+  const {noVisualExplain} = options;
   const evaluator = rule.selectEvaluator(spec);
   const perturbedSpec = perturbSpec(dataset, spec, oldView, rule);
   return Promise.all([
@@ -105,14 +106,15 @@ function evaluateAlgebraicDataRule(rule, spec, dataset, oldView) {
     return {
       ...ruleOutput(rule),
       passed,
-      failedRender: !passed
-        ? prepConcatOutput(oldRendering, newRendering)
-        : null
+      failedRender:
+        !noVisualExplain && !passed
+          ? prepConcatOutput(oldRendering, newRendering)
+          : null
     };
   });
 }
 
-function evaluateStylisticRule(rule, spec, dataset, oldView) {
+function evaluateStylisticRule(rule, spec, dataset, oldView, options) {
   return generateVegaRendering(spec, 'svg').then(([view, render]) => ({
     ...ruleOutput(rule),
     passed: rule.evaluator(oldView, spec, render)
@@ -165,7 +167,14 @@ function generateMorphEval(rule, dataset, spec, oldView, oldRendering) {
   };
 }
 
-function evaluateStatisticalAlgebraicRule(rule, spec, dataset, oldView) {
+function evaluateStatisticalAlgebraicRule(
+  rule,
+  spec,
+  dataset,
+  oldView,
+  options
+) {
+  const {noVisualExplain} = options;
   const {generateNumberOfIterations, statisticalEval} = rule;
   return generateVegaRendering(spec, 'raster').then(oldRendering => {
     const numIterations = generateNumberOfIterations(dataset, spec, oldView);
@@ -175,12 +184,15 @@ function evaluateStatisticalAlgebraicRule(rule, spec, dataset, oldView) {
         generateMorphEval(rule, dataset, spec, oldView, oldRendering)
       )
     )
-      .then(results => ({passed: statisticalEval(results), results}))
+      .then(results => ({
+        passed: results.reduce((x, {passed}) => x + (passed ? 1 : 0), 0),
+        results
+      }))
       .then(({passed, results}) => {
         return {
           ...ruleOutput(rule),
           passed,
-          failedRender: !passed
+          failedRender: !noVisualExplain
             ? prepOverlayOutput(results, oldRendering)
             : null
         };

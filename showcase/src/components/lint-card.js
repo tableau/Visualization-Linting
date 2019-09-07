@@ -4,7 +4,7 @@ export default class LintCard extends React.Component {
   constructor() {
     super();
     this.state = {
-      open: false
+      open: true
     };
   }
   componentDidMount() {
@@ -55,9 +55,6 @@ export default class LintCard extends React.Component {
     return (
       <div
         onClick={() => {
-          if (passed) {
-            return;
-          }
           this.setState({open: !open});
         }}
         className={classnames({
@@ -69,7 +66,9 @@ export default class LintCard extends React.Component {
         })}
       >
         <div className="card-head">
-          <div className="card-title">{`${name}`}</div>
+          <div className="card-title">{`${name} ${
+            !isNaN(passed) ? passed : ''
+          }`}</div>
         </div>
         {open && (
           <div className="card-body">

@@ -9,7 +9,9 @@ import {bootstrap} from '../../bootstrap';
 const bootstrapBars = {
   name: `algebraic-bootstrap-bar-chart-bars`,
   type: 'algebraic-stat-data',
-  operation: (data, spec, view) => bootstrap(clone(data)).samples(data.length),
+  operation: (data, spec, view) => {
+    return bootstrap(clone(data)).samples(data.length);
+  },
   selectEvaluator: spec => {
     if (spec.mark === 'bar') {
       return expectSameBars;
