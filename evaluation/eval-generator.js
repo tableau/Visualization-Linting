@@ -1,16 +1,16 @@
 /* eslint-disable no-console */
 import {lint} from '../src';
-import {writeFile, getFile, executePromisesInSeries} from 'hoopoe';
+import {writeFile, executePromisesInSeries} from 'hoopoe';
 
-const DEGRADE_SIZE = 5;
+const DEGRADE_SIZE = 1;
 const TRIAL_SIZE = 1;
-const buildChart = (errorType, levelOfDegrade, idx) => {
+const buildChart = (errorType, levelOfDegrade, runId) => {
   return {
     $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
     // an internal identifir just for us
-    $$$identifier$$$: {errorType, levelOfDegrade, idx},
+    $$$identifier$$$: {errorType, levelOfDegrade, runId},
     data: {
-      url: `./example-data/testData/${errorType}/${levelOfDegrade}/${idx}.csv`,
+      url: `./example-data/testData/${errorType}/${levelOfDegrade}/${runId}.csv`,
     },
     mark: 'bar',
     encoding: {
@@ -55,18 +55,33 @@ const startTime = new Date().getTime();
 const results = [];
 executePromisesInSeries(
   allTargets.map(chart => () => {
-    // console.log(JSON.stringify(chart, null, 2));
     console.log(`STARTING ${chart.data.url}`);
     return lint(chart, {noVisualExplain: true}).then(result => {
       console.log(`FINISHED ${chart.data.url}`);
       console.log(prepareReport(result));
-      results.push({...prepareReport(result)});
-      // PROBABLY NEED TO SAVE THIS TO FILE AS WE GO
-      return result;
+      results.push({...prepareReport(result), ...chart.$$$identifier$$$});
     });
   }),
 ).then(() => {
-  // console.log(results);
   const endTime = new Date().getTime();
+  const allKeys = Object.keys(
+    results.reduce((acc, row) => {
+      Object.keys(row).forEach(key => {
+        acc[key] = true;
+      });
+      return acc;
+    }, {}),
+  );
+  // make sure every row has every key
+  const decoratedWithNulls = results.map(row => {
+    return allKeys.reduce((acc, key) => {
+      acc[key] = row[key];
+      return acc;
+    }, {});
+  });
+  writeFile(
+    './evaluation/eval-results.json',
+    JSON.stringify(decoratedWithNulls, null, 2),
+  );
   console.log(`Took ${(endTime - startTime) / 1000}  seconds`);
 });

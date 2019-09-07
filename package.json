@@ -14,7 +14,7 @@
     "full-test": "babel-node test/full-test.js",
     "reduce-dups": "(cd gh-specs && babel-node ./reduce-dups-in-gh-specs.js)",
     "prepare-vega-lite-examples-for-integration": "babel-node by-hand-examples/split-all-into-singles.js",
-    "do-eval": "babel-node evaluation-flail/eval-generator.js"
+    "do-eval": "babel-node evaluation/eval-generator.js"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

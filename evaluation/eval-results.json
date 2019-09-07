@@ -1,0 +1,37 @@
+[
+  {
+    "algebraic-randomly-delete-rows": 82,
+    "algebraic-bootstrap-bar-chart-bars": 57,
+    "algebraic-within-group-bootstrap": 57,
+    "algebraic-contract-to-floor-records--y-axis": 56,
+    "algebraic-decrease-by-one--y-axis": 96,
+    "algebraic-inflate-number-of-records-bootstrap--y-axis": 57,
+    "algebraic-outliers-should-matter": true,
+    "errorType": "missing",
+    "levelOfDegrade": 2,
+    "runId": 0
+  },
+  {
+    "algebraic-randomly-delete-rows": 76,
+    "algebraic-bootstrap-bar-chart-bars": 71,
+    "algebraic-within-group-bootstrap": 62,
+    "algebraic-contract-to-floor-records--y-axis": 52,
+    "algebraic-decrease-by-one--y-axis": 92,
+    "algebraic-inflate-number-of-records-bootstrap--y-axis": 54,
+    "algebraic-outliers-should-matter": true,
+    "errorType": "outliers",
+    "levelOfDegrade": 2,
+    "runId": 0
+  },
+  {
+    "algebraic-randomly-delete-rows": 71,
+    "algebraic-bootstrap-bar-chart-bars": 65,
+    "algebraic-within-group-bootstrap": 61,
+    "algebraic-contract-to-floor-records--y-axis": 60,
+    "algebraic-decrease-by-one--y-axis": 93,
+    "algebraic-inflate-number-of-records-bootstrap--y-axis": 54,
+    "errorType": "repeated",
+    "levelOfDegrade": 2,
+    "runId": 0
+  }
+]
