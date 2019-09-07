@@ -2,14 +2,14 @@ import {
   getDataset,
   generateVegaRendering,
   generateVegaView,
-  checkIfSpecIsSupported
+  checkIfSpecIsSupported,
 } from './utils';
 import {
   buildPixelDiff,
   concatImages,
   overlayImages,
   makeBlank,
-  toPng
+  toPng,
 } from './image-manipulation';
 import lintRules from './rules';
 import {SPEC_NOT_SUPPORTED, CRASH, OK} from './codes';
@@ -18,7 +18,7 @@ const evalMap = {
   'algebraic-spec': evaluateAlgebraicSpecRule,
   'algebraic-data': evaluateAlgebraicDataRule,
   stylistic: evaluateStylisticRule,
-  'algebraic-stat-data': evaluateStatisticalAlgebraicRule
+  'algebraic-stat-data': evaluateStatisticalAlgebraicRule,
 };
 
 export function lint(spec, options = {}) {
@@ -30,7 +30,7 @@ export function lint(spec, options = {}) {
       return Promise.all(
         lintRules
           .filter(({filter}) => filter(spec, dataset, view))
-          .map(rule => evalMap[rule.type](rule, spec, dataset, view, options))
+          .map(rule => evalMap[rule.type](rule, spec, dataset, view, options)),
       );
     })
     .then(lints => ({code: OK, lints}))
@@ -41,7 +41,7 @@ export function lint(spec, options = {}) {
       return {
         code: CRASH,
         lints: [],
-        msg: e
+        msg: e,
       };
     });
 }
@@ -55,7 +55,7 @@ function evaluateAlgebraicSpecRule(rule, spec, dataset, oldView, options) {
   return Promise.all([
     generateVegaRendering(spec, 'raster'),
     generateVegaRendering(perturbedSpec, 'raster'),
-    generateVegaView(perturbedSpec)
+    generateVegaView(perturbedSpec),
   ]).then(([oldRendering, newRendering, newView]) => {
     const passed = evaluator(
       oldRendering,
@@ -63,7 +63,7 @@ function evaluateAlgebraicSpecRule(rule, spec, dataset, oldView, options) {
       spec,
       perturbedSpec,
       oldView,
-      newView
+      newView,
     );
     return {...ruleOutput(rule), passed};
   });
@@ -72,7 +72,7 @@ function evaluateAlgebraicSpecRule(rule, spec, dataset, oldView, options) {
 function perturbSpec(dataset, spec, oldView, rule) {
   return {
     ...spec,
-    data: {values: rule.operation(dataset, spec, oldView)}
+    data: {values: rule.operation(dataset, spec, oldView)},
   };
 }
 
@@ -81,7 +81,7 @@ function prepConcatOutput(oldRendering, newRendering) {
   // type is there to allow for svg renders, still to come
   return {
     type: 'raster',
-    render: concatImages([oldRendering, newRendering, failRender])
+    render: concatImages([oldRendering, newRendering, failRender]),
   };
 }
 
@@ -92,7 +92,7 @@ function evaluateAlgebraicDataRule(rule, spec, dataset, oldView, options) {
   return Promise.all([
     generateVegaRendering(spec, 'raster'),
     generateVegaRendering(perturbedSpec, 'raster'),
-    generateVegaView(perturbedSpec)
+    generateVegaView(perturbedSpec),
   ]).then(([oldRendering, newRendering, newView]) => {
     const passed = evaluator(
       oldRendering,
@@ -100,7 +100,7 @@ function evaluateAlgebraicDataRule(rule, spec, dataset, oldView, options) {
       spec,
       perturbedSpec,
       oldView,
-      newView
+      newView,
     );
 
     return {
@@ -109,7 +109,7 @@ function evaluateAlgebraicDataRule(rule, spec, dataset, oldView, options) {
       failedRender:
         !noVisualExplain && !passed
           ? prepConcatOutput(oldRendering, newRendering)
-          : null
+          : null,
     };
   });
 }
@@ -117,7 +117,7 @@ function evaluateAlgebraicDataRule(rule, spec, dataset, oldView, options) {
 function evaluateStylisticRule(rule, spec, dataset, oldView, options) {
   return generateVegaRendering(spec, 'svg').then(([view, render]) => ({
     ...ruleOutput(rule),
-    passed: rule.evaluator(oldView, spec, render)
+    passed: rule.evaluator(oldView, spec, render),
   }));
 }
 
@@ -138,7 +138,7 @@ function prepOverlayOutput(allRenderings, oldRendering) {
     .filter(d => d);
   return {
     type: 'raster',
-    render: concatImages(imagesToConcat)
+    render: concatImages(imagesToConcat),
   };
 }
 
@@ -148,7 +148,7 @@ function generateMorphEval(rule, dataset, spec, oldView, oldRendering) {
     const perturbedSpec = perturbSpec(dataset, spec, oldView, rule);
     return Promise.all([
       generateVegaRendering(perturbedSpec, 'raster'),
-      generateVegaView(perturbedSpec)
+      generateVegaView(perturbedSpec),
     ]).then(([newRendering, newView]) => {
       const passed = evaluator(
         oldRendering,
@@ -156,12 +156,12 @@ function generateMorphEval(rule, dataset, spec, oldView, oldRendering) {
         spec,
         perturbedSpec,
         oldView,
-        newView
+        newView,
       );
       return {
         passed,
         newView,
-        newRendering
+        newRendering,
       };
     });
   };
@@ -172,7 +172,7 @@ function evaluateStatisticalAlgebraicRule(
   spec,
   dataset,
   oldView,
-  options
+  options,
 ) {
   const {noVisualExplain} = options;
   const {generateNumberOfIterations, statisticalEval} = rule;
@@ -181,12 +181,12 @@ function evaluateStatisticalAlgebraicRule(
     // run a bunch of evaluations at once
     return Promise.all(
       [...new Array(numIterations)].map(
-        generateMorphEval(rule, dataset, spec, oldView, oldRendering)
-      )
+        generateMorphEval(rule, dataset, spec, oldView, oldRendering),
+      ),
     )
       .then(results => ({
         passed: results.reduce((x, {passed}) => x + (passed ? 1 : 0), 0),
-        results
+        results,
       }))
       .then(({passed, results}) => {
         return {
@@ -194,7 +194,7 @@ function evaluateStatisticalAlgebraicRule(
           passed,
           failedRender: !noVisualExplain
             ? prepOverlayOutput(results, oldRendering)
-            : null
+            : null,
         };
       });
   });

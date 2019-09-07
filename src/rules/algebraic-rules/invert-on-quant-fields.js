@@ -31,7 +31,7 @@ const FLIPEVERYTHING = {
     }
     return getQuantFields(spec).length > 0;
   },
-  explain: 'UNCLEAR WHAT INVERTING EVERYTHING SHOULD DO'
+  explain: 'UNCLEAR WHAT INVERTING EVERYTHING SHOULD DO',
 };
 
 export default FLIPEVERYTHING;

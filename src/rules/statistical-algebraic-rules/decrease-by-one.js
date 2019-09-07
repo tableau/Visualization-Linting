@@ -2,7 +2,7 @@ import {prepProv, clone} from '../../utils';
 import {
   expectSameBars,
   expectSameLines,
-  expectSame
+  expectSame,
 } from '../algebraic-detectors';
 
 const decreaseByOne = ['y'].map(key => ({
@@ -13,7 +13,7 @@ const decreaseByOne = ['y'].map(key => ({
       dataset,
       spec,
       view,
-      key
+      key,
     );
     const data = clone(dataset);
     Object.entries(aggregateOutputPairs).forEach(([terminalKey, aggValue]) => {
@@ -57,6 +57,6 @@ const decreaseByOne = ['y'].map(key => ({
     }
     return true;
   },
-  explain: 'TODODODODODODODODODODO.'
+  explain: 'TODODODODODODODODODODO.',
 }));
 export default decreaseByOne;

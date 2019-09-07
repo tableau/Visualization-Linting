@@ -7,6 +7,6 @@ const dontUseNonLinearScales = ['x', 'y'].map(key => ({
     return scale && !nonLinearScales[scale.type];
   },
   filter: filterForScale(key),
-  explain: `Unless they are clearly marked users tend assume that axes are scaled using linear scales, make sure that your ${key} axis is meaningfully demarked.`
+  explain: `Unless they are clearly marked users tend assume that axes are scaled using linear scales, make sure that your ${key} axis is meaningfully demarked.`,
 }));
 export default dontUseNonLinearScales;

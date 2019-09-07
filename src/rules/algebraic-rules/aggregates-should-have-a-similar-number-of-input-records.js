@@ -10,7 +10,7 @@ const shouldHaveCommonNumberOfRecords = ['x', 'y'].map(key => ({
     _,
     perturbedSpec,
     oldView,
-    newView
+    newView,
   ) => {
     const viewData = newView._runtime.data;
     // lots of foot work to catch line and other stack based renderings
@@ -47,7 +47,7 @@ const shouldHaveCommonNumberOfRecords = ['x', 'y'].map(key => ({
     );
   },
   explain:
-    'Encodings using aggregates to group records should probably have a common number of records in each of the bins.'
+    'Encodings using aggregates to group records should probably have a common number of records in each of the bins.',
 }));
 
 export default shouldHaveCommonNumberOfRecords;

@@ -9,7 +9,7 @@ export const contractToSingleRecords = ['x', 'y'].map(key => ({
       dataset,
       spec,
       view,
-      key
+      key,
     );
     const data = clone(dataset);
     Object.entries(aggregateOutputPairs).forEach(([terminalKey, aggValue]) => {
@@ -32,7 +32,7 @@ export const contractToSingleRecords = ['x', 'y'].map(key => ({
   selectEvaluator: spec => expectDifferent,
   filter: filterForMarkRecordChange(key),
   explain:
-    'reducing the aggregate values to a single record should affect the chart'
+    'reducing the aggregate values to a single record should affect the chart',
 }));
 
 export const inflateToCommonNumberOfRecords = ['x', 'y'].map(key => ({
@@ -43,15 +43,15 @@ export const inflateToCommonNumberOfRecords = ['x', 'y'].map(key => ({
       dataset,
       spec,
       view,
-      key
+      key,
     );
     const data = clone(dataset);
     const arrayOfArrays = Object.keys(aggregateOutputPairs).map(
-      terminalKey => tailToStartMap[terminalKey]
+      terminalKey => tailToStartMap[terminalKey],
     );
     const maxSize = arrayOfArrays.reduce(
       (acc, val) => Math.max(acc, val.length),
-      -Infinity
+      -Infinity,
     );
     arrayOfArrays.forEach(targetArray => {
       // don't try to drop any records for single length data
@@ -70,5 +70,5 @@ export const inflateToCommonNumberOfRecords = ['x', 'y'].map(key => ({
   selectEvaluator: spec => () => false,
   filter: filterForMarkRecordChange(key),
   explain:
-    'bootstrapping the aggregate values to the max number of records should affect the chart'
+    'bootstrapping the aggregate values to the max number of records should affect the chart',
 }));

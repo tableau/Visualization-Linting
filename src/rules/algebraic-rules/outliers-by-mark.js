@@ -14,17 +14,17 @@ const outliersByMark = ['x', 'y'].map(key => ({
       dataset,
       spec,
       view,
-      key
+      key,
     );
     console.log('??!???!???!');
     const data = clone(dataset);
     debugger;
     const arrayOfArrays = Object.keys(aggregateOutputPairs).map(
-      terminalKey => tailToStartMap[terminalKey]
+      terminalKey => tailToStartMap[terminalKey],
     );
     const maxSize = arrayOfArrays.reduce(
       (acc, val) => Math.max(acc, val.length),
-      -Infinity
+      -Infinity,
     );
     arrayOfArrays.forEach(targetArray => {
       // don't try to drop any records for single length data
@@ -42,7 +42,7 @@ const outliersByMark = ['x', 'y'].map(key => ({
   },
   selectEvaluator: spec => () => false,
   filter: filterForMarkRecordChange(key),
-  explain: 'XXXXXXX'
+  explain: 'XXXXXXX',
 }));
 
 export default outliersByMark;

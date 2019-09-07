@@ -36,7 +36,7 @@ export function concatImages(images) {
     data: `data:image/png;base64,${PNG.sync
       .write(outputImage)
       .toString('base64')}`,
-    dims: {height: maxHeight, width: totalWidth}
+    dims: {height: maxHeight, width: totalWidth},
   };
 }
 
@@ -46,7 +46,7 @@ export function overlayImages(images, opacity) {
   if (!images.length) {
     return {
       data: null,
-      dims: {height: 0, width: 0}
+      dims: {height: 0, width: 0},
     };
   }
   const pngs = images.map(buff => PNG.sync.read(toBuffer(buff)));
@@ -89,7 +89,7 @@ export function overlayImages(images, opacity) {
     data: `data:image/png;base64,${PNG.sync
       .write(outputImage)
       .toString('base64')}`,
-    dims: {height: maxHeight, width: maxWidth}
+    dims: {height: maxHeight, width: maxWidth},
   };
 }
 
@@ -129,7 +129,7 @@ export function makeBlank(height, width, color = [255, 255, 255, 1]) {
     data: `data:image/png;base64,${PNG.sync
       .write(outputImage)
       .toString('base64')}`,
-    dims: {height, width}
+    dims: {height, width},
   };
 }
 
@@ -148,7 +148,7 @@ export function buildPixelDiff(oldRendering, newRendering) {
     diff.data,
     width,
     height,
-    {threshold: 0.01}
+    {threshold: 0.01},
   );
   const diffStr = `data:image/png;base64,${PNG.sync
     .write(diff)

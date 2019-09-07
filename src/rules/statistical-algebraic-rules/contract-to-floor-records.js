@@ -3,7 +3,7 @@ import {fullResample} from '../../bootstrap';
 import {
   expectSameBars,
   expectSameLines,
-  expectSame
+  expectSame,
 } from '../algebraic-detectors';
 
 const contractToFloorRecords = ['y'].map(key => ({
@@ -14,15 +14,15 @@ const contractToFloorRecords = ['y'].map(key => ({
       dataset,
       spec,
       view,
-      key
+      key,
     );
     // const data = clone(dataset);
     const arrayOfArrays = Object.keys(aggregateOutputPairs).map(
-      terminalKey => tailToStartMap[terminalKey]
+      terminalKey => tailToStartMap[terminalKey],
     );
     const minSize = arrayOfArrays.reduce(
       (acc, val) => Math.min(acc, val.length),
-      Infinity
+      Infinity,
     );
     const data = [];
     Object.entries(aggregateOutputPairs).forEach(([terminalKey, aggValue]) => {
@@ -67,6 +67,6 @@ const contractToFloorRecords = ['y'].map(key => ({
     }
     return true;
   },
-  explain: 'TODODODODODODODODODODO.'
+  explain: 'TODODODODODODODODODODO.',
 }));
 export default contractToFloorRecords;

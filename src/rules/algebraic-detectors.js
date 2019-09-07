@@ -13,12 +13,12 @@ const evaluationModes = {
   STRING_BASED: {
     expectSame: (oldRendering, newRendering) => oldRendering === newRendering,
     expectDifferent: (oldRendering, newRendering) =>
-      oldRendering !== newRendering
+      oldRendering !== newRendering,
   },
   // sanity checkers
   SANITY_CHECKS: {
     expectSame: () => false,
-    expectDifferent: () => false
+    expectDifferent: () => false,
   },
   // pixel diff based
   PIXEL_DIFF: {
@@ -30,8 +30,8 @@ const evaluationModes = {
     expectDifferent: (oldRend, newRend) => {
       const {delta} = buildPixelDiff(oldRend, newRend);
       return delta > 10;
-    }
-  }
+    },
+  },
 };
 const selectedMode = evaluationModes.PIXEL_DIFF;
 export const expectSame = selectedMode.expectSame;
@@ -66,7 +66,7 @@ export const expectSameBars = (...args) => compareBarOrders([...args], true);
 
 function compareBarOrders(
   [oldRendering, newRendering, spec, perturbedSpec, oldView, newView],
-  expectSameOrder
+  expectSameOrder,
 ) {
   const oldOrder = heightsOrder(oldView);
   const newOrder = heightsOrder(newView);
@@ -90,13 +90,13 @@ export const expectDifferentLines = (...args) => compareLines([...args], false);
 export const expectSameLines = (...args) => compareLines([...args], true);
 function compareLines(
   [oldRendering, newRendering, spec, perturbedSpec, oldView, newView],
-  expectNoChange
+  expectNoChange,
 ) {
   const comaprePoints = (a, b) => Math.abs(a - b);
   const dtw = new DynamicTimeWarping(
     getPath(oldView),
     getPath(newView),
-    comaprePoints
+    comaprePoints,
   );
   // 30 is magic number drawn this demo by dtw packages author
   // https://gordonlesti.com/touch-signature-identification-with-javascript/
