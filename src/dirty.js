@@ -163,7 +163,7 @@ export function corrupt(datum, field) {
       datum[field] = replaceAt(
         datum[field],
         ~~(Math.random() * val.length),
-        newChar
+        newChar,
       );
       break;
 

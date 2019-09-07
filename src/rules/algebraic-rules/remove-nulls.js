@@ -20,7 +20,7 @@ const filterOutNullRecords = ['x', 'y'].map(key => ({
     return data.length !== originalData.length;
   },
   explain:
-    'Removing records that have null on a spatial dimension should not cause the chart to change. Change in this fashion indicates that the chart is being driven by the nulls in a non-trivial manner.'
+    'Removing records that have null on a spatial dimension should not cause the chart to change. Change in this fashion indicates that the chart is being driven by the nulls in a non-trivial manner.',
 }));
 
 export default filterOutNullRecords;

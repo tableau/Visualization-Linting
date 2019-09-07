@@ -3,7 +3,7 @@ import {bootstrap} from '../../bootstrap';
 import {
   expectSameBars,
   expectSameLines,
-  expectSame
+  expectSame,
 } from '../algebraic-detectors';
 
 const inflateToCommonNumberOfRecords = ['y'].map(key => ({
@@ -14,15 +14,15 @@ const inflateToCommonNumberOfRecords = ['y'].map(key => ({
       dataset,
       spec,
       view,
-      key
+      key,
     );
     let data = [];
     const arrayOfArrays = Object.keys(aggregateOutputPairs).map(
-      terminalKey => tailToStartMap[terminalKey]
+      terminalKey => tailToStartMap[terminalKey],
     );
     const maxSize = arrayOfArrays.reduce(
       (acc, val) => Math.max(acc, val.length),
-      -Infinity
+      -Infinity,
     );
     arrayOfArrays.forEach(targetArray => {
       // don't try to drop any records for single length data
@@ -32,7 +32,7 @@ const inflateToCommonNumberOfRecords = ['y'].map(key => ({
       data = data.concat(
         bootstrap(targetArray)
           .samples(maxSize)
-          .map(idx => dataset[idx])
+          .map(idx => dataset[idx]),
       );
     });
 
@@ -56,7 +56,7 @@ const inflateToCommonNumberOfRecords = ['y'].map(key => ({
   },
   filter: filterForMarkRecordChange(key),
   explain:
-    'bootstrapping the aggregate values to the max number of records should affect the chart'
+    'bootstrapping the aggregate values to the max number of records should affect the chart',
 }));
 
 export default inflateToCommonNumberOfRecords;

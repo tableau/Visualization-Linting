@@ -8,7 +8,7 @@ const outliersShouldMatter = {
   operation: (container, spec) =>
     getXYFieldNames(spec).reduce(
       (acc, column) => acc.filter(outliers(column)),
-      clone(container)
+      clone(container),
     ),
   selectEvaluator: spec => expectDifferent,
   filter: (spec, data, view) => {
@@ -22,12 +22,12 @@ const outliersShouldMatter = {
     // ie disinclude this rule if filtering does nothing to the data
     const result = getXYFieldNames(spec).reduce(
       (acc, column) => acc.filter(outliers(column)),
-      clone(data)
+      clone(data),
     );
     return result.length !== data.length;
   },
   explain:
-    'After deleting the outliers the chart remained unchanged, this suggests that extreme values may not be detected. Make sure that it is behaving as expected'
+    'After deleting the outliers the chart remained unchanged, this suggests that extreme values may not be detected. Make sure that it is behaving as expected',
 };
 
 export default outliersShouldMatter;

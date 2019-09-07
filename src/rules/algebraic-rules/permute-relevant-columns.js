@@ -24,7 +24,7 @@ const randomizingColumnsShouldMatter = {
     // if x and y plot and aggregate is count, then this rule will always pass
     if (
       ['x', 'y'].some(
-        key => spec.encoding[key] && spec.encoding[key].aggregate === 'count'
+        key => spec.encoding[key] && spec.encoding[key].aggregate === 'count',
       )
     ) {
       return false;
@@ -34,7 +34,7 @@ const randomizingColumnsShouldMatter = {
       return false;
     }
     const oneOfFieldsIsInvalid = data.some(
-      d => !fields.every(key => d.hasOwnProperty(key))
+      d => !fields.every(key => d.hasOwnProperty(key)),
     );
     if (oneOfFieldsIsInvalid) {
       return false;
@@ -43,7 +43,7 @@ const randomizingColumnsShouldMatter = {
     return !transform || (transform && !transform.find(d => d.fold));
   },
   explain:
-    'After randomizing the relationship between the two data variables the chart remained the same. This suggests that your visualization is not showing their relationship in a discrenable manner.'
+    'After randomizing the relationship between the two data variables the chart remained the same. This suggests that your visualization is not showing their relationship in a discrenable manner.',
 };
 
 export default randomizingColumnsShouldMatter;

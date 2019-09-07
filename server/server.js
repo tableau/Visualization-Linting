@@ -17,7 +17,7 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header(
     'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
+    'Origin, X-Requested-With, Content-Type, Accept',
   );
   next();
 });
@@ -42,7 +42,7 @@ app.post('/lint', (req, res) => {
     console.log('did done a lint');
     console.log(`STATUS: ${result.code} ${result.msg || ''}`);
     console.table(
-      result.lints.map(({name, passed}) => ({name, passed: `${passed}`}))
+      result.lints.map(({name, passed}) => ({name, passed: `${passed}`})),
     );
     res.send(JSON.stringify(result));
   });

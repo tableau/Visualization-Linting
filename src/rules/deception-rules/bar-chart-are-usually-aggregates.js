@@ -13,7 +13,7 @@ const barChartsAreUsuallyAggregates = ['x', 'y'].map(key => ({
       filterForScale(key)(spec, data, view) && spec.mark === 'bar' && !field.bin
     );
   },
-  explain: `Bar charts usually contain aggregates, make sure that you intended to not have an aggregate for this ${key} axis.`
+  explain: `Bar charts usually contain aggregates, make sure that you intended to not have an aggregate for this ${key} axis.`,
 }));
 
 export default barChartsAreUsuallyAggregates;

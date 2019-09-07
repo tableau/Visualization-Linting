@@ -10,6 +10,6 @@ const shufflingDataShouldMatter = {
     return data.length > 0;
   },
   explain:
-    'After shuffling the input data randomly, the resulting image was detected as being different from the original. This may suggest that there is overplotting in your data or that there a visual aggregation removing some information from the rendering.'
+    'After shuffling the input data randomly, the resulting image was detected as being different from the original. This may suggest that there is overplotting in your data or that there a visual aggregation removing some information from the rendering.',
 };
 export default shufflingDataShouldMatter;

@@ -1,7 +1,7 @@
 import {filterForScale} from '../../utils';
 const noReversedAxes = [
   {key: 'x', shouldReverse: false},
-  {key: 'y', shouldReverse: true}
+  {key: 'y', shouldReverse: true},
 ].map(({key, shouldReverse}) => ({
   name: `deception-vis-no-reversed-axes-${key}`,
   type: 'stylistic',
@@ -14,7 +14,7 @@ const noReversedAxes = [
       : domainIncreasing && rangeIncreasing;
   },
   filter: filterForScale(key),
-  explain: `Axes should generally point in a direction which is familiar to most readers. The direction of your ${key} axis is out of line with the common usage. Make sure that it is intentional.`
+  explain: `Axes should generally point in a direction which is familiar to most readers. The direction of your ${key} axis is out of line with the common usage. Make sure that it is intentional.`,
 }));
 
 export default noReversedAxes;

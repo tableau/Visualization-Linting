@@ -24,7 +24,7 @@ const deletingRandomValuesShouldMatter = {
     // return !transform || transform && !transform.find(d => d.fold);
   },
   explain:
-    'After nulling 20% of the values being visualized the chart remained the same, this indicates that your visualization is not resilliant to change.'
+    'After nulling 20% of the values being visualized the chart remained the same, this indicates that your visualization is not resilliant to change.',
 };
 
 export default deletingRandomValuesShouldMatter;

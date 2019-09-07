@@ -2,7 +2,7 @@ import {prepProv} from '../../utils';
 import {
   expectSameBars,
   expectSameLines,
-  expectSame
+  expectSame,
 } from '../algebraic-detectors';
 import {fullResample} from '../../bootstrap';
 
@@ -15,13 +15,13 @@ const bootstrapBars = {
       dataset,
       spec,
       view,
-      'y' //opposite key as expected
+      'y', //opposite key as expected
     );
     const data = [];
     // debugger;
     Object.keys(aggregateOutputPairs).forEach(terminalKey => {
       fullResample(tailToStartMap[terminalKey] || []).forEach(idx =>
-        data.push(dataset[idx])
+        data.push(dataset[idx]),
       );
     });
 
@@ -56,7 +56,7 @@ const bootstrapBars = {
     }
     return true;
   },
-  explain: 'TODODODODODODODODODODO.'
+  explain: 'TODODODODODODODODODODO.',
 };
 
 export default bootstrapBars;

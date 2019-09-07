@@ -2,7 +2,7 @@ import {clone} from '../../utils';
 import {
   expectSameBars,
   expectSameLines,
-  expectSame
+  expectSame,
 } from '../algebraic-detectors';
 import {bootstrap} from '../../bootstrap';
 
@@ -38,7 +38,7 @@ const bootstrapBars = {
     return true;
   },
   explain:
-    'the apparent insight (bar order) was not resilliant to bootstrapping from the original data.'
+    'the apparent insight (bar order) was not resilliant to bootstrapping from the original data.',
 };
 
 export default bootstrapBars;

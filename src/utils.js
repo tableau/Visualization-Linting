@@ -1,7 +1,7 @@
 import {parse, View, loader, read} from 'vega';
 import {
   compile,
-  extractTransforms as vegaLiteExtractTransforms
+  extractTransforms as vegaLiteExtractTransforms,
 } from 'vega-lite';
 
 export function getXYFieldNames(spec) {
@@ -73,7 +73,7 @@ export function generateVegaRendering(spec, mode = 'raster') {
   // }
   const isSVG = mode === 'svg';
   const config = {
-    renderer: isSVG ? 'svg' : 'none'
+    renderer: isSVG ? 'svg' : 'none',
   };
   return new Promise((resolve, reject) => {
     const runtime = parse(compile(spec).spec, {renderer: 'none'});
@@ -119,7 +119,7 @@ export function getDataset(spec) {
   const {data} = spec;
   if (data.values) {
     return Promise.resolve().then(() =>
-      data.format ? read(data.values, data.format) : data.values
+      data.format ? read(data.values, data.format) : data.values,
     );
   }
   if (!data.url) {
@@ -195,17 +195,17 @@ const vegaLiteDefaultConfig = {
 
   view: {
     width: 200,
-    height: 200
+    height: 200,
   },
 
   mark: {
     color: '#4c78a8',
-    tooltip: {content: 'encoding'}
+    tooltip: {content: 'encoding'},
   },
   area: {},
   bar: {
     binSpacing: 1,
-    continuousBandSize: 5
+    continuousBandSize: 5,
   },
   circle: {},
   geoshape: {},
@@ -213,7 +213,7 @@ const vegaLiteDefaultConfig = {
   point: {},
   rect: {
     binSpacing: 0,
-    continuousBandSize: 5
+    continuousBandSize: 5,
   },
   // Need this to override default color in mark config
   rule: {color: 'black'},
@@ -221,7 +221,7 @@ const vegaLiteDefaultConfig = {
   // Need this to override default color in mark config
   text: {color: 'black'},
   tick: {
-    thickness: 1
+    thickness: 1,
   },
   trail: {},
 
@@ -232,20 +232,20 @@ const vegaLiteDefaultConfig = {
     median: {color: 'white'},
     outliers: {},
     rule: {},
-    ticks: null
+    ticks: null,
   },
 
   errorbar: {
     center: 'mean',
     rule: true,
-    ticks: false
+    ticks: false,
   },
 
   errorband: {
     band: {
-      opacity: 0.3
+      opacity: 0.3,
     },
-    borders: false
+    borders: false,
   },
 
   scale: {
@@ -271,7 +271,7 @@ const vegaLiteDefaultConfig = {
     minStrokeWidth: 1,
     maxStrokeWidth: 4,
     quantileCount: 4,
-    quantizeCount: 4
+    quantizeCount: 4,
   },
 
   projection: {},
@@ -289,7 +289,7 @@ const vegaLiteDefaultConfig = {
     gradientHorizontalMinLength: 100,
     gradientVerticalMaxLength: 200,
     // This is the Vega's minimum.
-    gradientVerticalMinLength: 64
+    gradientVerticalMinLength: 64,
   },
   header: {titlePadding: 10, labelPadding: 10},
   headerColumn: {},
@@ -302,7 +302,7 @@ const vegaLiteDefaultConfig = {
       fields: [SELECTION_ID],
       resolve: 'global',
       empty: 'all',
-      clear: 'dblclick'
+      clear: 'dblclick',
     },
     multi: {
       on: 'click',
@@ -310,7 +310,7 @@ const vegaLiteDefaultConfig = {
       toggle: 'event.shiftKey',
       resolve: 'global',
       empty: 'all',
-      clear: 'dblclick'
+      clear: 'dblclick',
     },
     interval: {
       on: '[mousedown, window:mouseup] > window:mousemove!',
@@ -319,8 +319,8 @@ const vegaLiteDefaultConfig = {
       zoom: 'wheel!',
       mark: {fill: '#333', fillOpacity: 0.125, stroke: 'white'},
       resolve: 'global',
-      clear: 'dblclick'
-    }
+      clear: 'dblclick',
+    },
   },
   style: {},
 
@@ -328,7 +328,7 @@ const vegaLiteDefaultConfig = {
 
   facet: {spacing: DEFAULT_SPACING},
   repeat: {spacing: DEFAULT_SPACING},
-  concat: {spacing: DEFAULT_SPACING}
+  concat: {spacing: DEFAULT_SPACING},
 };
 
 export const extractTransforms = spec =>
@@ -340,7 +340,7 @@ const bannedTopLevelOperations = [
   'hconcat',
   'layer',
   'repeat',
-  'vconcat'
+  'vconcat',
 ];
 export function checkIfSpecIsSupported(spec) {
   if (bannedTopLevelOperations.some(d => spec[d])) {
@@ -378,7 +378,7 @@ function groupByPointerCreation(data, groupbyKey) {
       });
       return acc;
     },
-    {}
+    {},
   );
 }
 
@@ -405,7 +405,7 @@ function provenencePass(tree, transform) {
   const thisTransform = transform[0];
   const data = Array.isArray(tree.value) ? tree.value : null;
   return [
-    {transform: thisTransform, data, transformFunction: tree._argval}
+    {transform: thisTransform, data, transformFunction: tree._argval},
   ].concat(provenencePass(relevantTarget, transform.slice(1)));
 }
 
@@ -413,11 +413,11 @@ function provenencePass(tree, transform) {
 function constructTransformProvenecePath(dataset, spec, view) {
   const specDecoratedWithTransforms = extractTransforms(spec);
   const transforms = [{type: 'identity'}].concat(
-    specDecoratedWithTransforms.transform
+    specDecoratedWithTransforms.transform,
   );
   const linearizedProvPath = provenencePass(
     view._runtime.data.source_0.input,
-    transforms
+    transforms,
   );
   // forward pass, ensure each transform step has data
   for (let i = 0; i < linearizedProvPath.length; i++) {
@@ -435,7 +435,7 @@ function constructTransformProvenecePath(dataset, spec, view) {
       // use groupByRelations to create the relavant prov map.
       transform.provMap = groupByPointerCreation(
         upstreamTransform.data,
-        transform.transform.groupby[0]
+        transform.transform.groupby[0],
       );
     } else {
       // if not groupby then use identity map
@@ -460,7 +460,7 @@ function constructTransformProvenecePath(dataset, spec, view) {
       acc[tail].push(Number(start));
       return acc;
     },
-    {}
+    {},
   );
   return {startToTailMap, tailToStartMap};
 }
@@ -492,14 +492,14 @@ export const nonLinearScales = {
   log: true,
   pow: true,
   sqrt: true,
-  symlog: true
+  symlog: true,
 };
 const quantScales = {
   ...nonLinearScales,
   linear: true,
   time: true,
   utc: true,
-  sequential: true
+  sequential: true,
 };
 
 export const filterForScale = scaleName => (_, __, view) => {
@@ -527,10 +527,11 @@ export const filterForMarkRecordChange = key => (spec, data, view) => {
     data,
     spec,
     view,
-    key
+    key,
   );
   const allAggsConsistOfOneRecord = Object.entries(aggregateOutputPairs).every(
-    ([terminalKey, aggValue]) => (tailToStartMap[terminalKey] || []).length <= 1
+    ([terminalKey, aggValue]) =>
+      (tailToStartMap[terminalKey] || []).length <= 1,
   );
   if (allAggsConsistOfOneRecord) {
     return false;

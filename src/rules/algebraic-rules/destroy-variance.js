@@ -9,7 +9,7 @@ const destroyVariance = ['x', 'y'].map(name => ({
       dataset,
       spec,
       view,
-      name
+      name,
     );
     // set each corresponding value in the original collection to aggregate value
     const data = clone(dataset);
@@ -38,7 +38,7 @@ const destroyVariance = ['x', 'y'].map(name => ({
     return filterForAggregates(name)(spec, data, view);
   },
   explain:
-    'destroying the variance should not affect the chart under aggregates'
+    'destroying the variance should not affect the chart under aggregates',
 }));
 
 export default destroyVariance;

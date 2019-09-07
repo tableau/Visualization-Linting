@@ -2,13 +2,13 @@
 import destroyVariance from './algebraic-rules/destroy-variance';
 import {
   contractToSingleRecords,
-  inflateToCommonNumberOfRecords
+  inflateToCommonNumberOfRecords,
 } from './algebraic-rules/change-number-of-records';
 import deduplicatationShouldntMatter from './algebraic-rules/deduplicate';
 import filterOutNullRecords from './algebraic-rules/remove-nulls';
 import shouldHaveCommonNumberOfRecords from './algebraic-rules/aggregates-should-have-a-similar-number-of-input-records';
-// import outliersShouldMatter from './algebraic-rules/outliers-should-matter';
-import outliersByMark from './algebraic-rules/outliers-by-mark';
+import outliersShouldMatter from './algebraic-rules/outliers-should-matter';
+// import outliersByMark from './algebraic-rules/outliers-by-mark';
 import FLIPEVERYTHING from './algebraic-rules/invert-on-quant-fields';
 import randomizingColumnsShouldMatter from './algebraic-rules/permute-relevant-columns';
 import deletingRandomValuesShouldMatter from './algebraic-rules/delete-some-of-relevant-columns';
@@ -34,7 +34,7 @@ const lintRules = [
   withInGroupResample,
   ...contractToFloorRecords,
   ...decreaseByOne,
-  ...inflateToCommonNumberOfRecordsBootstrap
+  ...inflateToCommonNumberOfRecordsBootstrap,
 
   // ALGEBRAIC RULES
   // deduplicatationShouldntMatter
@@ -44,7 +44,7 @@ const lintRules = [
   // ...contractToSingleRecords,
   // ...destroyVariance,
   // ...shouldHaveCommonNumberOfRecords,
-  // outliersShouldMatter
+  outliersShouldMatter,
   // randomizingColumnsShouldMatter,
   // shufflingDataShouldMatter,
   // deletingRandomValuesShouldMatter,

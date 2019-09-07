@@ -2,7 +2,7 @@ import {clone} from '../../utils';
 import {
   expectDifferentLines,
   expectDifferent,
-  expectDifferentBars
+  expectDifferentBars,
 } from '../algebraic-detectors';
 import {dropRow} from '../../dirty';
 
@@ -38,7 +38,7 @@ const deletingRowsShouldMatter = {
     return data.length > 0;
   },
   explain:
-    'After randomly deleting a third of the rows the image has remained the same. This suggests that there is an aggregator that is doing too much work, be careful.'
+    'After randomly deleting a third of the rows the image has remained the same. This suggests that there is an aggregator that is doing too much work, be careful.',
 };
 
 export default deletingRowsShouldMatter;

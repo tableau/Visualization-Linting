@@ -2,7 +2,7 @@ import {clone, shuffle} from '../../utils';
 import {
   expectSameBars,
   expectSameLines,
-  expectSame
+  expectSame,
 } from '../algebraic-detectors';
 
 const deduplicatationShouldntMatter = {
@@ -31,6 +31,6 @@ const deduplicatationShouldntMatter = {
   filter: (spec, data, view) => {
     return data.length > 0;
   },
-  explain: 'AGH'
+  explain: 'AGH',
 };
 export default deduplicatationShouldntMatter;
