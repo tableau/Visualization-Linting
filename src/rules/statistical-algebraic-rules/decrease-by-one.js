@@ -3,6 +3,7 @@ import {
   expectSameBars,
   expectSameLines,
   expectSame,
+  testInsturment,
 } from '../algebraic-detectors';
 
 const decreaseByOne = ['y'].map(key => ({
@@ -28,15 +29,7 @@ const decreaseByOne = ['y'].map(key => ({
     });
     return data.filter(d => d);
   },
-  selectEvaluator: spec => {
-    if (spec.mark === 'bar') {
-      return expectSameBars;
-    }
-    if (spec.mark === 'line') {
-      return expectSameLines;
-    }
-    return expectSame;
-  },
+  selectEvaluator: testInsturment,
   generateNumberOfIterations: (dataset, spec, view) => 100,
   statisticalEval: results => {
     const numPassing = results.reduce((x, {passed}) => x + (passed ? 1 : 0), 0);

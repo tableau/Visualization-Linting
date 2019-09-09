@@ -1,22 +1,28 @@
 import {clone, getXYFieldNames} from '../../utils';
 import {randomizeColumns} from '../../dirty';
-import {expectDifferent, expectDifferentBars} from '../algebraic-detectors';
+import {
+  expectDifferent,
+  expectDifferentBars,
+  testInsturment,
+} from '../algebraic-detectors';
 
 const randomizingColumnsShouldMatter = {
   name: 'algebraic-permute-relevant-columns',
-  type: 'algebraic-data',
+  type: 'algebraic-stat-data',
+  generateNumberOfIterations: (dataset, spec, view) => 100,
   operation: (container, spec) => {
     const data = clone(container);
     randomizeColumns(data, ...getXYFieldNames(spec));
     // console.log(JSON.stringify(data, null, 2), JSON.stringify(container, null, 2), getXYFieldNames(spec));
     return data;
   },
-  selectEvaluator: spec => {
-    if (spec.mark === 'bar' || spec.mark.type === 'bar') {
-      return expectDifferentBars;
-    }
-    return expectDifferent;
-  },
+  // selectEvaluator: spec => {
+  //   if (spec.mark === 'bar' || spec.mark.type === 'bar') {
+  //     return expectDifferentBars;
+  //   }
+  //   return expectDifferent;
+  // },
+  selectEvaluator: testInsturment,
   filter: (spec, data, view) => {
     if (data.length === 0) {
       return false;

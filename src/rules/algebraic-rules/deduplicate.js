@@ -3,10 +3,11 @@ import {
   expectSameBars,
   expectSameLines,
   expectSame,
+  testInsturment,
 } from '../algebraic-detectors';
 
 const deduplicatationShouldntMatter = {
-  name: 'algebraic-shuffle-input-data',
+  name: 'algebraic-deduplicate-input-data',
   type: 'algebraic-data',
   operation: container => {
     const hasBeenSeen = {};
@@ -19,15 +20,7 @@ const deduplicatationShouldntMatter = {
       return true;
     });
   },
-  selectEvaluator: spec => {
-    if (spec.mark === 'bar') {
-      return expectSameBars;
-    }
-    if (spec.mark === 'line') {
-      return expectSameLines;
-    }
-    return expectSame;
-  },
+  selectEvaluator: testInsturment,
   filter: (spec, data, view) => {
     return data.length > 0;
   },

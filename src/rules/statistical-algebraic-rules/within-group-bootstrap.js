@@ -3,6 +3,7 @@ import {
   expectSameBars,
   expectSameLines,
   expectSame,
+  testInsturment,
 } from '../algebraic-detectors';
 import {fullResample} from '../../bootstrap';
 
@@ -27,15 +28,7 @@ const bootstrapBars = {
 
     return data;
   },
-  selectEvaluator: spec => {
-    if (spec.mark === 'bar') {
-      return expectSameBars;
-    }
-    if (spec.mark === 'line') {
-      return expectSameLines;
-    }
-    return expectSame;
-  },
+  selectEvaluator: testInsturment,
   statisticalEval: results => {
     const numPassing = results.reduce((x, {passed}) => x + (passed ? 1 : 0), 0);
     console.log('within-group-bootstrap', numPassing);

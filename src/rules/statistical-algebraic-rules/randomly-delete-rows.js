@@ -3,6 +3,7 @@ import {
   expectDifferentLines,
   expectDifferent,
   expectDifferentBars,
+  testInsturment,
 } from '../algebraic-detectors';
 import {dropRow} from '../../dirty';
 
@@ -16,17 +17,7 @@ const deletingRowsShouldMatter = {
     }
     return clonedData;
   },
-  // should this pivot to the bar heights one?
-  // should i write a detector for line?
-  selectEvaluator: spec => {
-    if (spec.mark === 'bar') {
-      return expectDifferentBars;
-    }
-    if (spec.mark === 'line') {
-      return expectDifferentLines;
-    }
-    return expectDifferent;
-  },
+  selectEvaluator: testInsturment,
   statisticalEval: results => {
     const numPassing = results.reduce((x, {passed}) => x + (passed ? 1 : 0), 0);
     console.log('randomly-delete', numPassing);

@@ -102,3 +102,13 @@ function compareLines(
   // https://gordonlesti.com/touch-signature-identification-with-javascript/
   return assert(dtw.getDistance() < 30, expectNoChange);
 }
+
+export function testInsturment(spec) {
+  if (spec.mark === 'bar') {
+    return expectSameBars;
+  }
+  if (spec.mark === 'line') {
+    return expectSameLines;
+  }
+  return expectSame;
+}
