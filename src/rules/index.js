@@ -1,9 +1,9 @@
 // ALGEBRAIC RULES
 import destroyVariance from './algebraic-rules/destroy-variance';
-import {
-  contractToSingleRecords,
-  inflateToCommonNumberOfRecords,
-} from './algebraic-rules/change-number-of-records';
+// import {
+//   contractToSingleRecords,
+//   inflateToCommonNumberOfRecords,
+// } from './algebraic-rules/change-number-of-records';
 import deduplicatationShouldntMatter from './algebraic-rules/deduplicate';
 import filterOutNullRecords from './algebraic-rules/remove-nulls';
 import shouldHaveCommonNumberOfRecords from './algebraic-rules/aggregates-should-have-a-similar-number-of-input-records';
@@ -37,24 +37,24 @@ const lintRules = [
   ...inflateToCommonNumberOfRecordsBootstrap,
 
   // ALGEBRAIC RULES
-  // deduplicatationShouldntMatter
+  deduplicatationShouldntMatter,
   // ...filterOutNullRecords,
-  // ...inflateToCommonNumberOfRecords
+  // ...inflateToCommonNumberOfRecords,
   // FLIPEVERYTHING,
   // ...contractToSingleRecords,
   // ...destroyVariance,
-  // ...shouldHaveCommonNumberOfRecords,
-  outliersShouldMatter,
-  // randomizingColumnsShouldMatter,
-  // shufflingDataShouldMatter,
-  // deletingRandomValuesShouldMatter,
+  ...shouldHaveCommonNumberOfRecords,
+  // outliersShouldMatter,
+  randomizingColumnsShouldMatter,
+  shufflingDataShouldMatter,
+  deletingRandomValuesShouldMatter,
 
   // DECEPTION RULES
   // ...dontUseNonLinearScales,
   // ...barChartsAreUsuallyAggregates,
   // ...noReversedAxes,
   // ...noZeroScale,
-  // ...visScaleFromZero
+  // ...visScaleFromZero,
   // the map adds default inclusion
 ].map(d => ({filter: () => true, ...d}));
 

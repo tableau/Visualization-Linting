@@ -3,8 +3,9 @@ import {expectSame} from '../algebraic-detectors';
 
 const shufflingDataShouldMatter = {
   name: 'algebraic-shuffle-input-data',
-  type: 'algebraic-data',
+  type: 'algebraic-stat-data',
   operation: container => shuffle(clone(container)),
+  generateNumberOfIterations: (dataset, spec, view) => 100,
   selectEvaluator: spec => expectSame,
   filter: (spec, data, view) => {
     return data.length > 0;

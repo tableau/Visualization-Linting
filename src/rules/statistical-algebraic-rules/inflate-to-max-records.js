@@ -4,6 +4,7 @@ import {
   expectSameBars,
   expectSameLines,
   expectSame,
+  testInsturment,
 } from '../algebraic-detectors';
 
 const inflateToCommonNumberOfRecords = ['y'].map(key => ({
@@ -45,15 +46,7 @@ const inflateToCommonNumberOfRecords = ['y'].map(key => ({
     // return numPassing > 333;
   },
   generateNumberOfIterations: (dataset, spec, view) => 100,
-  selectEvaluator: spec => {
-    if (spec.mark === 'bar') {
-      return expectSameBars;
-    }
-    if (spec.mark === 'line') {
-      return expectSameLines;
-    }
-    return expectSame;
-  },
+  selectEvaluator: testInsturment,
   filter: filterForMarkRecordChange(key),
   explain:
     'bootstrapping the aggregate values to the max number of records should affect the chart',
