@@ -2,8 +2,8 @@
 import {lint} from '../src';
 import {writeFile, executePromisesInSeries} from 'hoopoe';
 
-const DEGRADE_SIZE = 20;
-const TRIAL_SIZE = 10;
+const DEGRADE_SIZE = 6;
+const TRIAL_SIZE = 5;
 const buildChart = (errorType, levelOfDegrade, runId) => {
   return {
     $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
@@ -39,7 +39,7 @@ const allTargets = ['missing', 'outliers', 'repeated'].reduce(
     const content = [...new Array(DEGRADE_SIZE)].reduce(
       (mem, _, levelOfDegrade) => {
         const trials = [...new Array(TRIAL_SIZE)].map((__, idx) =>
-          buildChart(errorType, levelOfDegrade, idx),
+          buildChart(errorType, 3 * levelOfDegrade, idx),
         );
         return mem.concat(trials);
       },
@@ -80,7 +80,7 @@ executePromisesInSeries(
     }, {});
   });
   writeFile(
-    './evaluation/eval-results.json',
+    './evaluation/eval-results-3.json',
     JSON.stringify(decoratedWithNulls, null, 2),
   );
   console.log(`Took ${(endTime - startTime) / 1000}  seconds`);

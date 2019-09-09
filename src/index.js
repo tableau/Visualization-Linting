@@ -186,6 +186,7 @@ function evaluateStatisticalAlgebraicRule(
     )
       .then(results => ({
         passed: results.reduce((x, {passed}) => x + (passed ? 1 : 0), 0),
+        // passed: results.reduce((x, {passed}) => x + passed, 0) / results.length,
         results,
       }))
       .then(({passed, results}) => {

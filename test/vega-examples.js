@@ -8,8 +8,8 @@ export const CARS_CARS_BAR_CHART = {
   mark: 'bar',
   encoding: {
     x: {field: 'Origin', type: 'nominal'},
-    y: {aggregate: 'count', type: 'quantitative'}
-  }
+    y: {aggregate: 'count', type: 'quantitative'},
+  },
 };
 
 export const BAR_CHART_SPEC = {
@@ -21,19 +21,19 @@ export const BAR_CHART_SPEC = {
     x: {
       timeUnit: 'month',
       field: 'date',
-      type: 'ordinal'
+      type: 'ordinal',
     },
     y: {
       aggregate: 'count',
       field: 'precipitation',
-      type: 'quantitative'
-    }
-  }
+      type: 'quantitative',
+    },
+  },
 };
 
 export const MENS_WORLD_DASH = {
   data: {
-    url: '../example-data/real/mens-100m-dash.json'
+    url: '../example-data/real/mens-100m-dash.json',
   },
   height: 200,
   width: 200,
@@ -41,19 +41,19 @@ export const MENS_WORLD_DASH = {
   encoding: {
     x: {
       field: 'Date',
-      type: 'temporal'
+      type: 'temporal',
     },
     y: {
       field: 'Time',
       // scale: {domain: [9.55, 10.7]},
-      type: 'quantitative'
-    }
-  }
+      type: 'quantitative',
+    },
+  },
 };
 
 export const BAR_CHART_BUT_FORGOT_TO_ADD = {
   data: {
-    url: 'data/seattle-weather.csv'
+    url: 'data/seattle-weather.csv',
   },
   height: 200,
   width: 200,
@@ -62,13 +62,13 @@ export const BAR_CHART_BUT_FORGOT_TO_ADD = {
     x: {
       timeUnit: 'month',
       field: 'date',
-      type: 'ordinal'
+      type: 'ordinal',
     },
     y: {
       field: 'precipitation',
-      type: 'quantitative'
-    }
-  }
+      type: 'quantitative',
+    },
+  },
 };
 
 export const HISTOGRAM = {
@@ -79,13 +79,13 @@ export const HISTOGRAM = {
     x: {
       bin: true,
       field: 'IMDB_Rating',
-      type: 'quantitative'
+      type: 'quantitative',
     },
     y: {
       aggregate: 'count',
-      type: 'quantitative'
-    }
-  }
+      type: 'quantitative',
+    },
+  },
 };
 
 export const INSANITY = {
@@ -101,40 +101,40 @@ export const INSANITY = {
       {a: 'F', b: 53},
       {a: 'G', b: 19},
       {a: 'H', b: 87},
-      {a: 'I', b: 52}
-    ]
+      {a: 'I', b: 52},
+    ],
   },
   mark: 'bar',
   encoding: {
     x: {field: 'a', type: 'ordinal'},
-    y: {field: 'b', type: 'quantitative'}
-  }
+    y: {field: 'b', type: 'quantitative'},
+  },
 };
 
 export const COLORED_SCATTERPLOT = {
   $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
   data: {
-    url: 'data/cars.json'
+    url: 'data/cars.json',
   },
   mark: {
     type: 'circle',
-    opacity: 1
+    opacity: 1,
   },
   encoding: {
     x: {
       field: 'Horsepower',
-      type: 'quantitative'
+      type: 'quantitative',
     },
     y: {
       field: 'Miles_per_Gallon',
-      type: 'quantitative'
+      type: 'quantitative',
     },
     color: {
       field: 'Origin',
       type: 'nominal',
-      scale: {range: ['#E15658', '#58A14E', '#EDC948']}
-    }
-  }
+      scale: {range: ['#E15658', '#58A14E', '#EDC948']},
+    },
+  },
 };
 
 export const MISSING_RECORDS_BAR_CHART = {
@@ -143,20 +143,20 @@ export const MISSING_RECORDS_BAR_CHART = {
   transform: [
     {fold: ['x1', 'x2']},
     // this is a dumb hacky filter, but whatever
-    {filter: {field: 'value', gt: 0}}
+    {filter: {field: 'value', gt: 0}},
   ],
   mark: 'bar',
   encoding: {
     x: {
       field: 'key',
-      type: 'ordinal'
+      type: 'ordinal',
     },
     y: {
       field: 'value',
       type: 'quantitative',
-      aggregate: 'average'
-    }
-  }
+      aggregate: 'average',
+    },
+  },
 };
 
 export const MISSING_RECORDS_BAR_CHART_EXPLAINED = {
@@ -165,43 +165,43 @@ export const MISSING_RECORDS_BAR_CHART_EXPLAINED = {
   transform: [
     {fold: ['x1', 'x2']},
     // this is a dumb hacky filter, but whatever
-    {filter: {field: 'value', gt: 0}}
+    {filter: {field: 'value', gt: 0}},
   ],
   layer: [
     {
       encoding: {
         x: {
           field: 'key',
-          type: 'ordinal'
+          type: 'ordinal',
         },
         y: {
           field: 'value',
           type: 'quantitative',
-          aggregate: 'average'
-        }
+          aggregate: 'average',
+        },
       },
-      mark: 'bar'
+      mark: 'bar',
     },
     {
       encoding: {
         x: {
           field: 'key',
-          type: 'ordinal'
+          type: 'ordinal',
         },
         y: {
           field: 'value',
-          type: 'quantitative'
-        }
+          type: 'quantitative',
+        },
       },
-      mark: {type: 'circle', color: 'red'}
-    }
-  ]
+      mark: {type: 'circle', color: 'red'},
+    },
+  ],
 };
 
 export const MISSPELLING_BAR_CHART = {
   $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
   data: {
-    url: '../example-data/bad/misspelling.csv'
+    url: '../example-data/bad/misspelling.csv',
   },
   transform: [
     {filter: {field: 'Category', oneOf: ['A', 'B']}},
@@ -210,23 +210,23 @@ export const MISSPELLING_BAR_CHART = {
         {
           op: 'mean',
           field: 'Value',
-          as: 'Val'
-        }
+          as: 'Val',
+        },
       ],
-      groupby: ['Category']
-    }
+      groupby: ['Category'],
+    },
   ],
   mark: 'bar',
   encoding: {
     x: {
       field: 'Category',
-      type: 'nominal'
+      type: 'nominal',
     },
     y: {
       field: 'Val',
-      type: 'quantitative'
-    }
-  }
+      type: 'quantitative',
+    },
+  },
 };
 
 export const OUTLIER_SCATTERPLOT = {
@@ -235,8 +235,8 @@ export const OUTLIER_SCATTERPLOT = {
   mark: 'circle',
   encoding: {
     x: {field: 'x1', type: 'quantitative'},
-    y: {field: 'x2', type: 'quantitative'}
-  }
+    y: {field: 'x2', type: 'quantitative'},
+  },
 };
 
 export const OVERPLOT_SCATTERPLOT = {
@@ -244,12 +244,12 @@ export const OVERPLOT_SCATTERPLOT = {
   data: {url: '../example-data/bad/overplot.csv'},
   mark: {
     type: 'circle',
-    opacity: 1
+    opacity: 1,
   },
   encoding: {
     x: {field: 'x', type: 'quantitative'},
-    y: {field: 'y', type: 'quantitative'}
-  }
+    y: {field: 'y', type: 'quantitative'},
+  },
 };
 
 export const OVERPLOT_SCATTERPLOT_REVERESED = {
@@ -257,12 +257,12 @@ export const OVERPLOT_SCATTERPLOT_REVERESED = {
   data: {url: '../example-data/bad/overplot.csv'},
   mark: {
     type: 'circle',
-    opacity: 1
+    opacity: 1,
   },
   encoding: {
     x: {field: 'x', type: 'quantitative', scale: {domain: [14, 0]}},
-    y: {field: 'y', type: 'quantitative'}
-  }
+    y: {field: 'y', type: 'quantitative'},
+  },
 };
 
 export const MISSING_QUARTER_LINESERIES = {
@@ -274,15 +274,15 @@ export const MISSING_QUARTER_LINESERIES = {
     x: {
       timeUnit: 'yearquarter',
       field: 'Time',
-      type: 'temporal'
+      type: 'temporal',
     },
     y: {
       aggregate: 'mean',
       field: 'Sales',
-      type: 'quantitative'
+      type: 'quantitative',
       // scale: {domain: [85, 5]}
-    }
-  }
+    },
+  },
 };
 
 export const MISSING_QUARTER_LINESERIES_EXPOSED = {
@@ -293,22 +293,22 @@ export const MISSING_QUARTER_LINESERIES_EXPOSED = {
   encoding: {
     x: {
       field: 'Time',
-      type: 'temporal'
+      type: 'temporal',
     },
     y: {
       aggregate: 'mean',
       field: 'Sales',
-      type: 'quantitative'
+      type: 'quantitative',
     },
     color: {
-      field: 'Series'
-    }
-  }
+      field: 'Series',
+    },
+  },
 };
 
 export const MISSING_QUARTER_LINESERIES_EXPOSED_2 = {
   data: {
-    url: '../example-data/bad/missingquarter-exposed.csv'
+    url: '../example-data/bad/missingquarter-exposed.csv',
   },
   height: 200,
   width: 200,
@@ -319,30 +319,30 @@ export const MISSING_QUARTER_LINESERIES_EXPOSED_2 = {
         x: {
           timeUnit: 'yearquarter',
           field: 'Time',
-          type: 'temporal'
+          type: 'temporal',
         },
         y: {
           aggregate: 'sum',
           field: 'Sales',
-          type: 'quantitative'
-        }
-      }
+          type: 'quantitative',
+        },
+      },
     },
     {
       mark: 'circle',
       encoding: {
         x: {
           field: 'Time',
-          type: 'temporal'
+          type: 'temporal',
         },
         y: {
           aggregate: 'sum',
           field: 'Sales',
-          type: 'quantitative'
-        }
-      }
-    }
-  ]
+          type: 'quantitative',
+        },
+      },
+    },
+  ],
 };
 
 export const MISSING_QUARTER_LINESERIES_DISPELL = {
@@ -354,48 +354,48 @@ export const MISSING_QUARTER_LINESERIES_DISPELL = {
     x: {
       timeUnit: 'yearquarter',
       field: 'Time',
-      type: 'temporal'
+      type: 'temporal',
     },
     y: {
       aggregate: 'mean',
       field: 'Sales',
-      type: 'quantitative'
-    }
-  }
+      type: 'quantitative',
+    },
+  },
 };
 
 export const STRIP_PLOT = {
   $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
   data: {
-    url: 'data/seattle-weather.csv'
+    url: 'data/seattle-weather.csv',
   },
   mark: 'tick',
   encoding: {
     x: {
       field: 'precipitation',
-      type: 'quantitative'
-    }
-  }
+      type: 'quantitative',
+    },
+  },
 };
 
 const salesEncode = {
   field: 'sales',
   type: 'quantitative',
   aggregate: 'average',
-  scale: {domain: [0, 320]}
+  scale: {domain: [0, 320]},
 };
 const locationEncode = {field: 'location', type: 'nominal'};
 const noAxisLabel = {axis: {title: false}};
 const QUARTET_1 = {
   $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
   data: {
-    url: '../example-data/bad/quartet1.csv'
+    url: '../example-data/bad/quartet1.csv',
   },
   mark: 'bar',
   encoding: {
     x: {...locationEncode, ...noAxisLabel},
-    y: {...salesEncode, ...noAxisLabel}
-  }
+    y: {...salesEncode, ...noAxisLabel},
+  },
 };
 
 const OTHER_QUARTETS = [...new Array(3)]
@@ -408,16 +408,16 @@ const OTHER_QUARTETS = [...new Array(3)]
       layer: [
         {
           mark: 'bar',
-          encoding: {y: salesEncode, ...noAxisLabel}
+          encoding: {y: salesEncode, ...noAxisLabel},
         },
         {
           mark: 'circle',
           encoding: {
             y: {...salesEncode, aggregate: null, ...noAxisLabel},
-            color: {value: '#E15658'}
-          }
-        }
-      ]
+            color: {value: '#E15658'},
+          },
+        },
+      ],
     };
     return acc;
   }, {});
@@ -427,10 +427,10 @@ const evalExample = {
   $$$identifier$$$: {
     errorType: 'missing',
     levelOfDegrade: 0,
-    idx: 0
+    idx: 0,
   },
   data: {
-    url: '../example-data/testData/missing/0/0.csv'
+    url: '../example-data/testData/missing/0/0.csv',
   },
   mark: 'bar',
   encoding: {
@@ -438,24 +438,72 @@ const evalExample = {
       field: 'category',
       type: 'nominal',
       axis: {
-        title: false
-      }
+        title: false,
+      },
     },
     y: {
       field: 'value',
       type: 'quantitative',
       aggregate: 'average',
       scale: {
-        domain: [0, 320]
+        domain: [0, 320],
       },
       axis: {
-        title: false
-      }
-    }
-  }
+        title: false,
+      },
+    },
+  },
+};
+
+const evaluationPic1 = {
+  $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
+  data: {url: '../evaluation/pivoted-eval-results.json'},
+  mark: 'circle',
+  encoding: {
+    row: {field: 'metric', type: 'nominal'},
+    column: {field: 'errorType', type: 'nominal'},
+    x: {field: 'levelOfDegrade', type: 'quantitative'},
+    y: {
+      field: 'metricVal',
+      type: 'quantitative',
+    },
+    color: {field: 'errorType', type: 'nominal'},
+  },
+};
+
+const evaluationPic = {
+  $schema: 'https://vega.github.io/schema/vega-lite/v4.json',
+  data: {
+    url: '../evaluation/pivoted-eval-results.json',
+  },
+  // mark: 'line',
+  mark: {type: 'errorband', extent: 'iqr', borders: true},
+  width: 500,
+  height: 100,
+
+  encoding: {
+    row: {field: 'metric', type: 'nominal'},
+    column: {field: 'errorType', type: 'nominal'},
+    x: {
+      field: 'levelOfDegrade',
+      type: 'quantitative',
+    },
+    color: {
+      field: 'errorType',
+      type: 'nominal',
+    },
+    y: {
+      field: 'metricVal',
+      type: 'quantitative',
+      // aggregate: 'min',
+      // scale: {domain: [46, 100]},
+    },
+  },
+  // resolve: {scale: {y: 'independent'}},
 };
 
 export const BAD_CHARTS = {
+  evaluationPic,
   evalExample,
   ...WorldIndicatorMirages,
   QUARTET_1,
@@ -476,5 +524,5 @@ export const BAD_CHARTS = {
   HISTOGRAM,
   INSANITY,
   STRIP_PLOT,
-  CARS_CARS_BAR_CHART
+  CARS_CARS_BAR_CHART,
 };

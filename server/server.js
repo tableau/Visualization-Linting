@@ -32,6 +32,7 @@ app.post('/get-rendering', (req, res) => {
       res.send(JSON.stringify({code: OK, result}));
     })
     .catch(e => {
+      console.log(e);
       res.send({code: CRASH, msg: e});
     });
 });
