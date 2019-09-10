@@ -116,7 +116,7 @@ function compareBarOrdersHack(
 
 export function testInsturment(spec) {
   if (spec.mark === 'bar') {
-    return expectSameBars;
+    return expectSameBarsHack;
   }
   if (spec.mark === 'line') {
     return expectSameLines;

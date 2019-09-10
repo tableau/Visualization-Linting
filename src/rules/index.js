@@ -32,8 +32,8 @@ import decreaseByOne from './statistical-algebraic-rules/decrease-by-one';
 const lintRules = [
   // STAT ALGEBRAIC RULES
   // deletingRowsShouldMatter,
-  // bootstrapBars,
-  // withInGroupResample,
+  bootstrapBars,
+  withInGroupResample,
   ...contractToFloorRecords,
   // ...decreaseByOne,
   // ...inflateToCommonNumberOfRecordsBootstrap,
@@ -41,7 +41,7 @@ const lintRules = [
   // ALGEBRAIC RULES
   // deduplicatationShouldntMatter,
   // ...shouldHaveCommonNumberOfRecords,
-  // randomizingColumnsShouldMatter,
+  randomizingColumnsShouldMatter,
   // shufflingDataShouldMatter,
   // deletingRandomValuesShouldMatter,
 ].map(d => ({filter: () => true, ...d}));

@@ -499,7 +499,7 @@ const evaluationPic = {
       // scale: {domain: [46, 100]},
     },
   },
-  // resolve: {scale: {y: 'independent'}},
+  resolve: {scale: {x: 'independent', y: 'independent'}},
 };
 
 export const BAD_CHARTS = {

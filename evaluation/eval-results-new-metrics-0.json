@@ -1,0 +1,1922 @@
+[
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.16768575308861727,
+    "algebraic-within-group-bootstrap": 3.9142167434285704,
+    "algebraic-contract-to-floor-records--y-axis": 3.9007952342857184,
+    "algebraic-permute-relevant-columns": -0.0034957558857138336,
+    "errorType": "mu",
+    "levelOfDegrade": 55,
+    "runId": 0
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.407695411727353,
+    "algebraic-within-group-bootstrap": 1.9315799868571457,
+    "algebraic-contract-to-floor-records--y-axis": 2.099586571428574,
+    "algebraic-permute-relevant-columns": -0.1890491024000005,
+    "errorType": "mu",
+    "levelOfDegrade": 55,
+    "runId": 1
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.5837478007081296,
+    "algebraic-within-group-bootstrap": 5.242628236000001,
+    "algebraic-contract-to-floor-records--y-axis": 5.138228868571431,
+    "algebraic-permute-relevant-columns": 0.014264496457142001,
+    "errorType": "mu",
+    "levelOfDegrade": 55,
+    "runId": 2
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.11940152099401218,
+    "algebraic-within-group-bootstrap": 1.5163183831999971,
+    "algebraic-contract-to-floor-records--y-axis": 1.5587416228571556,
+    "algebraic-permute-relevant-columns": -0.00943887702857154,
+    "errorType": "mu",
+    "levelOfDegrade": 55,
+    "runId": 3
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.013025927406681603,
+    "algebraic-within-group-bootstrap": 2.695249559314285,
+    "algebraic-contract-to-floor-records--y-axis": 2.803433451428558,
+    "algebraic-permute-relevant-columns": -0.07524955931428252,
+    "errorType": "mu",
+    "levelOfDegrade": 55,
+    "runId": 4
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.2223768043805333,
+    "algebraic-within-group-bootstrap": 0.47905036834285736,
+    "algebraic-contract-to-floor-records--y-axis": 0.6265311771428514,
+    "algebraic-permute-relevant-columns": -0.19727014102857254,
+    "errorType": "mu",
+    "levelOfDegrade": 55,
+    "runId": 5
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.073666327518321,
+    "algebraic-within-group-bootstrap": 3.415245438057144,
+    "algebraic-contract-to-floor-records--y-axis": 3.4879203542857122,
+    "algebraic-permute-relevant-columns": 0.06522272685714427,
+    "errorType": "mu",
+    "levelOfDegrade": 55,
+    "runId": 6
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.3173517213890119,
+    "algebraic-within-group-bootstrap": 2.9482942446857137,
+    "algebraic-contract-to-floor-records--y-axis": 2.900046525714288,
+    "algebraic-permute-relevant-columns": 0.2162647842285702,
+    "errorType": "mu",
+    "levelOfDegrade": 55,
+    "runId": 7
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.3308150819241382,
+    "algebraic-within-group-bootstrap": 4.201059329028572,
+    "algebraic-contract-to-floor-records--y-axis": 4.18594393142854,
+    "algebraic-permute-relevant-columns": 0.0029399337142842798,
+    "errorType": "mu",
+    "levelOfDegrade": 55,
+    "runId": 8
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.07831328067668665,
+    "algebraic-within-group-bootstrap": 3.9817270566857155,
+    "algebraic-contract-to-floor-records--y-axis": 3.973751428571461,
+    "algebraic-permute-relevant-columns": -0.13967669805714025,
+    "errorType": "mu",
+    "levelOfDegrade": 55,
+    "runId": 9
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.0008394560972723752,
+    "algebraic-within-group-bootstrap": 2.151152925485713,
+    "algebraic-contract-to-floor-records--y-axis": 2.344511908571434,
+    "algebraic-permute-relevant-columns": 0.2469019899428571,
+    "errorType": "mu",
+    "levelOfDegrade": 55,
+    "runId": 10
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.02217053511456328,
+    "algebraic-within-group-bootstrap": 2.077299795999999,
+    "algebraic-contract-to-floor-records--y-axis": 2.0502187428571403,
+    "algebraic-permute-relevant-columns": -0.12085789531428276,
+    "errorType": "mu",
+    "levelOfDegrade": 55,
+    "runId": 11
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.1213052928310276,
+    "algebraic-within-group-bootstrap": 2.7300499088000003,
+    "algebraic-contract-to-floor-records--y-axis": 2.8833443428571286,
+    "algebraic-permute-relevant-columns": 0.18090690240000185,
+    "errorType": "mu",
+    "levelOfDegrade": 55,
+    "runId": 12
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.22517774193365028,
+    "algebraic-within-group-bootstrap": 2.6235491037714294,
+    "algebraic-contract-to-floor-records--y-axis": 2.5940784914285473,
+    "algebraic-permute-relevant-columns": 0.010703068342857875,
+    "errorType": "mu",
+    "levelOfDegrade": 55,
+    "runId": 13
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.5353738276387222,
+    "algebraic-within-group-bootstrap": 3.163426952571429,
+    "algebraic-contract-to-floor-records--y-axis": 3.1055823771428663,
+    "algebraic-permute-relevant-columns": 0.04271715565714032,
+    "errorType": "mu",
+    "levelOfDegrade": 55,
+    "runId": 14
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.158619411942382,
+    "algebraic-within-group-bootstrap": 2.6449076437714285,
+    "algebraic-contract-to-floor-records--y-axis": 2.5784270628571164,
+    "algebraic-permute-relevant-columns": 0.19448004251428727,
+    "errorType": "mu",
+    "levelOfDegrade": 55,
+    "runId": 15
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.17882224460703072,
+    "algebraic-within-group-bootstrap": 2.101568842971429,
+    "algebraic-contract-to-floor-records--y-axis": 2.1091418571428733,
+    "algebraic-permute-relevant-columns": 0.08214464502857254,
+    "errorType": "mu",
+    "levelOfDegrade": 55,
+    "runId": 16
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.6183465726581813,
+    "algebraic-within-group-bootstrap": 2.3752505163428554,
+    "algebraic-contract-to-floor-records--y-axis": 2.3162722628571544,
+    "algebraic-permute-relevant-columns": 0.04368672822857292,
+    "errorType": "mu",
+    "levelOfDegrade": 55,
+    "runId": 17
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.9776187905201382,
+    "algebraic-within-group-bootstrap": 3.3101421428571394,
+    "algebraic-contract-to-floor-records--y-axis": 3.6148376685714334,
+    "algebraic-permute-relevant-columns": -0.020051064457142047,
+    "errorType": "mu",
+    "levelOfDegrade": 55,
+    "runId": 18
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.2102546578881254,
+    "algebraic-within-group-bootstrap": 4.457273129714287,
+    "algebraic-contract-to-floor-records--y-axis": 4.683617908571421,
+    "algebraic-permute-relevant-columns": -0.04116941371428538,
+    "errorType": "mu",
+    "levelOfDegrade": 55,
+    "runId": 19
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.7308957077849711,
+    "algebraic-within-group-bootstrap": 8.523114052685711,
+    "algebraic-contract-to-floor-records--y-axis": 8.368092400000014,
+    "algebraic-permute-relevant-columns": 0.3380035131428559,
+    "errorType": "mu",
+    "levelOfDegrade": 65,
+    "runId": 0
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 1.2094544325468286,
+    "algebraic-within-group-bootstrap": 7.294473495200001,
+    "algebraic-contract-to-floor-records--y-axis": 7.218073222857139,
+    "algebraic-permute-relevant-columns": -0.05821352388571654,
+    "errorType": "mu",
+    "levelOfDegrade": 65,
+    "runId": 1
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 1.7877117129556772,
+    "algebraic-within-group-bootstrap": 9.32441407577143,
+    "algebraic-contract-to-floor-records--y-axis": 9.533564274285709,
+    "algebraic-permute-relevant-columns": -0.0889541700571442,
+    "errorType": "mu",
+    "levelOfDegrade": 65,
+    "runId": 2
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.676280150155072,
+    "algebraic-within-group-bootstrap": 8.644449391542853,
+    "algebraic-contract-to-floor-records--y-axis": 8.545850057142843,
+    "algebraic-permute-relevant-columns": 0.03815912319999939,
+    "errorType": "mu",
+    "levelOfDegrade": 65,
+    "runId": 3
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.2819969422496763,
+    "algebraic-within-group-bootstrap": 10.039885263885717,
+    "algebraic-contract-to-floor-records--y-axis": 10.076827645714275,
+    "algebraic-permute-relevant-columns": -0.16058095794286004,
+    "errorType": "mu",
+    "levelOfDegrade": 65,
+    "runId": 4
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.024018856939228214,
+    "algebraic-within-group-bootstrap": 10.413114772685717,
+    "algebraic-contract-to-floor-records--y-axis": 10.459843234285707,
+    "algebraic-permute-relevant-columns": 0.029274034057144717,
+    "errorType": "mu",
+    "levelOfDegrade": 65,
+    "runId": 5
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.5774133640819906,
+    "algebraic-within-group-bootstrap": 9.449372363428573,
+    "algebraic-contract-to-floor-records--y-axis": 9.37453758857145,
+    "algebraic-permute-relevant-columns": -0.02308026057142797,
+    "errorType": "mu",
+    "levelOfDegrade": 65,
+    "runId": 6
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.6466954782773456,
+    "algebraic-within-group-bootstrap": 6.919068345828572,
+    "algebraic-contract-to-floor-records--y-axis": 7.021594914285732,
+    "algebraic-permute-relevant-columns": -0.24688989760000055,
+    "errorType": "mu",
+    "levelOfDegrade": 65,
+    "runId": 7
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.3362449903191623,
+    "algebraic-within-group-bootstrap": 8.364612203542858,
+    "algebraic-contract-to-floor-records--y-axis": 8.449062011428614,
+    "algebraic-permute-relevant-columns": -0.04924134880000224,
+    "errorType": "mu",
+    "levelOfDegrade": 65,
+    "runId": 8
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.7711614516608404,
+    "algebraic-within-group-bootstrap": 7.46613982914286,
+    "algebraic-contract-to-floor-records--y-axis": 7.365488891428599,
+    "algebraic-permute-relevant-columns": -0.000709721828573322,
+    "errorType": "mu",
+    "levelOfDegrade": 65,
+    "runId": 9
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.48775126085805026,
+    "algebraic-within-group-bootstrap": 9.867505180914286,
+    "algebraic-contract-to-floor-records--y-axis": 9.81529081142856,
+    "algebraic-permute-relevant-columns": 0.04030851748571166,
+    "errorType": "mu",
+    "levelOfDegrade": 65,
+    "runId": 10
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.05851928271547166,
+    "algebraic-within-group-bootstrap": 8.741726444685714,
+    "algebraic-contract-to-floor-records--y-axis": 8.791678354285741,
+    "algebraic-permute-relevant-columns": -0.17348644982857025,
+    "errorType": "mu",
+    "levelOfDegrade": 65,
+    "runId": 11
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.4194909342311405,
+    "algebraic-within-group-bootstrap": 6.98762062022857,
+    "algebraic-contract-to-floor-records--y-axis": 6.999970891428575,
+    "algebraic-permute-relevant-columns": 0.07420202582857058,
+    "errorType": "mu",
+    "levelOfDegrade": 65,
+    "runId": 12
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.5150165596099546,
+    "algebraic-within-group-bootstrap": 8.31508557622857,
+    "algebraic-contract-to-floor-records--y-axis": 8.25100556571423,
+    "algebraic-permute-relevant-columns": 0.02603111840000054,
+    "errorType": "mu",
+    "levelOfDegrade": 65,
+    "runId": 13
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 1.047511768336115,
+    "algebraic-within-group-bootstrap": 10.694159680457146,
+    "algebraic-contract-to-floor-records--y-axis": 10.478667371428601,
+    "algebraic-permute-relevant-columns": -0.07962040685714157,
+    "errorType": "mu",
+    "levelOfDegrade": 65,
+    "runId": 14
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.6380908470850494,
+    "algebraic-within-group-bootstrap": 9.572522883199998,
+    "algebraic-contract-to-floor-records--y-axis": 9.600380754285684,
+    "algebraic-permute-relevant-columns": 0.01702650331428714,
+    "errorType": "mu",
+    "levelOfDegrade": 65,
+    "runId": 15
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -1.201554294333053,
+    "algebraic-within-group-bootstrap": 8.375235872571432,
+    "algebraic-contract-to-floor-records--y-axis": 8.42467523428571,
+    "algebraic-permute-relevant-columns": -0.05068839611428814,
+    "errorType": "mu",
+    "levelOfDegrade": 65,
+    "runId": 16
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -1.1952431039584996,
+    "algebraic-within-group-bootstrap": 9.844495314628572,
+    "algebraic-contract-to-floor-records--y-axis": 9.665098960000023,
+    "algebraic-permute-relevant-columns": -0.16959351359999744,
+    "errorType": "mu",
+    "levelOfDegrade": 65,
+    "runId": 17
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.6881687895931649,
+    "algebraic-within-group-bootstrap": 6.658167353257145,
+    "algebraic-contract-to-floor-records--y-axis": 6.830054342857136,
+    "algebraic-permute-relevant-columns": 0.12453879337143178,
+    "errorType": "mu",
+    "levelOfDegrade": 65,
+    "runId": 18
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 1.0169170120876982,
+    "algebraic-within-group-bootstrap": 10.15958630651429,
+    "algebraic-contract-to-floor-records--y-axis": 10.372360319999984,
+    "algebraic-permute-relevant-columns": -0.37221063337142823,
+    "errorType": "mu",
+    "levelOfDegrade": 65,
+    "runId": 19
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.47323520332180263,
+    "algebraic-within-group-bootstrap": 13.5915549504,
+    "algebraic-contract-to-floor-records--y-axis": 13.514370914285768,
+    "algebraic-permute-relevant-columns": 0.068667628114286,
+    "errorType": "mu",
+    "levelOfDegrade": 75,
+    "runId": 0
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.9117865723844875,
+    "algebraic-within-group-bootstrap": 13.258497711657142,
+    "algebraic-contract-to-floor-records--y-axis": 13.286130868571409,
+    "algebraic-permute-relevant-columns": -0.11921531222857311,
+    "errorType": "mu",
+    "levelOfDegrade": 75,
+    "runId": 1
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -2.568281132319502,
+    "algebraic-within-group-bootstrap": 14.808359271771419,
+    "algebraic-contract-to-floor-records--y-axis": 14.988502537142876,
+    "algebraic-permute-relevant-columns": 0.24712405302857093,
+    "errorType": "mu",
+    "levelOfDegrade": 75,
+    "runId": 2
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.1949743533901207,
+    "algebraic-within-group-bootstrap": 12.832696336228576,
+    "algebraic-contract-to-floor-records--y-axis": 12.831337680000017,
+    "algebraic-permute-relevant-columns": -0.03722864388571565,
+    "errorType": "mu",
+    "levelOfDegrade": 75,
+    "runId": 3
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.3577344582460549,
+    "algebraic-within-group-bootstrap": 12.64844336708572,
+    "algebraic-contract-to-floor-records--y-axis": 12.548806411428579,
+    "algebraic-permute-relevant-columns": 0.43246410400000146,
+    "errorType": "mu",
+    "levelOfDegrade": 75,
+    "runId": 4
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 2.3619294545108147,
+    "algebraic-within-group-bootstrap": 14.570362845371426,
+    "algebraic-contract-to-floor-records--y-axis": 14.484078342857153,
+    "algebraic-permute-relevant-columns": -0.0634139412571426,
+    "errorType": "mu",
+    "levelOfDegrade": 75,
+    "runId": 5
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 2.1086540003640852,
+    "algebraic-within-group-bootstrap": 15.008182743542859,
+    "algebraic-contract-to-floor-records--y-axis": 15.093654297142848,
+    "algebraic-permute-relevant-columns": 0.1984895323428597,
+    "errorType": "mu",
+    "levelOfDegrade": 75,
+    "runId": 6
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -1.2073833627744142,
+    "algebraic-within-group-bootstrap": 14.596356616571434,
+    "algebraic-contract-to-floor-records--y-axis": 14.58455914285718,
+    "algebraic-permute-relevant-columns": -0.07452457234285731,
+    "errorType": "mu",
+    "levelOfDegrade": 75,
+    "runId": 7
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 1.3073940761542564,
+    "algebraic-within-group-bootstrap": 14.323922555314285,
+    "algebraic-contract-to-floor-records--y-axis": 14.435559714285752,
+    "algebraic-permute-relevant-columns": -0.323285034057144,
+    "errorType": "mu",
+    "levelOfDegrade": 75,
+    "runId": 8
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 1.0369608331739228,
+    "algebraic-within-group-bootstrap": 14.353798567085708,
+    "algebraic-contract-to-floor-records--y-axis": 14.25923677714286,
+    "algebraic-permute-relevant-columns": -0.08444760959999684,
+    "errorType": "mu",
+    "levelOfDegrade": 75,
+    "runId": 9
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.3462365199143491,
+    "algebraic-within-group-bootstrap": 13.825817270514285,
+    "algebraic-contract-to-floor-records--y-axis": 13.866934399999991,
+    "algebraic-permute-relevant-columns": 0.033946539428571613,
+    "errorType": "mu",
+    "levelOfDegrade": 75,
+    "runId": 10
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -3.4963955865457526,
+    "algebraic-within-group-bootstrap": 12.767110964342864,
+    "algebraic-contract-to-floor-records--y-axis": 13.067715337142795,
+    "algebraic-permute-relevant-columns": 0.1083245771428588,
+    "errorType": "mu",
+    "levelOfDegrade": 75,
+    "runId": 11
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.8868383437556585,
+    "algebraic-within-group-bootstrap": 15.921530111885716,
+    "algebraic-contract-to-floor-records--y-axis": 16.093682971428525,
+    "algebraic-permute-relevant-columns": -0.10004647657142812,
+    "errorType": "mu",
+    "levelOfDegrade": 75,
+    "runId": 12
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -2.373102967323276,
+    "algebraic-within-group-bootstrap": 15.130465678628573,
+    "algebraic-contract-to-floor-records--y-axis": 15.149632594285755,
+    "algebraic-permute-relevant-columns": -0.25005306811428624,
+    "errorType": "mu",
+    "levelOfDegrade": 75,
+    "runId": 13
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.9066689825090584,
+    "algebraic-within-group-bootstrap": 13.566572692,
+    "algebraic-contract-to-floor-records--y-axis": 13.676040868571386,
+    "algebraic-permute-relevant-columns": -0.14975642194285654,
+    "errorType": "mu",
+    "levelOfDegrade": 75,
+    "runId": 14
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -1.7581361666828186,
+    "algebraic-within-group-bootstrap": 14.380003712457144,
+    "algebraic-contract-to-floor-records--y-axis": 14.447158822857112,
+    "algebraic-permute-relevant-columns": -0.20571841759999843,
+    "errorType": "mu",
+    "levelOfDegrade": 75,
+    "runId": 15
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.2593547992801291,
+    "algebraic-within-group-bootstrap": 13.970279497371427,
+    "algebraic-contract-to-floor-records--y-axis": 13.965034057142852,
+    "algebraic-permute-relevant-columns": -0.11291462057142809,
+    "errorType": "mu",
+    "levelOfDegrade": 75,
+    "runId": 16
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -2.041562443481011,
+    "algebraic-within-group-bootstrap": 12.558182521714281,
+    "algebraic-contract-to-floor-records--y-axis": 12.469084548571434,
+    "algebraic-permute-relevant-columns": 0.0070863963428581655,
+    "errorType": "mu",
+    "levelOfDegrade": 75,
+    "runId": 17
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.31841930804827057,
+    "algebraic-within-group-bootstrap": 15.661536885371424,
+    "algebraic-contract-to-floor-records--y-axis": 15.76981159999998,
+    "algebraic-permute-relevant-columns": 0.09347083862857204,
+    "errorType": "mu",
+    "levelOfDegrade": 75,
+    "runId": 18
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.275008051703619,
+    "algebraic-within-group-bootstrap": 15.09780124937143,
+    "algebraic-contract-to-floor-records--y-axis": 15.331077622857187,
+    "algebraic-permute-relevant-columns": 0.16795661280000018,
+    "errorType": "mu",
+    "levelOfDegrade": 75,
+    "runId": 19
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -3.062132407846523,
+    "algebraic-within-group-bootstrap": -3.8425223255999983,
+    "algebraic-contract-to-floor-records--y-axis": -3.433834847999992,
+    "algebraic-permute-relevant-columns": 0.42598270891428597,
+    "errorType": "n",
+    "levelOfDegrade": 5,
+    "runId": 0
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -3.1824583037083864,
+    "algebraic-within-group-bootstrap": -3.9021533854857138,
+    "algebraic-contract-to-floor-records--y-axis": -3.8262929679999953,
+    "algebraic-permute-relevant-columns": -0.11112129074285405,
+    "errorType": "n",
+    "levelOfDegrade": 5,
+    "runId": 1
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": null,
+    "algebraic-within-group-bootstrap": -2.4185651710857146,
+    "algebraic-contract-to-floor-records--y-axis": -2.4479727931428545,
+    "algebraic-permute-relevant-columns": -0.1581506789714294,
+    "errorType": "n",
+    "levelOfDegrade": 5,
+    "runId": 2
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.8247810701169095,
+    "algebraic-within-group-bootstrap": -1.2958316825142848,
+    "algebraic-contract-to-floor-records--y-axis": -1.6939894639999955,
+    "algebraic-permute-relevant-columns": -0.34907328868571397,
+    "errorType": "n",
+    "levelOfDegrade": 5,
+    "runId": 3
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -2.086526082355866,
+    "algebraic-within-group-bootstrap": -2.521136906514285,
+    "algebraic-contract-to-floor-records--y-axis": -2.3941467942857297,
+    "algebraic-permute-relevant-columns": -0.14369830514285808,
+    "errorType": "n",
+    "levelOfDegrade": 5,
+    "runId": 4
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.964904857490209,
+    "algebraic-within-group-bootstrap": -0.5977377545142858,
+    "algebraic-contract-to-floor-records--y-axis": -1.0803030640000022,
+    "algebraic-permute-relevant-columns": -0.25783036948571464,
+    "errorType": "n",
+    "levelOfDegrade": 5,
+    "runId": 5
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 1.9691334725381404,
+    "algebraic-within-group-bootstrap": 2.1645078048000004,
+    "algebraic-contract-to-floor-records--y-axis": 1.981435840000003,
+    "algebraic-permute-relevant-columns": -0.5146808988571425,
+    "errorType": "n",
+    "levelOfDegrade": 5,
+    "runId": 6
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.13076629644679913,
+    "algebraic-within-group-bootstrap": 0.31783204228571404,
+    "algebraic-contract-to-floor-records--y-axis": 0.1312685188571362,
+    "algebraic-permute-relevant-columns": 0.31879994982856913,
+    "errorType": "n",
+    "levelOfDegrade": 5,
+    "runId": 7
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": null,
+    "algebraic-within-group-bootstrap": 1.02312766982857,
+    "algebraic-contract-to-floor-records--y-axis": 0.48235906857143024,
+    "algebraic-permute-relevant-columns": -0.13927990308571425,
+    "errorType": "n",
+    "levelOfDegrade": 5,
+    "runId": 8
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -3.0184714208993126,
+    "algebraic-within-group-bootstrap": -3.706481214171429,
+    "algebraic-contract-to-floor-records--y-axis": -3.431218701714276,
+    "algebraic-permute-relevant-columns": -0.02508407942857275,
+    "errorType": "n",
+    "levelOfDegrade": 5,
+    "runId": 9
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 2.825453482021984,
+    "algebraic-within-group-bootstrap": 4.069405349257141,
+    "algebraic-contract-to-floor-records--y-axis": 3.948827419428568,
+    "algebraic-permute-relevant-columns": 0.32521750697142693,
+    "errorType": "n",
+    "levelOfDegrade": 5,
+    "runId": 10
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -1.8286536293162041,
+    "algebraic-within-group-bootstrap": -2.0140345763428567,
+    "algebraic-contract-to-floor-records--y-axis": -2.68074014742858,
+    "algebraic-permute-relevant-columns": 0.7027004198857145,
+    "errorType": "n",
+    "levelOfDegrade": 5,
+    "runId": 11
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -4.161879347950563,
+    "algebraic-within-group-bootstrap": -4.543092360685714,
+    "algebraic-contract-to-floor-records--y-axis": -5.3480531702857,
+    "algebraic-permute-relevant-columns": -0.229799365485716,
+    "errorType": "n",
+    "levelOfDegrade": 5,
+    "runId": 12
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.3359568119004848,
+    "algebraic-within-group-bootstrap": -0.6792628173714271,
+    "algebraic-contract-to-floor-records--y-axis": -0.3261691439999973,
+    "algebraic-permute-relevant-columns": -0.14749612411428528,
+    "errorType": "n",
+    "levelOfDegrade": 5,
+    "runId": 13
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": null,
+    "algebraic-within-group-bootstrap": 0.4858740965714301,
+    "algebraic-contract-to-floor-records--y-axis": 0.6910368537142793,
+    "algebraic-permute-relevant-columns": -0.08219847005714115,
+    "errorType": "n",
+    "levelOfDegrade": 5,
+    "runId": 14
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": null,
+    "algebraic-within-group-bootstrap": 1.419117329600001,
+    "algebraic-contract-to-floor-records--y-axis": 1.4267287520000014,
+    "algebraic-permute-relevant-columns": -0.41123565268571527,
+    "errorType": "n",
+    "levelOfDegrade": 5,
+    "runId": 15
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 2.2097276429543316,
+    "algebraic-within-group-bootstrap": 2.781190534399998,
+    "algebraic-contract-to-floor-records--y-axis": 2.4045709565714306,
+    "algebraic-permute-relevant-columns": -0.18309738879999743,
+    "errorType": "n",
+    "levelOfDegrade": 5,
+    "runId": 16
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -2.7916390268138995,
+    "algebraic-within-group-bootstrap": -3.1143318275428595,
+    "algebraic-contract-to-floor-records--y-axis": -2.923141532571439,
+    "algebraic-permute-relevant-columns": 0.2193946971428585,
+    "errorType": "n",
+    "levelOfDegrade": 5,
+    "runId": 17
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 3.592556896898907,
+    "algebraic-within-group-bootstrap": 4.943514799314291,
+    "algebraic-contract-to-floor-records--y-axis": 5.237834210285731,
+    "algebraic-permute-relevant-columns": -0.3622916187428581,
+    "errorType": "n",
+    "levelOfDegrade": 5,
+    "runId": 18
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.5972193740239681,
+    "algebraic-within-group-bootstrap": 1.7035353924571437,
+    "algebraic-contract-to-floor-records--y-axis": 1.8963385554285752,
+    "algebraic-permute-relevant-columns": 0.51715271577143,
+    "errorType": "n",
+    "levelOfDegrade": 5,
+    "runId": 19
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.163267782322705,
+    "algebraic-within-group-bootstrap": -0.024697850857143634,
+    "algebraic-contract-to-floor-records--y-axis": -0.0957290281904946,
+    "algebraic-permute-relevant-columns": -0.08096311660952296,
+    "errorType": "n",
+    "levelOfDegrade": 15,
+    "runId": 0
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.5369125567772977,
+    "algebraic-within-group-bootstrap": -0.8680294724571399,
+    "algebraic-contract-to-floor-records--y-axis": -0.5044272274285763,
+    "algebraic-permute-relevant-columns": -0.028788803390477825,
+    "errorType": "n",
+    "levelOfDegrade": 15,
+    "runId": 1
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.3433335763112603,
+    "algebraic-within-group-bootstrap": -0.7226356895619063,
+    "algebraic-contract-to-floor-records--y-axis": -0.6992660396190348,
+    "algebraic-permute-relevant-columns": 0.1504419307047624,
+    "errorType": "n",
+    "levelOfDegrade": 15,
+    "runId": 2
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 2.1393291163313206,
+    "algebraic-within-group-bootstrap": 4.402368708533331,
+    "algebraic-contract-to-floor-records--y-axis": 4.514791391619046,
+    "algebraic-permute-relevant-columns": 0.013461423695236192,
+    "errorType": "n",
+    "levelOfDegrade": 15,
+    "runId": 3
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 1.06198748271322,
+    "algebraic-within-group-bootstrap": 2.085992656038096,
+    "algebraic-contract-to-floor-records--y-axis": 1.8462661679999963,
+    "algebraic-permute-relevant-columns": 0.013651032228571012,
+    "errorType": "n",
+    "levelOfDegrade": 15,
+    "runId": 4
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.19070373365270285,
+    "algebraic-within-group-bootstrap": 0.39240415847619003,
+    "algebraic-contract-to-floor-records--y-axis": 0.6142611257142838,
+    "algebraic-permute-relevant-columns": 0.012732905676190853,
+    "errorType": "n",
+    "levelOfDegrade": 15,
+    "runId": 5
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.37900877868552074,
+    "algebraic-within-group-bootstrap": 0.054185784685714965,
+    "algebraic-contract-to-floor-records--y-axis": -0.18132551961904397,
+    "algebraic-permute-relevant-columns": 0.20572678575238057,
+    "errorType": "n",
+    "levelOfDegrade": 15,
+    "runId": 6
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.15128169187423027,
+    "algebraic-within-group-bootstrap": 0.16119003436190524,
+    "algebraic-contract-to-floor-records--y-axis": 0.23002746742857597,
+    "algebraic-permute-relevant-columns": 0.12066833565714148,
+    "errorType": "n",
+    "levelOfDegrade": 15,
+    "runId": 7
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.17669295723258954,
+    "algebraic-within-group-bootstrap": -0.1562012022476185,
+    "algebraic-contract-to-floor-records--y-axis": -0.34645034438094713,
+    "algebraic-permute-relevant-columns": -0.17153021946666855,
+    "errorType": "n",
+    "levelOfDegrade": 15,
+    "runId": 8
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.27891802121125636,
+    "algebraic-within-group-bootstrap": 0.4518493646476185,
+    "algebraic-contract-to-floor-records--y-axis": 0.271596567238106,
+    "algebraic-permute-relevant-columns": -0.013758665790475959,
+    "errorType": "n",
+    "levelOfDegrade": 15,
+    "runId": 9
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.3404846078833782,
+    "algebraic-within-group-bootstrap": 1.4335485342095238,
+    "algebraic-contract-to-floor-records--y-axis": 1.2443370316190545,
+    "algebraic-permute-relevant-columns": -0.021922836990476924,
+    "errorType": "n",
+    "levelOfDegrade": 15,
+    "runId": 10
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.9586165254085176,
+    "algebraic-within-group-bootstrap": 1.3660994799238069,
+    "algebraic-contract-to-floor-records--y-axis": 1.3592672716190328,
+    "algebraic-permute-relevant-columns": -0.3189423203809511,
+    "errorType": "n",
+    "levelOfDegrade": 15,
+    "runId": 11
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -1.289767962844394,
+    "algebraic-within-group-bootstrap": -2.8601796971428564,
+    "algebraic-contract-to-floor-records--y-axis": -3.0730323192380973,
+    "algebraic-permute-relevant-columns": 0.2806729961523811,
+    "errorType": "n",
+    "levelOfDegrade": 15,
+    "runId": 12
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.6866833260951211,
+    "algebraic-within-group-bootstrap": -1.500639506742858,
+    "algebraic-contract-to-floor-records--y-axis": -1.725812394285718,
+    "algebraic-permute-relevant-columns": 0.34759538803809475,
+    "errorType": "n",
+    "levelOfDegrade": 15,
+    "runId": 13
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.7719266469268337,
+    "algebraic-within-group-bootstrap": 0.443700623276192,
+    "algebraic-contract-to-floor-records--y-axis": 0.801755081523803,
+    "algebraic-permute-relevant-columns": 0.18408545550475935,
+    "errorType": "n",
+    "levelOfDegrade": 15,
+    "runId": 14
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -1.3148961699910413,
+    "algebraic-within-group-bootstrap": -2.2964190441523815,
+    "algebraic-contract-to-floor-records--y-axis": -2.2788774320000105,
+    "algebraic-permute-relevant-columns": 0.08610763352381128,
+    "errorType": "n",
+    "levelOfDegrade": 15,
+    "runId": 15
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.8176004010491925,
+    "algebraic-within-group-bootstrap": 1.7305460814095246,
+    "algebraic-contract-to-floor-records--y-axis": 1.706192355428588,
+    "algebraic-permute-relevant-columns": -0.16743190163809601,
+    "errorType": "n",
+    "levelOfDegrade": 15,
+    "runId": 16
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.7947990402731557,
+    "algebraic-within-group-bootstrap": 1.0148719738285705,
+    "algebraic-contract-to-floor-records--y-axis": 1.0787726240000075,
+    "algebraic-permute-relevant-columns": 0.0777416590476173,
+    "errorType": "n",
+    "levelOfDegrade": 15,
+    "runId": 17
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.2918562885789345,
+    "algebraic-within-group-bootstrap": 1.0490541717714277,
+    "algebraic-contract-to-floor-records--y-axis": 0.7744031699047704,
+    "algebraic-permute-relevant-columns": 0.0030418089523797675,
+    "errorType": "n",
+    "levelOfDegrade": 15,
+    "runId": 18
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.2599997456066174,
+    "algebraic-within-group-bootstrap": 0.2953120676571419,
+    "algebraic-contract-to-floor-records--y-axis": 0.34931671885715415,
+    "algebraic-permute-relevant-columns": -0.04343783615238124,
+    "errorType": "n",
+    "levelOfDegrade": 15,
+    "runId": 19
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.2785562701426059,
+    "algebraic-within-group-bootstrap": -1.3466284001142832,
+    "algebraic-contract-to-floor-records--y-axis": -1.4456071673142878,
+    "algebraic-permute-relevant-columns": -0.008702613485712902,
+    "errorType": "n",
+    "levelOfDegrade": 25,
+    "runId": 0
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.23282084057666397,
+    "algebraic-within-group-bootstrap": -0.9866650830857128,
+    "algebraic-contract-to-floor-records--y-axis": -1.3784445641142735,
+    "algebraic-permute-relevant-columns": 0.041077304685715035,
+    "errorType": "n",
+    "levelOfDegrade": 25,
+    "runId": 1
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.2663694399474892,
+    "algebraic-within-group-bootstrap": -2.309264025714285,
+    "algebraic-contract-to-floor-records--y-axis": -1.9529720891428481,
+    "algebraic-permute-relevant-columns": 0.1327804019428558,
+    "errorType": "n",
+    "levelOfDegrade": 25,
+    "runId": 2
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.6010077925051346,
+    "algebraic-within-group-bootstrap": 0.7426917964571416,
+    "algebraic-contract-to-floor-records--y-axis": 0.934241514285707,
+    "algebraic-permute-relevant-columns": 0.09581647188571424,
+    "errorType": "n",
+    "levelOfDegrade": 25,
+    "runId": 3
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.428298167114728,
+    "algebraic-within-group-bootstrap": -1.4972508795428596,
+    "algebraic-contract-to-floor-records--y-axis": -1.6491035661714286,
+    "algebraic-permute-relevant-columns": 0.026134610514285724,
+    "errorType": "n",
+    "levelOfDegrade": 25,
+    "runId": 4
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.2120517458601205,
+    "algebraic-within-group-bootstrap": -0.27323359999999897,
+    "algebraic-contract-to-floor-records--y-axis": 0.06664012845712904,
+    "algebraic-permute-relevant-columns": -0.0649204898285737,
+    "errorType": "n",
+    "levelOfDegrade": 25,
+    "runId": 5
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.13354689110974022,
+    "algebraic-within-group-bootstrap": -1.2107176656000007,
+    "algebraic-contract-to-floor-records--y-axis": -1.291048394742853,
+    "algebraic-permute-relevant-columns": 0.13097488365714127,
+    "errorType": "n",
+    "levelOfDegrade": 25,
+    "runId": 6
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.10255587510027027,
+    "algebraic-within-group-bootstrap": -0.7798726289142865,
+    "algebraic-contract-to-floor-records--y-axis": -0.7807819330285519,
+    "algebraic-permute-relevant-columns": -0.051735664342855044,
+    "errorType": "n",
+    "levelOfDegrade": 25,
+    "runId": 7
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 1.543403862830922,
+    "algebraic-within-group-bootstrap": 2.4980302866285715,
+    "algebraic-contract-to-floor-records--y-axis": 2.4903653040000013,
+    "algebraic-permute-relevant-columns": 0.16110395428571422,
+    "errorType": "n",
+    "levelOfDegrade": 25,
+    "runId": 8
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.13149601511870912,
+    "algebraic-within-group-bootstrap": -0.6748175529142861,
+    "algebraic-contract-to-floor-records--y-axis": -0.5915421819428588,
+    "algebraic-permute-relevant-columns": -0.07945848377142681,
+    "errorType": "n",
+    "levelOfDegrade": 25,
+    "runId": 9
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.12971399272549633,
+    "algebraic-within-group-bootstrap": -0.4069272582857167,
+    "algebraic-contract-to-floor-records--y-axis": -0.5763854603428464,
+    "algebraic-permute-relevant-columns": 0.0057572513142869755,
+    "errorType": "n",
+    "levelOfDegrade": 25,
+    "runId": 10
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.541241839907164,
+    "algebraic-within-group-bootstrap": -1.4972125610285716,
+    "algebraic-contract-to-floor-records--y-axis": -1.2829121426285583,
+    "algebraic-permute-relevant-columns": -0.1336713846857134,
+    "errorType": "n",
+    "levelOfDegrade": 25,
+    "runId": 11
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.18565105604160492,
+    "algebraic-within-group-bootstrap": -0.5479085601142839,
+    "algebraic-contract-to-floor-records--y-axis": -0.4066139042285695,
+    "algebraic-permute-relevant-columns": 0.11253897542856947,
+    "errorType": "n",
+    "levelOfDegrade": 25,
+    "runId": 12
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.007192427193550372,
+    "algebraic-within-group-bootstrap": 0.4339889260571411,
+    "algebraic-contract-to-floor-records--y-axis": 0.3076687113142947,
+    "algebraic-permute-relevant-columns": 0.11167841154285554,
+    "errorType": "n",
+    "levelOfDegrade": 25,
+    "runId": 13
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.17571220022763925,
+    "algebraic-within-group-bootstrap": -0.8638350690285699,
+    "algebraic-contract-to-floor-records--y-axis": -0.9356254223999971,
+    "algebraic-permute-relevant-columns": 0.09219834628571448,
+    "errorType": "n",
+    "levelOfDegrade": 25,
+    "runId": 14
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.6014484923545157,
+    "algebraic-within-group-bootstrap": 1.4084276807999994,
+    "algebraic-contract-to-floor-records--y-axis": 1.1769972493714258,
+    "algebraic-permute-relevant-columns": 0.17294359931428488,
+    "errorType": "n",
+    "levelOfDegrade": 25,
+    "runId": 15
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.47736721335703947,
+    "algebraic-within-group-bootstrap": -1.211546644114284,
+    "algebraic-contract-to-floor-records--y-axis": -1.2338365917714291,
+    "algebraic-permute-relevant-columns": -0.10096679051428566,
+    "errorType": "n",
+    "levelOfDegrade": 25,
+    "runId": 16
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.08000151917094314,
+    "algebraic-within-group-bootstrap": 0.17791841599999914,
+    "algebraic-contract-to-floor-records--y-axis": -0.0168487028571505,
+    "algebraic-permute-relevant-columns": 0.1288341747428589,
+    "errorType": "n",
+    "levelOfDegrade": 25,
+    "runId": 17
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.02876381532633303,
+    "algebraic-within-group-bootstrap": 0.22930429691428514,
+    "algebraic-contract-to-floor-records--y-axis": 0.05388007657144271,
+    "algebraic-permute-relevant-columns": -0.1563014599999994,
+    "errorType": "n",
+    "levelOfDegrade": 25,
+    "runId": 18
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.3529595330766838,
+    "algebraic-within-group-bootstrap": 1.5451577110857146,
+    "algebraic-contract-to-floor-records--y-axis": 1.4642318815999955,
+    "algebraic-permute-relevant-columns": 0.20872882868571452,
+    "errorType": "n",
+    "levelOfDegrade": 25,
+    "runId": 19
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 5,
+    "runId": 0
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 5,
+    "runId": 1
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 5,
+    "runId": 2
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 5,
+    "runId": 3
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 5,
+    "runId": 4
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 5,
+    "runId": 5
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 5,
+    "runId": 6
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 5,
+    "runId": 7
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 5,
+    "runId": 8
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 5,
+    "runId": 9
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 5,
+    "runId": 10
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 5,
+    "runId": 11
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 5,
+    "runId": 12
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 5,
+    "runId": 13
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 5,
+    "runId": 14
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 5,
+    "runId": 15
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 5,
+    "runId": 16
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 5,
+    "runId": 17
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 5,
+    "runId": 18
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 5,
+    "runId": 19
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 10,
+    "runId": 0
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 10,
+    "runId": 1
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 10,
+    "runId": 2
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 10,
+    "runId": 3
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 10,
+    "runId": 4
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 10,
+    "runId": 5
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 10,
+    "runId": 6
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 10,
+    "runId": 7
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 10,
+    "runId": 8
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 10,
+    "runId": 9
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 10,
+    "runId": 10
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 10,
+    "runId": 11
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 10,
+    "runId": 12
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 10,
+    "runId": 13
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 10,
+    "runId": 14
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 10,
+    "runId": 15
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 10,
+    "runId": 16
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 10,
+    "runId": 17
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 10,
+    "runId": 18
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 10,
+    "runId": 19
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 15,
+    "runId": 0
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 15,
+    "runId": 1
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 15,
+    "runId": 2
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 15,
+    "runId": 3
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 15,
+    "runId": 4
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 15,
+    "runId": 5
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 15,
+    "runId": 6
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 15,
+    "runId": 7
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 15,
+    "runId": 8
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 15,
+    "runId": 9
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 15,
+    "runId": 10
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 15,
+    "runId": 11
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 15,
+    "runId": 12
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 15,
+    "runId": 13
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 15,
+    "runId": 14
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 15,
+    "runId": 15
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 15,
+    "runId": 16
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 15,
+    "runId": 17
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 15,
+    "runId": 18
+  },
+  {
+    "errorType": "od",
+    "levelOfDegrade": 15,
+    "runId": 19
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.1645466915686916,
+    "algebraic-within-group-bootstrap": 1.6399391049142875,
+    "algebraic-contract-to-floor-records--y-axis": 1.628921565714279,
+    "algebraic-permute-relevant-columns": -0.07507296457142815,
+    "errorType": "sd",
+    "levelOfDegrade": 15,
+    "runId": 0
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.05563101988649549,
+    "algebraic-within-group-bootstrap": 2.391101501485715,
+    "algebraic-contract-to-floor-records--y-axis": 2.298781439999999,
+    "algebraic-permute-relevant-columns": 0.19927588091428305,
+    "errorType": "sd",
+    "levelOfDegrade": 15,
+    "runId": 1
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.3678317263146593,
+    "algebraic-within-group-bootstrap": 2.573117981599999,
+    "algebraic-contract-to-floor-records--y-axis": 2.461766765714259,
+    "algebraic-permute-relevant-columns": -0.18177701622857056,
+    "errorType": "sd",
+    "levelOfDegrade": 15,
+    "runId": 2
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.0015726808874555332,
+    "algebraic-within-group-bootstrap": -1.7188922698285711,
+    "algebraic-contract-to-floor-records--y-axis": -1.6664849828571278,
+    "algebraic-permute-relevant-columns": 0.23224930171428668,
+    "errorType": "sd",
+    "levelOfDegrade": 15,
+    "runId": 3
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.2548561292292868,
+    "algebraic-within-group-bootstrap": -1.6339566299428565,
+    "algebraic-contract-to-floor-records--y-axis": -1.4612274628571242,
+    "algebraic-permute-relevant-columns": -0.06961420228571341,
+    "errorType": "sd",
+    "levelOfDegrade": 15,
+    "runId": 4
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.20763871644616558,
+    "algebraic-within-group-bootstrap": -0.0000791558857150676,
+    "algebraic-contract-to-floor-records--y-axis": -0.06744457142858096,
+    "algebraic-permute-relevant-columns": 0.1629795398857155,
+    "errorType": "sd",
+    "levelOfDegrade": 15,
+    "runId": 5
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.21954028553456026,
+    "algebraic-within-group-bootstrap": 1.9053528116571434,
+    "algebraic-contract-to-floor-records--y-axis": 1.8898845828571496,
+    "algebraic-permute-relevant-columns": 0.17782605440000027,
+    "errorType": "sd",
+    "levelOfDegrade": 15,
+    "runId": 6
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.08596364305829951,
+    "algebraic-within-group-bootstrap": 1.1328811501714293,
+    "algebraic-contract-to-floor-records--y-axis": 1.045651451428597,
+    "algebraic-permute-relevant-columns": 0.12917295222857036,
+    "errorType": "sd",
+    "levelOfDegrade": 15,
+    "runId": 7
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.16657054859296266,
+    "algebraic-within-group-bootstrap": 1.9639634610285697,
+    "algebraic-contract-to-floor-records--y-axis": 1.9814643428571515,
+    "algebraic-permute-relevant-columns": 0.029396461257144325,
+    "errorType": "sd",
+    "levelOfDegrade": 15,
+    "runId": 8
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.11371944315459757,
+    "algebraic-within-group-bootstrap": -0.7325208942857191,
+    "algebraic-contract-to-floor-records--y-axis": -0.7436020000000099,
+    "algebraic-permute-relevant-columns": -0.01032602994285753,
+    "errorType": "sd",
+    "levelOfDegrade": 15,
+    "runId": 9
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.028387711509477925,
+    "algebraic-within-group-bootstrap": -0.6419149540628578,
+    "algebraic-contract-to-floor-records--y-axis": -0.7131189902857216,
+    "algebraic-permute-relevant-columns": 0.13959379854857076,
+    "errorType": "sd",
+    "levelOfDegrade": 15,
+    "runId": 10
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.11846223049741894,
+    "algebraic-within-group-bootstrap": -0.2000184483428558,
+    "algebraic-contract-to-floor-records--y-axis": -0.33309251428570974,
+    "algebraic-permute-relevant-columns": 0.046728822400000355,
+    "errorType": "sd",
+    "levelOfDegrade": 15,
+    "runId": 11
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.027662253079208485,
+    "algebraic-within-group-bootstrap": -0.7767743104000019,
+    "algebraic-contract-to-floor-records--y-axis": -0.789570388571434,
+    "algebraic-permute-relevant-columns": 0.18117628822857426,
+    "errorType": "sd",
+    "levelOfDegrade": 15,
+    "runId": 12
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.11920582470908102,
+    "algebraic-within-group-bootstrap": -0.36830714765714245,
+    "algebraic-contract-to-floor-records--y-axis": -0.48697673142856956,
+    "algebraic-permute-relevant-columns": 0.09895685828571402,
+    "errorType": "sd",
+    "levelOfDegrade": 15,
+    "runId": 13
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.41411728834219785,
+    "algebraic-within-group-bootstrap": 2.2178486439999996,
+    "algebraic-contract-to-floor-records--y-axis": 2.3477721371428686,
+    "algebraic-permute-relevant-columns": -0.15390969188571318,
+    "errorType": "sd",
+    "levelOfDegrade": 15,
+    "runId": 14
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.002347957721349587,
+    "algebraic-within-group-bootstrap": 0.5695183496000032,
+    "algebraic-contract-to-floor-records--y-axis": 0.5476348800000039,
+    "algebraic-permute-relevant-columns": 0.17800914057142678,
+    "errorType": "sd",
+    "levelOfDegrade": 15,
+    "runId": 15
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.24990814684065782,
+    "algebraic-within-group-bootstrap": 2.5994848928000014,
+    "algebraic-contract-to-floor-records--y-axis": 2.6428269942857128,
+    "algebraic-permute-relevant-columns": -0.19189813097142833,
+    "errorType": "sd",
+    "levelOfDegrade": 15,
+    "runId": 16
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.0038465002729964224,
+    "algebraic-within-group-bootstrap": -1.8920715291428576,
+    "algebraic-contract-to-floor-records--y-axis": -1.7462295771428558,
+    "algebraic-permute-relevant-columns": 0.0890933999999993,
+    "errorType": "sd",
+    "levelOfDegrade": 15,
+    "runId": 17
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.3157561847140562,
+    "algebraic-within-group-bootstrap": 2.6718502380571407,
+    "algebraic-contract-to-floor-records--y-axis": 2.639671817142869,
+    "algebraic-permute-relevant-columns": 0.1901513988571415,
+    "errorType": "sd",
+    "levelOfDegrade": 15,
+    "runId": 18
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.05363818313331535,
+    "algebraic-within-group-bootstrap": 0.871506920457141,
+    "algebraic-contract-to-floor-records--y-axis": 0.9020546285714488,
+    "algebraic-permute-relevant-columns": 0.04867106262857277,
+    "errorType": "sd",
+    "levelOfDegrade": 15,
+    "runId": 19
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.35972691689775504,
+    "algebraic-within-group-bootstrap": 5.816850993142859,
+    "algebraic-contract-to-floor-records--y-axis": 5.771257702857156,
+    "algebraic-permute-relevant-columns": -0.1087128761142847,
+    "errorType": "sd",
+    "levelOfDegrade": 20,
+    "runId": 0
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.13153766251123783,
+    "algebraic-within-group-bootstrap": -2.2539173433142854,
+    "algebraic-contract-to-floor-records--y-axis": -2.3378402400000198,
+    "algebraic-permute-relevant-columns": -0.15020244480000003,
+    "errorType": "sd",
+    "levelOfDegrade": 20,
+    "runId": 1
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.11520255528729137,
+    "algebraic-within-group-bootstrap": -1.3102421581028583,
+    "algebraic-contract-to-floor-records--y-axis": -1.312163213714257,
+    "algebraic-permute-relevant-columns": -0.05143005074285696,
+    "errorType": "sd",
+    "levelOfDegrade": 20,
+    "runId": 2
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.15141071970628645,
+    "algebraic-within-group-bootstrap": 0.5727373890742848,
+    "algebraic-contract-to-floor-records--y-axis": 0.582435156571421,
+    "algebraic-permute-relevant-columns": 0.20234944553142725,
+    "errorType": "sd",
+    "levelOfDegrade": 20,
+    "runId": 3
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.2263027704678106,
+    "algebraic-within-group-bootstrap": -0.5299370381279991,
+    "algebraic-contract-to-floor-records--y-axis": -0.4086439842285756,
+    "algebraic-permute-relevant-columns": 0.2754329316251406,
+    "errorType": "sd",
+    "levelOfDegrade": 20,
+    "runId": 4
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.15908637855281654,
+    "algebraic-within-group-bootstrap": -0.015566372342855175,
+    "algebraic-contract-to-floor-records--y-axis": 0.0515580685714383,
+    "algebraic-permute-relevant-columns": -0.12556537805714213,
+    "errorType": "sd",
+    "levelOfDegrade": 20,
+    "runId": 5
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.051660002403921795,
+    "algebraic-within-group-bootstrap": 0.2838838905142842,
+    "algebraic-contract-to-floor-records--y-axis": 0.036127942857149264,
+    "algebraic-permute-relevant-columns": 0.3202307412571423,
+    "errorType": "sd",
+    "levelOfDegrade": 20,
+    "runId": 6
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.0313517079147681,
+    "algebraic-within-group-bootstrap": 1.5975124169188595,
+    "algebraic-contract-to-floor-records--y-axis": 1.4849531401142713,
+    "algebraic-permute-relevant-columns": 0.052314688832000515,
+    "errorType": "sd",
+    "levelOfDegrade": 20,
+    "runId": 7
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.019940725524277808,
+    "algebraic-within-group-bootstrap": 3.059758762857143,
+    "algebraic-contract-to-floor-records--y-axis": 2.8313411314285872,
+    "algebraic-permute-relevant-columns": -0.3349656932571435,
+    "errorType": "sd",
+    "levelOfDegrade": 20,
+    "runId": 8
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.5317834759463992,
+    "algebraic-within-group-bootstrap": 3.764505956457141,
+    "algebraic-contract-to-floor-records--y-axis": 3.984248205714266,
+    "algebraic-permute-relevant-columns": 0.08491164159999698,
+    "errorType": "sd",
+    "levelOfDegrade": 20,
+    "runId": 9
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.31922224541490807,
+    "algebraic-within-group-bootstrap": -0.18489821389714592,
+    "algebraic-contract-to-floor-records--y-axis": -0.5493442834285815,
+    "algebraic-permute-relevant-columns": 0.28601563515428496,
+    "errorType": "sd",
+    "levelOfDegrade": 20,
+    "runId": 10
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.10738519329379927,
+    "algebraic-within-group-bootstrap": -0.38537693237714393,
+    "algebraic-contract-to-floor-records--y-axis": -0.36153982514284166,
+    "algebraic-permute-relevant-columns": -0.013026280868570267,
+    "errorType": "sd",
+    "levelOfDegrade": 20,
+    "runId": 11
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.18947765703502653,
+    "algebraic-within-group-bootstrap": -1.965322408457144,
+    "algebraic-contract-to-floor-records--y-axis": -2.3563337942857174,
+    "algebraic-permute-relevant-columns": -0.33600118560000053,
+    "errorType": "sd",
+    "levelOfDegrade": 20,
+    "runId": 12
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.16530486597626037,
+    "algebraic-within-group-bootstrap": -0.6727860486514282,
+    "algebraic-contract-to-floor-records--y-axis": -0.7196507782857111,
+    "algebraic-permute-relevant-columns": -0.4310891224228564,
+    "errorType": "sd",
+    "levelOfDegrade": 20,
+    "runId": 13
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.49792846824021436,
+    "algebraic-within-group-bootstrap": -3.8412017169142842,
+    "algebraic-contract-to-floor-records--y-axis": -3.8153814628571094,
+    "algebraic-permute-relevant-columns": 0.04369927062857101,
+    "errorType": "sd",
+    "levelOfDegrade": 20,
+    "runId": 14
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.26733322749344124,
+    "algebraic-within-group-bootstrap": -2.375324600251427,
+    "algebraic-contract-to-floor-records--y-axis": -2.3001322817371204,
+    "algebraic-permute-relevant-columns": 0.031591011736684604,
+    "errorType": "sd",
+    "levelOfDegrade": 20,
+    "runId": 15
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.12798679747305955,
+    "algebraic-within-group-bootstrap": 1.7471756759999988,
+    "algebraic-contract-to-floor-records--y-axis": 1.6786331771428706,
+    "algebraic-permute-relevant-columns": 0.350250851200002,
+    "errorType": "sd",
+    "levelOfDegrade": 20,
+    "runId": 16
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.06213198892044147,
+    "algebraic-within-group-bootstrap": 0.3017618723314288,
+    "algebraic-contract-to-floor-records--y-axis": 0.4899753520000161,
+    "algebraic-permute-relevant-columns": -0.16108907465142808,
+    "errorType": "sd",
+    "levelOfDegrade": 20,
+    "runId": 17
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.05964547575491025,
+    "algebraic-within-group-bootstrap": -0.442774237257141,
+    "algebraic-contract-to-floor-records--y-axis": -0.5345786514285749,
+    "algebraic-permute-relevant-columns": 0.10928508251428895,
+    "errorType": "sd",
+    "levelOfDegrade": 20,
+    "runId": 18
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.3438785080502663,
+    "algebraic-within-group-bootstrap": -1.7147114683840001,
+    "algebraic-contract-to-floor-records--y-axis": -1.2712482212571388,
+    "algebraic-permute-relevant-columns": -0.31273798817828635,
+    "errorType": "sd",
+    "levelOfDegrade": 20,
+    "runId": 19
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.12707518772324164,
+    "algebraic-within-group-bootstrap": 1.415496452114283,
+    "algebraic-contract-to-floor-records--y-axis": 1.4364607737142876,
+    "algebraic-permute-relevant-columns": 0.08604176774857195,
+    "errorType": "sd",
+    "levelOfDegrade": 25,
+    "runId": 0
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.4480966044855495,
+    "algebraic-within-group-bootstrap": 0.33775487366857104,
+    "algebraic-contract-to-floor-records--y-axis": 0.3129417097142664,
+    "algebraic-permute-relevant-columns": 0.26935724178285453,
+    "errorType": "sd",
+    "levelOfDegrade": 25,
+    "runId": 1
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.15227834976089696,
+    "algebraic-within-group-bootstrap": -0.4865451381714294,
+    "algebraic-contract-to-floor-records--y-axis": -0.014058799999986604,
+    "algebraic-permute-relevant-columns": -0.13552257417143068,
+    "errorType": "sd",
+    "levelOfDegrade": 25,
+    "runId": 2
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.12117009031470247,
+    "algebraic-within-group-bootstrap": -1.1170923451428572,
+    "algebraic-contract-to-floor-records--y-axis": -1.1905479622857342,
+    "algebraic-permute-relevant-columns": -0.5566041352228575,
+    "errorType": "sd",
+    "levelOfDegrade": 25,
+    "runId": 3
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.44856965143537564,
+    "algebraic-within-group-bootstrap": 0.8359289726628569,
+    "algebraic-contract-to-floor-records--y-axis": 0.8900359520000052,
+    "algebraic-permute-relevant-columns": -0.03651978866285617,
+    "errorType": "sd",
+    "levelOfDegrade": 25,
+    "runId": 4
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.1575461841865868,
+    "algebraic-within-group-bootstrap": 0.5284851981142853,
+    "algebraic-contract-to-floor-records--y-axis": 0.4483872619428553,
+    "algebraic-permute-relevant-columns": -0.1250193637851413,
+    "errorType": "sd",
+    "levelOfDegrade": 25,
+    "runId": 5
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.11117735840335001,
+    "algebraic-within-group-bootstrap": 1.6611410673142861,
+    "algebraic-contract-to-floor-records--y-axis": 1.965028994285717,
+    "algebraic-permute-relevant-columns": -0.1621517549714298,
+    "errorType": "sd",
+    "levelOfDegrade": 25,
+    "runId": 6
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.20423164421844034,
+    "algebraic-within-group-bootstrap": -0.4236000078251422,
+    "algebraic-contract-to-floor-records--y-axis": -0.29170610030857347,
+    "algebraic-permute-relevant-columns": -0.06894211629188533,
+    "errorType": "sd",
+    "levelOfDegrade": 25,
+    "runId": 7
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.1402296580154399,
+    "algebraic-within-group-bootstrap": -4.034108130948573,
+    "algebraic-contract-to-floor-records--y-axis": -4.000139069714294,
+    "algebraic-permute-relevant-columns": -0.243150443794286,
+    "errorType": "sd",
+    "levelOfDegrade": 25,
+    "runId": 8
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.16117461245279002,
+    "algebraic-within-group-bootstrap": -0.7481538418011414,
+    "algebraic-contract-to-floor-records--y-axis": -0.7481277104000128,
+    "algebraic-permute-relevant-columns": 0.15158695949714088,
+    "errorType": "sd",
+    "levelOfDegrade": 25,
+    "runId": 9
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.16644440623406098,
+    "algebraic-within-group-bootstrap": -0.8635679654514294,
+    "algebraic-contract-to-floor-records--y-axis": -1.039387271999999,
+    "algebraic-permute-relevant-columns": -0.029423290400000895,
+    "errorType": "sd",
+    "levelOfDegrade": 25,
+    "runId": 10
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.03139278609427862,
+    "algebraic-within-group-bootstrap": 0.32954516907428627,
+    "algebraic-contract-to-floor-records--y-axis": 0.21263927085712453,
+    "algebraic-permute-relevant-columns": 0.18096390569143067,
+    "errorType": "sd",
+    "levelOfDegrade": 25,
+    "runId": 11
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 0.0692589823891754,
+    "algebraic-within-group-bootstrap": 1.1899649901485736,
+    "algebraic-contract-to-floor-records--y-axis": 1.472426444571397,
+    "algebraic-permute-relevant-columns": -0.005843811017143707,
+    "errorType": "sd",
+    "levelOfDegrade": 25,
+    "runId": 12
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": 1.2374788832062003,
+    "algebraic-within-group-bootstrap": 3.346762851371427,
+    "algebraic-contract-to-floor-records--y-axis": 3.5419108628571143,
+    "algebraic-permute-relevant-columns": 0.032653419199999686,
+    "errorType": "sd",
+    "levelOfDegrade": 25,
+    "runId": 13
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.13231514212234857,
+    "algebraic-within-group-bootstrap": 2.8573069479085733,
+    "algebraic-contract-to-floor-records--y-axis": 2.757248939428564,
+    "algebraic-permute-relevant-columns": 0.02380151972571639,
+    "errorType": "sd",
+    "levelOfDegrade": 25,
+    "runId": 14
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.15838007287320352,
+    "algebraic-within-group-bootstrap": -0.11393878112000039,
+    "algebraic-contract-to-floor-records--y-axis": -0.17019825371428965,
+    "algebraic-permute-relevant-columns": 0.02795464278857196,
+    "errorType": "sd",
+    "levelOfDegrade": 25,
+    "runId": 15
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.1697022848357287,
+    "algebraic-within-group-bootstrap": 0.5106325277485706,
+    "algebraic-contract-to-floor-records--y-axis": 0.4728544262857497,
+    "algebraic-permute-relevant-columns": 0.16336080660571298,
+    "errorType": "sd",
+    "levelOfDegrade": 25,
+    "runId": 16
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.3044964981570055,
+    "algebraic-within-group-bootstrap": 1.3721792072457117,
+    "algebraic-contract-to-floor-records--y-axis": 1.4186450880000052,
+    "algebraic-permute-relevant-columns": -0.06356310308571636,
+    "errorType": "sd",
+    "levelOfDegrade": 25,
+    "runId": 17
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.41285574207615355,
+    "algebraic-within-group-bootstrap": -7.245708177691432,
+    "algebraic-contract-to-floor-records--y-axis": -6.962495515428589,
+    "algebraic-permute-relevant-columns": -0.16857123049142728,
+    "errorType": "sd",
+    "levelOfDegrade": 25,
+    "runId": 18
+  },
+  {
+    "algebraic-bootstrap-bar-chart-bars": -0.12553965772958264,
+    "algebraic-within-group-bootstrap": 0.008965584651426751,
+    "algebraic-contract-to-floor-records--y-axis": -0.20248110514285145,
+    "algebraic-permute-relevant-columns": 0.011280437508569606,
+    "errorType": "sd",
+    "levelOfDegrade": 25,
+    "runId": 19
+  }
+]
