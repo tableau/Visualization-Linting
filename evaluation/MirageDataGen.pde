@@ -1,12 +1,25 @@
 float mu = 50;
 float sd = 10;
 int n = 50;
-int samples = 20;
 
-float[] sds = {15,20,25};
-int[] ns = {25,15,5};
-float[] mus = {55,65,75};
-int[] outliers = {5,10,15};
+//How many versions of each dataset to generate.
+int samples = 30;
+
+//Standard Deviation of the guassain used to generate group B
+float[] sds = {5,10,15,20,25};
+
+//# of samples in group B
+int[] ns = {25,20,15,10,5};
+
+//mean of the gaussian used to generate group B
+float[] mus = {55,60,65,70,75};
+
+//number of outlying points to add to group B
+int[] outliers = {1,2,3,4,5};
+
+
+//If no flaws are present, group B is generated the same way as group B, by drawing n 
+//samples from a Gaussian of mean mu and std. dev. sd.
 
 void setup(){
   float[] dataA;
@@ -36,11 +49,11 @@ void setup(){
     }
   }
   
-  for(int os:outliers){
+  for(int od:outliers){
     for(int i = 0;i<samples;i++){
       dataA = genData(n,mu,sd);
-      dataB = addOutliers(os,genData(n,mu,sd));
-      printData(dataA,dataB,"data/os/"+os+"/"+i+".csv");
+      dataB = addOutliers(od,genData(n,mu,sd));
+      printData(dataA,dataB,"data/od/"+od+"/"+i+".csv");
     }
   }
   
