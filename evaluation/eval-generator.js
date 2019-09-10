@@ -10,7 +10,7 @@ const buildChart = (errorType, levelOfDegrade, runId) => {
     // an internal identifir just for us
     $$$identifier$$$: {errorType, levelOfDegrade, runId},
     data: {
-      url: `./example-data/testData2/${errorType}/${levelOfDegrade}/${runId}.csv`,
+      url: `./example-data/testData3/${errorType}/${levelOfDegrade}/${runId}.csv`,
     },
     mark: 'bar',
     encoding: {
@@ -37,10 +37,10 @@ console.log('generating targets');
 const oldCategories = ['missing', 'outliers', 'repeated'];
 const newCategories = ['mu', 'n', 'od', 'sd'];
 const newCatMiddleMap = {
-  mu: [55, 65, 75],
-  n: [5, 15, 25],
-  od: [5, 10, 15],
-  sd: [15, 20, 25],
+  mu: [55, 60, 65, 70, 75],
+  n: [5, 10, 15, 20, 25],
+  od: [1, 2, 3, 4, 5],
+  sd: [5, 10, 15, 20, 25],
 };
 
 const allTargets = newCategories.reduce((acc, errorType) => {
@@ -85,7 +85,7 @@ executePromisesInSeries(
     }, {});
   });
   writeFile(
-    './evaluation/eval-results-3.json',
+    './evaluation/eval-results-next.json',
     JSON.stringify(decoratedWithNulls, null, 2),
   );
   console.log(`Took ${(endTime - startTime) / 1000}  seconds`);

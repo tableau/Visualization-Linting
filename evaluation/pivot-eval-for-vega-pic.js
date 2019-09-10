@@ -10,29 +10,33 @@ const metricsName = {
   // 'algebraic-deduplicate-input-data': 'Deduplicate input',
   // 'algebraic-aggregates-should-have-a-similar-number-of-input-records--y-axis':
   //   'Aggregates have similar number of records',
-  'algebraic-permute-relevant-columns': 'Randomize',
+  'algebraic-permute-relevant-columns': 'Randomize'
   // 'algebraic-shuffle-input-data': 'Shuffle',
   // 'algebraic-delete-some-of-relevant-columns': 'Null Some Data',
 };
 const metrics = Object.keys(metricsName);
-
-getFile('./evaluation/eval-results-3.json')
-  .then(d => JSON.parse(d))
-  .then(data => {
-    const newData = data.reduce((acc, row) => {
-      const newRows = metrics.map(metric => {
-        return {
-          metric: metricsName[metric],
-          metricVal: row[metric],
-          errorType: row.errorType,
-          levelOfDegrade: row.levelOfDegrade,
-          runId: row.runId,
-        };
-      });
-      return acc.concat(newRows);
-    }, []);
-    writeFile(
-      './evaluation/pivoted-eval-results.json',
-      JSON.stringify(newData, null, 2),
-    );
-  });
+const firstPart = require('./eval-results-the-third.js');
+const secondPart = require('./eval-results-the-third-b.js');
+Promise.all([
+  // getFile('./evaluation/eval-results-the-third.json').then(d => JSON.parse(d)),
+  // getFile('./evaluation/eval-results-the-third-b.json').then(d => JSON.parse(d))
+  Promise.resolve(firstPart),
+  Promise.resolve(secondPart)
+]).then(([data1, data2]) => {
+  const newData = data1.concat(data2).reduce((acc, row) => {
+    const newRows = metrics.map(metric => {
+      return {
+        metric: metricsName[metric],
+        metricVal: row[metric],
+        errorType: row.errorType,
+        levelOfDegrade: row.levelOfDegrade,
+        runId: row.runId
+      };
+    });
+    return acc.concat(newRows);
+  }, []);
+  writeFile(
+    './evaluation/pivoted-eval-results.json',
+    JSON.stringify(newData, null, 2)
+  );
+});

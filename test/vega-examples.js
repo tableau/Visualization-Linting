@@ -502,7 +502,120 @@ const evaluationPic = {
   resolve: {scale: {x: 'independent', y: 'independent'}},
 };
 
+// const xScales = {
+//   mu: [55, 75],
+//   n: [25, 5],
+//   od: [1, 5],
+//   sd: [5, 25],
+// };
+const xScales = {
+  mu: [55, 60, 65, 70, 75],
+  n: [5, 10, 15, 20, 25],
+  od: [1, 2, 3, 4, 5],
+  sd: [5, 10, 15, 20, 25],
+};
+const errorColors = {
+  mu: '#58A14E',
+  n: '#EDC948',
+  od: '#AF7AA1',
+  sd: '#FE9DA7',
+};
+const evaluationPicPartials = ['mu', 'n', 'od', 'sd'].reduce(
+  (acc, defilement, idx) => {
+    const row = {
+      $schema: 'https://vega.github.io/schema/vega-lite/v4.json',
+      data: {
+        url: '../evaluation/pivoted-eval-results.json',
+      },
+      transform: [
+        {filter: {field: 'errorType', equal: defilement}},
+        {
+          filter: {
+            field: 'metric',
+            oneOf: ['Contract Records', 'Randomize', 'With Mark Bootstrap'],
+          },
+        },
+      ],
+      // mark: 'line',
+      // mark: {type: 'errorband', extent: 'iqr', borders: true},
+      mark: {
+        type: 'boxplot',
+        // extent: 'min-max',
+        ticks: true,
+        orient: 'vertical',
+      },
+      // width: 500,
+      height: 75,
+
+      encoding: {
+        row: {field: 'metric', type: 'nominal'},
+        x: {
+          field: 'levelOfDegrade',
+          type: 'ordinal',
+          scale: {domain: xScales[defilement], nice: false},
+          axis: {title: false},
+        },
+        color: {
+          value: errorColors[defilement],
+        },
+        y: {
+          field: 'metricVal',
+          type: 'quantitative',
+          axis: {title: false},
+          // aggregate: 'min',
+          scale: {nice: false},
+        },
+      },
+      // resolve: {scale: {y: 'independent'}},
+    };
+    acc[`eval-partial-${defilement}`] = row;
+    return acc;
+  },
+  {},
+);
+
+// const evaluationPic = {
+//   $schema: 'https://vega.github.io/schema/vega-lite/v4.json',
+//   hconcat: ['mu', 'n', 'od', 'sd'].map(defilement => {
+//     return {
+//       data: {
+//         url: '../evaluation/pivoted-eval-results.json',
+//       },
+//       transform: [{filter: {field: 'errorType', equal: defilement}}],
+//       // mark: 'line',
+//       mark: {type: 'errorband', extent: 'iqr', borders: true},
+//       width: 500,
+//       height: 100,
+//
+//       // repeat: {
+//       //   row: {field: 'metric', type: 'nominal'},
+//       // },
+//       encoding: {
+//         // column: {field: 'errorType', type: 'nominal'},
+//         facet: {field: 'metric', type: 'nominal'},
+//         x: {
+//           field: 'levelOfDegrade',
+//           type: 'quantitative',
+//         },
+//         color: {
+//           field: 'errorType',
+//           type: 'nominal',
+//         },
+//         y: {
+//           field: 'metricVal',
+//           type: 'quantitative',
+//           // aggregate: 'min',
+//           // scale: {domain: [46, 100]},
+//         },
+//       },
+//     };
+//   }),
+//
+//   // resolve: {scale: {x: 'independent', y: 'independent'}},
+// };
+
 export const BAD_CHARTS = {
+  ...evaluationPicPartials,
   evaluationPic,
   evalExample,
   ...WorldIndicatorMirages,
