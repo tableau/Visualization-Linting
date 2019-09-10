@@ -32,10 +32,13 @@ const contractToFloorRecords = ['y'].map(key => ({
       if (!targetArray) {
         return;
       }
-      const x = fullResample(targetArray).slice(0, minSize);
-      x.forEach(idx => {
-        data.push(dataset[idx]);
-      });
+      if (targetArray.length === minSize) {
+        targetArray.forEach(idx => data.push(dataset[idx]));
+        return;
+      }
+      shuffle(targetArray)
+        .slice(0, minSize)
+        .forEach(idx => data.push(dataset[idx]));
     });
     return data;
   },

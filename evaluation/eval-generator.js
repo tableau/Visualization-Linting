@@ -2,15 +2,15 @@
 import {lint} from '../src';
 import {writeFile, executePromisesInSeries} from 'hoopoe';
 
-const DEGRADE_SIZE = 20;
-const TRIAL_SIZE = 10;
+const DEGRADE_SIZE = 6;
+const TRIAL_SIZE = 20;
 const buildChart = (errorType, levelOfDegrade, runId) => {
   return {
     $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
     // an internal identifir just for us
     $$$identifier$$$: {errorType, levelOfDegrade, runId},
     data: {
-      url: `./example-data/testData/${errorType}/${levelOfDegrade}/${runId}.csv`,
+      url: `./example-data/testData2/${errorType}/${levelOfDegrade}/${runId}.csv`,
     },
     mark: 'bar',
     encoding: {
@@ -34,21 +34,26 @@ const prepareReport = ({lints}) => {
 };
 
 console.log('generating targets');
-const allTargets = ['missing', 'outliers', 'repeated'].reduce(
-  (acc, errorType) => {
-    const content = [...new Array(DEGRADE_SIZE)].reduce(
-      (mem, _, levelOfDegrade) => {
-        const trials = [...new Array(TRIAL_SIZE)].map((__, idx) =>
-          buildChart(errorType, levelOfDegrade, idx),
-        );
-        return mem.concat(trials);
-      },
-      [],
+const oldCategories = ['missing', 'outliers', 'repeated'];
+const newCategories = ['mu', 'n', 'od', 'sd'];
+const newCatMiddleMap = {
+  mu: [55, 65, 75],
+  n: [5, 15, 25],
+  od: [5, 10, 15],
+  sd: [15, 20, 25],
+};
+
+const allTargets = newCategories.reduce((acc, errorType) => {
+  // const content = [...new Array(DEGRADE_SIZE)].reduce(
+  // (mem, _, levelOfDegrade) => {
+  const content = newCatMiddleMap[errorType].reduce((mem, levelOfDegrade) => {
+    const trials = [...new Array(TRIAL_SIZE)].map((__, idx) =>
+      buildChart(errorType, levelOfDegrade, idx),
     );
-    return acc.concat(content);
-  },
-  [],
-);
+    return mem.concat(trials);
+  }, []);
+  return acc.concat(content);
+}, []);
 
 console.log('executing evaluations');
 const startTime = new Date().getTime();
@@ -80,7 +85,7 @@ executePromisesInSeries(
     }, {});
   });
   writeFile(
-    './evaluation/eval-results.json',
+    './evaluation/eval-results-3.json',
     JSON.stringify(decoratedWithNulls, null, 2),
   );
   console.log(`Took ${(endTime - startTime) / 1000}  seconds`);

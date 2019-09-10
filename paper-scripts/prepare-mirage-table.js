@@ -3,7 +3,7 @@ const {getFile, writeFile} = require('hoopoe');
 const toRow = (colorSuffix, name) => (row, idx, rows) => {
   const rotater = `\\multirow{${rows.length}}{0em}{\\hspace{-0.6cm}\\rotatebox{90}{\\normalsize{${name}}}}`;
   const rowTitle = row.Error.replace(/LINEBREAK/g, '\\newline').split(
-    '(checked)'
+    '(checked)',
   )[0];
   const rowContent = row['mirage-error'];
   const mirage = `${rowTitle} & ${rowContent} ${row.Citations}`;
@@ -20,7 +20,7 @@ const template = (curating, wrangling, visualizing, comprehending) => `
 \\begin{table*}[ht!]
 \\centering
 \\caption{${CAPTION}}
-\\small
+\\ssmall
 \\begin{tabular}{p{2.2cm}p{14.8cm}}
 \\normalsize{Error} & \\normalsize{Mirage}\\\\ \\hline
   ${toBlock(curating, 'Curating', 'a')}
@@ -55,7 +55,7 @@ getFile('./paper-scripts/lint-rules.tsv')
         groups.Curation,
         groups.Wrangling,
         groups.Visualization,
-        groups.Comprehension
-      )
+        groups.Comprehension,
+      ),
     );
   });

@@ -27,35 +27,52 @@ import contractToFloorRecords from './statistical-algebraic-rules/contract-to-fl
 import inflateToCommonNumberOfRecordsBootstrap from './statistical-algebraic-rules/inflate-to-max-records';
 import decreaseByOne from './statistical-algebraic-rules/decrease-by-one';
 
+// This is a lsit of the rules used in the evaluation
+// preserrverd here for reference.
 const lintRules = [
   // STAT ALGEBRAIC RULES
-  deletingRowsShouldMatter,
+  // deletingRowsShouldMatter,
   bootstrapBars,
   withInGroupResample,
   ...contractToFloorRecords,
-  ...decreaseByOne,
-  ...inflateToCommonNumberOfRecordsBootstrap,
+  // ...decreaseByOne,
+  // ...inflateToCommonNumberOfRecordsBootstrap,
 
   // ALGEBRAIC RULES
-  deduplicatationShouldntMatter,
-  // ...filterOutNullRecords,
-  // ...inflateToCommonNumberOfRecords,
-  // FLIPEVERYTHING,
-  // ...contractToSingleRecords,
-  // ...destroyVariance,
-  ...shouldHaveCommonNumberOfRecords,
-  // outliersShouldMatter,
+  // deduplicatationShouldntMatter,
+  // ...shouldHaveCommonNumberOfRecords,
   randomizingColumnsShouldMatter,
-  shufflingDataShouldMatter,
-  deletingRandomValuesShouldMatter,
-
-  // DECEPTION RULES
-  // ...dontUseNonLinearScales,
-  // ...barChartsAreUsuallyAggregates,
-  // ...noReversedAxes,
-  // ...noZeroScale,
-  // ...visScaleFromZero,
-  // the map adds default inclusion
+  // shufflingDataShouldMatter,
+  // deletingRandomValuesShouldMatter,
 ].map(d => ({filter: () => true, ...d}));
+
+// const lintRules = [
+//   // STAT ALGEBRAIC RULES
+//   // deletingRowsShouldMatter,
+//   // bootstrapBars,
+//   // withInGroupResample,
+//   // ...contractToFloorRecords,
+//   // ...decreaseByOne,
+//   // ...inflateToCommonNumberOfRecordsBootstrap,
+//   // ALGEBRAIC RULES
+//   // deduplicatationShouldntMatter,
+//   // ...filterOutNullRecords,
+//   // ...inflateToCommonNumberOfRecords,
+//   // FLIPEVERYTHING,
+//   // ...contractToSingleRecords,
+//   // ...destroyVariance,
+//   // ...shouldHaveCommonNumberOfRecords,
+//   // outliersShouldMatter,
+//   // randomizingColumnsShouldMatter,
+//   // shufflingDataShouldMatter,
+//   // deletingRandomValuesShouldMatter,
+//   // DECEPTION RULES
+//   // ...dontUseNonLinearScales,
+//   // ...barChartsAreUsuallyAggregates,
+//   // ...noReversedAxes,
+//   // ...noZeroScale,
+//   // ...visScaleFromZero,
+//   // the map adds default inclusion
+// ].map(d => ({filter: () => true, ...d}));
 
 export default lintRules;

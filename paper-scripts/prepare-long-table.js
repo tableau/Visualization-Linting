@@ -1,8 +1,10 @@
+const CAPTION = 'FILL IN CAPTION';
+
 const tsv = require('tsv');
 const {getFile, writeFile} = require('hoopoe');
 const toRow = (colorSuffix, name) => (row, idx, rows) => {
   const rowTitle = row.Error.replace(/LINEBREAK/g, '\\newline').split(
-    '(checked)'
+    '(checked)',
   )[0];
   const rowColor = `rowcolor{color${colorSuffix}${idx % 2 ? '-opaque' : ''}}`;
   const mirage = `${rowTitle} & ${row['mirage-error']} ${row.Citations}`;
@@ -14,7 +16,7 @@ const toBlock = (rows, name, colorSuffix) =>
 // % \\multirow{13}{1em}{\\hspace{-0.4cm}\\rotatebox{90}{\\normalsize{\\normalsize{Curation}}}}
 const template = (curating, wrangling, visualizing, comprehending) => `
 \\begin{longtable}{p{3cm}p{14cm}}
-
+  \\caption{${CAPTION}}
 
   \\\\\\hbox{\\normalsize{\\textbf{CURATING ERRORS}}}&\\\\ \\\\
   \\normalsize{Error} & \\normalsize{Mirage}\\\\ \\hline
@@ -49,7 +51,7 @@ getFile('./paper-scripts/lint-rules.tsv')
     tsv
       .parse(d)
       .filter(x => x.Hide !== 'TRUE')
-      .filter(x => (x['mirage-error'] || '').trim().length > 1)
+      .filter(x => (x['mirage-error'] || '').trim().length > 1),
   )
   .then(d => {
     const groups = groupBy(d, 'Taxonomy (cause)');
@@ -59,7 +61,7 @@ getFile('./paper-scripts/lint-rules.tsv')
         groups.Curation,
         groups.Wrangling,
         groups.Visualization,
-        groups.Comprehension
-      )
+        groups.Comprehension,
+      ),
     );
   });

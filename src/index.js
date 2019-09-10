@@ -167,6 +167,7 @@ function generateMorphEval(rule, dataset, spec, oldView, oldRendering) {
   };
 }
 
+import {variance} from 'datalib';
 function evaluateStatisticalAlgebraicRule(
   rule,
   spec,
@@ -185,7 +186,9 @@ function evaluateStatisticalAlgebraicRule(
       ),
     )
       .then(results => ({
-        passed: results.reduce((x, {passed}) => x + (passed ? 1 : 0), 0),
+        // passed: results.reduce((x, {passed}) => x + (passed ? 1 : 0), 0),
+        // passed: results.reduce((x, {passed}) => x + passed, 0) / results.length,
+        passed: variance(results.map(({passed}) => passed)),
         results,
       }))
       .then(({passed, results}) => {
