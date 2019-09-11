@@ -13,36 +13,75 @@ const toRow = (colorSuffix, name) => (row, idx, rows) => {
 
 const toBlock = (rows, name, colorSuffix) =>
   `${rows.map(toRow(colorSuffix, name)).join('\\\\\n')}\\\\`;
+
+const renderSection = ({sectionName, content, colorCode}) => {
+  return `
+  \\\\\\hbox{\\normalsize{\\textbf{${sectionName.toUpperCase()} ERRORS}}}&\\\\ \\\\
+  \\normalsize{Error} & \\normalsize{Mirage}\\\\ \\hline
+  ${toBlock(content, sectionName, colorCode)}
+  `;
+};
+
 // % \\multirow{13}{1em}{\\hspace{-0.4cm}\\rotatebox{90}{\\normalsize{\\normalsize{Curation}}}}
-const template = (curating, wrangling, visualizing, comprehending) => `
-\\begin{longtable}{p{3cm}p{14cm}}
-  \\caption{${CAPTION}}
+const template = groups => {
+  console.log(Object.keys(groups));
+  const sections = [
+    {sectionName: 'Curating', content: groups.curating, colorCode: 'a'},
+    {
+      sectionName: 'Dirty-Data: Curating + Wrangling',
+      content: groups['curating,wrangling'],
+      colorCode: 'a',
+    },
+    {sectionName: 'Wrangling', content: groups.wrangling, colorCode: 'b'},
+    {
+      sectionName: 'Volatile Visualizations: Wrangling + Visualizing',
+      content: groups['visualizing,wrangling'],
+      colorCode: 'b',
+    },
+    {sectionName: 'Visualizing', content: groups.visualizing, colorCode: 'c'},
+    {
+      sectionName: 'Deceptive Visualization: Visualizing + Reading',
+      content: groups['reading,wrangling'],
+      colorCode: 'c',
+    },
+    {sectionName: 'Reading', content: groups.reading, colorCode: 'd'},
+    {
+      sectionName: 'Uncritical Vis: Reading + Curating',
+      content: groups['curating,reading'] || [],
+      colorCode: 'd',
+    },
+  ]
+    .map(renderSection)
+    .join('\n');
+  return `
+  \\begin{longtable}{p{3cm}p{14cm}}
+    \\caption{${CAPTION}}
 
-  \\\\\\hbox{\\normalsize{\\textbf{CURATING ERRORS}}}&\\\\ \\\\
-  \\normalsize{Error} & \\normalsize{Mirage}\\\\ \\hline
-  ${toBlock(curating, 'Curating', 'a')}
+    ${sections}
+  \\end{longtable}
+  \\label{table:mirage-table}
+  `;
+};
 
-  \\\\\\hbox{\\normalsize{\\textbf{WRANGLING ERRORS}}}&\\\\ \\\\
-  \\normalsize{Error} & \\normalsize{Mirage}\\\\ \\hline
-  ${toBlock(wrangling, 'Wrangling', 'b')}
+const gerandify = {
+  curation: 'curating',
+  comprehension: 'reading',
+  visualization: 'visualizing',
+};
 
-  \\\\\\hbox{\\normalsize{\\textbf{VISUALIZING ERRORS}}}&\\\\ \\\\
-  \\normalsize{Error} & \\normalsize{Mirage}\\\\ \\hline
-  ${toBlock(visualizing, 'Visualizing', 'c')}
-
-  \\\\\\hbox{\\normalsize{\\textbf{READING ERRORS}}}&\\\\ \\\\
-  \\normalsize{Error} & \\normalsize{Mirage}\\\\ \\hline
-  ${toBlock(comprehending, 'Reading', 'd')}
-\\end{longtable}
-\\label{table:mirage-table}
-`;
-
-function groupBy(data, key) {
+function groupBy(data, key, backup) {
   return data.reduce((acc, row) => {
-    if (!acc[row[key]]) {
-      acc[row[key]] = [];
+    const preppedKey = (row[key] || row[backup])
+      .split(',')
+      .map(d => d.trim().toLowerCase())
+      .map(d => gerandify[d] || d)
+      .filter(d => d.length)
+      .sort()
+      .join(',');
+    if (!acc[preppedKey]) {
+      acc[preppedKey] = [];
     }
-    acc[row[key]].push(row);
+    acc[preppedKey].push(row);
     return acc;
   }, {});
 }
@@ -54,14 +93,8 @@ getFile('./paper-scripts/lint-rules.tsv')
       .filter(x => (x['mirage-error'] || '').trim().length > 1),
   )
   .then(d => {
-    const groups = groupBy(d, 'Taxonomy (cause)');
     writeFile(
       './long-table.tex',
-      template(
-        groups.Curation,
-        groups.Wrangling,
-        groups.Visualization,
-        groups.Comprehension,
-      ),
+      template(groupBy(d, 'Taxonomy (MC)', 'Taxonomy (cause)')),
     );
   });
