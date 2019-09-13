@@ -1,11 +1,10 @@
-const CAPTION = 'FILL IN CAPTION';
+const CAPTION =
+  'An expanded collection of examples of errors resulting in mirages along different stages of our analytics pipeline. Just as we highlight in the table in the main paper, this list is not exhaustive. Instead it presents examples of how decision-making at various stages of analysis can damage the credibility or reliability of the messages in charts.';
 
 const tsv = require('tsv');
 const {getFile, writeFile} = require('hoopoe');
 const toRow = (colorSuffix, name) => (row, idx, rows) => {
-  const rowTitle = row.Error.replace(/LINEBREAK/g, '\\newline').split(
-    '(checked)',
-  )[0];
+  const rowTitle = row.Error.replace(/LINEBREAK/g, '').split('(checked)')[0];
   const rowColor = `rowcolor{color${colorSuffix}${idx % 2 ? '-opaque' : ''}}`;
   const mirage = `${rowTitle} & ${row['mirage-error']} ${row.Citations}`;
   return ` \\${rowColor}${mirage}`;
@@ -22,39 +21,45 @@ const renderSection = ({sectionName, content, colorCode}) => {
   `;
 };
 
-// % \\multirow{13}{1em}{\\hspace{-0.4cm}\\rotatebox{90}{\\normalsize{\\normalsize{Curation}}}}
+const colors = {
+  curating: 'a',
+  wrangling: 'b',
+  visualizing: 'c',
+  reading: 'd',
+};
+// if you want to add more sections add em here
+const sectionOrder = [
+  'curating',
+  'curating,wrangling',
+  'wrangling',
+  'visualizing,wrangling',
+  'visualizing',
+  'visualizing,reading',
+  'reading',
+  'reading,wrangling',
+];
+
+function capitalize(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 const template = groups => {
-  console.log(Object.keys(groups));
-  const sections = [
-    {sectionName: 'Curating', content: groups.curating, colorCode: 'a'},
-    {
-      sectionName: 'Dirty-Data: Curating + Wrangling',
-      content: groups['curating,wrangling'],
-      colorCode: 'a',
-    },
-    {sectionName: 'Wrangling', content: groups.wrangling, colorCode: 'b'},
-    {
-      sectionName: 'Volatile Visualizations: Wrangling + Visualizing',
-      content: groups['visualizing,wrangling'],
-      colorCode: 'b',
-    },
-    {sectionName: 'Visualizing', content: groups.visualizing, colorCode: 'c'},
-    {
-      sectionName: 'Deceptive Visualization: Visualizing + Reading',
-      content: groups['reading,wrangling'],
-      colorCode: 'c',
-    },
-    {sectionName: 'Reading', content: groups.reading, colorCode: 'd'},
-    {
-      sectionName: 'Uncritical Vis: Reading + Curating',
-      content: groups['curating,reading'] || [],
-      colorCode: 'd',
-    },
-  ]
+  const sections = sectionOrder
+    .map(key => {
+      return {
+        sectionName: key
+          .split(',')
+          .map(capitalize)
+          .join(' + '),
+        content: groups[key],
+        // color by whatever thing is first
+        colorCode: colors[key.split(',')[0]],
+      };
+    })
+    .filter(d => d.content)
     .map(renderSection)
     .join('\n');
   return `
-  \\begin{longtable}{p{3cm}p{14cm}}
+  \\begin{longtable}{>{\\raggedright\\arraybackslash}p{3cm}p{14cm}}
     \\caption{${CAPTION}}
 
     ${sections}
