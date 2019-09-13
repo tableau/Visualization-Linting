@@ -10,7 +10,7 @@ const toRow = (colorSuffix, name) => (row, idx, rows) => {
   }${mirage}`;
 };
 const CAPTION =
-  'Examples of errors resulting in mirages along different stages of our analytics pipeline. This list is not exhaustive, but presents examples of how decision-making at various stages of analysis can damage the credibility or reliability of the messages in charts. A longer version of this table with additional mirages is included in our supplemental materials.';
+  'Examples of errors resulting in mirages along different stages of our analytics pipeline, sorted by the analytical step we believe is responsible for the resulting failure in the final visualization, and colored following \\figref{fig:mirage-figure}. This list is not exhaustive, but presents examples of how decision-making at various stages of analysis can damage the credibility or reliability of the messages in charts. A longer version of this table with additional mirages is included in our supplemental materials.';
 const toBlock = (rows, name, colorSuffix) =>
   `${rows.map(toRow(colorSuffix, name)).join('\\\\\n')}\\\\`;
 // % \\multirow{13}{1em}{\\hspace{-0.4cm}\\rotatebox{90}{\\normalsize{\\normalsize{Curation}}}}

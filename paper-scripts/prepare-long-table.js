@@ -1,5 +1,5 @@
 const CAPTION =
-  'An expanded collection of examples of errors resulting in mirages along different stages of our analytics pipeline. Just as we highlight in the table in the main paper, this list is not exhaustive. Instead it presents examples of how decision-making at various stages of analysis can damage the credibility or reliability of the messages in charts.';
+  'An expanded collection of examples of errors resulting in mirages along different stages of our analytics pipeline, sorted by the analytical step we believe is responsible for the resulting failure in the final visualization, and colored following \\figref{fig:supplement-view}. Just as we highlight in the table in the main paper, this list is not exhaustive. Instead it presents examples of how decision-making at various stages of analysis can damage the credibility or reliability of the messages in charts.';
 
 const tsv = require('tsv');
 const {getFile, writeFile} = require('hoopoe');
