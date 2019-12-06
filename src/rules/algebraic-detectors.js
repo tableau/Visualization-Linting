@@ -114,7 +114,7 @@ function compareBarOrdersHack(
   return heights[0] - heights[1];
 }
 
-export function testInsturment(spec) {
+export function testInstrument(spec) {
   if (spec.mark === 'bar') {
     return expectSameBarsHack;
   }

@@ -1,6 +1,6 @@
 import {clone, getXYFieldNames} from '../../utils';
 import {partiallyDropColumn} from '../../dirty';
-import {expectDifferent, testInsturment} from '../algebraic-detectors';
+import {expectDifferent, testInstrument} from '../algebraic-detectors';
 
 const deletingRandomValuesShouldMatter = {
   name: 'algebraic-delete-some-of-relevant-columns',
@@ -11,7 +11,7 @@ const deletingRandomValuesShouldMatter = {
     partiallyDropColumn(data, getXYFieldNames(spec).filter(d => d)[0], 0.2);
     return data;
   },
-  selectEvaluator: testInsturment,
+  selectEvaluator: testInstrument,
   filter: (spec, data, view) => {
     if (data.length === 0) {
       return false;

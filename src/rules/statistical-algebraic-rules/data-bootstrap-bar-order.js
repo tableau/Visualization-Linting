@@ -3,7 +3,7 @@ import {
   expectSameBars,
   expectSameLines,
   expectSame,
-  testInsturment,
+  testInstrument,
 } from '../algebraic-detectors';
 import {bootstrap} from '../../bootstrap';
 
@@ -13,7 +13,7 @@ const bootstrapBars = {
   operation: (data, spec, view) => {
     return bootstrap(clone(data)).samples(data.length);
   },
-  selectEvaluator: testInsturment,
+  selectEvaluator: testInstrument,
   statisticalEval: results => {
     const numPassing = results.reduce((x, {passed}) => x + (passed ? 1 : 0), 0);
     console.log('bootstrap-bar-chart', numPassing);
@@ -31,7 +31,7 @@ const bootstrapBars = {
     return true;
   },
   explain:
-    'the apparent insight (bar order) was not resilliant to bootstrapping from the original data.',
+    'When the original data in each bar is bootstrapped, the bar order significantly changes.',
 };
 
 export default bootstrapBars;

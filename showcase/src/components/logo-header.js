@@ -8,7 +8,7 @@ export default class LogoHeader extends React.Component {
           <span className="bold">Metamorphic VegaLite Analyzer</span>
         </h3>
         <div>
-          <img className="logo" src="./assets/logo_deaffiliated.png" />
+          <img className="logo" src="./assets/tableau_white.png" />
         </div>
       </div>
     );

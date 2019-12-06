@@ -4,7 +4,7 @@ import {
   expectSameBars,
   expectSameLines,
   expectSame,
-  testInsturment,
+  testInstrument,
 } from '../algebraic-detectors';
 
 const contractToFloorRecords = ['y'].map(key => ({
@@ -42,7 +42,7 @@ const contractToFloorRecords = ['y'].map(key => ({
     });
     return data;
   },
-  selectEvaluator: testInsturment,
+  selectEvaluator: testInstrument,
   generateNumberOfIterations: (dataset, spec, view) => 100,
   statisticalEval: results => {
     const numPassing = results.reduce((x, {passed}) => x + (passed ? 1 : 0), 0);
@@ -63,6 +63,6 @@ const contractToFloorRecords = ['y'].map(key => ({
     }
     return true;
   },
-  explain: 'TODODODODODODODODODODO.',
+  explain: 'If all aggregate marks have the same number of records as the mark with the fewest number of records, then the chart significantly changes. This suggests large and important discrepancies in aggregation.',
 }));
 export default contractToFloorRecords;

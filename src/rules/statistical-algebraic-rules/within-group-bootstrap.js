@@ -3,7 +3,7 @@ import {
   expectSameBars,
   expectSameLines,
   expectSame,
-  testInsturment,
+  testInstrument,
 } from '../algebraic-detectors';
 import {fullResample} from '../../bootstrap';
 
@@ -28,7 +28,7 @@ const bootstrapBars = {
 
     return data;
   },
-  selectEvaluator: testInsturment,
+  selectEvaluator: testInstrument,
   statisticalEval: results => {
     const numPassing = results.reduce((x, {passed}) => x + (passed ? 1 : 0), 0);
     console.log('within-group-bootstrap', numPassing);
@@ -49,7 +49,7 @@ const bootstrapBars = {
     }
     return true;
   },
-  explain: 'TODODODODODODODODODODO.',
+  explain: 'Within each aggregate mark, bootstrapping the data results in very different patterns. This suggests unreliability in the aggregate measure, or the data backing it.',
 };
 
 export default bootstrapBars;

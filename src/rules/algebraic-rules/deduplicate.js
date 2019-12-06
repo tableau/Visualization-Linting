@@ -3,7 +3,7 @@ import {
   expectSameBars,
   expectSameLines,
   expectSame,
-  testInsturment,
+  testInstrument,
 } from '../algebraic-detectors';
 
 const deduplicatationShouldntMatter = {
@@ -20,7 +20,7 @@ const deduplicatationShouldntMatter = {
       return true;
     });
   },
-  selectEvaluator: testInsturment,
+  selectEvaluator: testInstrument,
   filter: (spec, data, view) => {
     return data.length > 0;
   },

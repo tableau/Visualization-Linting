@@ -3,7 +3,7 @@ import {
   expectDifferentLines,
   expectDifferent,
   expectDifferentBars,
-  testInsturment,
+  testInstrument,
 } from '../algebraic-detectors';
 import {dropRow} from '../../dirty';
 
@@ -17,7 +17,7 @@ const deletingRowsShouldMatter = {
     }
     return clonedData;
   },
-  selectEvaluator: testInsturment,
+  selectEvaluator: testInstrument,
   statisticalEval: results => {
     const numPassing = results.reduce((x, {passed}) => x + (passed ? 1 : 0), 0);
     console.log('randomly-delete', numPassing);

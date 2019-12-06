@@ -3,7 +3,7 @@ import {randomizeColumns} from '../../dirty';
 import {
   expectDifferent,
   expectDifferentBars,
-  testInsturment,
+  testInstrument,
 } from '../algebraic-detectors';
 
 const randomizingColumnsShouldMatter = {
@@ -22,7 +22,7 @@ const randomizingColumnsShouldMatter = {
   //   }
   //   return expectDifferent;
   // },
-  selectEvaluator: testInsturment,
+  selectEvaluator: testInstrument,
   filter: (spec, data, view) => {
     if (data.length === 0) {
       return false;
@@ -49,7 +49,7 @@ const randomizingColumnsShouldMatter = {
     return !transform || (transform && !transform.find(d => d.fold));
   },
   explain:
-    'After randomizing the relationship between the two data variables the chart remained the same. This suggests that your visualization is not showing their relationship in a discrenable manner.',
+    'After randomizing the relationship between the two data variables the chart remained the same. This suggests that your visualization is not showing their relationship in a discernable manner.',
 };
 
 export default randomizingColumnsShouldMatter;
