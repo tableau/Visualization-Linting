@@ -25,7 +25,7 @@
     "babel-preset-es2017": "^6.22.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-2": "^6.22.0",
-    "eslint": "^3.13.1",
+    "eslint": "^4.18.2",
     "eslint-config-prettier": "^6.1.0",
     "eslint-config-uber-es2015": "^3.0.1",
     "eslint-plugin-babel": "^4.0.0",
