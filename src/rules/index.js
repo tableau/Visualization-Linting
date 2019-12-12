@@ -45,7 +45,7 @@ import decreaseByOne from './statistical-algebraic-rules/decrease-by-one';
 //   // shufflingDataShouldMatter,
 //   // deletingRandomValuesShouldMatter,
 // ].map(d => ({filter: () => true, ...d}));
-
+export const NUM_EVALS = 1;
 const lintRules = [
   // STAT ALGEBRAIC RULES
   deletingRowsShouldMatter,

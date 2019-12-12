@@ -6,6 +6,7 @@ import {
   testInstrument,
 } from '../algebraic-detectors';
 import {fullResample} from '../../bootstrap';
+import {NUM_EVALS} from '../index';
 
 const bootstrapBars = {
   name: `algebraic-within-group-bootstrap`,
@@ -34,7 +35,7 @@ const bootstrapBars = {
     return false;
     // return numPassing > 333;
   },
-  generateNumberOfIterations: (dataset, spec, view) => 100,
+  generateNumberOfIterations: (dataset, spec, view) => NUM_EVALS,
   filter: (spec, data, view) => {
     if (data.length === 0) {
       return false;

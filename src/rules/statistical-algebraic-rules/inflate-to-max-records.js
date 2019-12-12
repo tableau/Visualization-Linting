@@ -10,6 +10,7 @@ import {
   // expectSame,
   testInstrument,
 } from '../algebraic-detectors';
+import {NUM_EVALS} from '../index';
 
 const inflateToCommonNumberOfRecords = ['y'].map(key => ({
   name: `algebraic-inflate-number-of-records-bootstrap--${key}-axis`,
@@ -49,7 +50,7 @@ const inflateToCommonNumberOfRecords = ['y'].map(key => ({
     return false;
     // return numPassing > 333;
   },
-  generateNumberOfIterations: (dataset, spec, view) => 100,
+  generateNumberOfIterations: (dataset, spec, view) => NUM_EVALS,
   selectEvaluator: testInstrument,
   filter: filterForMarkRecordChange(key),
   explain:

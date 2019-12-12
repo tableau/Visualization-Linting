@@ -5,11 +5,12 @@ import {
   // expectDifferentBars,
   testInstrument,
 } from '../algebraic-detectors';
+import {NUM_EVALS} from '../index';
 
 const randomizingColumnsShouldMatter = {
   name: 'algebraic-permute-relevant-columns',
   type: 'algebraic-stat-data',
-  generateNumberOfIterations: (dataset, spec, view) => 100,
+  generateNumberOfIterations: (dataset, spec, view) => NUM_EVALS,
   operation: (container, spec) => {
     const data = clone(container);
     randomizeColumns(data, ...getXYFieldNames(spec));

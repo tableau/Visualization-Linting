@@ -15,16 +15,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 
 app.use(cors());
-
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header(
-//     'Access-Control-Allow-Headers',
-//     'Origin, X-Requested-With, Content-Type, Accept',
-//   );
-//   next();
-// });
-
 // should cache all of the generated renderings, assign em ids
 app.post('/get-rendering', (req, res) => {
   // TODO: type check that body is coming in right
