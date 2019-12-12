@@ -1,8 +1,8 @@
 const commonPostConfig = {
   method: 'POST',
-  mode: 'no-cors',
   headers: {
     'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
   },
 };
 // copy pasted from the fex stuff
@@ -37,11 +37,12 @@ export const fetchWithRetry = (url, basicProps) => {
 
 const local = route => `http://localhost:5000/${route}`;
 const server = route => `http://vis-lint.herokuapp.com/${route}`;
+const USE_LOCAL = false;
 const genericReq = (spec, route) =>
-  fetch(server(route), {
+  fetch((USE_LOCAL ? local : server)(route), {
     ...commonPostConfig,
     body: JSON.stringify(spec),
-  }).then(d => d.json());
+  }).then(d => d && d.json());
 export const getRendering = vegaSpec => genericReq(vegaSpec, 'get-rendering');
 export const lintSpec = vegaSpec => genericReq(vegaSpec, 'lint');
 

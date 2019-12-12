@@ -76,6 +76,7 @@ export function generateVegaRendering(spec, mode = 'raster') {
     renderer: isSVG ? 'svg' : 'none',
   };
   return new Promise((resolve, reject) => {
+    console.log(spec);
     const runtime = parse(compile(spec).spec, {renderer: 'none'});
     const view = new View(runtime, config).initialize();
     view

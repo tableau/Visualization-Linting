@@ -22,7 +22,8 @@ import {getRendering, lintSpec, classnames} from './utils';
 class App extends React.Component {
   constructor() {
     super();
-    const currentSpec = BAD_CHARTS[Object.keys(BAD_CHARTS)[0]];
+    // const currentSpec = BAD_CHARTS[Object.keys(BAD_CHARTS)[0]];
+    const currentSpec = BAD_CHARTS.BAR_CHART_SPEC;
     this.state = {
       currentSpec,
       currentCode: JSON.stringify(currentSpec, null, 2),
