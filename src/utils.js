@@ -76,7 +76,6 @@ export function generateVegaRendering(spec, mode = 'raster') {
     renderer: isSVG ? 'svg' : 'none',
   };
   return new Promise((resolve, reject) => {
-    console.log(spec);
     const runtime = parse(compile(spec).spec, {renderer: 'none'});
     const view = new View(runtime, config).initialize();
     view
@@ -123,9 +122,9 @@ export function getDataset(spec) {
       data.format ? read(data.values, data.format) : data.values,
     );
   }
-  if (!data.url) {
-    console.log(data);
-  }
+  // if (!data.url) {
+  //   console.log(data);
+  // }
   const brokenUri = data.url.split('.');
   const type = brokenUri[brokenUri.length - 1];
   const cacheAccessKey = JSON.stringify(data);

@@ -16,9 +16,7 @@ const outliersByMark = ['x', 'y'].map(key => ({
       view,
       key,
     );
-    console.log('??!???!???!');
     const data = clone(dataset);
-    debugger;
     const arrayOfArrays = Object.keys(aggregateOutputPairs).map(
       terminalKey => tailToStartMap[terminalKey],
     );

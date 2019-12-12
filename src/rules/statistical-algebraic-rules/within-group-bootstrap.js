@@ -19,7 +19,6 @@ const bootstrapBars = {
       'y', //opposite key as expected
     );
     const data = [];
-    // debugger;
     Object.keys(aggregateOutputPairs).forEach(terminalKey => {
       fullResample(tailToStartMap[terminalKey] || []).forEach(idx =>
         data.push(dataset[idx]),
@@ -49,7 +48,8 @@ const bootstrapBars = {
     }
     return true;
   },
-  explain: 'Within each aggregate mark, bootstrapping the data results in very different patterns. This suggests unreliability in the aggregate measure, or the data backing it.',
+  explain:
+    'Within each aggregate mark, bootstrapping the data results in very different patterns. This suggests unreliability in the aggregate measure, or the data backing it.',
 };
 
 export default bootstrapBars;
