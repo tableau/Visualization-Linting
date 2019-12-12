@@ -1,1 +1,1 @@
-web: yarn build-serve && yarn public-server
+web: yarn public-server
