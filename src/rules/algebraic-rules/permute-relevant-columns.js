@@ -1,8 +1,8 @@
 import {clone, getXYFieldNames} from '../../utils';
 import {randomizeColumns} from '../../dirty';
 import {
-  expectDifferent,
-  expectDifferentBars,
+  // expectDifferent,
+  // expectDifferentBars,
   testInstrument,
 } from '../algebraic-detectors';
 

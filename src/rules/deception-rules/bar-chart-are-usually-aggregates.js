@@ -13,6 +13,7 @@ const barChartsAreUsuallyAggregates = ['x', 'y'].map(key => ({
       filterForScale(key)(spec, data, view) && spec.mark === 'bar' && !field.bin
     );
   },
+  // eslint-disable-next-line
   explain: `Bar charts usually contain aggregates, make sure that you intended to not have an aggregate for this ${key} axis.`,
 }));
 

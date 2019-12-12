@@ -1,9 +1,9 @@
 import {prepProv, shuffle} from '../../utils';
-import {fullResample} from '../../bootstrap';
+// import {fullResample} from '../../bootstrap';
 import {
-  expectSameBars,
-  expectSameLines,
-  expectSame,
+  // expectSameBars,
+  // expectSameLines,
+  // expectSame,
   testInstrument,
 } from '../algebraic-detectors';
 
@@ -63,6 +63,7 @@ const contractToFloorRecords = ['y'].map(key => ({
     }
     return true;
   },
-  explain: 'If all aggregate marks have the same number of records as the mark with the fewest number of records, then the chart significantly changes. This suggests large and important discrepancies in aggregation.',
+  explain:
+    'If all aggregate marks have the same number of records as the mark with the fewest number of records, then the chart significantly changes. This suggests large and important discrepancies in aggregation.',
 }));
 export default contractToFloorRecords;

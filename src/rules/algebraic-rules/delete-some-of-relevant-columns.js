@@ -1,6 +1,9 @@
 import {clone, getXYFieldNames} from '../../utils';
 import {partiallyDropColumn} from '../../dirty';
-import {expectDifferent, testInstrument} from '../algebraic-detectors';
+import {
+  // expectDifferent,
+  testInstrument,
+} from '../algebraic-detectors';
 
 const deletingRandomValuesShouldMatter = {
   name: 'algebraic-delete-some-of-relevant-columns',

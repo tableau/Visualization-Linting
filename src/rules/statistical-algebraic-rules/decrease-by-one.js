@@ -1,8 +1,8 @@
 import {prepProv, clone} from '../../utils';
 import {
-  expectSameBars,
-  expectSameLines,
-  expectSame,
+  // expectSameBars,
+  // expectSameLines,
+  // expectSame,
   testInstrument,
 } from '../algebraic-detectors';
 

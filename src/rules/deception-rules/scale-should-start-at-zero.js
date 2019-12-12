@@ -13,6 +13,7 @@ const visScaleFromZero = ['x', 'y'].map(key => ({
     const type = view.scale(key).type;
     return type !== 'utc' && type !== 'time';
   },
+  // eslint-disable-next-line
   explain: `It is often the case that quantitative scales should start at zero. Your ${key} axis does not! Make sure this is the right choice for your audience.`,
 }));
 

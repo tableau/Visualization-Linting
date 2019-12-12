@@ -14,6 +14,7 @@ const noReversedAxes = [
       : domainIncreasing && rangeIncreasing;
   },
   filter: filterForScale(key),
+  // eslint-disable-next-line
   explain: `Axes should generally point in a direction which is familiar to most readers. The direction of your ${key} axis is out of line with the common usage. Make sure that it is intentional.`,
 }));
 

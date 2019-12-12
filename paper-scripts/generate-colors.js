@@ -1,6 +1,6 @@
 const {hexOver} = require('hex-over');
 
-const tableauColors = [
+export const tableauColors = [
   '#4D79A7',
   '#F28E2C',
   '#E15659',
@@ -10,10 +10,10 @@ const tableauColors = [
   '#AF7AA1',
   '#FE9DA7',
   '#9C755F',
-  '#BAB0AC'
+  '#BAB0AC',
 ];
 
-const tableauColors40Percent = [
+export const tableauColors40Percent = [
   '#B8C9DC',
   '#FAD2AB',
   '#F3BBBD',
@@ -23,10 +23,10 @@ const tableauColors40Percent = [
   '#DFCAD9',
   '#FFD8DC',
   '#D7C8BF',
-  '#E3DFDE'
+  '#E3DFDE',
 ];
 
-const tableauColors20Percent = [
+export const tableauColors20Percent = [
   '#DBE4ED',
   '#FCE8D5',
   '#F9DDDE',
@@ -36,7 +36,7 @@ const tableauColors20Percent = [
   '#EFE4EC',
   '#FFEBED',
   '#EBE3DF',
-  '#F1EFEE'
+  '#F1EFEE',
 ];
 
 console.log(tableauColors.map(d => hexOver(d, '#ffffff', 0.4).toUpperCase()));

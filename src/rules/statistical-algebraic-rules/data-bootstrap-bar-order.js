@@ -1,8 +1,8 @@
 import {clone} from '../../utils';
 import {
-  expectSameBars,
-  expectSameLines,
-  expectSame,
+  // expectSameBars,
+  // expectSameLines,
+  // expectSame,
   testInstrument,
 } from '../algebraic-detectors';
 import {bootstrap} from '../../bootstrap';

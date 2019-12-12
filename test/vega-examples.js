@@ -455,7 +455,7 @@ const evalExample = {
   },
 };
 
-const evaluationPic1 = {
+export const evaluationPic1 = {
   $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
   data: {url: '../evaluation/pivoted-eval-results.json'},
   mark: 'circle',

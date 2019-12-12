@@ -13,7 +13,9 @@
     "max-len": [1, 110, 4, {"ignoreStrings": true}],
     "max-params": ["error", 6],
     "object-curly-spacing": 0,
-    "babel/object-curly-spacing": 2
+    "babel/object-curly-spacing": 2,
+    "no-console": 0,
+    "no-inline-comments": 0
   },
   "parser": "babel-eslint",
   "plugins": [

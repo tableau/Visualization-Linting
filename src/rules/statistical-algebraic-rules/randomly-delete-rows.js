@@ -1,8 +1,8 @@
 import {clone} from '../../utils';
 import {
-  expectDifferentLines,
-  expectDifferent,
-  expectDifferentBars,
+  // expectDifferentLines,
+  // expectDifferent,
+  // expectDifferentBars,
   testInstrument,
 } from '../algebraic-detectors';
 import {dropRow} from '../../dirty';
