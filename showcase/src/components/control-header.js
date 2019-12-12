@@ -2,6 +2,7 @@ import React from 'react';
 import {BAD_CHARTS} from '../../../test/vega-examples';
 /* eslint-disable no-unused-vars */
 import Select from 'react-select';
+import About from './about';
 /* eslint-enable no-unused-vars */
 
 // copied from https://github.com/notablemind/downloadbutton/blob/master/save-as.js
@@ -20,22 +21,30 @@ function saveAs(uri, filename) {
   }
 }
 
-export default class ControlHeader extends React.PureComponent {
+export default class ControlHeader extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      aboutOpen: false,
+    };
+  }
   render() {
+    const {aboutOpen} = this.state;
     const {
       executeSpec,
       buildChart,
       changeSpec,
       cleanUpCode,
-      lintingTarget
+      lintingTarget,
     } = this.props;
+    const toggleAbout = () => this.setState({aboutOpen: !aboutOpen});
     return (
       <div className="flex gray-background shadow z-10 header">
         <div className="select-container">
           <Select
             options={Object.entries(BAD_CHARTS).map(([label, value]) => ({
               value,
-              label
+              label,
             }))}
             onChange={({label, value}) =>
               changeSpec(JSON.stringify(value, null, 2))
@@ -46,6 +55,7 @@ export default class ControlHeader extends React.PureComponent {
           />
         </div>
         <div className="flex">
+          <About aboutOpen={aboutOpen} toggleAbout={toggleAbout} />
           <div onClick={cleanUpCode} className="button">
             Clean Up JSON
           </div>
