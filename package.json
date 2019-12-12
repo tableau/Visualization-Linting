@@ -11,7 +11,7 @@
     "test": "npm run plain-test | node_modules/faucet/bin/cmd.js",
     "serve": "(cd server && yarn && yarn start)",
     "serve-debug": "(cd server && yarn && yarn start-debug)",
-    "public-server": "(cd server && public-server)",
+    "public-server": "(cd server && node bundle.js)",
     "build-serve": "(cd server && yarn && yarn build)",
     "integration": "babel-node test/integration-test.js",
     "full-test": "babel-node test/full-test.js",
