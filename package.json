@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "(cd showcase && yarn && yarn start)",
-    "build-webpage": "(cd showcase && yarn && yarn build)",
+    "build-webpage": "(yarn && cd showcase && yarn && yarn build)",
     "lint": "eslint ./",
     "plain-test": "babel-node test/root-test.js",
     "test": "npm run plain-test | node_modules/faucet/bin/cmd.js",
