@@ -1,9 +1,9 @@
 const commonPostConfig = {
   method: 'POST',
-  mode: 'cors',
+  mode: 'no-cors',
   headers: {
-    'Content-Type': 'application/json'
-  }
+    'Content-Type': 'application/json',
+  },
 };
 // copy pasted from the fex stuff
 const SECOND = 1000;
@@ -14,7 +14,7 @@ export const fetchWithRetry = (url, basicProps) => {
     mode: 'cors',
     maxRetries: 12,
     delay: SECOND * 5,
-    ...basicProps
+    ...basicProps,
   };
   const {maxRetries, delay} = props;
   let currentRerties = 0;
@@ -35,10 +35,12 @@ export const fetchWithRetry = (url, basicProps) => {
   return fetcher();
 };
 
+const local = route => `http://localhost:5000/${route}`;
+const server = route => `http://vis-lint.herokuapp.com/${route}`;
 const genericReq = (spec, route) =>
-  fetchWithRetry(`http://localhost:5000/${route}`, {
+  fetch(server(route), {
     ...commonPostConfig,
-    body: JSON.stringify(spec)
+    body: JSON.stringify(spec),
   }).then(d => d.json());
 export const getRendering = vegaSpec => genericReq(vegaSpec, 'get-rendering');
 export const lintSpec = vegaSpec => genericReq(vegaSpec, 'lint');

@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "(cd showcase && yarn && yarn start)",
+    "build-webpage": "(cd showcase && yarn && yarn build)",
     "lint": "eslint ./",
     "plain-test": "babel-node test/root-test.js",
     "test": "npm run plain-test | node_modules/faucet/bin/cmd.js",
@@ -17,6 +18,7 @@
     "do-eval": "babel-node evaluation/eval-generator.js"
   },
   "devDependencies": {
+    "autoprefixer": "^9.7.3",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.21.0",
     "babel-eslint": "^7.1.1",
@@ -32,6 +34,7 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^6.10.0",
     "faucet": "^0.0.1",
+    "postcss-loader": "^3.0.0",
     "prettier": "^1.18.2",
     "tape": "^4.10.2",
     "webpack": "4",

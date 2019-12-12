@@ -12,9 +12,12 @@ export default class CodeEditor extends React.Component {
     const {currentCode, changeSpec, height, width} = this.props;
     const options = {
       selectOnLineNumbers: true,
+      automaticLayout: true,
+      wordWrap: 'on',
       minimap: {
-        enabled: false
-      }
+        enabled: false,
+      },
+      fontSize: 10,
     };
     return (
       <div className="full-height full-width inline-block">

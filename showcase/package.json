@@ -30,9 +30,13 @@
   },
   "private": true,
   "dependencies": {
+    "json-stringify-pretty-compact": "^2.0.0",
+    "monaco-editor": "^0.18.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-monaco-editor": "^0.26.2",
-    "react-select": "^3.0.4"
+    "react-monaco-editor": "^0.32.1",
+    "react-select": "^3.0.4",
+    "vega": "^5.8.0",
+    "vega-lite": "^4.0.0-beta.11"
   }
 }
