@@ -1,0 +1,1 @@
+web: yarn public-server

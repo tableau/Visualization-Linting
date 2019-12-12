@@ -1,15 +1,15 @@
 // ALGEBRAIC RULES
 import destroyVariance from './algebraic-rules/destroy-variance';
-// import {
-//   contractToSingleRecords,
-//   inflateToCommonNumberOfRecords,
-// } from './algebraic-rules/change-number-of-records';
+import {
+  contractToSingleRecords,
+  inflateToCommonNumberOfRecords,
+} from './algebraic-rules/change-number-of-records';
 import deduplicatationShouldntMatter from './algebraic-rules/deduplicate';
 import filterOutNullRecords from './algebraic-rules/remove-nulls';
 import shouldHaveCommonNumberOfRecords from './algebraic-rules/aggregates-should-have-a-similar-number-of-input-records';
 import outliersShouldMatter from './algebraic-rules/outliers-should-matter';
 // import outliersByMark from './algebraic-rules/outliers-by-mark';
-import FLIPEVERYTHING from './algebraic-rules/invert-on-quant-fields';
+// import FLIPEVERYTHING from './algebraic-rules/invert-on-quant-fields';
 import randomizingColumnsShouldMatter from './algebraic-rules/permute-relevant-columns';
 import deletingRandomValuesShouldMatter from './algebraic-rules/delete-some-of-relevant-columns';
 import shufflingDataShouldMatter from './algebraic-rules/shuffle-input-data';
@@ -29,50 +29,50 @@ import decreaseByOne from './statistical-algebraic-rules/decrease-by-one';
 
 // This is a lsit of the rules used in the evaluation
 // preserrverd here for reference.
-const lintRules = [
-  // STAT ALGEBRAIC RULES
-  // deletingRowsShouldMatter,
-  bootstrapBars,
-  withInGroupResample,
-  ...contractToFloorRecords,
-  // ...decreaseByOne,
-  // ...inflateToCommonNumberOfRecordsBootstrap,
-
-  // ALGEBRAIC RULES
-  // deduplicatationShouldntMatter,
-  // ...shouldHaveCommonNumberOfRecords,
-  randomizingColumnsShouldMatter,
-  // shufflingDataShouldMatter,
-  // deletingRandomValuesShouldMatter,
-].map(d => ({filter: () => true, ...d}));
-
 // const lintRules = [
 //   // STAT ALGEBRAIC RULES
 //   // deletingRowsShouldMatter,
-//   // bootstrapBars,
-//   // withInGroupResample,
-//   // ...contractToFloorRecords,
+//   bootstrapBars,
+//   withInGroupResample,
+//   ...contractToFloorRecords,
 //   // ...decreaseByOne,
 //   // ...inflateToCommonNumberOfRecordsBootstrap,
+//
 //   // ALGEBRAIC RULES
 //   // deduplicatationShouldntMatter,
-//   // ...filterOutNullRecords,
-//   // ...inflateToCommonNumberOfRecords,
-//   // FLIPEVERYTHING,
-//   // ...contractToSingleRecords,
-//   // ...destroyVariance,
 //   // ...shouldHaveCommonNumberOfRecords,
-//   // outliersShouldMatter,
-//   // randomizingColumnsShouldMatter,
+//   randomizingColumnsShouldMatter,
 //   // shufflingDataShouldMatter,
 //   // deletingRandomValuesShouldMatter,
-//   // DECEPTION RULES
-//   // ...dontUseNonLinearScales,
-//   // ...barChartsAreUsuallyAggregates,
-//   // ...noReversedAxes,
-//   // ...noZeroScale,
-//   // ...visScaleFromZero,
-//   // the map adds default inclusion
 // ].map(d => ({filter: () => true, ...d}));
+export const NUM_EVALS = 1;
+const lintRules = [
+  // STAT ALGEBRAIC RULES
+  deletingRowsShouldMatter,
+  bootstrapBars,
+  withInGroupResample,
+  ...contractToFloorRecords,
+  ...decreaseByOne,
+  ...inflateToCommonNumberOfRecordsBootstrap,
+  // ALGEBRAIC RULES
+  deduplicatationShouldntMatter,
+  ...filterOutNullRecords,
+  ...inflateToCommonNumberOfRecords,
+  // FLIPEVERYTHING,
+  ...contractToSingleRecords,
+  ...destroyVariance,
+  ...shouldHaveCommonNumberOfRecords,
+  outliersShouldMatter,
+  randomizingColumnsShouldMatter,
+  shufflingDataShouldMatter,
+  deletingRandomValuesShouldMatter,
+  // DECEPTION RULES
+  ...dontUseNonLinearScales,
+  ...barChartsAreUsuallyAggregates,
+  ...noReversedAxes,
+  ...noZeroScale,
+  ...visScaleFromZero,
+  // the map adds default inclusion
+].map(d => ({filter: () => true, ...d}));
 
 export default lintRules;

@@ -1,11 +1,12 @@
 import {prepProv, shuffle} from '../../utils';
-import {fullResample} from '../../bootstrap';
+// import {fullResample} from '../../bootstrap';
 import {
-  expectSameBars,
-  expectSameLines,
-  expectSame,
+  // expectSameBars,
+  // expectSameLines,
+  // expectSame,
   testInstrument,
 } from '../algebraic-detectors';
+import {NUM_EVALS} from '../index';
 
 const contractToFloorRecords = ['y'].map(key => ({
   name: `algebraic-contract-to-floor-records--${key}-axis`,
@@ -43,7 +44,7 @@ const contractToFloorRecords = ['y'].map(key => ({
     return data;
   },
   selectEvaluator: testInstrument,
-  generateNumberOfIterations: (dataset, spec, view) => 100,
+  generateNumberOfIterations: (dataset, spec, view) => NUM_EVALS,
   statisticalEval: results => {
     const numPassing = results.reduce((x, {passed}) => x + (passed ? 1 : 0), 0);
     console.log('contract to min records', numPassing);
@@ -63,6 +64,7 @@ const contractToFloorRecords = ['y'].map(key => ({
     }
     return true;
   },
-  explain: 'If all aggregate marks have the same number of records as the mark with the fewest number of records, then the chart significantly changes. This suggests large and important discrepancies in aggregation.',
+  explain:
+    'If all aggregate marks have the same number of records as the mark with the fewest number of records, then the chart significantly changes. This suggests large and important discrepancies in aggregation.',
 }));
 export default contractToFloorRecords;

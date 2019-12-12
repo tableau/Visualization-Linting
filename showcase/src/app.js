@@ -2,6 +2,9 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 import debounce from 'lodash.debounce';
 import './main.css';
+import setupMonaco from './monaco';
+
+setupMonaco();
 
 // it appears that no-unused-vars has a bug :( TODO AMC to report
 /* eslint-disable no-unused-vars */
@@ -19,7 +22,8 @@ import {getRendering, lintSpec, classnames} from './utils';
 class App extends React.Component {
   constructor() {
     super();
-    const currentSpec = BAD_CHARTS[Object.keys(BAD_CHARTS)[0]];
+    // const currentSpec = BAD_CHARTS[Object.keys(BAD_CHARTS)[0]];
+    const currentSpec = BAD_CHARTS.BAR_CHART_SPEC;
     this.state = {
       currentSpec,
       currentCode: JSON.stringify(currentSpec, null, 2),
@@ -28,7 +32,7 @@ class App extends React.Component {
       lintingTarget: null,
       lintLoading: false,
       renderLoading: false,
-      JSONerror: false
+      JSONerror: false,
     };
     this.setAsyncState = this.setAsyncState.bind(this);
     this.lintSpec = this.lintSpec.bind(this);
@@ -49,7 +53,7 @@ class App extends React.Component {
     const currentNode = ReactDOM.findDOMNode(this.refs.mainContainer);
     this.setState({
       height: currentNode.clientHeight,
-      width: currentNode.clientWidth
+      width: currentNode.clientWidth,
     });
   }
 
@@ -57,7 +61,7 @@ class App extends React.Component {
     this.setAsyncState({
       renderLoading: true,
       lintingTarget: null,
-      chartServiceError: null
+      chartServiceError: null,
     })
       .then(() => getRendering(currentSpec))
       .then(x => {
@@ -65,7 +69,7 @@ class App extends React.Component {
         if (code === CRASH || code === SPEC_NOT_SUPPORTED) {
           this.setState({
             renderLoading: false,
-            chartServiceError: code === CRASH ? msg : 'SPEC NOT SUPPORTED'
+            chartServiceError: code === CRASH ? msg : 'SPEC NOT SUPPORTED',
           });
           return;
         }
@@ -77,7 +81,7 @@ class App extends React.Component {
     this.setAsyncState({
       lintLoading: true,
       lintResults: null,
-      lintServiceError: null
+      lintServiceError: null,
     })
       .then(() => lintSpec(currentSpec))
       .then(x => {
@@ -85,7 +89,7 @@ class App extends React.Component {
         if (code === CRASH || code === SPEC_NOT_SUPPORTED) {
           this.setState({
             lintLoading: false,
-            lintServiceError: code === CRASH ? msg : 'SPEC NOT SUPPORTED'
+            lintServiceError: code === CRASH ? msg : 'SPEC NOT SUPPORTED',
           });
           return;
         }
@@ -104,7 +108,7 @@ class App extends React.Component {
       lintResults,
       lintServiceError,
       renderLoading,
-      width
+      width,
     } = this.state;
 
     // this function encapsulates the logic for error handling the set state
@@ -117,13 +121,13 @@ class App extends React.Component {
             .then(code =>
               this.setAsyncState({
                 currentSpec: code,
-                JSONerror: null
-              })
+                JSONerror: null,
+              }),
             )
             .catch(e =>
               this.setAsyncState({
-                JSONerror: e
-              })
+                JSONerror: e,
+              }),
             );
         })
         .then(() => {
@@ -141,7 +145,7 @@ class App extends React.Component {
           buildChart={() => this.renderSpec(currentSpec)}
           cleanUpCode={() => {
             this.setState({
-              currentCode: JSON.stringify(currentSpec, null, 2)
+              currentCode: JSON.stringify(currentSpec, null, 2),
             });
           }}
           executeSpec={() => {
@@ -158,7 +162,7 @@ class App extends React.Component {
               className={classnames({
                 'flex-down': true,
                 'error-message': true,
-                'show-error-message': this.state.JSONerror
+                'show-error-message': this.state.JSONerror,
               })}
             >
               JSON ERROR

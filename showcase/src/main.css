@@ -206,3 +206,8 @@ body {
 .show-error-message {
   top: -20px;
 }
+
+
+.ReactModal__Content {
+  background: black;
+}

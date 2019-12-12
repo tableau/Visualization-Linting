@@ -1,11 +1,12 @@
 import {clone, shuffle} from '../../utils';
 import {expectSame} from '../algebraic-detectors';
+import {NUM_EVALS} from '../index';
 
 const shufflingDataShouldMatter = {
   name: 'algebraic-shuffle-input-data',
   type: 'algebraic-stat-data',
   operation: container => shuffle(clone(container)),
-  generateNumberOfIterations: (dataset, spec, view) => 100,
+  generateNumberOfIterations: (dataset, spec, view) => NUM_EVALS,
   selectEvaluator: spec => expectSame,
   filter: (spec, data, view) => {
     return data.length > 0;

@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start-debug": "babel-node --inspect server.js",
-    "start": "babel-node server.js"
+    "start": "babel-node server.js",
+    "build": "NODE_ENV=production webpack",
+    "public-server": "node bundle.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,7 +19,9 @@
     "babel-preset-es2017": "^6.22.0",
     "babel-preset-stage-2": "^6.22.0",
     "body-parser": "^1.19.0",
-    "express": "^4.17.1"
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "request": "^2.88.0"
   },
   "babel": {
     "presets": [

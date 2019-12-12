@@ -1,5 +1,7 @@
 import {cor} from 'datalib';
-const {rank, dist} = cor;
+const {
+  // rank, dist
+} = cor;
 import {buildPixelDiff} from '../image-manipulation';
 import DynamicTimeWarping from 'dynamic-time-warping';
 /**
@@ -70,8 +72,8 @@ function compareBarOrders(
 ) {
   const oldOrder = heightsOrder(oldView);
   const newOrder = heightsOrder(newView);
-  const rankScore = rank(oldOrder, newOrder);
-  const distScore = dist(oldOrder, newOrder);
+  // const rankScore = rank(oldOrder, newOrder);
+  // const distScore = dist(oldOrder, newOrder);
   const binaryPass = sameArr(oldOrder, newOrder);
   // console.log(
   //   oldView._runtime.data.marks.input.value.map(x => x.datum.average_value),

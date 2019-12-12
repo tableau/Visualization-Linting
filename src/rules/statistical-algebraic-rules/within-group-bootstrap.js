@@ -1,11 +1,12 @@
 import {prepProv} from '../../utils';
 import {
-  expectSameBars,
-  expectSameLines,
-  expectSame,
+  // expectSameBars,
+  // expectSameLines,
+  // expectSame,
   testInstrument,
 } from '../algebraic-detectors';
 import {fullResample} from '../../bootstrap';
+import {NUM_EVALS} from '../index';
 
 const bootstrapBars = {
   name: `algebraic-within-group-bootstrap`,
@@ -16,10 +17,9 @@ const bootstrapBars = {
       dataset,
       spec,
       view,
-      'y', //opposite key as expected
+      'y', // opposite key as expected
     );
     const data = [];
-    // debugger;
     Object.keys(aggregateOutputPairs).forEach(terminalKey => {
       fullResample(tailToStartMap[terminalKey] || []).forEach(idx =>
         data.push(dataset[idx]),
@@ -35,7 +35,7 @@ const bootstrapBars = {
     return false;
     // return numPassing > 333;
   },
-  generateNumberOfIterations: (dataset, spec, view) => 100,
+  generateNumberOfIterations: (dataset, spec, view) => NUM_EVALS,
   filter: (spec, data, view) => {
     if (data.length === 0) {
       return false;
@@ -49,7 +49,8 @@ const bootstrapBars = {
     }
     return true;
   },
-  explain: 'Within each aggregate mark, bootstrapping the data results in very different patterns. This suggests unreliability in the aggregate measure, or the data backing it.',
+  explain:
+    'Within each aggregate mark, bootstrapping the data results in very different patterns. This suggests unreliability in the aggregate measure, or the data backing it.',
 };
 
 export default bootstrapBars;

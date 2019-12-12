@@ -176,7 +176,10 @@ function evaluateStatisticalAlgebraicRule(
   options,
 ) {
   const {noVisualExplain} = options;
-  const {generateNumberOfIterations, statisticalEval} = rule;
+  const {
+    generateNumberOfIterations,
+    // statisticalEval
+  } = rule;
   return generateVegaRendering(spec, 'raster').then(oldRendering => {
     const numIterations = generateNumberOfIterations(dataset, spec, oldView);
     // run a bunch of evaluations at once

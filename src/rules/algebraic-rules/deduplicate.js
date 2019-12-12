@@ -1,8 +1,11 @@
-import {clone, shuffle} from '../../utils';
 import {
-  expectSameBars,
-  expectSameLines,
-  expectSame,
+  clone,
+  // shuffle
+} from '../../utils';
+import {
+  // expectSameBars,
+  // expectSameLines,
+  // expectSame,
   testInstrument,
 } from '../algebraic-detectors';
 

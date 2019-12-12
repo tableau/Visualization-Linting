@@ -1,13 +1,13 @@
 const COMMON = {
   $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
-  data: {url: '../example-data/real/world-indicators.json'}
+  data: {url: '../example-data/real/world-indicators.json'},
 };
 
 const TIME_ENCODING = {
   field: 'Year',
   type: 'temporal',
   timeUnit: 'year',
-  axis: {title: 'Year'}
+  axis: {title: 'Year'},
 };
 
 const ENERGY_ENCODING = {
@@ -15,22 +15,22 @@ const ENERGY_ENCODING = {
   type: 'quantitative',
   aggregate: 'sum',
   axis: {
-    format: '~s'
-  }
+    format: '~s',
+  },
 };
 
 const WIMenergyUsageDown = {
   ...COMMON,
   description: 'Energy Usage Down?',
   mark: 'line',
-  encoding: {x: TIME_ENCODING, y: ENERGY_ENCODING}
+  encoding: {x: TIME_ENCODING, y: ENERGY_ENCODING},
 };
 
 const WIMenergyUsageUp = {
   ...COMMON,
   description: 'Energy Usage Up?',
   mark: 'line',
-  encoding: {x: TIME_ENCODING, y: {...ENERGY_ENCODING, aggregate: 'average'}}
+  encoding: {x: TIME_ENCODING, y: {...ENERGY_ENCODING, aggregate: 'average'}},
 };
 
 const WIMlotsOfNullsIn2012 = {
@@ -42,9 +42,9 @@ const WIMlotsOfNullsIn2012 = {
     x: TIME_ENCODING,
     y: {
       type: 'quantitative',
-      aggregate: 'count'
-    }
-  }
+      aggregate: 'count',
+    },
+  },
 };
 
 const WIMisEnergyUsageDrivenByLifeExpectancy = {
@@ -62,10 +62,10 @@ const WIMisEnergyUsageDrivenByLifeExpectancy = {
             ...ENERGY_ENCODING.axis,
             title: 'Sum. Energy Usage',
             titleColor: '#F28E2C',
-            grid: true
-          }
-        }
-      }
+            grid: true,
+          },
+        },
+      },
     },
     {
       mark: {type: 'line', color: '#E15658'},
@@ -76,13 +76,13 @@ const WIMisEnergyUsageDrivenByLifeExpectancy = {
           type: 'quantitative',
           axis: {title: 'Avg. Life Expectancy', titleColor: '#E15658'},
           scale: {
-            domain: [54, 72]
-          }
-        }
-      }
-    }
+            domain: [54, 72],
+          },
+        },
+      },
+    },
   ],
-  resolve: {scale: {y: 'independent'}}
+  resolve: {scale: {y: 'independent'}},
 };
 
 const WIMisEnergyUsageDrivenByLifeExpectancyDispellEnergy = {
@@ -97,15 +97,15 @@ const WIMisEnergyUsageDrivenByLifeExpectancyDispellEnergy = {
       axis: {
         ...ENERGY_ENCODING.axis,
         title: 'Sum. Energy Usage',
-        grid: true
-      }
+        grid: true,
+      },
     },
     detail: {
       field: 'Country',
       type: 'nominal',
-      legend: null
-    }
-  }
+      legend: null,
+    },
+  },
 };
 
 const WIMisEnergyUsageDrivenByLifeExpectancyDispellLifeExpect = {
@@ -120,20 +120,21 @@ const WIMisEnergyUsageDrivenByLifeExpectancyDispellLifeExpect = {
       field: 'Life Expectancy',
       type: 'quantitative',
       axis: {title: 'Avg. Life Expectancy'},
-      scale: {domain: [35, 90]}
+      scale: {domain: [35, 90]},
     },
     detail: {
       field: 'Country',
       type: 'nominal',
-      legend: null
-    }
-  }
+      legend: null,
+    },
+  },
 };
 
 // had to do some dumb things to get which countries were null
 // tailToStartMap.NULL
 // .map(idx => dataset[idx])
 // .filter(row => {
+// eslint-disable-next-line
 //   const OECD_COUNTRIES = [ 'Australia', 'Austria', 'Belgium', 'Canada', 'Chile', 'Czech Republic', 'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Iceland', 'Ireland', 'Israel', 'Italy', 'Japan', 'Korea, Rep.', 'Latvia', 'Lithuania', 'Luxembourg', 'Mexico', 'Netherlands', 'New Zealand', 'Norway', 'Poland', 'Portugal', 'Slovak Republic', 'Slovenia', 'Spain', 'Sweden', 'Switzerland', 'Turkey', 'United Kingdom', 'United States'
 //   ].reduce((acc, country) => {
 //     acc[country] = true;
@@ -178,23 +179,23 @@ const OECD_COUNTRIES = [
   'Switzerland',
   'Turkey',
   'United Kingdom',
-  'United States'
+  'United States',
 ].map(country => ({oecd: 'oecd', country}));
 const labelWithOECD = {
   lookup: 'Country',
   from: {
     data: {values: OECD_COUNTRIES},
     key: 'country',
-    fields: ['oecd']
+    fields: ['oecd'],
   },
-  default: false
+  default: false,
 };
 const WIMNonNullsAreOECDCountires2012 = {
   ...COMMON,
   transform: [
     {filter: {field: 'Energy Usage', valid: true}},
     {filter: {timeUnit: 'year', field: 'Year', equal: '2012'}},
-    labelWithOECD
+    labelWithOECD,
   ],
   description: '2012 Non-Nulls Are OECD Countries',
   mark: 'bar',
@@ -202,15 +203,15 @@ const WIMNonNullsAreOECDCountires2012 = {
     x: {
       field: 'Country',
       type: 'ordinal',
-      sort: {op: 'sum', field: 'Energy Usage'}
+      sort: {op: 'sum', field: 'Energy Usage'},
     },
     y: ENERGY_ENCODING,
     color: {
       field: 'oecd',
       type: 'ordinal',
-      scale: {range: ['#4D79A7', '#E15658']}
-    }
-  }
+      scale: {range: ['#4D79A7', '#E15658']},
+    },
+  },
 };
 
 const WIMNonNullsAreHighEnergyUsers2012 = {
@@ -219,9 +220,9 @@ const WIMNonNullsAreHighEnergyUsers2012 = {
     {filter: {timeUnit: 'year', field: 'Year', equal: '2012'}},
     {
       calculate: 'if(isNumber(datum["Energy Usage"]), "NON-NULL", "NULL")',
-      as: 'inOut'
+      as: 'inOut',
     },
-    labelWithOECD
+    labelWithOECD,
   ],
   description: '2012 Non-Nulls Are High Energy Users',
   mark: 'bar',
@@ -229,21 +230,21 @@ const WIMNonNullsAreHighEnergyUsers2012 = {
     x: {
       axis: {title: false},
       field: 'inOut',
-      type: 'ordinal'
+      type: 'ordinal',
     },
     y: {...ENERGY_ENCODING, aggregate: 'count'},
     color: {
       field: 'oecd',
-      type: 'nominal'
-    }
-  }
+      type: 'nominal',
+    },
+  },
 };
 
 const WIOECDisHighEnergy = {
   ...COMMON,
   transform: [
     {filter: {timeUnit: 'year', field: 'Year', equal: '2012'}},
-    labelWithOECD
+    labelWithOECD,
   ],
   description: '2012 Non-Nulls Are High Energy Users',
   mark: 'bar',
@@ -251,14 +252,14 @@ const WIOECDisHighEnergy = {
     x: {
       axis: {title: false},
       field: 'oecd',
-      type: 'ordinal'
+      type: 'ordinal',
     },
     y: {...ENERGY_ENCODING, aggregate: 'average'},
     color: {
       field: 'oecd',
-      type: 'nominal'
-    }
-  }
+      type: 'nominal',
+    },
+  },
 };
 
 const WIMOverplottingMirage = {
@@ -266,14 +267,14 @@ const WIMOverplottingMirage = {
   transform: [
     {
       calculate: 'parseFloat(datum["Health Exp % GDP"])',
-      as: 'Health Express % GDP'
+      as: 'Health Express % GDP',
     },
     {
-      filter: {field: 'Health Express % GDP', valid: true}
+      filter: {field: 'Health Express % GDP', valid: true},
     },
     {
-      filter: {field: 'Life Expectancy', valid: true}
-    }
+      filter: {field: 'Life Expectancy', valid: true},
+    },
   ],
   description: 'Overplotting Mirage',
   mark: 'circle',
@@ -281,29 +282,29 @@ const WIMOverplottingMirage = {
     x: {
       field: 'Health Express % GDP',
       type: 'quantitative',
-      aggregate: 'mean'
+      aggregate: 'mean',
     },
     y: {
       field: 'Life Expectancy',
       type: 'quantitative',
-      aggregate: 'mean'
+      aggregate: 'mean',
     },
     color: {
       field: 'Region',
       type: 'nominal',
-      legend: null
+      legend: null,
     },
     detail: [
       {
         field: 'Country',
-        type: 'nominal'
+        type: 'nominal',
       },
       {
         field: 'Year',
-        type: 'nominal'
-      }
-    ]
-  }
+        type: 'nominal',
+      },
+    ],
+  },
 };
 
 export default {
@@ -316,5 +317,5 @@ export default {
   WIMisEnergyUsageDrivenByLifeExpectancy,
   WIMenergyUsageUp,
   WIMlotsOfNullsIn2012,
-  WIMenergyUsageDown
+  WIMenergyUsageDown,
 };

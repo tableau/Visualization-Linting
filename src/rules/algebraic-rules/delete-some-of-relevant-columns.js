@@ -1,11 +1,15 @@
 import {clone, getXYFieldNames} from '../../utils';
 import {partiallyDropColumn} from '../../dirty';
-import {expectDifferent, testInstrument} from '../algebraic-detectors';
+import {
+  // expectDifferent,
+  testInstrument,
+} from '../algebraic-detectors';
+import {NUM_EVALS} from '../index';
 
 const deletingRandomValuesShouldMatter = {
   name: 'algebraic-delete-some-of-relevant-columns',
   type: 'algebraic-stat-data',
-  generateNumberOfIterations: (dataset, spec, view) => 100,
+  generateNumberOfIterations: (dataset, spec, view) => NUM_EVALS,
   operation: (container, spec) => {
     const data = clone(container);
     partiallyDropColumn(data, getXYFieldNames(spec).filter(d => d)[0], 0.2);

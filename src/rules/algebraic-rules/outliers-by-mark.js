@@ -1,5 +1,6 @@
 import {clone, prepProv, filterForMarkRecordChange} from '../../utils';
-import {expectDifferent} from '../algebraic-detectors';
+import // expectDifferent
+'../algebraic-detectors';
 
 /**
  * HEY THIS ONE DOESN"T WORK
@@ -16,9 +17,7 @@ const outliersByMark = ['x', 'y'].map(key => ({
       view,
       key,
     );
-    console.log('??!???!???!');
     const data = clone(dataset);
-    debugger;
     const arrayOfArrays = Object.keys(aggregateOutputPairs).map(
       terminalKey => tailToStartMap[terminalKey],
     );

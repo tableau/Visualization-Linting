@@ -122,9 +122,9 @@ export function getDataset(spec) {
       data.format ? read(data.values, data.format) : data.values,
     );
   }
-  if (!data.url) {
-    console.log(data);
-  }
+  // if (!data.url) {
+  //   console.log(data);
+  // }
   const brokenUri = data.url.split('.');
   const type = brokenUri[brokenUri.length - 1];
   const cacheAccessKey = JSON.stringify(data);

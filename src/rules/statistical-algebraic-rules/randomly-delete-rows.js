@@ -1,11 +1,12 @@
 import {clone} from '../../utils';
 import {
-  expectDifferentLines,
-  expectDifferent,
-  expectDifferentBars,
+  // expectDifferentLines,
+  // expectDifferent,
+  // expectDifferentBars,
   testInstrument,
 } from '../algebraic-detectors';
 import {dropRow} from '../../dirty';
+import {NUM_EVALS} from '../index';
 
 const deletingRowsShouldMatter = {
   name: 'algebraic-randomly-delete-rows',
@@ -24,7 +25,7 @@ const deletingRowsShouldMatter = {
     return false;
     // return numPassing > 333;
   },
-  generateNumberOfIterations: (dataset, spec, view) => 100,
+  generateNumberOfIterations: (dataset, spec, view) => NUM_EVALS,
   filter: (spec, data, view) => {
     return data.length > 0;
   },

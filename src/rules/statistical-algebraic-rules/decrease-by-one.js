@@ -1,10 +1,11 @@
 import {prepProv, clone} from '../../utils';
 import {
-  expectSameBars,
-  expectSameLines,
-  expectSame,
+  // expectSameBars,
+  // expectSameLines,
+  // expectSame,
   testInstrument,
 } from '../algebraic-detectors';
+import {NUM_EVALS} from '../index';
 
 const decreaseByOne = ['y'].map(key => ({
   name: `algebraic-decrease-by-one--${key}-axis`,
@@ -30,7 +31,7 @@ const decreaseByOne = ['y'].map(key => ({
     return data.filter(d => d);
   },
   selectEvaluator: testInstrument,
-  generateNumberOfIterations: (dataset, spec, view) => 100,
+  generateNumberOfIterations: (dataset, spec, view) => NUM_EVALS,
   statisticalEval: results => {
     const numPassing = results.reduce((x, {passed}) => x + (passed ? 1 : 0), 0);
     console.log('remove one', numPassing);

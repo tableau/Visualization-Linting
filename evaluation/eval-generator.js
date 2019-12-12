@@ -2,7 +2,7 @@
 import {lint} from '../src';
 import {writeFile, executePromisesInSeries} from 'hoopoe';
 
-const DEGRADE_SIZE = 6;
+// const DEGRADE_SIZE = 6;
 const TRIAL_SIZE = 20;
 const buildChart = (errorType, levelOfDegrade, runId) => {
   return {
@@ -34,7 +34,7 @@ const prepareReport = ({lints}) => {
 };
 
 console.log('generating targets');
-const oldCategories = ['missing', 'outliers', 'repeated'];
+// const oldCategories = ['missing', 'outliers', 'repeated'];
 const newCategories = ['mu', 'n', 'od', 'sd'];
 const newCatMiddleMap = {
   mu: [55, 60, 65, 70, 75],
