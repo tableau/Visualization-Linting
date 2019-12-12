@@ -1,1 +1,1 @@
-web: cd server && npm install && npm run start
+web: yarn serve
