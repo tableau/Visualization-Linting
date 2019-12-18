@@ -6,7 +6,7 @@ Code for experimenting with different ways of surfacing stylistic, analytic, or 
 
 More details are available in the paper, but the core of the project is that a user can create a [Vega-Lite](https://vega.github.io/vega-lite/) JSON specification of a chart, along with the backing data, and we will perform a series of "[lints](https://en.wikipedia.org/wiki/Lint_(software))" to test the robustness, fragility, or simple design of the chart. The results of these tests are listed underneath the chart. A test result in red represents a failure, and suggests that the analyst might have a data quality or chart design error worth investigating.
 
-Note that this is a proof of concept testing platform for research under active development.
+Note that this is a proof of concept testing platform for research under active development. A demo of the application can be seen deployed [here](https://metamorphic-linting.netlify.com/). This application is meant to be a demo of potential functionality and has not been designed to scale to internet contexts. Future work will involve developing strategies and algorithms for improving the performance of this type of system.
 
 # Why Visualization Linting?
 
@@ -38,8 +38,6 @@ This should open up a browser window showing a list of Vega-Lite specs. Select a
 Note that we support only a small subset of Vega-Lite specs, and that many features of Vega-Lite such as layering, concatenation, and maps are not linted. "SPEC NOT SUPPORTED" will appear in these cases.
 
 # Contributions
-
-> If your project takes pull requests, include this section.
 
 Code contributions and improvements by the community are welcomed!
 See the LICENSE file for current open-source licensing and use information.
