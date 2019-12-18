@@ -37,7 +37,7 @@ export const fetchWithRetry = (url, basicProps) => {
 
 const local = route => `https://localhost:5000/${route}`;
 const server = route => `https://vis-lint.herokuapp.com/${route}`;
-const USE_LOCAL = true;
+const USE_LOCAL = false;
 const genericReq = (spec, route) =>
   fetch((USE_LOCAL ? local : server)(route), {
     ...commonPostConfig,
