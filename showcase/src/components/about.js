@@ -24,7 +24,7 @@ export default function About(props) {
           <div
             style={{
               backgroundColor: 'black',
-              opacity: 0.7,
+              opacity: 0.9,
               color: 'white',
               padding: '30px',
               maxWidth: '300px',
@@ -32,7 +32,9 @@ export default function About(props) {
             onClick={toggleAbout}
           >
             This application is the software artifact associated with our paper
-            found HERE. You can find out more about this application at the{' '}
+            found (a pre-print of which can be found{' '}
+            <a href="https://arxiv.org/abs/2001.02316">here</a>
+            ). You can find out more about this application at the{' '}
             <a href="https://github.com/tableau/Visualization-Linting">
               github.
             </a>
