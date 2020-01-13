@@ -2,7 +2,7 @@
 
 ![As-Is](https://img.shields.io/badge/Support%20Level-As--Is-e8762c.svg)
 
-Code for experimenting with different ways of surfacing stylistic, analytic, or visual discrepancies in visualizations. This code is part of an academic project undertaken by [Tableau Research](http://research.tableau.com) as part of an academic paper, "Surfacing Visualization Mirages."
+Code for experimenting with different ways of surfacing stylistic, analytic, or visual discrepancies in visualizations. This code is part of an academic project undertaken by [Tableau Research](http://research.tableau.com) as part of an academic paper, ["Surfacing Visualization Mirages](https://arxiv.org/abs/2001.02316)."
 
 More details are available in the paper, but the core of the project is that a user can create a [Vega-Lite](https://vega.github.io/vega-lite/) JSON specification of a chart, along with the backing data, and we will perform a series of "[lints](https://en.wikipedia.org/wiki/Lint_(software))" to test the robustness, fragility, or simple design of the chart. The results of these tests are listed underneath the chart. A test result in red represents a failure, and suggests that the analyst might have a data quality or chart design error worth investigating.
 
