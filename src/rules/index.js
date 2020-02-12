@@ -25,7 +25,7 @@ import withInGroupResample from './statistical-algebraic-rules/within-group-boot
 import deletingRowsShouldMatter from './statistical-algebraic-rules/randomly-delete-rows';
 import contractToFloorRecords from './statistical-algebraic-rules/contract-to-floor-records';
 import inflateToCommonNumberOfRecordsBootstrap from './statistical-algebraic-rules/inflate-to-max-records';
-// import decreaseByOne from './statistical-algebraic-rules/decrease-by-one';
+
 
 // This is a lsit of the rules used in the evaluation
 // preserrverd here for reference.
@@ -35,8 +35,6 @@ import inflateToCommonNumberOfRecordsBootstrap from './statistical-algebraic-rul
 //   bootstrapBars,
 //   withInGroupResample,
 //   ...contractToFloorRecords,
-//   // ...decreaseByOne,
-//   // ...inflateToCommonNumberOfRecordsBootstrap,
 //
 //   // ALGEBRAIC RULES
 //   // deduplicatationShouldntMatter,
@@ -52,7 +50,6 @@ const lintRules = [
   bootstrapBars,
   withInGroupResample,
   ...contractToFloorRecords,
-  // ...decreaseByOne,
   ...inflateToCommonNumberOfRecordsBootstrap,
   // ALGEBRAIC RULES
   deduplicatationShouldntMatter,
