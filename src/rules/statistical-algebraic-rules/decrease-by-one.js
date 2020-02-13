@@ -7,6 +7,8 @@ import {
 } from '../algebraic-detectors';
 import {NUM_EVALS} from '../index';
 
+// This rule is unused, it doesn't appear to do very much, see other rules for similar 
+// and more effective implementations of the same patterns
 const decreaseByOne = ['y'].map(key => ({
   name: `algebraic-decrease-by-one--${key}-axis`,
   type: 'algebraic-stat-data',

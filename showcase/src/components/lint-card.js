@@ -55,22 +55,22 @@ export default class LintCard extends React.Component {
     return (
       <div
         onClick={() => {
-          this.setState({open: !open});
+          if (!passed) {
+            this.setState({open: !open});
+          }
         }}
         className={classnames({
           'flex-down': true,
           'lint-pass': passed,
           'lint-fail': !passed,
           'lint-warn': false,
-          'lint-card': true
+          'lint-card': true,
         })}
       >
         <div className="card-head">
-          <div className="card-title">{`${name} ${
-            !isNaN(passed) ? passed : ''
-          }`}</div>
+          <div className="card-title">{name}</div>
         </div>
-        {open && (
+        {!passed && open && (
           <div className="card-body">
             <div className="z-1 flex padding-20">
               {failedRender && (
@@ -87,7 +87,7 @@ export default class LintCard extends React.Component {
                       <div
                         ref="svgTarget"
                         dangerouslySetInnerHTML={{
-                          __html: failedRender.render.data
+                          __html: failedRender.render.data,
                         }}
                       />
                     )}
