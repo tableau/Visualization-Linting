@@ -51,7 +51,7 @@
     "dynamic-time-warping": "^1.0.0",
     "hex-over": "^0.0.2",
     "hoopoe": "^1.0.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "outliers": "^0.0.3",
     "pixelmatch": "^5.0.2",
     "tsv": "^0.2.0",
