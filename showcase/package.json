@@ -24,7 +24,7 @@
     "lodash.debounce": "^4.0.8",
     "monaco-editor-webpack-plugin": "^1.7.0",
     "style-loader": "0.13.1",
-    "webpack": "4",
+    "webpack": "5",
     "webpack-cli": "^3.0.8",
     "webpack-command": "^0.2.1",
     "webpack-dev-server": "^3.2.1"
